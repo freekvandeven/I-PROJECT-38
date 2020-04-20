@@ -10,3 +10,10 @@ require_once('includes/header.php');
 echo "Testing homepage";
 
 require_once('includes/footer.php');
+?>
+
+<html lang="nl">
+    <body>
+
+    </body>
+</html>
