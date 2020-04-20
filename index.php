@@ -14,6 +14,6 @@ require_once('includes/footer.php');
 
 <html lang="nl">
     <body>
-
+        
     </body>
 </html>
