@@ -13,6 +13,10 @@ require_once('includes/footer.php');
 ?>
 
 <html lang="nl">
+    <head>
+
+    </head>
+
     <body>
 
     </body>
