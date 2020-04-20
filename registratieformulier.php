@@ -10,6 +10,8 @@ require_once('includes/functions.php');
 
 require_once('includes/header.php');
 
+?>
+
 <main>
     <form method="POST" action="registratiehandling.php"> 
         <label for="gebruikersnaam">Gebruikersnaam</label>
@@ -43,6 +45,8 @@ require_once('includes/header.php');
         <input type="submit" name="submit" value="Submit">
     </form>
 </main>
+
+<?php
 
 require_once('includes/footer.php');
 
