@@ -7,4 +7,6 @@
         <link rel="stylesheet" href="css/styles.css">
         <title><?=$title?></title>
     </head>
-</html>
+    <body>
+
+    </body>
