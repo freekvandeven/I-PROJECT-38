@@ -1,5 +1,5 @@
 <?php
-require_once('dbconfig.php');
+require_once('db-config.php');
 $dbh = connectToDatabase();
 function connectToDatabase(){
     global $host;
