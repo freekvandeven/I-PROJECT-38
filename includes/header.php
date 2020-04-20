@@ -6,3 +6,5 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="css/styles.css">
         <title><?=$title?></title>
+    </head>
+</html>
