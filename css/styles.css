@@ -1,4 +1,12 @@
-
+/******************NAV******************/
+nav{
+}
+.dropdown:hover>.dropdown-menu{
+    display:block;
+}
+.dropdown-menu {
+    margin:0;
+}
 .bg-light {
  background-color: #5f4b8b !important;
 }
@@ -135,4 +143,16 @@
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
     color: #ac00ff;
     background-color: #5f4b8b;
+}
+/**********************MAIN***********************/
+main{
+min-height: calc(100vh - 112px);
+}
+/********************* FOOTER*********************/
+footer{
+    background-color:#5f4b8b;
+    color:#fff;
+}
+footer p{
+    margin:auto;
 }
