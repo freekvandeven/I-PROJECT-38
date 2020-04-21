@@ -2,7 +2,7 @@
 
 session_start();
 
-$title = "inlogformulier";
+$title = "profielpagina";
 
 require_once('includes/database.php');
 
