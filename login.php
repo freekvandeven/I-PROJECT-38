@@ -3,15 +3,17 @@ session_start();
 require_once('includes/functions.php');
 
 # handle the login post request
-if(isset($_POST["username"]) && isset($_POST["password"])){
-    echo $_POST["username"];
-    $user = getUser($_POST["username"]);
-    if(password_verify($_POST["password"], $user['Wachtwoord'])) {
-        createSession($user);
-        header("Location: profile.php");
+if(isset($_POST)) {
+    if (isset($_POST["username"]) && isset($_POST["password"])) {
+        echo $_POST["username"];
+        $user = getUser($_POST["username"]);
+        if (password_verify($_POST["password"], $user['Wachtwoord'])) {
+            createSession($user);
+            header("Location: profile.php");
+        }
+    } else {
+        echo "please fill in all the data!";
     }
-} else {
-    echo "please fill in all the data!";
 }
 
 $title = "Login pagina";
