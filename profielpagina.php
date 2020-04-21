@@ -10,14 +10,14 @@ require_once('includes/functions.php');
 
 require_once('includes/header.php');
 
-$profielpagina = getUser($_SESSION['name']);
+$profile_data = getUser($_SESSION['name']);
 
 ?>
 <h2>Profielpagina</h2>
 
 <h4>Persoonlijke gegevens:</h4><br>
 <p>Gebruikersnaam: <?=$profile_data['Gebruikersnaam']?></p><br>
-<p>Voornaam: <?=$$profile_data['Voornaam']?></p><br>
+<p>Voornaam: <?=$profile_data['Voornaam']?></p><br>
 <p>Achternaam:<?=$profile_data['Achternaam']?></p><br>
 <p>Adres 1: <?=$profile_data['Adresregel_1']?></p><br>
 <p>Adres 2: <?=$profile_data['Adresregel_2']?></p><br>
