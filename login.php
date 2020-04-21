@@ -1,12 +1,12 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+
 # handle the login post request
 if(isset($_POST["username"]) && isset($_POST["password"])){
     echo $_POST["username"];
     $user = getUser($_POST["username"]);
-    echo $user;
-    if(password_verify($_POST["password"], $user['wachtwoord'])) {
+    if(password_verify($_POST["password"], $user['Wachtwoord'])) {
         createSession($user);
         header("Location: profile.php");
     }

@@ -18,6 +18,6 @@ function createSession($user){
     session_regenerate_id();
     $_SESSION['loggedin'] = TRUE;
     #$_SESSION['userid'] = $user['id'];
-    #$_SESSION['name'] = $user['naam'];
+    $_SESSION['name'] = $user['Gebruikersnaam'];
     #$_SESSION['admin'] = $user['rechten'];
 }
