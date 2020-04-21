@@ -13,7 +13,7 @@ if (isset($_SESSION['admin'])) {
         $loginlink = 'profiel.php';
     }
 } else {
-    $loginlink = 'inlogformulier.php';
+    $loginlink = 'login.php';
 }
 ?>
 <!DOCTYPE html>
