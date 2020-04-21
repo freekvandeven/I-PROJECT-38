@@ -14,6 +14,8 @@ checkLogin();
 
 ?>
 
+<main>
+
 <form method="POST"> 
 
     <label for="Titel">Titel voorwerp: </label>
@@ -61,6 +63,8 @@ checkLogin();
 
     <input type="submit" name="submit" value="Verzenden">
 </form>  
+	
+</main>
 
 <?php
 
