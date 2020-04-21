@@ -1,0 +1,74 @@
+/* De kleur paars: #A569BD of 165, 105, 189 */
+
+body{
+    background: rgb(255, 255, 255);
+}
+
+/* DE BODY VD PAGINA: */
+.paginaBody{
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 5%;
+    margin-bottom: 100px;
+}
+
+/* DE INTRO: BOVENAAN: */
+.jumbotron{
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    background: rgb(245, 245, 245);
+
+}
+
+/* DE SLIDESHOW: */
+.slideshow{
+    margin-top: 60px;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+.carousel-item div a h3{
+    color: white;
+    transition: 200ms;
+}
+
+.carousel-item div a h3:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+    padding-bottom: 5px;
+}
+
+.sliderLinks:hover{
+    text-decoration: none;
+}
+
+/* PRODUCTENLIJST */
+.productsList{
+    margin-top: 100px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    background: rgb(245, 245, 245);
+}
+
+.card{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .1);
+}
+
+.card-link{
+    color: #B166CF;
+    transition: 200ms;
+}
+
+.card-link:hover{
+    color: #B166CF;
+    padding-left: 10px;
+}
+
+.card a img{
+    max-height: 400px;
+}
