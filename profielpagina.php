@@ -23,8 +23,6 @@ if($edit === false){
     $edit = false;
 }
 
-?>
 
-<?php
 require_once('includes/header.php');
 ?>
