@@ -209,12 +209,3 @@ values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nede
 
 
 
-
-
-
-
-
-
-
-
-
