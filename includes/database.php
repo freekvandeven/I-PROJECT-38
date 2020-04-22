@@ -25,6 +25,15 @@ function getUser($username){
     return $user;
 }
 
+function upgradeUser($user, $info){
+    global $dbh;
+    $data = $dbh->prepare("UPDATE Gebruiker SET action=TRUE WHERE gebruikersnaam = :username");
+    $data->execute([":username"=>$user]);
+    $data = $dbh->prepare("INSERT INTO Verkoper (Gebruiker, Bank, Bankrekening, ControleOptie, Creditcard) VALUES 
+                                                                                       (:username, :bank, :bankrekening, :controle, :creditcard)");
+    $data->execute([":username"=>$user, ":bank"=>$info["bank"], ":bankrekening"=>$info["rekening"],":controle"=>$info["controle"],":creditcard"=>$info["creditcard"]]);
+}
+
 function insertUser($user, $telefoon){
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adresregel_1, Adresregel_2, 
