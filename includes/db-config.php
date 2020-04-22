@@ -2,10 +2,10 @@
     //hostname
     $host = 'localhost';
     //databasename you created with xampp
-    $dbname = 'I-Project38';
+    $dbname = 'i-project';
     //username is username you created with xampp
-    $username = 'Iproject38';
+    $username = 'anthonyv';
     //username is password you created with xampp
-    $password = 'Iproject38';
+    $password = 'Anthony01';
     //serverType is server you're using
     $serverType = 'mysql';
