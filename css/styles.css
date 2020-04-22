@@ -225,37 +225,52 @@ body{
     max-height: 400px;
 }
 
-#login .container #login-row #login-column #login-box {
+/*********************** LOGIN- EN REGISTRATIEFORMULIER *******************/
+#login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
     margin-top: 100px;
+    margin-bottom: 100px;
     max-width: 600px;
-    height: 420px;
-    border: 3px solid rgb(165, 105, 189);
+    height: 100%;
+    border: 2px solid rgb(165, 105, 189);
     border-radius: 20px;
-    background-color: rgb(245, 245, 245);
+    background: #fff;
 }
-#login .container #login-row #login-column #login-box #login-form {
+
+#register .container #login-row #login-column #login-box{
+    border-width: 1px;
+    max-width: none;
+    background-color: #fff;
+}
+
+.registerForm h5{
+    margin-bottom: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form, #register .container #login-row #login-column #login-box #login-form {
     padding: 20px;
 }
-#login .container #login-row #login-column #login-box #login-form #register-link {
-    margin-top: -85px;
-}
 
-.loginForm h2{
+.loginForm h2, .registerForm h2{
     font-weight: normal;
-    color: rgb(100, 100, 100);
+    color: rgb(80, 80, 80);
 }
 
-.loginForm label{
+.registerForm h2{
+    margin-bottom: 50px;
+}
+
+.loginForm label, .registerForm label{
     font-size: 17px;
 }
 
-.loginForm input[type="text"], form input[type="password"]{
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 15px;
+.loginForm input, .registerForm input, .registerForm select{
+    border-radius: 10px;
+    transition: 200ms;
 }
 
-.loginForm div[class="form-group text-left"]{
-    color: white;
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus{
+    outline: none;
+    padding: 5px;
 }
 
 .loginForm a{
@@ -269,7 +284,7 @@ body{
     color: rgb(165, 105, 189);
 }
 
-.loginForm input[type="submit"]{
+.loginForm input[type="submit"], .registerForm input[type="submit"]{
     margin-top: 10px;
     font-size: 20px;
     padding: 5px;
@@ -282,7 +297,32 @@ body{
     transition: 200ms;
 }
 
-.loginForm input[type="submit"]:hover{
+.registerForm div input[type="submit"]{
+    margin-top: -20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.registerForm div a p{
+    color: #000;
+    text-decoration: underline;
+    font-size: 17px;
+    transition: 200ms;
+}
+
+.registerForm div a p:hover{
+    padding-left: 15px;
+    color: rgb(165, 105, 189);
+}
+
+.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover{
     background: rgb(165, 105, 189);
     color: #fff;
+}
+
+.registerForm .container{
+    background: rgb(245, 245 ,245);
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 20px;
 }
