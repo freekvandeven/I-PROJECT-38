@@ -107,7 +107,7 @@
                                 <input type="submit" name="submit" value="Registreer">
                             </div>
                         </form>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
