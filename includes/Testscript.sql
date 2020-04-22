@@ -12,7 +12,7 @@ CREATE TABLE Gebruiker(
 	Land						VARCHAR(9)		NOT NULL,
 	Geboortedag					VARCHAR(10)		NOT NULL,
 	Mailbox						VARCHAR(25)		NOT NULL,
-	Wachtwoord					VARCHAR(15)		NOT NULL,
+	Wachtwoord					VARCHAR(128)	NOT NULL,
 	Vraag						INTEGER			NOT NULL,
 	Antwoordtekst				VARCHAR(10)		NOT NULL,
 	Verkoper					Varchar(5)		NOT NULL,
