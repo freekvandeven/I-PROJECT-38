@@ -1,2 +1,4 @@
 .idea/
 includes/db-config.php
+/uploads/items/*
+/uploads/users/*1

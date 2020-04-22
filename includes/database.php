@@ -31,7 +31,6 @@ function insertUser($user){
                        Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, action) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
                                                                                                                                      :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action)');
-    var_dump($user);
     $data->execute($user);
     //array_unshift($array, $id)
     /*
@@ -42,4 +41,23 @@ function insertUser($user){
         $stmt->bindParam(':city', '%'.$_GET['city'].'%', PDO::PARAM_STR);
     }
     */
+}
+
+function insertItem($item){
+    global $dbh;
+    $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,Looptijd,
+                                      LooptijdBeginDag,LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,LooptijdEindeDag,
+                                      LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs) 
+                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
+                                      :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
+                                      :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
+    $data->execute($item);
+}
+
+function get_ItemId(){
+    global $dbh;
+    $data = $dbh->prepare ('SELECT MAX(Voorwerpnummer) as nieuwId FROM Voorwerp');
+    $data->execute();
+    $result = $data->fetch(PDO::FETCH_ASSOC);
+    return $result['nieuwId'];
 }
