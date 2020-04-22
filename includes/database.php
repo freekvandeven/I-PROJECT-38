@@ -43,13 +43,4 @@ function insertUser($user, $telefoon){
     $data->execute($user);
     $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
     $data->execute(array(":Gebruikersnaam"=>$user["Gebruikersnaam"], ":Telefoon"=>$telefoon));
-    //array_unshift($array, $id)
-    /*
-    $sql = sprintf('SELECT * FROM user WHERE name LIKE :name %s %s',
-        !empty($_GET['city'])   ? 'AND city   = :city'   : null,
-        !empty($_GET['gender']) ? 'AND gender = :gender' : null);
-    if (!empty($_GET['city'])) {
-        $stmt->bindParam(':city', '%'.$_GET['city'].'%', PDO::PARAM_STR);
-    }
-    */
 }

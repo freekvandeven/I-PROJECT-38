@@ -2,38 +2,39 @@
 $profile_data = getUser($_SESSION['name']);
 ?>
 <main>
-    <h1>Wordt een verkoper</h1>
-    <form method="POST" action="">
-        <input type="hidden" name="action" value="upgrade">
-        <label for="gebruikersnaam">Gebruikersnaam</label>
-        <input type="text" name="username" id="gebruikersnaam" value="<?=$profile_data['Gebruikersnaam']?>" required> <br>
-        <label for="wachtwoord"> Wachtwoord</label>
-        <input type="password" name="password"  id="wachtwoord" value="<?php$profile_data['Wachtwoord']?>"required><br>
-        <label for= "email-adres">Email</label>
-        <input type="email" name="email" id="email-adres" value="<?=$profile_data['Mailbox']?>" required> <br>
-        <label for= "voornaam">Voornaam</label>
-        <input type="text" name="first-name" id="voornaam" value="<?=$profile_data['Voornaam']?>" required> <br>
-        <label for= "achternaam">Achternaam</label>
-        <input type="text" name="surname" id="achternaam" value="<?=$profile_data['Achternaam']?>" required> <br>
-        <label for= "adres">Adres</label>
-        <input type="text" name="adress" id="adres" value="<?=$profile_data['Adresregel_1']?>" required> <br>
-        <label for= "postcode">Postcode</label>
-        <input type="text" name="postcode" id="postcode" value="<?=$profile_data['Postcode']?>"required> <br>
-        <label for= "plaats">Plaats</label>
-        <input type="text" name="place" id="plaats" value="<?=$profile_data['Plaatsnaam']?>" required> <br>
-        <label for= "land">Land</label>
-        <input type="text" name="country" id="land" value="<?=$profile_data['Land']?>" required> <br>
-        <label for= "telefoonnummer">Telefoonnummer</label>
-        <input type="text" name="phone-number" id="telefoonnummer" required> <br>
-        <label for= "telefoonnummer2">Telefoonnummer 2</label>
-        <input type="text" name="phone-number2" id="telefoonnummer2"> <br>
-        <label for= "geboortedatum">Geboortedatum</label>
-        <input type="date" name="birthdate" id="geboortedatum" value="<?=$profile_data['Geboortedag']?>" > <br>
-        <label for= "geheime-vraag">Geheime vraag</label>
-        <input type="text" name="secret-question" id="geheime-vraag" value=" <?=$profile_data['Vraag']?>" required> <br>
-        <label for= "geheim-antwoord">Geheim antwoord</label>
-        <input type="text" name="secret-answer" id="geheim-antwoord" value="<?=$profile_data['Antwoordtekst']?>" required> <br>
-        <input type="submit" name="Verzenden" value="Verzenden">
+    <form id="login-form" class="registerForm" action="" method="post">
+        <h2 class="text-center">Wordt een verkoper</h2>
+        <!-- VERKOPER GEGEVENS-->
+        <div class="container">
+            <h5>Verkoper gegevens</h5>
+            <div class="form-row">
+                <!-- BANK -->
+                <div class="form-group col-md-6">
+                    <label for="bank">Bank</label>
+                    <input type="text" class="form-control" id="bank" placeholder="Uw bank">
+                </div>
+                <!-- BANKREKENING -->
+                <div class="form-group col-md-6">
+                    <label for="bankrekening">Bankrekening</label>
+                    <input type="text" class="form-control" id="bankrekening" placeholder="Uw bankrekening">
+                </div>
+                <!-- CONTROLEOPTIE -->
+                <div class="form-group col-md-6">
+                    <label for="controlenummer">ControleOptie</label>
+                    <input type="text" class="form-control" id="controlenummer" placeholder="Uw controlenummer">
+                </div>
+                <!-- CREDITCARD -->
+                <div class="form-group col-md-6">
+                    <label for="creditcard">Creditcard</label>
+                    <input type="text" class="form-control" id="creditcard" placeholder="Uw creditcard">
+                </div>
+
+            </div>
+        </div>
+        <!-- SUBMIT-KNOP -->
+        <div class="form-group text-center">
+            <input type="submit" name="action" value="upgrade">
+        </div>
     </form>
     <a href="profile.php">Ga terug</a>
 </main>
