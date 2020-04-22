@@ -226,6 +226,7 @@ body{
 }
 
 /*********************** LOGIN- EN REGISTRATIEFORMULIER *******************/
+/* De gehele container van de login en register */
 #login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
     margin-top: 100px;
     margin-bottom: 100px;
@@ -236,54 +237,86 @@ body{
     background: #fff;
 }
 
+/* De gehele container van de register */
 #register .container #login-row #login-column #login-box{
     border-width: 1px;
     max-width: none;
     background-color: #fff;
 }
 
+/* De subtitels (bijv: Accountgegevens en beveiliging) */
 .registerForm h5{
     margin-bottom: 20px;
 }
 
+/* De padding tussen de form en de rand van de gehele container */
 #login .container #login-row #login-column #login-box #login-form, #register .container #login-row #login-column #login-box #login-form {
     padding: 20px;
 }
 
+/* De titels (bijv: Inloggen/Registreren) */
 .loginForm h2, .registerForm h2{
     font-weight: normal;
     color: rgb(80, 80, 80);
 }
 
+/* De 'Registreren' titel */
 .registerForm h2{
     margin-bottom: 50px;
 }
 
+/* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
 .loginForm label, .registerForm label{
     font-size: 17px;
 }
 
+/* De vakjes waar de gebruiker iets in moet vullen */
 .loginForm input, .registerForm input, .registerForm select{
     border-radius: 10px;
     transition: 200ms;
 }
 
+/* Als de gebruiker een vakje selecteert: */
 .loginForm input:focus, .registerForm input:focus, .registerForm select:focus{
     outline: none;
     padding: 5px;
 }
 
+/* In de loginpagina, de linkjes van bijv: 'Wachtwoord vergeten?' */
 .loginForm a{
     color: black;
     transition: 200ms;
     text-decoration: underline;
 }
 
+/* Als de gebruiker eroverheen hovert met zijn muis: */
 .loginForm a:hover{
     padding-left: 10px;
     color: rgb(165, 105, 189);
 }
 
+/* De 'registreren'-knop */
+.registerForm div input[type="submit"]{
+    margin-top: -20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* In de registerpagina, de tekst: Ik heb al een account */
+.registerForm div a p{
+    color: #000;
+    text-decoration: underline;
+    font-size: 17px;
+    transition: 200ms;
+}
+
+/* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
+.registerForm div a p:hover{
+    padding-left: 15px;
+    color: rgb(165, 105, 189);
+}
+
+/* De knoppen aan het einde */
 .loginForm input[type="submit"], .registerForm input[type="submit"]{
     margin-top: 10px;
     font-size: 20px;
@@ -297,29 +330,13 @@ body{
     transition: 200ms;
 }
 
-.registerForm div input[type="submit"]{
-    margin-top: -20px;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-
-.registerForm div a p{
-    color: #000;
-    text-decoration: underline;
-    font-size: 17px;
-    transition: 200ms;
-}
-
-.registerForm div a p:hover{
-    padding-left: 15px;
-    color: rgb(165, 105, 189);
-}
-
+/* Als de gebruiker over de knop hovert met zijn muis */
 .loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover{
     background: rgb(165, 105, 189);
     color: #fff;
 }
 
+/* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
 .registerForm .container{
     background: rgb(245, 245 ,245);
     padding: 20px;
