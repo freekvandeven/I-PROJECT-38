@@ -10,7 +10,7 @@ if (isset($_SESSION['admin'])) {
         $loginlink = $loginstatus . '.php';
     } else {
         $loginstatus = 'profiel';
-        $loginlink = 'profiel.php';
+        $loginlink = 'profile.php';
     }
 } else {
     $loginlink = 'login.php';
@@ -41,7 +41,7 @@ if (isset($_SESSION['admin'])) {
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">EenmaalAndermaal</a>
+        <a class="navbar-brand" href="index.php">EenmaalAndermaal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
