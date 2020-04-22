@@ -3,7 +3,7 @@ session_start();
 require_once('includes/functions.php');
 
 # handle the login post request
-if(isset($_POST)) {
+if(!empty($_POST)) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         echo $_POST["username"];
         $user = getUser($_POST["username"]);

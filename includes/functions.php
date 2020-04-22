@@ -20,5 +20,11 @@ function createSession($user){
     $_SESSION['loggedin'] = TRUE;
     #$_SESSION['userid'] = $user['id'];
     $_SESSION['name'] = $user['Gebruikersnaam'];
-    #$_SESSION['admin'] = $user['rechten'];
+    $_SESSION['admin'] = $user['Action'];
+}
+
+function setupDatabase(){
+    global $dbh;
+    $sql = file_get_contents('Testscript.sql');
+    $data = $dbh->exec($sql);
 }
