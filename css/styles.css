@@ -164,14 +164,6 @@ body{
     background: rgb(255, 255, 255);
 }
 
-/* DE BODY VD PAGINA: */
-.paginaBody{
-    width: 75%;
-    margin-left: 12.5%;
-    margin-top: 5%;
-    margin-bottom: 100px;
-}
-
 /* DE INTRO: BOVENAAN: */
 .jumbotron{
     padding-left: 12.5%;
@@ -231,4 +223,66 @@ body{
 
 .card a img{
     max-height: 400px;
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 100px;
+    max-width: 600px;
+    height: 420px;
+    border: 3px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    background-color: rgb(245, 245, 245);
+}
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+.loginForm h2{
+    font-weight: normal;
+    color: rgb(100, 100, 100);
+}
+
+.loginForm label{
+    font-size: 17px;
+}
+
+.loginForm input[type="text"], form input[type="password"]{
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 15px;
+}
+
+.loginForm div[class="form-group text-left"]{
+    color: white;
+}
+
+.loginForm a{
+    color: black;
+    transition: 200ms;
+    text-decoration: underline;
+}
+
+.loginForm a:hover{
+    padding-left: 10px;
+    color: rgb(165, 105, 189);
+}
+
+.loginForm input[type="submit"]{
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 30%;
+    padding-right: 30%;
+    color: rgb(165, 105, 189);
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 25px;
+    transition: 200ms;
+}
+
+.loginForm input[type="submit"]:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
 }
