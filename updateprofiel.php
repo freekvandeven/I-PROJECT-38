@@ -1,14 +1,5 @@
 <?php
-session_start();
-checkLogin();
-
-$title = "updateprofielpagina";
-
-require_once('includes/database.php');
-require_once('includes/functions.php');
-
 $profile_data = getUser($_SESSION['name']);
-
 ?>
 
 
@@ -43,8 +34,5 @@ $profile_data = getUser($_SESSION['name']);
         <label for= "geheim-antwoord">Geheim antwoord</label>
         <input type="text" name="secret-answer" id="geheim-antwoord" value="<?=$profile_data['Antwoordtekst']?>" required> <br>
         <input type="submit" name="Verzenden" value="Verzenden">
-</form>
-
-<?php
-require_once('includes/header.php');
-?>
+    </form>
+</main>
