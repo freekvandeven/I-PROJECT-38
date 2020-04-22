@@ -13,8 +13,10 @@ require_once('includes/header.php');
 checkLogin();
 
 ?>
+
 <main>
-<form method="POST"> 
+
+<form method="POST">
 
     <label for="Titel">Titel voorwerp: </label>
     <input type="text" name="title_product" id="Titel" required> <br>
@@ -30,9 +32,9 @@ checkLogin();
         <option value="Elektronica">Elektronica</option>
         <option value="Mode">Mode</option>
     </select><br>
-    
-	<label for=img>Select image: </label> 
-	<input type=file id=img name=img accept=image/*> <br> 
+
+	<label for=img>Select image: </label>
+	<input type=file id=img name=img accept=image/*> <br>
 
     <label for="Startprijs">Startprijs: </label>
     <input type="number" name="starting_price_product" id="Startprijs" required><br>
@@ -60,8 +62,12 @@ checkLogin();
     <input type="text" name="payment_instructions" id="Verzendinstructies"><br>
 
     <input type="submit" name="submit" value="Verzenden">
-</form>  
+</form>
+
 </main>
+
 <?php
+
 require_once('includes/footer.php');
+
 ?>

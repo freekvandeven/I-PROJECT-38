@@ -25,6 +25,6 @@ function createSession($user){
 
 function setupDatabase(){
     global $dbh;
-    $sql = file_get_contents('Testscript.sql');
+    $sql = file_get_contents('includes/Testscript.sql');
     $data = $dbh->exec($sql);
 }
