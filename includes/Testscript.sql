@@ -23,7 +23,8 @@ CREATE TABLE Gebruiker(
 insert into Gebruiker
 values('PdeL42', 'Peter', 'de Later', 'Kastanjelaan 45','', '6666 AC', 'Heteren',
 'Nederland', '01/04/1980', 'PdeL42@hotmail.com', 'WBEM1MAMV', 5, 'Poekie', 'Wel', 0 );
-
+values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '01/01/2000', 'admin@han.nl',
+    '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 'Wel', 1);
 
 
 
