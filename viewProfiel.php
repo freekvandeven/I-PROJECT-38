@@ -1,14 +1,5 @@
 <?php
-session_start();
-checkLogin();
-
-require_once('includes/database.php');
-require_once('includes/functions.php');
-
-$title = profielpagina;
-
 $profile_data = getUser($_SESSION['name']);
-
 ?>
 
 <main>
@@ -32,7 +23,7 @@ $profile_data = getUser($_SESSION['name']);
 </main>
 
 <?php
-require_once('includes/header.php');
+require_once('includes/footer.php');
 ?>
     
 
