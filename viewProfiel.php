@@ -21,9 +21,5 @@ $profile_data = getUser($_SESSION['name']);
     <p>Antwoordtekst: <?=$profile_data['Antwoordtekst']?></p> 
     <p>Verkoper: <?=$profile_data['Verkoper']?></p> 
 </main>
-
-<?php
-require_once('includes/footer.php');
-?>
     
 
