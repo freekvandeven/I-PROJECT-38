@@ -44,3 +44,22 @@ function insertUser($user, $telefoon){
     }
     */
 }
+
+function insertItem($item){
+    global $dbh;
+    $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,Looptijd,
+                                      LooptijdBeginDag,LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,LooptijdEindeDag,
+                                      LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs) 
+                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
+                                      :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
+                                      :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
+    $data->execute($item);
+}
+
+function get_ItemId(){
+    global $dbh;
+    $data = $dbh->prepare ('SELECT MAX(Voorwerpnummer) as nieuwId FROM Voorwerp');
+    $data->execute();
+    $result = $data->fetch(PDO::FETCH_ASSOC);
+    return $result['nieuwId'];
+}
