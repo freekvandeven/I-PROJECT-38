@@ -14,8 +14,8 @@ if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
         $user = array("Gebruikersnaam"=>$posts["username"],":Voornaam"=>$posts["first-name"],":Achternaam"=>$posts["surname"],":Adresregel_1"=>$posts["adress"], ":Adresregel_2"=>$posts["adress2"],
             ":Postcode"=>$posts["postcode"], ":Plaatsnaam"=>$posts["place"], ":Land"=>$posts["country"], ":Geboortedag"=>$posts["birth-date"],":Mailbox"=>$posts["email"],":Wachtwoord"=>$password,
-            ":Vraag"=>$posts["secret-question"], ":Antwoordtekst"=>$posts["secret-answer"], ":Verkoper"=>"Niet", ":Action"=>0);
-        insertUser($user);
+            ":Vraag"=>$posts["secret-question"], ":Antwoordtekst"=>$posts["secret-answer"], ":Verkoper"=>FALSE, ":Action"=>FALSE);
+        insertUser($user,$posts["phone-number"]);
         createSession($user);
         header("Location: profile.php"); // send person to his profile page
     } else {

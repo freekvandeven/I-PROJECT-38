@@ -25,14 +25,15 @@ function getUser($username){
     return $user;
 }
 
-function insertUser($user){
+function insertUser($user, $telefoon){
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adresregel_1, Adresregel_2, 
                        Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, action) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
                                                                                                                                      :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action)');
-    var_dump($user);
     $data->execute($user);
+    $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
+    $data->execute(array(":Gebruikersnaam"=>$user["Gebruikersnaam"], ":Telefoon"=>$telefoon));
     //array_unshift($array, $id)
     /*
     $sql = sprintf('SELECT * FROM user WHERE name LIKE :name %s %s',
