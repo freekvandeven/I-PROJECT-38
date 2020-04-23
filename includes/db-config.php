@@ -1,8 +1,8 @@
 <?php
     //hostname
-    $host = 'localhost';
+    $host = 'host=localhost';
     //databasename you created with xampp
-    $dbname = 'I-Project38';
+    $dbname = 'dbname=I-Project38';
     //username is username you created with xampp
     $username = 'Iproject38';
     //username is password you created with xampp

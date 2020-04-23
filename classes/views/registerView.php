@@ -25,11 +25,15 @@
                                         <label for="confirmationPassword">Herhaal wachtwoord</label>
                                         <input type="password" class="form-control" name="confirmation" id="confirmationPassword" placeholder="Herhaal uw wachtwoord">
                                     </div>
+
                                     <!-- GEHEIME VRAAG -->
                                     <div class="form-group col-md-4">
                                         <label for="geheimeVraag">Geheime vraag</label>
                                         <select class="custom-select" name="secret-question" id="geheimeVraag">
-                                            <option value="1">Wie is de beste kok?</option>
+                                            <?php
+                                            foreach(getQuestions() as $question){
+                                                echo "<option value='".$question['Vraagnummer']."'>".$question['TekstVraag']."</option>";
+                                            } ?>
                                         </select>
                                     </div>
                                     <!-- ANTWOORD GEHEIME VRAAG -->

@@ -5,14 +5,15 @@ require_once('includes/functions.php');
 # handle the login post request
 if(!empty($_POST)) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
-        echo $_POST["username"];
         $user = getUser($_POST["username"]);
         if (password_verify($_POST["password"], $user['Wachtwoord'])) {
             createSession($user);
             header("Location: profile.php");
+        } else {
+            $err = "Incorrect password";
         }
     } else {
-        echo "please fill in all the data!";
+        $err = "please fill in all the data!";
     }
 }
 
