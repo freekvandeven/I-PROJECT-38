@@ -4,8 +4,9 @@ $profile_data = getUser($_SESSION['name']);
 
 <main>
     <div id="login-box" class="col-md-12">
-        <form id="login-form" class="registerForm" action="" method="post">
-            <h2 class="text-center">Update informatie</h2>
+        <form id="login-form" class="updateForm" action="" method="post">
+            <h2 class="text-center">Huidige gegevens</h2>
+            <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
             <!-- ACCOUNTGEGEVENS-->
             <div class="container">
                 <h5>Accountgegevens en beveiliging</h5>
@@ -85,11 +86,14 @@ $profile_data = getUser($_SESSION['name']);
                     </div>
                 </div>
             </div>
+            <!-- GA-TERUG-KNOP -->
+            <div class="form-group text-center">
+                <a href="profile.php">Ga terug</a><br>
+            </div>
             <!-- SUBMIT-KNOP -->
             <div class="form-group text-center">
                 <input type="submit" name="submit" value="Update">
             </div>
         </form>
     </div>
-    <a href="profile.php">Ga terug</a>
 </main>
