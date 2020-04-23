@@ -9,7 +9,7 @@ function connectToDatabase(){
     global $options;
     global $serverType;
     try {
-        $dbh = new PDO("$serverType:host=$host;dbname=$dbname", $username, $password, $options);
+        $dbh = new PDO("$serverType:$host;$dbname", $username, $password, $options);
         return $dbh;
     }catch(PDOException $e){
         echo $e->getMessage();
@@ -75,6 +75,14 @@ function get_ItemId(){
     $data->execute();
     $result = $data->fetch(PDO::FETCH_ASSOC);
     return $result['nieuwId'];
+}
+
+function getQuestion($nummer){
+    global $dbh;
+    $data = $dbh->prepare('SELECT TekstVraag FROM Vraag WHERE Vraagnummer=:question');
+    $data->execute([":question"=>$nummer]);
+    $result = $data->fetch(PDO::FETCH_NUM);
+    return $result[0];
 }
 
 function getQuestions(){

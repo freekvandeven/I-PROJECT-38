@@ -52,7 +52,7 @@ if($profile_data['Verkoper']) {
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Beveiliging</h4>
-                            <p><b>Vraag: </b><?=$profile_data['Vraag']?></p>
+                            <p><b>Vraag: </b><?php echo getQuestion($profile_data['Vraag']);?></p>
                             <p><b>Antwoord: </b><?=$profile_data['Antwoordtekst']?></p>
                             <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
                         </div>
