@@ -2,7 +2,7 @@
 $profile_data = getUser($_SESSION['name']);
 
 // MAAKT HET VISEUELE GEDEELTE VAN EEN BOOLEAN:
-if($profile_data['Verkoper'] == 1) {
+if($profile_data['Verkoper']) {
     $verkoper = 'Ja';
 } else {
     $verkoper = 'Nee';
@@ -34,7 +34,7 @@ if($profile_data['Verkoper'] == 1) {
                             <p><b>Adres 2: </b><?=$profile_data['Adresregel_2']?></p>
                             <p><b>Postcode: </b><?=$profile_data['Postcode']?></p>
                             <p><b>Plaatsnaam: </b><?=$profile_data['Plaatsnaam']?></p>
-                            <a href="/I-PROJECT-38/profile.php?action=update" class="btn btn-primary">Wijzig</a>
+                            <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ if($profile_data['Verkoper'] == 1) {
                             <h4 class="card-title">Inloggegevens</h4>
                             <p><b>Gebruikersnaam: </b><?=$profile_data['Gebruikersnaam']?></p>
                             <p><b>Wachtwoord: </b>*****</p>
-                            <a href="/I-PROJECT-38/profile.php?action=update" class="btn btn-primary">Wijzig</a>
+                            <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ if($profile_data['Verkoper'] == 1) {
                             <h4 class="card-title">Beveiliging</h4>
                             <p><b>Vraag: </b><?=$profile_data['Vraag']?></p>
                             <p><b>Antwoord: </b><?=$profile_data['Antwoordtekst']?></p>
-                            <a href="/I-PROJECT-38/profile.php?action=update" class="btn btn-primary">Wijzig</a>
+                            <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,9 @@ if($profile_data['Verkoper'] == 1) {
                         <div class="card-body">
                             <h4 class="card-title">Verkoper</h4>
                             <p><b>Verkoper: </b><?=$verkoper?></p>
-                            <?php if($profile_data['Verkoper'] == 0) echo '<a href="/I-PROJECT-38/profile.php?action=upgrade" class="btn btn-primary">Wijzig</a>';?>
+                            <?php if(!$profile_data['Verkoper']) : ?>
+                            <a href="profile.php?action=upgrade" class="btn btn-primary">Wijzig</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -71,7 +73,7 @@ if($profile_data['Verkoper'] == 1) {
             <h2>Mijn veilingen</h2>
             <div class="row">
                 <?php
-                if($profile_data['Verkoper'] == 1) echo '
+                if($profile_data['Verkoper']) : ?>
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
@@ -80,7 +82,7 @@ if($profile_data['Verkoper'] == 1) {
                             <a href="#" class="btn btn-primary">Bekijk mijn veilingen</a>
                         </div>
                     </div>
-                </div>';?>
+                </div><?php endif; ?>
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
@@ -91,7 +93,7 @@ if($profile_data['Verkoper'] == 1) {
                     </div>
                 </div>
                 <?php
-                if($profile_data['Verkoper'] == 1) echo '
+                if($profile_data['Verkoper']) : ?>
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
@@ -100,7 +102,7 @@ if($profile_data['Verkoper'] == 1) {
                             <a href="addProduct.php" class="btn btn-primary">Product aanbieden</a>
                         </div>
                     </div>
-                </div>';?>
+                </div><?php endif; ?>
             </div>
         </div>
     </div>
