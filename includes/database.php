@@ -63,3 +63,11 @@ function get_ItemId(){
     $result = $data->fetch(PDO::FETCH_ASSOC);
     return $result['nieuwId'];
 }
+
+function getQuestions(){
+    global $dbh;
+    $data = $dbh->prepare('SELECT Vraagnummer, TekstVraag FROM Vraag');
+    $data->execute();
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
