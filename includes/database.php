@@ -24,10 +24,23 @@ function getUser($username){
     $user = $data->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
+function updateUser($user){
+    global $dbh;
+    $data = $dbh->prepare("UPDATE Gebruiker SET Gebruikersnaam=:gebruikersnaam, Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
+                     Plaatsnaam=:place, Land=:country, Mailbox=:email, Vraag=:question, Antwoordtekst=:answer
+                                    WHERE Gebruikersnaam = :username");
+    $data->execute($user);
+}
+
+function updatePassword($username, $password){
+    global $dbh;
+    $data = $dbh->prepare("UPDATE Gebruiker SET Wachtwoord=:password WHERE Gebruikersnaam = :username");
+    $data->execute([":username"=>$username, ":password"=>$password]);
+}
 
 function upgradeUser($user, $info){
     global $dbh;
-    $data = $dbh->prepare("UPDATE Gebruiker SET action=TRUE WHERE gebruikersnaam = :username");
+    $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=TRUE WHERE gebruikersnaam = :username");
     $data->execute([":username"=>$user]);
     $data = $dbh->prepare("INSERT INTO Verkoper (Gebruiker, Bank, Bankrekening, ControleOptie, Creditcard) VALUES 
                                                                                        (:username, :bank, :bankrekening, :controle, :creditcard)");
@@ -62,4 +75,12 @@ function get_ItemId(){
     $data->execute();
     $result = $data->fetch(PDO::FETCH_ASSOC);
     return $result['nieuwId'];
+}
+
+function getQuestions(){
+    global $dbh;
+    $data = $dbh->prepare('SELECT Vraagnummer, TekstVraag FROM Vraag');
+    $data->execute();
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }

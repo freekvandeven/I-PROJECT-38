@@ -4,7 +4,14 @@ require_once('includes/functions.php');
 checkLogin();
 
 if(!empty($_POST)){
-    echo "someone sent a post";
+    if (isset($_POST['action'])){
+        if($_POST['action'] == 'update'){
+            require_once('classes/controllers/profile/updateController.php');
+        }
+        if($_POST['action'] == 'upgrade'){
+            require_once('classes/controllers/profile/upgradeController.php');
+        }
+    }
 }
 
 $title = "profile page";
