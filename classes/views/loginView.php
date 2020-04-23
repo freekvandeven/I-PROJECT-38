@@ -10,12 +10,12 @@
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
                                 <label for="gebruikersnaam">Gebruikersnaam:</label><br>
-                                <input type="text" name="gebruikersnaam" id="gebruikersnaam" class="form-control" placeholder="Uw gebruikersnaam" required>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" required>
                             </div>
                             <!-- Wachtwoord -->
                             <div class="form-group">
                                 <label for="wachtwoord">Wachtwoord:</label><br>
-                                <input type="password" name="wachtwoord" id="wachtwoord" class="form-control" placeholder="Uw wachtwoord" required>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Uw wachtwoord" required>
                             </div>
                             <!-- "Wachtwoord vergeten?" -->
                             <div class="form-group text-left">
