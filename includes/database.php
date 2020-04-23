@@ -24,6 +24,19 @@ function getUser($username){
     $user = $data->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
+function updateUser($user){
+    global $dbh;
+    $data = $dbh->prepare("UPDATE Gebruiker SET Gebruikersnaam=:gebruikersnaam, Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
+                     Plaatsnaam=:place, Land=:country, Mailbox=:email, Vraag=:question, Antwoordtekst=:answer
+                                    WHERE Gebruikersnaam = :username");
+    $data->execute($user);
+}
+
+function updatePassword($username, $password){
+    global $dbh;
+    $data = $dbh->prepare("UPDATE Gebruiker SET Wachtwoord=:password WHERE Gebruikersnaam = :username");
+    $data->execute([":username"=>$username, ":password"=>$password]);
+}
 
 function upgradeUser($user, $info){
     global $dbh;

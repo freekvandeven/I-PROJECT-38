@@ -137,7 +137,7 @@ ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)
 		ON DELETE NO ACTION,
 ADD CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE NO ACTION
+		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
 
 ALTER TABLE Gebruiker
@@ -149,7 +149,7 @@ ADD CONSTRAINT FK_Gebruiker_vraagnummer FOREIGN KEY (Vraag)
 ALTER TABLE GebruikersTelefoon
 ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE NO ACTION
+		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
 
 ALTER TABLE Rubriek
@@ -171,7 +171,7 @@ ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteN
 ALTER TABLE Verkoper
 ADD CONSTRAINT FK_Verkoper_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE NO ACTION
+		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
 
 ALTER TABLE Voorwerp
@@ -181,7 +181,7 @@ ADD CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper FOREIGN KEY (verkoper)
 		ON DELETE NO ACTION,
 ADD	CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
 		REFERENCES Gebruiker(gebruikersnaam)
-		ON UPDATE NO ACTION
+		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
 
 ALTER TABLE Bestand
