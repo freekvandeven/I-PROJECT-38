@@ -4,7 +4,7 @@ $profile_data = getUser($_SESSION['name']);
 // MAAKT HET VISEUELE GEDEELTE VAN EEN BOOLEAN:
 if($profile_data['Verkoper'] == 1) {
     $verkoper = 'Ja';
-} else if($profile_data['Verkoper'] == 0) {
+} else {
     $verkoper = 'Nee';
 }
 
