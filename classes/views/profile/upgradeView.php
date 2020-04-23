@@ -2,7 +2,7 @@
 $profile_data = getUser($_SESSION['name']);
 ?>
 <main>
-    <form id="login-form" class="registerForm" action="" method="post">
+    <form id="login-form" class="verkoperForm" action="" method="post">
         <h2 class="text-center">Wordt een verkoper</h2>
         <!-- VERKOPER GEGEVENS-->
         <div class="container">
@@ -32,10 +32,14 @@ $profile_data = getUser($_SESSION['name']);
 
             </div>
         </div>
+        <!-- GA-TERUG-KNOP -->
+        <div class="form-group text-center">
+            <a href="profile.php">Ga terug</a><br>
+        </div>
+
         <!-- SUBMIT-KNOP -->
         <div class="form-group text-center">
-            <input type="submit" name="action" value="upgrade">
+            <input type="submit" name="action" value="Bevestigen">
         </div>
     </form>
-    <a href="profile.php">Ga terug</a>
 </main>

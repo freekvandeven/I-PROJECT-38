@@ -244,8 +244,12 @@ body{
     background-color: #fff;
 }
 
+.updateForm p{
+    font-size: 18px;
+}
+
 /* De subtitels (bijv: Accountgegevens en beveiliging) */
-.registerForm h5{
+.registerForm h5, .verkoperFor h5, .updateForm h5{
     margin-bottom: 20px;
 }
 
@@ -255,9 +259,13 @@ body{
 }
 
 /* De titels (bijv: Inloggen/Registreren) */
-.loginForm h2, .registerForm h2{
+.loginForm h2, .registerForm h2, .verkoperForm h2, .updateForm h2{
     font-weight: normal;
     color: rgb(80, 80, 80);
+}
+
+.verkoperForm h2, .updateForm h2{
+    margin-bottom: 35px;
 }
 
 /* De 'Registreren' titel */
@@ -266,18 +274,18 @@ body{
 }
 
 /* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
-.loginForm label, .registerForm label{
+.loginForm label, .registerForm label, .verkoperForm label, .updateForm label{
     font-size: 17px;
 }
 
 /* De vakjes waar de gebruiker iets in moet vullen */
-.loginForm input, .registerForm input, .registerForm select{
+.loginForm input, .registerForm input, .registerForm select, .verkoperForm input, .updateForm input{
     border-radius: 10px;
     transition: 200ms;
 }
 
 /* Als de gebruiker een vakje selecteert: */
-.loginForm input:focus, .registerForm input:focus, .registerForm select:focus{
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .verkoperForm input:focus, .updateForm input:focus{
     outline: none;
     padding: 5px;
 }
@@ -303,21 +311,21 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p{
+.registerForm div a p, .verkoperForm a, .updateForm a{
     color: #000;
     text-decoration: underline;
-    font-size: 17px;
+    font-size: 18px;
     transition: 200ms;
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover{
+.registerForm div a p:hover, .verkoperForm a:hover, .updateForm a:hover{
     padding-left: 15px;
     color: rgb(165, 105, 189);
 }
 
 /* De knoppen aan het einde */
-.loginForm input[type="submit"], .registerForm input[type="submit"]{
+.loginForm input[type="submit"], .registerForm input[type="submit"], .verkoperForm input[type="submit"], .updateForm input[type="submit"]{
     margin-top: 10px;
     font-size: 20px;
     padding: 5px;
@@ -330,16 +338,78 @@ body{
     transition: 200ms;
 }
 
+.verkoperForm input[type="submit"], .updateForm input[type="submit"]{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.updateForm input[type="submit"]{
+    margin-bottom: 100px;
+}
+
 /* Als de gebruiker over de knop hovert met zijn muis */
-.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover{
+.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover, .verkoperForm input[type="submit"]:hover, .updateForm input[type="submit"]:hover{
     background: rgb(165, 105, 189);
     color: #fff;
 }
 
 /* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
-.registerForm .container{
+.registerForm .container, .verkoperForm .container, .updateForm .container{
     background: rgb(245, 245 ,245);
     padding: 20px;
     margin-bottom: 40px;
     border-radius: 20px;
+}
+
+.verkoperForm, .updateForm{
+    margin-top: 100px;
+}
+
+/*************** ProfielPagina CSS *************/
+.mijnEenmaalAndermaalTitel{
+    margin-top: 75px;
+}
+
+.mijnEenmaalAndermaalTitel h2{
+    font-weight: normal;
+}
+
+main .container .row div .card .card-body img{
+    max-height: 410px;
+    margin-bottom: 20px;
+}
+
+main .container .row div .card .card-body a{
+    width: 100%;
+    background: #fff;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 15px;
+    transition: 200ms;
+}
+
+main .container .row div .card .card-body a:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
+
+main .container .row div .card .card-body h4{
+    font-weight: normal;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    padding-bottom: 10px;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, .02);
+    text-align: center;
+}
+
+main .container .row div .card .card-body p b{
+    font-weight: bold;
+}
+
+main .container .container h2{
+    margin-top: 30px;
+    padding-top: 30px;
+    font-weight: normal;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, .1);
 }
