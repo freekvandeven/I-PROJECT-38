@@ -1,19 +1,11 @@
 <?php
-
 session_start();
-
-$title = "toevoegenproduct";
-
-require_once('includes/database.php');
-
 require_once('includes/functions.php');
-
-require_once('includes/header.php');
+checkLogin();
 $parameterList = array("Titel", "Beschrijving", "Rubriek", "img", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Looptijd",
     "Verzendinstructies");
-checkLogin();
 $user = getUser($_SESSION["name"]);
-if ($user["Verkoper"] == "1") {
+if ($user["Verkoper"]) {
     if(!empty($_POST)) {
         if (isset($_POST["Titel"]) && isset($_POST["Beschrijving"]) && isset($_POST["Startprijs"]) && isset($_FILES["img"]) && isset($_POST["Verzendinstructies"])) {
             $posts = [];
@@ -41,10 +33,14 @@ if ($user["Verkoper"] == "1") {
             storeImg(get_ItemId());
             header("Location: profile.php"); // send person to his item page
         } else {
-            echo "please fill in all the data!";
+            $err = "please fill in all the data!";
         }
     }
-} else header("Location: profile.php"); // send to verkoperworden.php
+} else header("Location: profile.php?action=upgrade"); // send to verkoperworden.php
+
+$title = "AddProduct Page";
+require_once('includes/header.php');
+
 require_once ('classes/views/addProductView.php');
+
 require_once('includes/footer.php');
-?>
