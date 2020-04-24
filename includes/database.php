@@ -76,10 +76,19 @@ function insertItem($item)
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
     $data->execute($item);
 }
+
 function getSellerItems($seller){
     global $dbh;
     $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Verkoper =:seller');
     $data->execute([":seller"=>$seller]);
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getBuyerItems($buyer){
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Koper =:buyer');
+    $data->execute([":buyer"=>$buyer]);
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
@@ -91,6 +100,14 @@ function get_ItemId()
     $data->execute();
     $result = $data->fetch(PDO::FETCH_ASSOC);
     return $result['nieuwId'];
+}
+
+function getItems(){
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Voorwerp');
+    $data->execute();
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 function selectFromCatalog($orders)
