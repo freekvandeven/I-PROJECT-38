@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/functions.php');
 checkLogin();
-$actions = array("update", "upgrade", "item");
+$actions = array("update", "upgrade", "item", "favorite");
 if(!empty($_POST)){
     if (isset($_POST['action'])){
         if($_POST['action'] == 'update'){
