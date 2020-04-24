@@ -1,0 +1,415 @@
+/******************NAV******************/
+nav{
+}
+.dropdown:hover>.dropdown-menu{
+    display:block;
+}
+.dropdown-menu {
+    margin:0;
+}
+.bg-light {
+ background-color: #5f4b8b !important;
+}
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #ac00ff;
+    border-color: #ac00ff;
+}
+
+.btn-outline-success {
+    color: #ac00ff;
+    border-color: #ac00ff;
+}
+
+.navbar .navbar-brand {
+    color: #ffffff;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+    color: #ac00ff;
+}
+.navbar .navbar-text {
+    color: #ffffff;
+}
+.navbar .navbar-text a {
+    color: #ac00ff;
+}
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+    color: #ac00ff;
+}
+.navbar .navbar-nav .nav-link {
+    color: #ffffff;
+    border-radius: .25rem;
+    margin: 0 0.25em;
+}
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+    color: #ac00ff;
+}
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+    color: #ac00ff;
+    background-color: #5f4b8b;
+}
+.navbar .navbar-toggle {
+    border-color: #5f4b8b;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+    background-color: #5f4b8b;
+}
+.navbar .navbar-toggle .navbar-toggler-icon {
+    color: #ffffff;
+}
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+    border-color: #ffffff;
+}
+.navbar .navbar-link {
+    color: #ffffff;
+}
+.navbar .navbar-link:hover {
+    color: #ac00ff;
+}
+
+@media (max-width: 575px) {
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ffffff;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ac00ff;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ac00ff;
+        background-color: #5f4b8b;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ffffff;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ac00ff;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ac00ff;
+        background-color: #5f4b8b;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ffffff;
+    }
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ac00ff;
+    }
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ac00ff;
+        background-color: #5f4b8b;
+    }
+}
+
+@media (max-width: 1199px) {
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ffffff;
+    }
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ac00ff;
+    }
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ac00ff;
+        background-color: #5f4b8b;
+    }
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ffffff;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ac00ff;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ac00ff;
+    background-color: #5f4b8b;
+}
+/**********************MAIN***********************/
+main{
+min-height: calc(100vh - 112px);
+}
+/********************* FOOTER*********************/
+footer{
+    background-color:#5f4b8b;
+    color:#fff;
+}
+footer p{
+    margin:auto;
+}
+
+/******************** HOMEPAGE *****************/
+/* De kleur paars: #A569BD of 165, 105, 189 */
+
+body{
+    background: rgb(255, 255, 255);
+}
+
+/* DE INTRO: BOVENAAN: */
+.jumbotron{
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    background: rgb(245, 245, 245);
+
+}
+
+/* DE SLIDESHOW: */
+.slideshow{
+    margin-top: 60px;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+.carousel-item div a h3{
+    color: white;
+    transition: 200ms;
+}
+
+.carousel-item div a h3:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+    padding-bottom: 5px;
+}
+
+.sliderLinks:hover{
+    text-decoration: none;
+}
+
+/* PRODUCTENLIJST */
+.productsList{
+    margin-top: 100px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    background: rgb(245, 245, 245);
+}
+
+.card{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .1);
+}
+
+.card-link{
+    color: #B166CF;
+    transition: 200ms;
+}
+
+.card-link:hover{
+    color: #B166CF;
+    padding-left: 10px;
+}
+
+.card a img{
+    max-height: 400px;
+}
+
+/*********************** LOGIN- EN REGISTRATIEFORMULIER *******************/
+/* De gehele container van de login en register */
+#login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    max-width: 600px;
+    height: 100%;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    background: #fff;
+}
+
+/* De gehele container van de register */
+#register .container #login-row #login-column #login-box{
+    border-width: 1px;
+    max-width: none;
+    background-color: #fff;
+}
+
+.updateForm p{
+    font-size: 18px;
+}
+
+/* De subtitels (bijv: Accountgegevens en beveiliging) */
+.registerForm h5, .verkoperFor h5, .updateForm h5{
+    margin-bottom: 20px;
+}
+
+/* De padding tussen de form en de rand van de gehele container */
+#login .container #login-row #login-column #login-box #login-form, #register .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+/* De titels (bijv: Inloggen/Registreren) */
+.loginForm h2, .registerForm h2, .verkoperForm h2, .updateForm h2{
+    font-weight: normal;
+    color: rgb(80, 80, 80);
+}
+
+.verkoperForm h2, .updateForm h2{
+    margin-bottom: 35px;
+}
+
+/* De 'Registreren' titel */
+.registerForm h2{
+    margin-bottom: 50px;
+}
+
+/* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
+.loginForm label, .registerForm label, .verkoperForm label, .updateForm label{
+    font-size: 17px;
+}
+
+/* De vakjes waar de gebruiker iets in moet vullen */
+.loginForm input, .registerForm input, .registerForm select, .verkoperForm input, .updateForm input{
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+/* Als de gebruiker een vakje selecteert: */
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .verkoperForm input:focus, .updateForm input:focus{
+    outline: none;
+    padding: 5px;
+}
+
+/* In de loginpagina, de linkjes van bijv: 'Wachtwoord vergeten?' */
+.loginForm a{
+    color: black;
+    transition: 200ms;
+    text-decoration: underline;
+}
+
+/* Als de gebruiker eroverheen hovert met zijn muis: */
+.loginForm a:hover{
+    padding-left: 10px;
+    color: rgb(165, 105, 189);
+}
+
+/* De 'registreren'-knop */
+.registerForm div input[type="submit"]{
+    margin-top: -20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* In de registerpagina, de tekst: Ik heb al een account */
+.registerForm div a p, .verkoperForm a, .updateForm a{
+    color: #000;
+    text-decoration: underline;
+    font-size: 18px;
+    transition: 200ms;
+}
+
+/* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
+.registerForm div a p:hover, .verkoperForm a:hover, .updateForm a:hover{
+    padding-left: 15px;
+    color: rgb(165, 105, 189);
+}
+
+/* De knoppen aan het einde */
+.loginForm input[type="submit"], .registerForm input[type="submit"], .verkoperForm input[type="submit"], .updateForm input[type="submit"]{
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 30%;
+    padding-right: 30%;
+    color: rgb(165, 105, 189);
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 25px;
+    transition: 200ms;
+}
+
+.verkoperForm input[type="submit"], .updateForm input[type="submit"]{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.updateForm input[type="submit"]{
+    margin-bottom: 100px;
+}
+
+/* Als de gebruiker over de knop hovert met zijn muis */
+.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover, .verkoperForm input[type="submit"]:hover, .updateForm input[type="submit"]:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+}
+
+/* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
+.registerForm .container, .verkoperForm .container, .updateForm .container{
+    background: rgb(245, 245 ,245);
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+
+.verkoperForm, .updateForm{
+    margin-top: 100px;
+}
+
+/*************** ProfielPagina CSS *************/
+.mijnEenmaalAndermaalTitel{
+    margin-top: 75px;
+}
+
+.mijnEenmaalAndermaalTitel h2{
+    font-weight: normal;
+}
+
+main .container .row div .card .card-body img{
+    max-height: 410px;
+    margin-bottom: 20px;
+}
+
+main .container .row div .card .card-body a{
+    width: 100%;
+    background: #fff;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 15px;
+    transition: 200ms;
+}
+
+main .container .row div .card .card-body a:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
+
+main .container .row div .card .card-body h4{
+    font-weight: normal;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    padding-bottom: 10px;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, .02);
+    text-align: center;
+}
+
+main .container .row div .card .card-body p b{
+    font-weight: bold;
+}
+
+main .container .container h2{
+    margin-top: 30px;
+    padding-top: 30px;
+    font-weight: normal;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
