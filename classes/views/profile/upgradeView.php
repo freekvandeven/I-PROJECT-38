@@ -39,7 +39,7 @@ $profile_data = getUser($_SESSION['name']);
 
         <!-- SUBMIT-KNOP -->
         <div class="form-group text-center">
-            <input type="submit" name="action" value="Bevestigen">
+            <input type="submit" name="action" value="upgrade">
         </div>
     </form>
 </main>

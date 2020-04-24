@@ -11,7 +11,7 @@ function checkLogin()
 
 function checkAdminLogin()
 {
-    if (!isset($_SESSION['admin'])) {
+    if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
         header('Location: index.php');
         exit();
     }
@@ -21,7 +21,6 @@ function createSession($user)
 {
     session_regenerate_id();
     $_SESSION['loggedin'] = TRUE;
-    #$_SESSION['userid'] = $user['id'];
     $_SESSION['name'] = $user['Gebruikersnaam'];
     $_SESSION['admin'] = $user['Action'];
 }

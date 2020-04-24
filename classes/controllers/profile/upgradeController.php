@@ -1,6 +1,5 @@
 <?php
 $parameterList = array("bank", "bankrekening", "controlenummer", "creditcard");
-
 # handle the register post request
 $correct = true;
 foreach($parameterList as $parameter){

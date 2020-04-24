@@ -6,7 +6,6 @@ $parameterList = array("username", "password", "email", "first-name", "surname",
 
 # handle the register post request
 if(!empty($_POST)) {
-    echo '<pre>' , var_dump($_POST) , '</pre>';
     if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
         $posts = [];
         foreach ($parameterList as $parameter) {
@@ -21,14 +20,14 @@ if(!empty($_POST)) {
             createSession($user);
             header("Location: profile.php"); // send person to his profile page
         } else {
-            echo "Username is already taken!";
+            $err =  "Username is already taken!";
         }
     } else {
-        echo "please fill in all the data!";
+        $err = "please fill in all the data!";
     }
 }
 
-$title = "Registreer pagina";
+$title = "Register Page";
 require_once('includes/header.php');
 
 require_once('classes/views/registerView.php');

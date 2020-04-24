@@ -103,6 +103,7 @@ $profile_data = getUser($_SESSION['name']);
             <!-- SUBMIT-KNOP -->
             <div class="form-group text-center">
                 <input type="submit" name="action" value="update">
+                <!--<button type="submit" name="action" value="update">Update Informatie</button>-->
             </div>
         </form>
     </div>
