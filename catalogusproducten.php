@@ -20,12 +20,6 @@ foreach($producten as $item){
     } else {
         $product[$index] .= "<img src='" . $item['afbeelding'] . ".png' alt='Fotooooooo van product'";
     }
-    $index++;
-}
-
-$max = $index;
-
-for($index = 0;  $index < $max; $index++){
     echo $product[$index];
 }
 
