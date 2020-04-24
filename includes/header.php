@@ -41,11 +41,12 @@ if(isset($_SESSION['loggedin'])){
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="admin.php">Admin</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalogus.php">Veilingen</a>
                 </li>
-                <?php endif;?>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="navbarDropdown" href=<?=$loginlink?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?=$loginstatus?>
@@ -56,9 +57,11 @@ if(isset($_SESSION['loggedin'])){
                     </div>
                     <?php endif;?>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
+                <?php if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="admin.php">Admin</a>
                 </li>
+                <?php endif;?>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Search">
