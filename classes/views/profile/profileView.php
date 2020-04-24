@@ -2,11 +2,7 @@
 $profile_data = getUser($_SESSION['name']);
 
 // MAAKT HET VISEUELE GEDEELTE VAN EEN BOOLEAN:
-if($profile_data['Verkoper']) {
-    $verkoper = 'Ja';
-} else {
-    $verkoper = 'Nee';
-}
+$verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
 ?>
 
@@ -79,7 +75,7 @@ if($profile_data['Verkoper']) {
                         <div class="card-body">
                             <h4 class="card-title">Mijn veilingen</h4>
                             <p>Om uw aangeboden veilingen te bekijken, klikt u hieronder op de knop.</p>
-                            <a href="#" class="btn btn-primary">Bekijk mijn veilingen</a>
+                            <a href="profile.php?action=item" class="btn btn-primary">Bekijk mijn veilingen</a>
                         </div>
                     </div>
                 </div><?php endif; ?>
@@ -88,7 +84,7 @@ if($profile_data['Verkoper']) {
                         <div class="card-body">
                             <h4 class="card-title">Favoriete veilingen</h4>
                             <p>Wanneer u op een veiling biedt, wordt deze toegevoegd aan uw favorieten. Om deze te bekijken, klikt u hieronder.</p>
-                            <a href="#" class="btn btn-primary">Favoriete veilingen</a>
+                            <a href="profile.php?action=favorite" class="btn btn-primary">Favoriete veilingen</a>
                         </div>
                     </div>
                 </div>

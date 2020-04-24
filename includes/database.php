@@ -76,6 +76,13 @@ function insertItem($item)
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
     $data->execute($item);
 }
+function getSellerItems($seller){
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Verkoper =:seller');
+    $data->execute([":seller"=>$seller]);
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
 
 function get_ItemId()
 {
