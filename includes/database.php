@@ -26,7 +26,9 @@ function getUser($username)
     $user = $data->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
-function updateUser($user){
+
+function updateUser($user)
+{
     global $dbh;
     $data = $dbh->prepare("UPDATE Gebruiker SET Gebruikersnaam=:gebruikersnaam, Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
                      Plaatsnaam=:place, Land=:country, Mailbox=:email, Vraag=:question, Antwoordtekst=:answer
@@ -34,17 +36,18 @@ function updateUser($user){
     $data->execute($user);
 }
 
-function updatePassword($username, $password){
+function updatePassword($username, $password)
+{
     global $dbh;
     $data = $dbh->prepare("UPDATE Gebruiker SET Wachtwoord=:password WHERE Gebruikersnaam = :username");
-    $data->execute([":username"=>$username, ":password"=>$password]);
+    $data->execute([":username" => $username, ":password" => $password]);
 }
 
 function upgradeUser($user, $info)
 {
     global $dbh;
     $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=TRUE WHERE gebruikersnaam = :username");
-    $data->execute([":username"=>$user]);
+    $data->execute([":username" => $user]);
     $data = $dbh->prepare("INSERT INTO Verkoper (Gebruiker, Bank, Bankrekening, ControleOptie, Creditcard) VALUES 
                                                                                        (:username, :bank, :bankrekening, :controle, :creditcard)");
     $data->execute([":username" => $user, ":bank" => $info["bank"], ":bankrekening" => $info["rekening"], ":controle" => $info["controle"], ":creditcard" => $info["creditcard"]]);
@@ -85,10 +88,46 @@ function get_ItemId()
 
 function selectFromCatalog($orders)
 {
+    global $serverType;
+    if($serverType!="mysql"){
+        return selectFromCatalogsMSSQL($orders);
+    }else {
+        global $dbh;
+        $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $execute = array();
+        $sql = "SELECT * FROM Voorwerp ";
+
+        foreach ($orders as $key => $order) {
+            if (!empty($order)) {
+                if (strpos($key, ":where") !== false) {
+                    $sql .= " WHERE " . $key;
+                    $execute[":where"] = $order;
+                } else if (strpos($key, ":and") !== false) {
+                    $sql .= " AND " . $key;
+                    $execute[":and"] = $order;
+                } else if (strpos($key, ":order") !== false) {
+                    $sql .= " ORDER BY " . $key;
+                    $execute[":order"] = $order;
+                } else if (strpos($key, ":limit") !== false) {
+                    $sql .= " LIMIT " . $key;
+                    $execute["limit"] = $order;
+                }
+            }
+        }
+        $data = $dbh->prepare($sql);
+        $data->execute($execute);
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+function selectFromCatalogsMSSQL($orders)
+{
     global $dbh;
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
     $sql = "SELECT * FROM Voorwerp ";
+    $limited = false;
+    $limit = 0;
     foreach ($orders as $key => $order) {
         if (!empty($order)) {
             if (strpos($key, ":where") !== false) {
@@ -100,26 +139,32 @@ function selectFromCatalog($orders)
             } else if (strpos($key, ":order") !== false) {
                 $sql .= " ORDER BY " . $key;
                 $execute[":order"] = $order;
-            } else if (strpos($key, ":limit") !== false) {
-                $sql .= " LIMIT " . $key;
-                $execute["limit"] = $order;
+            } else if (strpos($key, "limit") !== false){
+                $limited = true;
+                $limit = $order;
             }
         }
     }
     $data = $dbh->prepare($sql);
     $data->execute($execute);
-    return $data->fetchAll(PDO::FETCH_ASSOC);
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    if ($limited) {
+        $result = array_splice($result, 0, $limit);
+    }
+    return $result;
 }
 
-function getQuestion($nummer){
+function getQuestion($nummer)
+{
     global $dbh;
     $data = $dbh->prepare('SELECT TekstVraag FROM Vraag WHERE Vraagnummer=:question');
-    $data->execute([":question"=>$nummer]);
+    $data->execute([":question" => $nummer]);
     $result = $data->fetch(PDO::FETCH_NUM);
     return $result[0];
 }
 
-function getQuestions(){
+function getQuestions()
+{
     global $dbh;
     $data = $dbh->prepare('SELECT Vraagnummer, TekstVraag FROM Vraag');
     $data->execute();
