@@ -46,7 +46,7 @@ function updatePassword($username, $password)
 function upgradeUser($user, $info)
 {
     global $dbh;
-    $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=TRUE WHERE gebruikersnaam = :username");
+    $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=1 WHERE gebruikersnaam = :username");
     $data->execute([":username" => $user]);
     $data = $dbh->prepare("INSERT INTO Verkoper (Gebruiker, Bank, Bankrekening, ControleOptie, Creditcard) VALUES 
                                                                                        (:username, :bank, :bankrekening, :controle, :creditcard)");
