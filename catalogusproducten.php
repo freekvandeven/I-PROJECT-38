@@ -16,7 +16,7 @@ foreach($producten as $item){
     $product[$index] .= "<p>" . $item['prijs'] . "</p> <br>";
     // hoe moet je elk bestand checken?
     if(file_exists('EenmaalAndermaalDEF\Images\hond.jpg')){
-        $product[$index] .= "<img src='hond.jpg' alt='Foto van product'>";
+        $product[$index] .= "<img src=''EenmaalAndermaalDEF\Images\hond.jpg' alt='Foto van product'>";
     } else {
         $product[$index] .= "<img src='" . $item['afbeelding'] . ".png' alt='Fotooooooo van product'";
     }
