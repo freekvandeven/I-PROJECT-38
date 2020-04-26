@@ -13,7 +13,7 @@ if(!empty($_POST)) { # this login handling needs to be in some seperate file com
             createSession($user);
             $logged = true;
         } else {
-            echo "unsuccessful login";
+            $err = "unsuccessful login";
         }
     } else {
         # divide the post between different controllers

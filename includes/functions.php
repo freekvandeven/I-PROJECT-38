@@ -1,10 +1,36 @@
 <?php
 require_once('database.php');
+checkVisitor();
+
 function checkLogin()
 {
     if (!isset($_SESSION['loggedin'])) {
         header('Location: login.php');
         exit();
+    }
+}
+
+function checkVisitor(){
+    logPageVisitor();
+    checkIP();
+}
+
+function logPageVisitor(){
+    $currentPage = basename($_SERVER['PHP_SELF']);
+    if(checkPage($currentPage)){
+        #increase page count
+        increasePage($currentPage);
+    } else {
+        #insert page
+        insertPage($currentPage);
+    }
+    // insert IP
+    insertVisitorIP($_SERVER["REMOTE_ADDR"]);
+}
+
+function checkIP(){
+    if(checkBlacklist($_SERVER["REMOTE_ADDR"])){
+        header("Location: 404.php");
     }
 }
 
