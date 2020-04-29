@@ -27,7 +27,7 @@ if ($user["Verkoper"]) {
             // if not png
             if ($_FILES['img']['type'] != 'image/png') {
                 //convert to png
-                imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'uploads/items/tempItem.png');
+                imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
             }
             //store file with new autoincrementId as id.png
             storeImg(get_ItemId());

@@ -5,4 +5,5 @@
         <input type="hidden" name="category" value="reset">
         <input type="submit" value="reset">
     </form>
+    <a href="admin.php">Go back</a>
 </main>

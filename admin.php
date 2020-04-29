@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once('includes/functions.php');
-$logged = (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) ? true : false; # check if you are logged in
-$possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill"); # all possible actions
+$logged = isset($_SESSION['admin']) && $_SESSION['admin'] == TRUE; # check if you are logged in
+$possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill", "query"); # all possible actions
 
 # handle the login post request
 if(!empty($_POST)) { # this login handling needs to be in some seperate file combined with the login.php
@@ -13,7 +13,7 @@ if(!empty($_POST)) { # this login handling needs to be in some seperate file com
             createSession($user);
             $logged = true;
         } else {
-            echo "unsuccessful login";
+            $err = "unsuccessful login";
         }
     } else {
         # divide the post between different controllers

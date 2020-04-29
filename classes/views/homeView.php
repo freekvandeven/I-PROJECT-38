@@ -66,7 +66,7 @@
             <div class='col-lg-3'>
                 <div class='card'>
                     <a href='#'>
-                        <img src='uploads/items/<?=$card['Voorwerpnummer']?>.png' class='card-img-top' alt='Productnaam'>
+                        <img src='upload/items/<?=$card['Voorwerpnummer']?>.png' class='card-img-top' alt='Productnaam'>
                     </a>
                     <div class='card-body'>
                         <h5 class='card-title'><?=$card['Titel']?></h5>

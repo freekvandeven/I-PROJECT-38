@@ -195,3 +195,49 @@ function getQuestions()
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function checkPage($currentPage){
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Pages WHERE PageName=:page');
+    $data->execute([":page"=>$currentPage]);
+    $result = $data->fetchAll();
+    return $result;
+}
+
+function increasePage($currentPage){
+    global $dbh;
+    $data = $dbh->prepare('UPDATE Pages SET Visits = Visits + 1 WHERE PageName = :page');
+    $data->execute([":page"=>$currentPage]);
+}
+
+function insertPage($currentPage){
+    global $dbh;
+    $data = $dbh->prepare('INSERT INTO Pages (PageName, Visits) VALUES (:page, 1)');
+    $data->execute([":page"=>$currentPage]);
+}
+
+function insertVisitorIP($visitorIP){
+    global $dbh;
+    $data = $dbh->prepare('INSERT INTO Visitors (IP, TotalVisits) VALUES (:ip, 1)');
+    $data->execute([":ip"=>$visitorIP]);
+    #var_dump($dbh->lastInsertId());
+    /*
+INSERT INTO `user_earnings` (`user_id`, `earning`) VALUES(25, 0) ON DUPLICATE KEY UPDATE
+`earning`=VALUES(`earning` + 100) */
+}
+
+function checkBlacklist($visitorIP){
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Blacklist WHERE IP=:ip');
+    $data->execute([":ip"=>$visitorIP]);
+    $result = $data->fetchAll();
+    return $result;
+}
+
+function getSiteVisits(){
+    global $dbh;
+    $data = $dbh->prepare('SELECT PageName, Visits FROM Pages');
+    $data->execute();
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

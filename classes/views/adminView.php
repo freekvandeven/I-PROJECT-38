@@ -7,5 +7,6 @@
         <li><a href="admin.php?category=statistics">Bekijk pagina statistieken</a></li>
         <li><a href="admin.php?category=reset">Reset Database</a></li>
         <li><a href="admin.php?category=fill">Vul database met CSV bestand</a></li>
+        <li><a href="admin.php?category=query">MS SQL Server Query Editor</a></li>
     </ul>
 </main>
