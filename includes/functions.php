@@ -2,6 +2,7 @@
 require_once('database.php');
 checkVisitor();
 startAutoLoader();
+#var_dump(User::getUser($_SESSION['name']));
 
 function checkLogin()
 {
