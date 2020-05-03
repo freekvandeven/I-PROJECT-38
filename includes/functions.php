@@ -1,6 +1,7 @@
 <?php
 require_once('database.php');
 checkVisitor();
+startAutoLoader();
 
 function checkLogin()
 {
@@ -13,6 +14,13 @@ function checkLogin()
 function checkVisitor(){
     logPageVisitor();
     checkIP();
+}
+
+function startAutoLoader(){
+    #this function loads all classes in classes/models/ whenever they are called in our program.
+    spl_autoload_register(function ($class_name) {
+        include 'classes/models/' . $class_name . '.php';
+    });
 }
 
 function logPageVisitor(){
