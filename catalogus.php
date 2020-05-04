@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/functions.php');
 
-$title = "catalogusproducten";
+$title = "Catalogus Page";
 
 require_once('includes/header.php');
 

@@ -225,7 +225,7 @@ body{
     max-height: 400px;
 }
 
-/*********************** LOGIN- EN REGISTRATIEFORMULIER *******************/
+/*********************** LOGIN-, REGISTRATIE-, UPDATE-, UPGRADE EN ADDPRODUCTFORMULIER *******************/
 /* De gehele container van de login en register */
 #login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
     margin-top: 100px;
@@ -248,8 +248,13 @@ body{
     font-size: 18px;
 }
 
+.addProductForm{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
 /* De subtitels (bijv: Accountgegevens en beveiliging) */
-.registerForm h5, .verkoperFor h5, .updateForm h5{
+.registerForm h5, .verkoperFor h5, .updateForm h5, .addProductForm .container h5{
     margin-bottom: 20px;
 }
 
@@ -259,7 +264,7 @@ body{
 }
 
 /* De titels (bijv: Inloggen/Registreren) */
-.loginForm h2, .registerForm h2, .upgradeForm h2, .updateForm h2{
+.loginForm h2, .registerForm h2, .upgradeForm h2, .updateForm h2, .addProductForm h2{
     font-weight: normal;
     color: rgb(80, 80, 80);
 }
@@ -269,23 +274,23 @@ body{
 }
 
 /* De 'Registreren' titel */
-.registerForm h2{
+.registerForm h2, .addProductForm h2{
     margin-bottom: 50px;
 }
 
 /* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
-.loginForm label, .registerForm label, .upgradeForm label, .updateForm label{
+.loginForm label, .registerForm label, .upgradeForm label, .updateForm label, .addProductForm .container div label{
     font-size: 17px;
 }
 
 /* De vakjes waar de gebruiker iets in moet vullen */
-.loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input{
+.loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input, .addProductForm input, .addProductForm select{
     border-radius: 10px;
     transition: 200ms;
 }
 
 /* Als de gebruiker een vakje selecteert: */
-.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .upgradeForm input:focus, .updateForm input:focus{
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .upgradeForm input:focus, .updateForm input:focus, .addProductForm input:focus, .addProductForm select:focus{
     outline: none;
     padding: 5px;
 }
@@ -304,7 +309,7 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .upgradeForm a, .updateForm a{
+.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a{
     color: #000;
     text-decoration: underline;
     font-size: 18px;
@@ -312,13 +317,14 @@ body{
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover{
+.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover{
+    text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
 }
 
 /* De knoppen aan het einde */
-.loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton{
+.loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
     padding: 5px;
@@ -332,7 +338,7 @@ body{
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.registerForm .registerButton{
+.registerForm .registerButton, .addProductForm .addProductButton{
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -347,7 +353,7 @@ body{
 }
 
 /* Als de gebruiker over de knop hovert met zijn muis */
-.loginForm .inlogButton:hover, .registerForm .registerButton:hover, .upgradeForm .upgradeButton:hover, .updateForm .updateButton:hover{
+.loginForm .inlogButton:hover, .registerForm .registerButton:hover, .upgradeForm .upgradeButton:hover, .updateForm .updateButton:hover, .addProductForm .addProductButton:hover{
     background: rgb(165, 105, 189);
     color: #fff;
     border-color: rgb(165, 105, 189);
@@ -355,7 +361,7 @@ body{
 }
 
 /* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
-.registerForm .container, .upgradeForm .container, .updateForm .container{
+.registerForm .container, .upgradeForm .container, .updateForm .container, .addProductForm .container{
     background: rgb(245, 245 ,245);
     padding: 20px;
     margin-bottom: 40px;
@@ -364,6 +370,50 @@ body{
 
 .upgradeForm, .updateForm{
     margin-top: 100px;
+}
+
+.addProductForm .container .form-row div div span{
+    max-height: 38px;
+}
+
+/*************** Mijn Veilingen CSS *************/
+.mijnVeilingenBox{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.mijnVeilingenBox h2{
+    font-weight: normal;
+    margin-top: 75px;
+}
+
+.mijnVeilingenBox h5{
+    margin-top: 30px;
+    font-weight: normal;
+}
+
+.mijnVeilingenBox .table-responsive{
+    margin-top: 30px;
+}
+
+.mijnVeilingenBox .gaTerugKnop{
+    margin-top: 50px;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a{
+    color: rgb(165, 105, 189);
+    text-decoration: underline;
+    text-decoration-color: rgb(235, 235, 235);
+    transition: 400ms;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.mijnVeilingenBox div p a{
+    text-decoration-color: white;
+    transition: 300ms;
 }
 
 /*************** ProfielPagina CSS *************/

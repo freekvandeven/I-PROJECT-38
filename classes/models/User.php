@@ -36,16 +36,16 @@ class User{
         $data->execute([":username" => $user, ":bank" => $info["bank"], ":bankrekening" => $info["rekening"], ":controle" => $info["controle"], ":creditcard" => $info["creditcard"]]);
     }
 
-    static function insertUser($user, $telefoon)
+    static function insertUser($user)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adresregel_1, Adresregel_2, 
-                       Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, action) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
+        $data = $dbh->prepare("INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adresregel_1, Adresregel_2, 
+                       Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, Action, Bevestiging) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
-                                                                                                                                     :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action)');
+                                                                                                                                     :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action, :Bevestiging)");
         $data->execute($user);
-        $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
-        $data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
+        //$data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
+        //$data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
     }
 
     function getQuestions()
@@ -66,5 +66,9 @@ class User{
         return $result[0];
     }
 
-
+    static function makeUser($username){
+        global $dbh;
+        $stmt = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
+        $stmt->execute([":username" => $username]);
+    }
 }

@@ -7,6 +7,7 @@
                         <form id="login-form" class="loginForm" action="" method="post">
                             <!-- Titel -->
                             <h2 class="text-center">Inloggen</h2>
+                            <?php if(isset($err))echo $err;?>
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
                                 <label for="username">Gebruikersnaam:</label><br>
