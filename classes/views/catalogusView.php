@@ -2,13 +2,67 @@
     <div class="productsList">
         <h3>Bekijk hier alle producten</h3>
         <div  class="filtermenu">
-            <!-- select eerste 25/50/100 frontend name = aantalItems return post -->
-            <!-- select rubriek, zoekwoord minder prioriteit dan bovenste-->
+            <form class="" action="catalogus.php" method="post">
+                <select id="Rubriek" name="Rubriek">
+                    <option value="rubriek">Kies Rubriek</option>
+                    <?php for($i=0;$i<10;$i++) :
+                    ?>
+                    <option value="rubriek<?=$i?>">rubriek<?=$i?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+                <select id="price" name="order">
+                    <option value="">Kies Volgorde</option>
+                    <option value="Low">Duurste Eerst</option>
+                    <option value="High">Goedkoopste Eerst</option>
+                    <option value="New">Nieuwste Eerst</option>
+                    <option value="Old">Oudste Eerst</option>
+                </select>
+                <select id="numberOfItems" name="numberOfItems">
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <input type="text" placeholder="Zoeken" name="search">
+                <button type="submit">Zoeken</button>
+            </form>
         </div>
         <?php
-        if(isset($_POST['aantalItems'])) $aantalItems = $_POST['aantalItems'];
-        else $aantalItems = "25";
-        $items = selectFromCatalog(array(":limit"=>$aantalItems)); // select 8 products from catalog
+        $select = array();
+        if(isset($_POST)) {
+            $order = array();
+            if(isset($_POST['order'])){
+                switch($_POST['order']){
+                    case "Low":
+                        $select[':join'] = "bod";
+                        $order[':order'] = "bodbedrag ASC";
+                        break;
+                    case "High":
+                        $select[':join'] = "bod";
+                        $order[':order'] = "bodbedrag DESC";
+                        break;
+                    case "New":
+                        $order[':order'] = "looptijdbegindag DESC";
+                        break;
+                    case "Old":
+                        $order[':order'] = "looptijdbegindag ASC";
+                        break;
+                }
+            }
+            if(isset($_POST['search'])){
+                $select['titel = :where']=$_POST['search'];
+            }
+            if(isset($order)){
+                $select = array_merge($select,$order);
+                echo '<pre>' , var_dump($select) , '</pre>';
+            }
+            if(isset($_POST['numberOfItems']))
+                $select[':limit']=$_POST['numberOfItems'];
+        }else {
+            $select[':limit'] = "25";
+        }
+        $items = selectFromCatalog($select); // select 8 products from catalog
         $counter =0;
         foreach($items as $card):
             if($counter==0){

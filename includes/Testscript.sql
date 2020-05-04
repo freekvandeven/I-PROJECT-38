@@ -115,7 +115,6 @@ CREATE TABLE Voorwerp(
 	VeilingGesloten				CHAR(4)			NOT NULL,
 	Verkoopprijs				NUMERIC(19, 7)	NULL,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
-
 );
 
 CREATE TABLE Bestand(
