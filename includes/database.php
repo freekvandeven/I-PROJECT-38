@@ -111,3 +111,4 @@ function getSiteVisits(){
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
