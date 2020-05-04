@@ -3,8 +3,8 @@ session_start();
 require_once('includes/functions.php');
 
 if(!empty($_GET)){
-    if(checkRegisterUser($_GET['name']) == 0){
-        makeUser($_GET['name']);
+    if(User::checkRegisterUser($_GET['name']) == 0){
+        User::makeUser($_GET['name']);
     }
 }
 

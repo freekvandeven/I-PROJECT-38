@@ -40,9 +40,9 @@ class User{
     {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adresregel_1, Adresregel_2, 
-                       Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, action) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
+                       Postcode, Plaatsnaam, Land, Geboortedag, Mailbox, Wachtwoord, Vraag, Antwoordtekst, Verkoper, action, Bevestiging) VALUES (:Gebruikersnaam,:Voornaam,:Achternaam,:Adresregel_1,
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
-                                                                                                                                     :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action)');
+                                                                                                                                     :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action, :Bevestiging)');
         $data->execute($user);
         $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
         $data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
@@ -64,6 +64,19 @@ class User{
         $data->execute([":question" => $number]);
         $result = $data->fetch(PDO::FETCH_NUM);
         return $result[0];
+    }
+
+    function checkRegisterUser($username){
+        global $dbh;
+        $data = $dbh->prepare('SELECT Bevestiging FROM Gebruiker WHERE Gebruikersnaam =:username');
+        $data->execute([":username" => $username]);
+        return $data;
+    }
+
+    function makeUser($username){
+        global $dbh;
+        $stmt = $dbh->prepare('INSERT INTO Gebruiker (Bevestiging) VALUES(1) WHERE Gebruikersnaam =:username  ');
+        $stmt->execute([":username" => $username]);
     }
 
 
