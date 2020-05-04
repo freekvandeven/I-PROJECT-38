@@ -2,7 +2,7 @@
 $profile_data = getUser($_SESSION['name']);
 ?>
 <main>
-    <form id="login-form" class="verkoperForm" action="" method="post">
+    <form id="login-form" class="upgradeForm" action="" method="post">
         <h2 class="text-center">Wordt een verkoper</h2>
         <!-- VERKOPER GEGEVENS-->
         <div class="container">
@@ -39,7 +39,7 @@ $profile_data = getUser($_SESSION['name']);
 
         <!-- SUBMIT-KNOP -->
         <div class="form-group text-center">
-            <input type="submit" name="action" value="upgrade">
+            <button class="upgradeButton" type="submit" name="action" value="upgrade">Verkoper worden</button>
         </div>
     </form>
 </main>

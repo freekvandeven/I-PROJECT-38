@@ -259,12 +259,12 @@ body{
 }
 
 /* De titels (bijv: Inloggen/Registreren) */
-.loginForm h2, .registerForm h2, .verkoperForm h2, .updateForm h2{
+.loginForm h2, .registerForm h2, .upgradeForm h2, .updateForm h2{
     font-weight: normal;
     color: rgb(80, 80, 80);
 }
 
-.verkoperForm h2, .updateForm h2{
+.upgradeForm h2, .updateForm h2{
     margin-bottom: 35px;
 }
 
@@ -274,18 +274,18 @@ body{
 }
 
 /* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
-.loginForm label, .registerForm label, .verkoperForm label, .updateForm label{
+.loginForm label, .registerForm label, .upgradeForm label, .updateForm label{
     font-size: 17px;
 }
 
 /* De vakjes waar de gebruiker iets in moet vullen */
-.loginForm input, .registerForm input, .registerForm select, .verkoperForm input, .updateForm input{
+.loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input{
     border-radius: 10px;
     transition: 200ms;
 }
 
 /* Als de gebruiker een vakje selecteert: */
-.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .verkoperForm input:focus, .updateForm input:focus{
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .upgradeForm input:focus, .updateForm input:focus{
     outline: none;
     padding: 5px;
 }
@@ -303,15 +303,8 @@ body{
     color: rgb(165, 105, 189);
 }
 
-/* De 'registreren'-knop */
-.registerForm div input[type="submit"]{
-    margin-top: -20px;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .verkoperForm a, .updateForm a{
+.registerForm div a p, .upgradeForm a, .updateForm a{
     color: #000;
     text-decoration: underline;
     font-size: 18px;
@@ -319,13 +312,13 @@ body{
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .verkoperForm a:hover, .updateForm a:hover{
+.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover{
     padding-left: 15px;
     color: rgb(165, 105, 189);
 }
 
 /* De knoppen aan het einde */
-.loginForm input[type="submit"], .registerForm input[type="submit"], .verkoperForm input[type="submit"], .updateForm .updateButton{
+.loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton{
     margin-top: 10px;
     font-size: 20px;
     padding: 5px;
@@ -339,7 +332,12 @@ body{
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.verkoperForm input[type="submit"], .updateForm .updateButton{
+.registerForm .registerButton{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.upgradeForm .upgradeButton, .updateForm .updateButton{
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -349,7 +347,7 @@ body{
 }
 
 /* Als de gebruiker over de knop hovert met zijn muis */
-.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover, .verkoperForm input[type="submit"]:hover, .updateForm .updateButton:hover{
+.loginForm .inlogButton:hover, .registerForm .registerButton:hover, .upgradeForm .upgradeButton:hover, .updateForm .updateButton:hover{
     background: rgb(165, 105, 189);
     color: #fff;
     border-color: rgb(165, 105, 189);
@@ -357,14 +355,14 @@ body{
 }
 
 /* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
-.registerForm .container, .verkoperForm .container, .updateForm .container{
+.registerForm .container, .upgradeForm .container, .updateForm .container{
     background: rgb(245, 245 ,245);
     padding: 20px;
     margin-bottom: 40px;
     border-radius: 20px;
 }
 
-.verkoperForm, .updateForm{
+.upgradeForm, .updateForm{
     margin-top: 100px;
 }
 
