@@ -1,3 +1,7 @@
+<?php
+$user = getUser($_SESSION["name"]);
+?>
+
 <main>
     <form id="login-form" class="addProductForm" action="" method="post" enctype="multipart/form-data">
         <h2 class="text-center">Product verkopen</h2>
@@ -7,13 +11,13 @@
             <div class="form-row">
                 <!-- TITEL -->
                 <div class="form-group col-md-6">
-                    <label for="bank">Titel</label>
-                    <input type="text" class="form-control" name="bank" id="bank" placeholder="Titel van uw product" autofocus required>
+                    <label for="Titel">Titel</label>
+                    <input type="text" class="form-control" name="Titel" id="Titel" placeholder="Titel van uw product" autofocus required>
                 </div>
                 <!-- RUBRIEK -->
                 <div class="form-group col-md-6">
-                    <label for="rubriek">Rubriek</label>
-                    <select  class="form-control" id="rubriek" name="categorie" required>
+                    <label for="Rubriek">Rubriek</label>
+                    <select  class="form-control" id="Rubriek" name="Rubriek" required>
                         <option value="Auto's, boten en motoren">Autos, boten en motoren</option>
                         <option value="Baby">Baby</option>
                         <option value="Muziek en Instrumenten">Muziek en instrumenten</option>
@@ -29,9 +33,9 @@
 
                 <!-- LOOPTIJD -->
                 <div class="form-group col-md-6">
-                    <label for="looptijd">Looptijd: </label>
+                    <label for="Looptijd">Looptijd: </label>
                     <div class="input-group">
-                        <select class="form-control" name="looptijd" required>
+                        <select class="form-control" name="Looptijd" id="Looptijd" required>
                             <option value="1">1</option>
                             <option value="3">3</option>
                             <option value="5" selected="selected">5</option>
@@ -59,19 +63,19 @@
             <div class="form-row">
                 <!-- STARTPRIJS -->
                 <div class="col-md-6">
-                    <label for="startprijs">Startprijs</label>
+                    <label for="Startprijs">Startprijs</label>
                     <div class="input-group col-mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="text" class="form-control" id="startprijs">
+                        <input type="text" class="form-control" id="Startprijs">
                     </div>
                 </div>
 
                 <!-- BETALINGSWIJZE -->
                 <div class="form-group col-md-6">
-                    <label for="betalingswijze">Betalingswijze</label>
-                    <select class="form-control" id="betalingswijze" name="betalingswijze" required>
+                    <label for="Betalingswijze">Betalingswijze</label>
+                    <select class="form-control" id="Betalingswijze" name="Betalingswijze" required>
                         <option value="Contact">Contact</option>
                         <option value="Bank">Bank</option>
                         <option value="Anders">Anders</option>
