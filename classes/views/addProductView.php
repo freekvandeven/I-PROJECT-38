@@ -50,9 +50,11 @@ $user = getUser($_SESSION["name"]);
 
                 <!-- FOTO UPLOADEN -->
                 <div class="form-group col-md-6">
-                    <label for="img">Foto uploaden</label>
-                    <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
-                    <label for="img" class="form-control">Kies een foto</label>
+                    <label for="img">Foto</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" required>
+                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document toe</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,7 +70,7 @@ $user = getUser($_SESSION["name"]);
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="text" class="form-control" id="Startprijs">
+                        <input type="text" class="form-control" id="Startprijs" required>
                     </div>
                 </div>
 

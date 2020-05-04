@@ -283,24 +283,6 @@ body{
     font-size: 17px;
 }
 
-/* De foto uploaden van een product */
-.addProductForm .container div input[type="file"]{
-    display: none;
-}
-
-.addProductForm .container .form-row div label[class="form-control"]{
-    border-radius: 10px;
-    user-select: none;
-    cursor: pointer;
-    transition: 200ms;
-}
-
-.addProductForm .container .form-row div label[class="form-control"]:hover{
-    background: rgb(165, 105, 189);
-    color: #fff;
-    border-color: rgb(165, 105 ,189);
-}
-
 /* De vakjes waar de gebruiker iets in moet vullen */
 .loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input, .addProductForm input, .addProductForm select{
     border-radius: 10px;
