@@ -6,6 +6,7 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="registerForm" action="" method="post">
                             <h2 class="text-center">Registreren</h2>
+                            <?php if(isset($err))echo $err;?>
                             <!-- ACCOUNTGEGEVENS-->
                             <div class="container">
                                 <h5>Accountgegevens en beveiliging</h5>
