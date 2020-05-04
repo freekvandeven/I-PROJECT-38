@@ -47,4 +47,19 @@ class Items{
         return $result;
     }
 
+    static function getFinishedItems(){
+        global $dbh;
+        $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE VeilingGesloten = "Niet" && (LooptijdEindeDag < :vandaag  || 
+                             (LooptijdEindeDag = :vandaag && LooptijdEindeTijdstip < :moment))');
+        $data->execute(array(":vandaag"=>date("Y-m-d"),":moment"=>date("H:i:s")));
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function finishItem($item){
+        global $dbh;
+        $data = $dbh->prepare('UPDATE Voorwerp SET VeilingGesloten= "Wel" WHERE Voorwerpnummer = :item');
+        $data->execute([":item"=>$item]);
+    }
+
 }

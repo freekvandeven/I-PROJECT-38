@@ -3,6 +3,7 @@ startAutoLoader();
 require_once('database.php');
 checkVisitor();
 #var_dump(User::getUser($_SESSION['name']));
+checkItemDate();
 
 function checkLogin()
 {
@@ -12,6 +13,22 @@ function checkLogin()
     }
 }
 
+function checkItemDate(){
+    $items = Items::getFinishedItems();
+    foreach($items as $item){
+        Items::finishItem($item["Voorwerpnummer"]);
+        notifySeller($item);
+        notifyBuyer($item);
+    }
+}
+
+function notifySeller(){
+    
+}
+
+function notifyBuyer(){
+
+}
 function checkVisitor(){
     logPageVisitor();
     checkIP();
