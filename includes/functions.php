@@ -2,6 +2,7 @@
 startAutoLoader();
 require_once('database.php');
 checkVisitor();
+checkItemDate();
 
 function checkLogin()
 {
@@ -11,6 +12,22 @@ function checkLogin()
     }
 }
 
+function checkItemDate(){
+    $items = Items::getFinishedItems();
+    foreach($items as $item){
+        Items::finishItem($item["Voorwerpnummer"]);
+        notifySeller($item);
+        notifyBuyer($item);
+    }
+}
+
+function notifySeller(){
+
+}
+
+function notifyBuyer(){
+
+}
 function checkVisitor(){
     logPageVisitor();
     checkIP();
