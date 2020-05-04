@@ -309,15 +309,15 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a{
+.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a{
     color: #000;
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 18px;
     transition: 200ms;
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover{
+.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover{
     text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
@@ -387,10 +387,34 @@ body{
     margin-top: 75px;
 }
 
+.mijnVeilingenBox h5{
+    margin-top: 30px;
+    font-weight: normal;
+}
+
 .mijnVeilingenBox .table-responsive{
     margin-top: 30px;
 }
 
+.mijnVeilingenBox .gaTerugKnop{
+    margin-top: 50px;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a{
+    color: rgb(165, 105, 189);
+    text-decoration: underline;
+    text-decoration-color: rgb(235, 235, 235);
+    transition: 400ms;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.mijnVeilingenBox div p a{
+    text-decoration-color: white;
+    transition: 300ms;
+}
 
 /*************** ProfielPagina CSS *************/
 .mijnEenmaalAndermaalTitel{

@@ -6,6 +6,7 @@
 <main>
     <div class="mijnVeilingenBox">
         <h2 class="text-center">Mijn veilingen</h2>
+        <h5 class="text-center">Al uw veilingen kunt u hieronder zien.</h5>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -27,6 +28,9 @@
                 <?php endforeach;?>
                 </tbody>
             </table>
+        </div>
+        <div class="form-group text-center">
+            <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
         </div>
     </div>
 </main>

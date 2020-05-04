@@ -100,7 +100,7 @@ $user = getUser($_SESSION["name"]);
 
         <!-- GA-TERUG-KNOP -->
         <div class="form-group text-center">
-            <a href="profile.php">Ga terug</a><br>
+            <a href="profile.php">Ga terug</a>
         </div>
 
         <!-- SUBMIT-KNOP -->
