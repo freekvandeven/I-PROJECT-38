@@ -4,7 +4,7 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-10">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="registerForm" action="register.php" method="post">
+                        <form id="login-form" class="registerForm" action="" method="post">
                             <h2 class="text-center">Registreren</h2>
                             <!-- ACCOUNTGEGEVENS-->
                             <div class="container">
@@ -12,7 +12,7 @@
                                 <div class="form-row">
                                     <!-- GEBRUIKERSNAAM -->
                                     <div class="form-group col-md-4">
-                                        <label for="gebruikersnaam">Gebruikersnaam</label>
+                                        <label for="username">Gebruikersnaam</label>
                                         <input type="text" class="form-control" name="username" id="username" placeholder="Uw gebruikersnaam">
                                     </div>
                                     <!-- WACHTWOORD 1 -->
@@ -108,7 +108,7 @@
 
                             <div class="form-group text-center">
                                 <a href="login.php"><p>Ik heb al een account.</p></a><br>
-                                <input type="submit" name="submit" value="Registreer">
+                                <button class="registerButton" type="submit" name="submit" value="register">Registreer</button>
                             </div>
                         </form>
                     </div>

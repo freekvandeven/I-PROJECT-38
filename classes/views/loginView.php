@@ -9,12 +9,12 @@
                             <h2 class="text-center">Inloggen</h2>
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
-                                <label for="gebruikersnaam">Gebruikersnaam:</label><br>
+                                <label for="username">Gebruikersnaam:</label><br>
                                 <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" required>
                             </div>
                             <!-- Wachtwoord -->
                             <div class="form-group">
-                                <label for="wachtwoord">Wachtwoord:</label><br>
+                                <label for="password">Wachtwoord:</label><br>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Uw wachtwoord" required>
                             </div>
                             <!-- "Wachtwoord vergeten?" -->
@@ -27,7 +27,7 @@
                             </div>
                             <!-- Inlog-knop -->
                             <div class="form-group text-center">
-                                <input type="submit" name="submit" value="Inloggen">
+                                <button class="inlogButton" type="submit" name="submit" value="login">Inloggen</button>
                             </div>
                         </form>
                     </div>
