@@ -32,7 +32,7 @@
                                         <label for="geheimeVraag">Geheime vraag</label>
                                         <select class="custom-select" name="secret-question" id="geheimeVraag">
                                             <?php
-                                            foreach(getQuestions() as $question){
+                                            foreach(User::getQuestions() as $question){
                                                 echo "<option value='".$question['Vraagnummer']."'>".$question['TekstVraag']."</option>";
                                             } ?>
                                         </select>

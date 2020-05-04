@@ -7,7 +7,7 @@ $title = "catalogusproducten";
 require_once('includes/header.php');
 
 #ophalen van producten:
-$producten = getItems();
+$producten = Items::getItems();
 require_once ('classes/views/catalogusView.php');
-require_once('includes/footer.php');?>
+require_once('includes/footer.php');
 

@@ -10,15 +10,15 @@ foreach($parameterList as $parameter){
     }
 }
 if($correct) {
-    $user = getUser($_SESSION['name']);
+    $user = User::getUser($_SESSION['name']);
     $changes = array(":username"=>$_SESSION['name'],":gebruikersnaam"=>$_POST["username"], ":adress"=>$_POST["adress"], ":adress2"=>$_POST["adress2"], ":postcode"=>$_POST["postcode"],":place"=>$_POST["place"],
         ":country"=>$_POST["country"], ":email"=>$_POST["email"], ":question"=>$_POST["secret-question"], ":answer"=>$_POST["secret-answer"]);
-    updateUser($changes);
-    createSession(getUser($changes[":gebruikersnaam"]));
+    User::updateUser($changes);
+    createSession(User::getUser($changes[":gebruikersnaam"]));
 
     if(!empty($_POST["password"]) && !empty($_POST["confirmation"])){
         if($_POST["password"] == $_POST["confirmation"]){
-            updatePassword($_SESSION['name'], password_hash($_POST["password"], PASSWORD_DEFAULT));
+            User::updatePassword($_SESSION['name'], password_hash($_POST["password"], PASSWORD_DEFAULT));
             header("Location: profile.php");
         } else {
             $err = "Passwords did not match";
