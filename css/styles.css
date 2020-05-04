@@ -325,7 +325,7 @@ body{
 }
 
 /* De knoppen aan het einde */
-.loginForm input[type="submit"], .registerForm input[type="submit"], .verkoperForm input[type="submit"], .updateForm input[type="submit"]{
+.loginForm input[type="submit"], .registerForm input[type="submit"], .verkoperForm input[type="submit"], .updateForm .updateButton{
     margin-top: 10px;
     font-size: 20px;
     padding: 5px;
@@ -336,21 +336,24 @@ body{
     border: 2px solid rgb(165, 105, 189);
     border-radius: 25px;
     transition: 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.verkoperForm input[type="submit"], .updateForm input[type="submit"]{
-    padding-left: 3%;
-    padding-right: 3%;
+.verkoperForm input[type="submit"], .updateForm .updateButton{
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.updateForm input[type="submit"]{
+.updateForm .updateButton{
     margin-bottom: 100px;
 }
 
 /* Als de gebruiker over de knop hovert met zijn muis */
-.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover, .verkoperForm input[type="submit"]:hover, .updateForm input[type="submit"]:hover{
+.loginForm input[type="submit"]:hover, .registerForm input[type="submit"]:hover, .verkoperForm input[type="submit"]:hover, .updateForm .updateButton:hover{
     background: rgb(165, 105, 189);
     color: #fff;
+    border-color: rgb(165, 105, 189);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
 /* In de registerpagina, de containers van de twee verschillende onderwerpen, dus: (Accountgegevens & beveiliging) en Persoonlijke gegevens */
