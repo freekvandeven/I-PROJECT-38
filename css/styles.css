@@ -376,6 +376,22 @@ body{
     max-height: 38px;
 }
 
+/*************** Mijn Veilingen CSS *************/
+.mijnVeilingenBox{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.mijnVeilingenBox h2{
+    font-weight: normal;
+    margin-top: 75px;
+}
+
+.mijnVeilingenBox .table-responsive{
+    margin-top: 30px;
+}
+
+
 /*************** ProfielPagina CSS *************/
 .mijnEenmaalAndermaalTitel{
     margin-top: 75px;
