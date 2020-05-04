@@ -220,10 +220,6 @@ function insertVisitorIP($visitorIP){
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Visitors (IP, TotalVisits) VALUES (:ip, 1)');
     $data->execute([":ip"=>$visitorIP]);
-    #var_dump($dbh->lastInsertId());
-    /*
-INSERT INTO `user_earnings` (`user_id`, `earning`) VALUES(25, 0) ON DUPLICATE KEY UPDATE
-`earning`=VALUES(`earning` + 100) */
 }
 
 function checkBlacklist($visitorIP){
