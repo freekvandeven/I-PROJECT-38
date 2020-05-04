@@ -54,7 +54,7 @@
                 <!-- STARTPRIJS -->
                 <div class="form-group col-md-6">
                     <label for="startprijs">Startprijs</label>
-                    <input type="number" class="form-control" name="startprijs" id="startprijs" required>
+                    <input type="number" class="form-control" name="startprijs" id="startprijs" min="0" required>
                 </div>
 
                 <!-- BETALINGSWIJZE -->
