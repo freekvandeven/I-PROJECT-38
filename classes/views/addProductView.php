@@ -1,5 +1,5 @@
 <?php
-$user = getUser($_SESSION["name"]);
+$user = User::getUser($_SESSION["name"]);
 ?>
 
 <main>

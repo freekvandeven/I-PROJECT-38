@@ -21,6 +21,7 @@ if(!empty($_POST)) {
                         ":Postcode" => $_POST["postcode"], ":Plaatsnaam" => $_POST["place"], ":Land" => $_POST["country"], ":Geboortedag" => $_POST["birth-date"], ":Mailbox" => $_POST["email"], ":Wachtwoord" => $password,
                         ":Vraag" => $_POST["secret-question"], ":Antwoordtekst" => $_POST["secret-answer"], ":Verkoper" => FALSE, ":Action" => FALSE);
                     User::insertUser($user, $_POST["phone-number"]);
+                    sendMessage($_POST['email'], $_POST['username']);
                     header("Location: login.php");
                 } else {
                     $err = "user already exists";
