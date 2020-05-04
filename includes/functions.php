@@ -73,3 +73,15 @@ function storeImg($id)
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
 
+function sendMessage($mail, $username)
+{
+    $to = $mail;
+    $subject = "Bevestigingsmail";
+    $msg = "Beste $username!,";
+    $msg .= "Hartelijk bedankt voor het sturen van jouw registratie! 
+    Klik hieronder voor de bevestiging van jouw account!";
+    $msg .= "https://iproject38.icasites.nl/login.php?name=$username";
+
+    // Bevestiging verzenden
+    mail($to,$subject,$msg);
+}

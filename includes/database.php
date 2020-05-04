@@ -70,6 +70,24 @@ function selectFromCatalogsMSSQL($orders)
     return $result;
 }
 
+function getQuestion($nummer)
+{
+    global $dbh;
+    $data = $dbh->prepare('SELECT TekstVraag FROM Vraag WHERE Vraagnummer=:question');
+    $data->execute([":question" => $nummer]);
+    $result = $data->fetch(PDO::FETCH_NUM);
+    return $result[0];
+}
+
+function getQuestions()
+{
+    global $dbh;
+    $data = $dbh->prepare('SELECT Vraagnummer, TekstVraag FROM Vraag');
+    $data->execute();
+    $result = $data->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
 function checkPage($currentPage){
     global $dbh;
     $data = $dbh->prepare('SELECT * FROM Pages WHERE PageName=:page');
@@ -94,6 +112,10 @@ function insertVisitorIP($visitorIP){
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Visitors (IP, TotalVisits) VALUES (:ip, 1)');
     $data->execute([":ip"=>$visitorIP]);
+    #var_dump($dbh->lastInsertId());
+    /*
+INSERT INTO `user_earnings` (`user_id`, `earning`) VALUES(25, 0) ON DUPLICATE KEY UPDATE
+`earning`=VALUES(`earning` + 100) */
 }
 
 function checkBlacklist($visitorIP){
@@ -110,4 +132,17 @@ function getSiteVisits(){
     $data->execute();
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+}
+
+function checkRegisterUser($username){
+    global $dbh;
+    $data = $dbh->prepare('SELECT Bevestiging FROM Gebruiker WHERE Gebruikersnaam =:username');
+    $data->execute([":username" => $username]);
+    return $data;
+}
+
+function makeUser($username){
+    global $dbh;
+    $stmt = $dbh->prepare('INSERT INTO Gebruiker (Bevestiging) VALUES(1) WHERE Gebruikersnaam =:username  ');
+    $stmt->execute([":username" => $username]);
 }

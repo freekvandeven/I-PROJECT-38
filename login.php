@@ -2,6 +2,12 @@
 session_start();
 require_once('includes/functions.php');
 
+if(!empty($_GET)){
+    if(checkRegisterUser($_GET['name']) == 0){
+        makeUser($_GET['name']);
+    }
+}
+
 # handle the login post request
 if(!empty($_POST)) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {

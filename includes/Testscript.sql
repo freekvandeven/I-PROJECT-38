@@ -18,7 +18,6 @@ CREATE TABLE Bod(
 	BodDag						VARCHAR(10)		NOT NULL,
 	BodTijdstip					VARCHAR(10)		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
-
 );
 
 
@@ -49,6 +48,7 @@ CREATE TABLE Gebruiker(
 	Antwoordtekst				VARCHAR(10)		NOT NULL,
 	Verkoper					BIT				NOT NULL,
 	Action						INTEGER 		NOT NULL,
+	Bevestiging                 BIT             NOT NULL,
 	CONSTRAINT PK_Gebruiker	PRIMARY KEY	(Gebruikersnaam)
 );
 
@@ -197,3 +197,5 @@ values('Wie kan het beste koken?');
 insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '01/01/2000', 'admin@han.nl',
 '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 1 , 1);
+
+
