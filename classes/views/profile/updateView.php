@@ -1,5 +1,5 @@
 <?php
-$profile_data = getUser($_SESSION['name']);
+$profile_data = User::getUser($_SESSION['name']);
 ?>
 
 <main>
@@ -32,8 +32,8 @@ $profile_data = getUser($_SESSION['name']);
                         <label for="geheimeVraag">Geheime vraag</label>
                         <select class="custom-select" name="secret-question" id="geheimeVraag">
                             <?php
-                            $selected = getUser($_SESSION['name'])['Vraag'];
-                            foreach(getQuestions() as $question){
+                            $selected = User::getUser($_SESSION['name'])['Vraag'];
+                            foreach(User::getQuestions() as $question){
                                 if($question['Vraagnummer']== $selected){
                                     echo "<option selected ";
                                 } else {

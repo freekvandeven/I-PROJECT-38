@@ -1,5 +1,5 @@
 <?php
-$profile_data = getUser($_SESSION['name']);
+$profile_data = User::getUser($_SESSION['name']);
 ?>
 <main>
     <form id="login-form" class="upgradeForm" action="" method="post">

@@ -5,7 +5,7 @@ require_once('includes/functions.php');
 # handle the login post request
 if(!empty($_POST)) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
-        $user = getUser($_POST["username"]);
+        $user = User::getUser($_POST["username"]);
         if (password_verify($_POST["password"], $user['Wachtwoord'])) {
             createSession($user);
             header("Location: profile.php");

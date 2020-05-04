@@ -1,5 +1,5 @@
 <?php
-$profile_data = getUser($_SESSION['name']);
+$profile_data = User::getUser($_SESSION['name']);
 
 // MAAKT HET VISEUELE GEDEELTE VAN EEN BOOLEAN:
 $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
@@ -48,7 +48,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Beveiliging</h4>
-                            <p><b>Vraag: </b><?php echo getQuestion($profile_data['Vraag']);?></p>
+                            <p><b>Vraag: </b><?php echo User::getQuestion($profile_data['Vraag']);?></p>
                             <p><b>Antwoord: </b><?=$profile_data['Antwoordtekst']?></p>
                             <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
                         </div>

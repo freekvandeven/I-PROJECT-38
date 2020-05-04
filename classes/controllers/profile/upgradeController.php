@@ -9,12 +9,12 @@ foreach($parameterList as $parameter){
     }
 }
 if($correct) {
-    $user = getUser($_SESSION['name']);
+    $user = User::getUser($_SESSION['name']);
     if ($user['Verkoper']) {
         $err = "je bent al verkoper";
     } else {
         $details = array("bank" => $_POST["bank"], "rekening" => $_POST["bankrekening"], "controle" => $_POST["controlenummer"], "creditcard" => $_POST["creditcard"]);
-        upgradeUser($_SESSION['name'], $details);
+        User::upgradeUser($_SESSION['name'], $details);
         header("Location: profile.php");
         # geef de gebruiker een notificatie
     }

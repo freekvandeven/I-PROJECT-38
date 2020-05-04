@@ -1,5 +1,5 @@
 <?php
-$items = getBuyerItems($_SESSION['name']);
+$items = Items::getBuyerItems($_SESSION['name']);
 $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "Koper", "VeilingGesloten");
 ?>
 
