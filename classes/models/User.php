@@ -66,14 +66,14 @@ class User{
         return $result[0];
     }
 
-    function checkRegisterUser($username){
+   static function checkRegisterUser($username){
         global $dbh;
         $data = $dbh->prepare('SELECT Bevestiging FROM Gebruiker WHERE Gebruikersnaam =:username');
         $data->execute([":username" => $username]);
         return $data;
     }
 
-    function makeUser($username){
+    static function makeUser($username){
         global $dbh;
         $stmt = $dbh->prepare('INSERT INTO Gebruiker (Bevestiging) VALUES(1) WHERE Gebruikersnaam =:username  ');
         $stmt->execute([":username" => $username]);
