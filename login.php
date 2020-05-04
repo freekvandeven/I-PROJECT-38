@@ -2,9 +2,11 @@
 session_start();
 require_once('includes/functions.php');
 
-if(!empty($_GET)){
+if(!empty($_GET) && isset($_GET)['name']){
     if(User::checkRegisterUser($_GET['name']) == 0){
         User::makeUser($_GET['name']);
+        createSession($_GET['name']);
+        header('Location: profile.php);
     }
 }
 
