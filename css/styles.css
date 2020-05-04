@@ -285,10 +285,20 @@ body{
 
 /* De foto uploaden van een product */
 .addProductForm .container div input[type="file"]{
-    border: none;
-    border-radius: 0;
-    background: none;
-    padding-left: 0;
+    display: none;
+}
+
+.addProductForm .container .form-row div label[class="form-control"]{
+    border-radius: 10px;
+    user-select: none;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.addProductForm .container .form-row div label[class="form-control"]:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    border-color: rgb(165, 105 ,189);
 }
 
 /* De vakjes waar de gebruiker iets in moet vullen */
@@ -378,6 +388,10 @@ body{
 
 .upgradeForm, .updateForm{
     margin-top: 100px;
+}
+
+.addProductForm .container .form-row div div span{
+    max-height: 38px;
 }
 
 /*************** ProfielPagina CSS *************/

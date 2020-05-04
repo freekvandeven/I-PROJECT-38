@@ -8,7 +8,7 @@
                 <!-- TITEL -->
                 <div class="form-group col-md-6">
                     <label for="bank">Titel</label>
-                    <input type="text" class="form-control" name="bank" id="bank" placeholder="Uw product" autofocus required>
+                    <input type="text" class="form-control" name="bank" id="bank" placeholder="Titel van uw product" autofocus required>
                 </div>
                 <!-- RUBRIEK -->
                 <div class="form-group col-md-6">
@@ -30,19 +30,25 @@
                 <!-- LOOPTIJD -->
                 <div class="form-group col-md-6">
                     <label for="looptijd">Looptijd: </label>
-                    <select class="form-control" id="looptijd" name="looptijd" required>
-                        <option value="1">1</option>
-                        <option value="3">3</option>
-                        <option value="5" selected="selected">5</option>
-                        <option value="7">7</option>
-                        <option value="10">10</option>
-                    </select>
+                    <div class="input-group">
+                        <select class="form-control" name="looptijd" required>
+                            <option value="1">1</option>
+                            <option value="3">3</option>
+                            <option value="5" selected="selected">5</option>
+                            <option value="7">7</option>
+                            <option value="10">10</option>
+                        </select>
+                        <div class="input-group-append">
+                            <span class="input-group-text">dagen</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- FOTO UPLOADEN -->
                 <div class="form-group col-md-6">
                     <label for="img">Foto uploaden</label>
                     <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
+                    <label for="img" class="form-control">Kies een foto</label>
                 </div>
             </div>
         </div>
@@ -52,9 +58,14 @@
             <h5>Betalingsgegevens</h5>
             <div class="form-row">
                 <!-- STARTPRIJS -->
-                <div class="form-group col-md-6">
+                <div class="col-md-6">
                     <label for="startprijs">Startprijs</label>
-                    <input type="number" class="form-control" name="startprijs" id="startprijs" min="0" required>
+                    <div class="input-group col-mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">€</span>
+                        </div>
+                        <input type="text" class="form-control" id="startprijs">
+                    </div>
                 </div>
 
                 <!-- BETALINGSWIJZE -->
