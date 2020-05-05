@@ -197,10 +197,7 @@ body{
 /* PRODUCTENLIJST */
 .productsList{
     margin-top: 100px;
-    padding-top: 60px;
-    padding-bottom: 30px;
-    padding-left: 12.5%;
-    padding-right: 12.5%;
+    padding: 60px 12.5% 30px 12.5%;
     background: rgb(245, 245, 245);
 }
 
@@ -327,9 +324,7 @@ body{
 .loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
-    padding: 5px;
-    padding-left: 30%;
-    padding-right: 30%;
+    padding: 5px 30%;
     color: rgb(165, 105, 189);
     background: #fff;
     border: 2px solid rgb(165, 105, 189);
@@ -463,4 +458,84 @@ main .container .container h2{
     font-weight: normal;
     width: 100%;
     border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+/*************** WACHTWOORD VERGETEN CSS *************/
+main .container .wachtwoordVergetenForm{
+    margin-top: 50px;
+}
+
+main .container h2, main .container h5{
+    font-weight: normal;
+    color: rgb(80, 80, 80);
+}
+
+main .container h2{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+main .container h5{
+    margin-top: 10px;
+    font-size: 19px;
+}
+
+main .container .wachtwoordVergetenForm div label{
+    font-size: 18px;
+}
+
+main .container .wachtwoordVergetenForm div input{
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+main .container .wachtwoordVergetenForm div input:focus{
+    padding: 5px;
+}
+
+main .container .wachtwoordVergetenForm div .col-md-9{
+    margin-top: -20px;
+    background: rgb(245, 245, 245);
+    padding: 20px 25px;
+    border-radius: 15px;
+}
+
+main .container .wachtwoordVergetenForm div{
+    margin: 0 auto;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop{
+    margin-top: 30px;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a{
+    color: #000;
+    font-size: 18px;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    transition: 200ms;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+    color: rgb(165, 105, 189);
+    padding-left: 10px;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButton{
+    margin-top: 20px;
+    background: #fff;
+    font-size: 20px;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    padding: 4px 50px;
+    transition: 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButton:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
