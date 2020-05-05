@@ -5,14 +5,13 @@ $dbh = Database::connectToDatabase();
 function selectFromCatalog($orders)
 {
     global $serverType;
-    if($serverType!="mysql"){
+    if ($serverType != "mysql") {
         return selectFromCatalogsMSSQL($orders);
-    }else {
+    } else {
         global $dbh;
         $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $execute = array();
-        $sql = "SELECT * FROM Voorwerp ";
-
+        $sql = "SELECT *, IFNULL(cast(MAX(bodbedrag) as decimal(10,2)),Startprijs) as prijs FROM Voorwerp v LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
                 if (strpos($key, ":where") !== false) {
@@ -21,9 +20,14 @@ function selectFromCatalog($orders)
                 } else if (strpos($key, ":and") !== false) {
                     $sql .= " AND " . $key;
                     $execute[":and"] = $order;
-                } else if (strpos($key, ":order") !== false) {
-                    $sql .= " ORDER BY " . $key;
-                    $execute[":order"] = $order;
+                }
+            }
+        }
+        $sql .= " GROUP BY Voorwerpnummer";
+        foreach ($orders as $key => $order) {
+            if (!empty($order)) {
+                if (strpos($key, ":order") !== false) {
+                    $sql .= " ORDER BY " . $order;
                 } else if (strpos($key, ":limit") !== false) {
                     $sql .= " LIMIT " . $key;
                     $execute["limit"] = $order;
@@ -41,7 +45,7 @@ function selectFromCatalogsMSSQL($orders)
     global $dbh;
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
-    $sql = "SELECT * FROM Voorwerp ";
+    $sql = "SELECT *, ISNULL(cast(MAX(bodbedrag) as decimal(10,2)),Startprijs) as prijs FROM Voorwerp v LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp";
     $limited = false;
     $limit = 0;
     foreach ($orders as $key => $order) {
@@ -52,10 +56,40 @@ function selectFromCatalogsMSSQL($orders)
             } else if (strpos($key, ":and") !== false) {
                 $sql .= " AND " . $key;
                 $execute[":and"] = $order;
-            } else if (strpos($key, ":order") !== false) {
-                $sql .= " ORDER BY " . $key;
-                $execute[":order"] = $order;
-            } else if (strpos($key, "limit") !== false){
+
+
+            }
+        }
+    }
+    $sql .= " GROUP BY [Voorwerpnummer]
+      ,[Titel]
+      ,[Beschrijving]
+      ,[Startprijs]
+      ,[Betalingswijze]
+      ,[Betalingsinstructie]
+      ,[Plaatsnaam]
+      ,[Land]
+      ,[Looptijd]
+      ,[LooptijdBeginDag]
+      ,[LooptijdBeginTijdstip]
+      ,[Verzendkosten]
+      ,[Verzendinstructies]
+      ,[Verkoper]
+      ,[Koper]
+      ,[LooptijdEindeDag]
+      ,[LooptijdEindeTijdstip]
+      ,[VeilingGesloten]
+      ,[Verkoopprijs]
+	  ,[Voorwerp]
+      ,[Bodbedrag]
+      ,[Gebruiker]
+      ,[BodDag]
+      ,[BodTijdstip]";
+    foreach ($orders as $key => $order) {
+        if (!empty($order)) {
+            if (strpos($key, ":order") !== false) {
+                $sql .= " ORDER BY " . $order;
+            } else if (strpos($key, "limit") !== false) {
                 $limited = true;
                 $limit = $order;
             }
@@ -70,41 +104,47 @@ function selectFromCatalogsMSSQL($orders)
     return $result;
 }
 
-function checkPage($currentPage){
+function checkPage($currentPage)
+{
     global $dbh;
     $data = $dbh->prepare('SELECT * FROM Pages WHERE PageName=:page');
-    $data->execute([":page"=>$currentPage]);
+    $data->execute([":page" => $currentPage]);
     $result = $data->fetchAll();
     return $result;
 }
 
-function increasePage($currentPage){
+function increasePage($currentPage)
+{
     global $dbh;
     $data = $dbh->prepare('UPDATE Pages SET Visits = Visits + 1 WHERE PageName = :page');
-    $data->execute([":page"=>$currentPage]);
+    $data->execute([":page" => $currentPage]);
 }
 
-function insertPage($currentPage){
+function insertPage($currentPage)
+{
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Pages (PageName, Visits) VALUES (:page, 1)');
-    $data->execute([":page"=>$currentPage]);
+    $data->execute([":page" => $currentPage]);
 }
 
-function insertVisitorIP($visitorIP){
+function insertVisitorIP($visitorIP)
+{
     global $dbh;
     $data = $dbh->prepare('INSERT INTO Visitors (IP, TotalVisits) VALUES (:ip, 1)');
-    $data->execute([":ip"=>$visitorIP]);
+    $data->execute([":ip" => $visitorIP]);
 }
 
-function checkBlacklist($visitorIP){
+function checkBlacklist($visitorIP)
+{
     global $dbh;
     $data = $dbh->prepare('SELECT * FROM Blacklist WHERE IP=:ip');
-    $data->execute([":ip"=>$visitorIP]);
+    $data->execute([":ip" => $visitorIP]);
     $result = $data->fetchAll();
     return $result;
 }
 
-function getSiteVisits(){
+function getSiteVisits()
+{
     global $dbh;
     $data = $dbh->prepare('SELECT PageName, Visits FROM Pages');
     $data->execute();
