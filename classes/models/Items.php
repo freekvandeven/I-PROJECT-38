@@ -74,7 +74,7 @@ class Items{
 
     static function getBids($item){
         global $dbh;
-        $data = $dbh->prepare('SELECT * FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag DESC');
+        $data = $dbh->prepare('SELECT CAST(Bodbedrag AS decimal(10,2)) AS Bodbedrag, Voorwerp, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag DESC');
         $data->execute([":voorwerpID"=>$item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -82,7 +82,7 @@ class Items{
 
     static function getHighestBid($item){
         global $dbh;
-        $data = $dbh->prepare('SELECT MAX(Bodbedrag) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID GROUP BY Gebruiker');
+        $data = $dbh->prepare('SELECT CAST(MAX(Bodbedrag) as decimal(10,2)) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID GROUP BY Gebruiker');
         $data->execute([":voorwerpID"=>$item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];

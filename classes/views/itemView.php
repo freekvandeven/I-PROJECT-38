@@ -25,7 +25,8 @@
                         <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
-                        <small class='text-muted'>Nog: 4min beschikbaar.</small>
+                        <small class='text-muted'></small>
+                        <p id="demo"></p>
                     </div>
                 </div>
             </div>
@@ -39,6 +40,52 @@
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
                     </div>
                 </div>
+                <button id='btn'>Klik om alle reviews te bekijken! </button>
+                <ul id="list">
+                    <li>Amos: een kwalitatief uitstekend product, maar ben wel 100 miljoen kwijt</li>
+                    <li>Joons: hallo ik ben joons en ik kief met mijn matties</li>
+                    <li>Freek: hallo ik ben freek joo it is your homie</li>
+                    <li>Anthony: joo ik ben anthony en ik houd van lekker zuupen</li>
+                </ul>
+
+                <script>
+                    const button = document.getElementById("btn");
+                    const list = document.getElementById("list");
+
+                    list.style.display = "none";
+
+                    button.addEventListener("click", (event) => {
+                        if(list.style.display == "none"){
+                            list.style.display = "block";
+                        } else {
+                            list.style.display = "none";
+                        }
+                    })
+
+                    //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+                    var countDownDate = new Date("June 5, 2020 12:20:30").getTime();
+                    var x = setInterval(function() {
+
+                        var now = new Date().getTime();
+
+                        var distance = countDownDate - now;
+
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Display the result in the element with id="demo"
+                        document.getElementById('demo').innerHTML = days + "d " + hours + "h "
+                            + minutes + "m " + seconds + "s ";
+
+                        // If the count down is finished, write some text
+                        if (distance < 0) {
+                            clearInterval(x);
+                            document.getElementById('demo').innerHTML = "EXPIRED";
+                        }
+                    }, 1000);
+                </script>
             </div>
         </div>
     </div>

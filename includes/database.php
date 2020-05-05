@@ -45,11 +45,12 @@ function selectFromCatalogsMSSQL($orders)
     global $dbh;
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
-  $sql = "SELECT * FROM (SELECT *, ISNULL(cast(hoogstebod as decimal(10,2)) ,Startprijs) as prijs
-            from voorwerp left join (select max(bodbedrag) as hoogstebod ,voorwerp from bod
+
+  $sql = "SELECT * FROM (SELECT *, ISNULL(hoogstebod ,Startprijs) as prijs
+                    from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp from bod
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
-			where VeilingGesloten = 'Nee') as combinetable
+            where VeilingGesloten = 'Nee') as combinetable";
     $limited = false;
     $limit = 0;
     foreach ($orders as $key => $order) {
