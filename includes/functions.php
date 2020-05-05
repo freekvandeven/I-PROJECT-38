@@ -15,19 +15,13 @@ function checkLogin()
 function checkItemDate(){
     $items = Items::getFinishedItems();
     foreach($items as $item){
-        Items::finishItem($item["Voorwerpnummer"]);
-        notifySeller($item);
-        notifyBuyer($item);
+        $bid = Items::getHighestBid($item["Voorwerpnummer"]);
+        Items::finishItem($item["Voorwerpnummer"],$bid["Gebruiker"],$bid["Bodbedrag"]);
+        notifySeller($item["Verkoper"]);
+        notifyBuyer($bid["Gebruiker"]);
     }
 }
 
-function notifySeller(){
-
-}
-
-function notifyBuyer(){
-
-}
 function checkVisitor(){
     logPageVisitor();
     checkIP();
@@ -101,4 +95,27 @@ function sendConfirmationEmail($mail, $username)
                 <a href='https://iproject38.icasites.nl/login.php?name=$username' tartget='_blank'>Activeer je account</a>
                 </body></html>";
     return mail($mail, $subject, $message, $headers);
+}
+
+function notifySeller($seller){
+    $user = User::getUser($seller);
+    $subject = "Veiling afgelopen";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+    $message = "<html><body>
+                <p>Je veiling is afgelopen.</p>
+
+                </body></html>";
+    mail($user['Mailbox'], $subject, $message, $headers);
+}
+
+function notifyBuyer($buyer){
+    $user = User::getUser($buyer);
+    $subject = "Veiling afgelopen";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+    $message = "<html><body>
+                <p>Je hebt de veiling gewonnen.</p>
+                </body></html>";
+    mail($user['Mailbox'], $subject, $message, $headers);
 }

@@ -5,7 +5,7 @@ if(!empty($_POST)){
     checkLogin();
     $ref = $_POST['voorwerp'];
     if(isset($_POST["bid"]) && !empty($_POST["bid"])){
-        if($_POST["bid"] > Items::getHighestBid($ref) && $_POST["bid"] > Items::getItem($ref)["Startprijs"]){
+        if($_POST["bid"] > Items::getHighestBid($ref)['Bodbedrag'] && $_POST["bid"] > Items::getItem($ref)["Startprijs"]){
             Items::placeBid($ref, $_POST["bid"], $_SESSION['name']);
         }
     } else {

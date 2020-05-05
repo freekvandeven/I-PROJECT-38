@@ -20,7 +20,7 @@
                 <tbody>
                 <?php foreach($items as $item): ?>
                     <tr>
-                        <td><a href="item.php?code=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
+                        <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>
