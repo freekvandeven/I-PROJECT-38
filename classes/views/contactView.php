@@ -21,3 +21,4 @@
         <textarea name="message" id="bericht"></textarea> <br>
         <input type="submit" name="submit" value="Submit">
     </form>
+</main>
