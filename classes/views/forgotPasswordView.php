@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <h2 class="text-center">Wachtwoord vergeten</h2>
+        <h2 class="wachtwoordVergetenTitel">Wachtwoord vergeten</h2>
         <h5 class="text-center">Vul uw emailadres in.</h5>
         <h5 class="text-center">Wij sturen u een email met verdere instructies.</h5>
         <form class="wachtwoordVergetenForm" action="" method="POST">
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
+                    <p class="gaTerugKnop"><a href="login.php">Ga terug</a></p>
                 </div>
 
                 <div class="form-group text-center">
