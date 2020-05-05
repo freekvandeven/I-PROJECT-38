@@ -70,7 +70,7 @@ $user = User::getUser($_SESSION["name"]);
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="text" class="form-control" id="Startprijs" required>
+                        <input type="text" class="form-control" id="Startprijs" name="Startprijs" required>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ $user = User::getUser($_SESSION["name"]);
 
         <!-- GA-TERUG-KNOP -->
         <div class="form-group text-center">
-            <a href="profile.php">Ga terug</a><br>
+            <a href="profile.php">Ga terug</a>
         </div>
 
         <!-- SUBMIT-KNOP -->

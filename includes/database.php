@@ -56,8 +56,6 @@ function selectFromCatalogsMSSQL($orders)
             } else if (strpos($key, ":and") !== false) {
                 $sql .= " AND " . $key;
                 $execute[":and"] = $order;
-
-
             }
         }
     }

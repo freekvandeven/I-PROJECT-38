@@ -31,7 +31,7 @@ if ($user["Verkoper"]) {
             }
             //store file with new autoincrementId as id.png
             storeImg(Items::get_ItemId());
-                header("Location: profile.php"); // send person to his item page
+            header("Location: profile.php"); // send person to his item page
         } else {
             $err = "please fill in all the data!";
         }

@@ -44,9 +44,6 @@ class User{
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
                                                                                                                                      :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action, :Bevestiging)");
         $data->execute($user);
-        echo "this gets run";
-        echo '<pre>' , var_dump($user) , '</pre>';
-        print_r($data->errorInfo());
         //$data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
         //$data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
     }

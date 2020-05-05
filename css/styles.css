@@ -197,10 +197,7 @@ body{
 /* PRODUCTENLIJST */
 .productsList{
     margin-top: 100px;
-    padding-top: 60px;
-    padding-bottom: 30px;
-    padding-left: 12.5%;
-    padding-right: 12.5%;
+    padding: 60px 12.5% 30px 12.5%;
     background: rgb(245, 245, 245);
 }
 
@@ -309,15 +306,15 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a{
+.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a{
     color: #000;
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 18px;
     transition: 200ms;
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover{
+.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover{
     text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
@@ -327,9 +324,7 @@ body{
 .loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
-    padding: 5px;
-    padding-left: 30%;
-    padding-right: 30%;
+    padding: 5px 30%;
     color: rgb(165, 105, 189);
     background: #fff;
     border: 2px solid rgb(165, 105, 189);
@@ -374,6 +369,46 @@ body{
 
 .addProductForm .container .form-row div div span{
     max-height: 38px;
+}
+
+/*************** Mijn Veilingen CSS *************/
+.mijnVeilingenBox, .favoritesBox{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.mijnVeilingenBox h2, .favoritesBox h2{
+    font-weight: normal;
+    margin-top: 75px;
+}
+
+.mijnVeilingenBox h5, .favoritesBox h5{
+    margin-top: 30px;
+    font-weight: normal;
+}
+
+.mijnVeilingenBox .table-responsive, .favoritesBox .table-responsive{
+    margin-top: 30px;
+}
+
+.mijnVeilingenBox .gaTerugKnop, .favoritesBox .gaTerugKnop{
+    margin-top: 50px;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a, .favoritesBox .table-responsive table tbody tr td a{
+    color: rgb(165, 105, 189);
+    text-decoration: underline;
+    text-decoration-color: rgb(235, 235, 235);
+    transition: 400ms;
+}
+
+.mijnVeilingenBox .table-responsive table tbody tr td a:hover, .favoritesBox .table-responsive table tbody tr td a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.mijnVeilingenBox div p a, .favoritesBox div p a{
+    text-decoration-color: white;
+    transition: 300ms;
 }
 
 /*************** ProfielPagina CSS *************/
@@ -423,4 +458,85 @@ main .container .container h2{
     font-weight: normal;
     width: 100%;
     border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+/*************** WACHTWOORD VERGETEN CSS *************/
+main .container .wachtwoordVergetenForm{
+    margin-top: 50px;
+}
+
+main .container h2, main .container h5{
+    font-weight: normal;
+    color: rgb(80, 80, 80);
+}
+
+main .container .wachtwoordVergetenTitel{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+main .container h5{
+    margin-top: 10px;
+    font-size: 19px;
+}
+
+main .container .wachtwoordVergetenForm div label{
+    font-size: 18px;
+}
+
+main .container .wachtwoordVergetenForm div input{
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+main .container .wachtwoordVergetenForm div input:focus{
+    padding: 5px;
+}
+
+main .container .wachtwoordVergetenForm div .col-md-9{
+    margin-top: -20px;
+    background: rgb(245, 245, 245);
+    padding: 20px 25px;
+    border-radius: 15px;
+}
+
+main .container .wachtwoordVergetenForm div{
+    margin: 0 auto;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop{
+    margin-top: 30px;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a{
+    color: #000;
+    font-size: 18px;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    transition: 200ms;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+    color: rgb(165, 105, 189);
+    padding-left: 10px;
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButton{
+    margin-top: 20px;
+    background: #fff;
+    font-size: 20px;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    padding: 4px 50px;
+    transition: 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+}
+
+main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButton:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }

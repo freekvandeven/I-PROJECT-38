@@ -68,7 +68,7 @@ function setupDatabase()
 
 function storeImg($id)
 {
-    $target_dir = "uploads/items/";
+    $target_dir = "upload/items/";
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
 
