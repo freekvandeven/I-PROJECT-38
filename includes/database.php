@@ -7,7 +7,7 @@ function selectFromCatalog($orders)
     global $serverType;
     if ($serverType != "mysql") {
         return selectFromCatalogsMSSQL($orders);
-    }else {
+    } else {
         global $dbh;
         $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $execute = array();
@@ -45,7 +45,7 @@ function selectFromCatalogsMSSQL($orders)
     global $dbh;
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
-    $sql = "SELECT * FROM Voorwerp ";
+    $sql = "SELECT *, ISNULL(cast(MAX(bodbedrag) as decimal(10,2)),Startprijs) as prijs FROM Voorwerp v LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp";
     $limited = false;
     $limit = 0;
     foreach ($orders as $key => $order) {
@@ -56,9 +56,37 @@ function selectFromCatalogsMSSQL($orders)
             } else if (strpos($key, ":and") !== false) {
                 $sql .= " AND " . $key;
                 $execute[":and"] = $order;
-            } else if (strpos($key, ":order") !== false) {
-                $sql .= " ORDER BY " . $key;
-                $execute[":order"] = $order;
+            }
+        }
+    }
+    $sql .= " GROUP BY [Voorwerpnummer]
+      ,[Titel]
+      ,[Beschrijving]
+      ,[Startprijs]
+      ,[Betalingswijze]
+      ,[Betalingsinstructie]
+      ,[Plaatsnaam]
+      ,[Land]
+      ,[Looptijd]
+      ,[LooptijdBeginDag]
+      ,[LooptijdBeginTijdstip]
+      ,[Verzendkosten]
+      ,[Verzendinstructies]
+      ,[Verkoper]
+      ,[Koper]
+      ,[LooptijdEindeDag]
+      ,[LooptijdEindeTijdstip]
+      ,[VeilingGesloten]
+      ,[Verkoopprijs]
+	  ,[Voorwerp]
+      ,[Bodbedrag]
+      ,[Gebruiker]
+      ,[BodDag]
+      ,[BodTijdstip]";
+    foreach ($orders as $key => $order) {
+        if (!empty($order)) {
+            if (strpos($key, ":order") !== false) {
+                $sql .= " ORDER BY " . $order;
             } else if (strpos($key, "limit") !== false) {
                 $limited = true;
                 $limit = $order;
