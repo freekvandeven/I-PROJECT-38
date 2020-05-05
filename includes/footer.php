@@ -13,7 +13,6 @@
 
                         <!-- Grid column -->
                         <div class="col-md-6 col-lg-7 text-center text-md-right">
-
                             <!-- Facebook -->
                             <a href="#">
                                 <img src="images/footerimages/facebook.png" alt="Facebook logo">
@@ -22,7 +21,7 @@
                             <a href="#">
                                 <img src="images/footerimages/twitter.png" alt="Twitter logo">
                             </a>
-                            <!-- Google +-->
+                            <!-- Instagram -->
                             <a href="#">
                                 <img src="images/footerimages/instagram.png" alt="Instagram logo">
                             </a>
@@ -62,7 +61,6 @@
                         <p>
                             <a href="#">Help</a>
                         </p>
-
                     </div>
 
                     <!-- Grid column -->
