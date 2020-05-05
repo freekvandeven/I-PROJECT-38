@@ -1,6 +1,6 @@
 <?php
     $items = Items::getSellerItems($_SESSION['name']);
-    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "Koper", "VeilingGesloten");
+    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
 ?>
 
 <main>
@@ -12,6 +12,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Link</th>
+                    <th>Koper</th>
                     <?php foreach($displayedItems as $key){
                         echo "<th>$key</th>";
                     } ?>
@@ -21,6 +22,7 @@
                 <?php foreach($items as $item): ?>
                     <tr>
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
+                        <td><a href="profile.php?id=<?=$item['Koper']?>"><?=$item['Koper']?></a></td>
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>

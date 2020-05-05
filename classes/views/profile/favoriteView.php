@@ -12,6 +12,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Link</th>
+                    <th>Verkoper</th>
                     <?php foreach($displayedItems as $key){
                         echo "<th>$key</th>";
                     } ?>

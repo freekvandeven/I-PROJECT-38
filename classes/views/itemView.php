@@ -32,6 +32,7 @@
             </div>
             <div class="col-xl-3 col-md-4 mt-2">
                 <div class="card">
+                    <a style="text-decoration: none; color: inherit;" href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
                     <div class="card-body">
                         <h4 class="card-title">Verkoper</h4>
                         <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
@@ -39,6 +40,7 @@
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
                     </div>
+                    </a>
                 </div>
                 <button id='btn'>Klik om alle reviews te bekijken! </button>
                 <ul id="list">
