@@ -10,8 +10,10 @@
                     <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
                 </form>
                 <ul class="list-group mt-4">
-                    <li class="list-group-item"><strong>Ruurd</strong> &euro; 60</li>
-                    <li class="list-group-item"><strong>Sanne</strong> &euro; 56</li>
+                    <?php foreach($bids as $bid){
+                        echo "<li class='list-group-item'><strong>" . User::getUser($bid['Gebruiker'])["Voornaam"] . "</strong> &euro;" . $bid['Bodbedrag'] ."</li>";
+                    } ?>
+                    <li class="list-group-item"><strong>Startprijs</strong> &euro;<?=$item['Startprijs']?></li>
                 </ul>
             </div>
             <div class="col-xl-6 col-md-4 mt-2">

@@ -5,6 +5,7 @@ require_once('includes/functions.php');
 if(!empty($_GET) && isset($_GET['id'])) {
     $item = Items::getItem($_GET['id']);
     $profile_data = User::getUser($item['Verkoper']);
+    $bids = Items::getBids($_GET['id']);
 } else {
     header('Location : catalogus.php');
 }
