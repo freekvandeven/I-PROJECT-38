@@ -11,13 +11,13 @@ function selectFromCatalog($orders)
         global $dbh;
         $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $execute = array();
-        $sql = "SELECT *, IFNULL(cast(MAX(bodbedrag) as decimal(10,2)),Startprijs) as prijs FROM Voorwerp v LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp";
+        $sql = "SELECT *, IFNULL(cast(MAX(bodbedrag) as decimal(10,2)),Startprijs) as prijs
+                FROM Voorwerp v
+                LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp
+                WHERE VeilingGesloten = 'Nee'";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
-                if (strpos($key, ":where") !== false) {
-                    $sql .= " WHERE " . $key;
-                    $execute[":where"] = $order;
-                } else if (strpos($key, ":and") !== false) {
+                if (strpos($key, ":and") !== false) {
                     $sql .= " AND " . $key;
                     $execute[":and"] = $order;
                 }
