@@ -377,41 +377,41 @@ body{
 }
 
 /*************** Mijn Veilingen CSS *************/
-.mijnVeilingenBox{
+.mijnVeilingenBox, .favoritesBox{
     margin-left: 10%;
     margin-right: 10%;
 }
 
-.mijnVeilingenBox h2{
+.mijnVeilingenBox h2, .favoritesBox h2{
     font-weight: normal;
     margin-top: 75px;
 }
 
-.mijnVeilingenBox h5{
+.mijnVeilingenBox h5, .favoritesBox h5{
     margin-top: 30px;
     font-weight: normal;
 }
 
-.mijnVeilingenBox .table-responsive{
+.mijnVeilingenBox .table-responsive, .favoritesBox .table-responsive{
     margin-top: 30px;
 }
 
-.mijnVeilingenBox .gaTerugKnop{
+.mijnVeilingenBox .gaTerugKnop, .favoritesBox .gaTerugKnop{
     margin-top: 50px;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a{
+.mijnVeilingenBox .table-responsive table tbody tr td a, .favoritesBox .table-responsive table tbody tr td a{
     color: rgb(165, 105, 189);
     text-decoration: underline;
     text-decoration-color: rgb(235, 235, 235);
     transition: 400ms;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a:hover{
+.mijnVeilingenBox .table-responsive table tbody tr td a:hover, .favoritesBox .table-responsive table tbody tr td a:hover{
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.mijnVeilingenBox div p a{
+.mijnVeilingenBox div p a, .favoritesBox div p a{
     text-decoration-color: white;
     transition: 300ms;
 }
