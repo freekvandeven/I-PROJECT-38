@@ -39,12 +39,36 @@ class Items{
         return $result['nieuwId'];
     }
 
+    static function getItem($item){
+        global $dbh;
+        $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Voorwerpnummer = :itemId');
+        $data->execute([":itemId"=>$item]);
+        $result = $data->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function getItems(){
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Voorwerp');
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    static function getBids($item){
+        global $dbh;
+        $data = $dbh->prepare('SELECT * FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag');
+        $data->execute([":voorwerpID"=>$item]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function getHighestBid($item){
+        global $dbh;
+        $data = $dbh->prepare('SELECT max(Bodbedrag) FROM Bod WHERE Voorwerp = :voorwerpID');
+        $data->execute([":voorwerpID"=>$item]);
+        $result = $data->fetch(PDO::FETCH_NUM);
+        return $result[0];
     }
 
 }
