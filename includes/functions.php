@@ -2,7 +2,6 @@
 startAutoLoader();
 require_once('database.php');
 checkVisitor();
-#var_dump(User::getUser($_SESSION['name']));
 
 function checkLogin()
 {
@@ -73,15 +72,16 @@ function storeImg($id)
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
 
-function sendMessage($mail, $username)
+function sendConfirmationEmail($mail, $username)
 {
-    $to = $mail;
-    $subject = "Bevestigingsmail";
-    $msg = "Beste $username!,";
-    $msg .= "Hartelijk bedankt voor het sturen van jouw registratie! 
-    Klik hieronder voor de bevestiging van jouw account!";
-    $msg .= "https://iproject38.icasites.nl/login.php?name=$username";
-
-    // Bevestiging verzenden
-    mail($to,$subject,$msg);
+    $subject = "Bevestig je account";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+    $message = "<html><body>
+                <p>Hallo $username,</p>    
+                <p>Welkom bij EenmaalAndermaal</p>
+                <p>Om de website te kunnen gebruiken moet je op onderstaande link klikken om de account te activeren</p>
+                <a href='https://iproject38.icasites.nl/login.php?name=$username' tartget='_blank'>Activeer je account</a>
+                </body></html>";
+    return mail($mail, $subject, $message, $headers);
 }

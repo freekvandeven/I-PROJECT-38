@@ -17,11 +17,17 @@ if(!empty($_POST)) {
             if(checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX')) { # check if domain has a mailserver running
                 if (empty(User::getUser($_POST["username"]))) { #check if user already exists
                     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                    $user = array("Gebruikersnaam" => $_POST["username"], ":Voornaam" => $_POST["first-name"], ":Achternaam" => $_POST["surname"], ":Adresregel_1" => $_POST["adress"], ":Adresregel_2" => $_POST["adress2"],
+                    $user = array(":Gebruikersnaam" => $_POST["username"], ":Voornaam" => $_POST["first-name"], ":Achternaam" => $_POST["surname"], ":Adresregel_1" => $_POST["adress"], ":Adresregel_2" => $_POST["adress2"],
                         ":Postcode" => $_POST["postcode"], ":Plaatsnaam" => $_POST["place"], ":Land" => $_POST["country"], ":Geboortedag" => $_POST["birth-date"], ":Mailbox" => $_POST["email"], ":Wachtwoord" => $password,
-                        ":Vraag" => $_POST["secret-question"], ":Antwoordtekst" => $_POST["secret-answer"], ":Verkoper" => FALSE, ":Action" => FALSE);
-                    User::insertUser($user, $_POST["phone-number"]);
-                    header("Location: login.php");
+                        ":Vraag" => (int)$_POST["secret-question"], ":Antwoordtekst" => $_POST["secret-answer"], ":Verkoper" => FALSE, ":Action" =>FALSE, ":Bevestiging"=> FALSE);
+                    User::insertUser($user);
+                    if(sendConfirmationEmail($_POST['email'], $_POST['username'])){
+                        header("Location: login.php"); # wait until user confirms email
+                    } else { #mail was not succesful
+                        User::makeUser($_POST['username']);
+                        createSession(User::getUser($_POST['username']));
+                        header("Location: profile.php");
+                    }
                 } else {
                     $err = "user already exists";
                 }
