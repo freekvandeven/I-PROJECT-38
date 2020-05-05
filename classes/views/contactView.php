@@ -19,6 +19,6 @@
         <input type="tel" name="phone-number" id="telefoon" ><br>
         <label for="bericht">Bericht</label>
         <textarea name="message" id="bericht"></textarea> <br>
-        <input type="submit" name="submit" value="Submit">
+        <button type="button" name="submit" value="submit">Verzenden</button>
     </form>
 </main>
