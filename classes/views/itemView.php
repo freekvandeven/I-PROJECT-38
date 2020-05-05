@@ -1,5 +1,4 @@
 <main>
-
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-md-4 mt-2">
@@ -18,9 +17,9 @@
             <div class="col-xl-6 col-md-4 mt-2">
                 <div class='card'>
                     <div class='card-body'>
-                        <h4 class="card-title">Houten kast</h4>
-                        <img src='upload/items/21.jpg' class='card-img-top' alt='Productnaam'>
-                        <p class='card-text'><?= $card['Beschrijving'] ?></p>
+                        <h4 class="card-title"><?=$item['Titel']?></h4>
+                        <img src='upload/items/<?=$item['Voorwerpnummer']?>.png' class='card-img-top' alt='Productnaam'>
+                        <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
                         <small class='text-muted'>Nog: 4min beschikbaar.</small>
@@ -32,6 +31,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Verkoper</h4>
                         <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
+                        <!--<img src="upload/users/<?= $profile_data['Gebruikersnaam'] ?>.png" class="card-img" alt="profielfoto">-->
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
                     </div>

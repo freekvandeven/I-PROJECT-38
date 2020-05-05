@@ -39,6 +39,14 @@ class Items{
         return $result['nieuwId'];
     }
 
+    static function getItem($item){
+        global $dbh;
+        $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Voorwerpnummer = :itemId');
+        $data->execute([":itemId"=>$item]);
+        $result = $data->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function getItems(){
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Voorwerp');
