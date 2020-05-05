@@ -57,10 +57,10 @@
         } else {
             $select[':limit'] = "25";
         }
-        $items = selectFromCatalog($select); // select 8 products from catalog
+        $items = selectFromCatalog($select);
         $counter = 0;
         foreach ($items as $card):
-            if ($counter == 0) {
+            if ($counter % 4 == 0) {
                 echo "<div class='row'>";
             }
             ?>
@@ -78,47 +78,33 @@
                     </div>
                     <div class='card-footer'>
                         <!-- Display the countdown timer in an element -->
-                        <p id="demo"></p>
-                        <script>
-                            // Set the date we're counting down to
-                            var countDownDate = new Date("June 5, 2020 12:20:30").getTime();
-
-                            // Update the count down every 1 second
-                            var x = setInterval(function() {
-
-                                // Get today's date and time
-                                var now = new Date().getTime();
-
-                                // Find the distance between now and the count down date
-                                var distance = countDownDate - now;
-
-                                // Time calculations for days, hours, minutes and seconds
-                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                                // Display the result in the element with id="demo"
-                                document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                                    + minutes + "m " + seconds + "s ";
-
-                                // If the count down is finished, write some text
-                                if (distance < 0) {
-                                    clearInterval(x);
-                                    document.getElementById("demo").innerHTML = "EXPIRED";
-                                }
-                            }, 1000);
-                        </script>
+                        <p id="timer-<?=$counter?>"></p>
                     </div>
                 </div>
             </div>
             <?php
             $counter++;
-            if ($counter > 3) {
+            if ($counter % 4 == 0) {
                 echo "</div>";
-                $counter = 0;
             }
         endforeach;
         ?>
+        <script>
+                var my_date;
+                <?php
+                $i = 0;
+                foreach($items as $item){
+                    $datum = $item['LooptijdEindeDag'];
+                    $tijdstip = $item['LooptijdEindeTijdstip'];
+                    $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+                    echo "my_date = '" . explode( ".",$time)[0] . "';\n";
+                    ?>
+                    my_date = my_date.replace(/-/g, "/");
+                    setupCountDown('timer-<?=$i?>', new Date(my_date));
+                <?php
+                $i++;
+                }
+                    ?>
+        </script>
     </div>
 </main>

@@ -26,7 +26,7 @@
                     </div>
                     <div class='card-footer'>
                         <small class='text-muted'></small>
-                        <p id="demo"></p>
+                        <p id="timer"></p>
                     </div>
                 </div>
             </div>
@@ -63,30 +63,17 @@
                             list.style.display = "none";
                         }
                     })
+                    <?php
+                        $datum = $item['LooptijdEindeDag'];
+                        $tijdstip = $item['LooptijdEindeTijdstip'];
+                        $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+                        echo "var my_date= '" . explode( ".",$time)[0] . "';\n";
+                    ?>
+                    my_date = my_date.replace(/-/g, "/");
+                    var d = new Date(my_date);
+                    setupCountDown('timer', d);
 
                     //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
-                    var countDownDate = new Date("June 5, 2020 12:20:30").getTime();
-                    var x = setInterval(function() {
-
-                        var now = new Date().getTime();
-
-                        var distance = countDownDate - now;
-
-                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                        // Display the result in the element with id="demo"
-                        document.getElementById('demo').innerHTML = days + "d " + hours + "h "
-                            + minutes + "m " + seconds + "s ";
-
-                        // If the count down is finished, write some text
-                        if (distance < 0) {
-                            clearInterval(x);
-                            document.getElementById('demo').innerHTML = "EXPIRED";
-                        }
-                    }, 1000);
                 </script>
             </div>
         </div>
