@@ -2,10 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-md-4 mt-2">
-                <form>
+                <form method="post" action="">
                     <div class="form-group text-left">
+                        <input type="hidden" name="voorwerp" value="<?=$item['Voorwerpnummer']?>">
                         <label for="inputBod">Bieden</label>
-                        <input type="bod" class="form-control" id="inputBod" placeholder="&euro;">
+                        <input type="bod" class="form-control" name="bid" id="inputBod" placeholder="&euro;">
                     </div>
                     <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
                 </form>
