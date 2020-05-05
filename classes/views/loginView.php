@@ -20,7 +20,7 @@
                             </div>
                             <!-- "Wachtwoord vergeten?" -->
                             <div class="form-group text-left">
-                                <a href="#">Wachtwoord vergeten?</a>
+                                <a href="forgotPassword.php">Wachtwoord vergeten?</a>
                             </div>
                             <!-- "Nog geen account?" -->
                             <div class="form-group text-left">
