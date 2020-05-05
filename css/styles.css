@@ -146,15 +146,59 @@ nav{
 }
 /**********************MAIN***********************/
 main{
-min-height: calc(100vh - 112px);
+    min-height: calc(100vh - 112px);
 }
 /********************* FOOTER*********************/
 footer{
-    background-color:#5f4b8b;
-    color:#fff;
+    background-color: #5f4b8b;
+    color: #fff;
 }
 footer p{
-    margin:auto;
+    display: flex;
+    margin: 6px 0;
+}
+
+.bovenstukFooter{
+    background: #876EBD;
+}
+
+footer div div div hr{
+    width: 60px;
+    border-color: rgba(255, 255, 255, .5);
+}
+
+footer a{
+    color: #fff;
+    transition: 200ms;
+}
+
+footer a:hover{
+    text-decoration: underline;
+    color: rgb(220, 220, 220);
+    padding-left: 5px;
+}
+
+footer div div div p img{
+    opacity: .9;
+    width: 21px;
+    max-height: 21px;
+    max-width: 21px;
+    user-select: none;
+    margin-right: 7px;
+}
+
+footer div div div div a img{
+    width: 40px;
+    opacity: .7;
+    transition: 300ms;
+}
+
+footer div div div div img:hover{
+    opacity: 1;
+}
+
+footer div div div div a:hover{
+    padding: 0;
 }
 
 /******************** HOMEPAGE *****************/
@@ -169,14 +213,11 @@ body{
     padding-left: 12.5%;
     padding-right: 12.5%;
     background: rgb(245, 245, 245);
-
 }
 
 /* DE SLIDESHOW: */
 .slideshow{
-    margin-top: 60px;
-    margin-left: 12.5%;
-    margin-right: 12.5%;
+    margin: 60px 12.5% 0 12.5%;
 }
 
 .carousel-item div a h3{
@@ -202,8 +243,7 @@ body{
 }
 
 .card{
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 25px 0;
     width: 100%;
     box-shadow: 0 0 30px rgba(0, 0, 0, .1);
 }
@@ -225,8 +265,7 @@ body{
 /*********************** LOGIN-, REGISTRATIE-, UPDATE-, UPGRADE EN ADDPRODUCTFORMULIER *******************/
 /* De gehele container van de login en register */
 #login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin: 100px 0;
     max-width: 600px;
     height: 100%;
     border: 2px solid rgb(165, 105, 189);
@@ -334,13 +373,11 @@ body{
 }
 
 .registerForm .registerButton, .addProductForm .addProductButton{
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0 50px;
 }
 
 .upgradeForm .upgradeButton, .updateForm .updateButton{
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px
 }
 
 .updateForm .updateButton{
@@ -373,8 +410,7 @@ body{
 
 /*************** Mijn Veilingen CSS *************/
 .mijnVeilingenBox, .favoritesBox{
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 20%;
 }
 
 .mijnVeilingenBox h2, .favoritesBox h2{
