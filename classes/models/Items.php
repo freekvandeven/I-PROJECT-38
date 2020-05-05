@@ -57,7 +57,7 @@ class Items{
 
     static function getBids($item){
         global $dbh;
-        $data = $dbh->prepare('SELECT * FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag');
+        $data = $dbh->prepare('SELECT * FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag DESC');
         $data->execute([":voorwerpID"=>$item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -71,4 +71,9 @@ class Items{
         return $result[0];
     }
 
+    static function placeBid($item, $price, $user){
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodDag, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user, :boddag, :bodtijdstip)');
+        $data->execute(array(":voorwerp"=>$item,":bodbedrag"=>$price, ":user"=>$user, ":boddag"=>date('Y-m-d'),":bodtijdstip"=>date("H:i:s")));
+    }
 }
