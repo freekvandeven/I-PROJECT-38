@@ -55,6 +55,23 @@ class Items{
         return $result;
     }
 
+    static function getFinishedItems(){
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
+                            (LooptijdEindeDag = :vandaag AND LooptijdEindeTijdstip < :moment))");
+        #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
+        $data->execute(array(":vandaag"=>date("Y-m-d"),":moment"=>date("H:i:s")));
+        #$data->execute(array(":vandaag"=>date("Y-m-d")));
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function finishItem($item, $buyer, $sellprice){
+        global $dbh;
+        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten='Wel', Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
+        $data->execute([":item"=>$item, ":buyer"=>$buyer, ":sellprice"=>$sellprice]);
+    }
+
     static function getBids($item){
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag DESC');
@@ -65,9 +82,9 @@ class Items{
 
     static function getHighestBid($item){
         global $dbh;
-        $data = $dbh->prepare('SELECT max(Bodbedrag) FROM Bod WHERE Voorwerp = :voorwerpID');
+        $data = $dbh->prepare('SELECT MAX(Bodbedrag) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID GROUP BY Gebruiker');
         $data->execute([":voorwerpID"=>$item]);
-        $result = $data->fetch(PDO::FETCH_NUM);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
     }
 
