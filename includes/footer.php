@@ -26,13 +26,13 @@
             <!-- Footer Links -->
             <div class="container text-center text-md-left mt-5">
                 <div class="row mt-3">
-
                     <!-- 1e kolom -->
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h5>EenmaalAndermaal</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p>Bij EenmaalAndermaal is de klant koning. Daarom kan de klant zijn eigen producten aanbieden en op die van een ander bieden.</p>
                     </div>
+
                     <!-- 2e kolom -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h5>Handige links</h5>
@@ -47,9 +47,9 @@
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h5>Over ons</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                        <p><a href="#">Projecten</a></p>
                         <p><a href="#">Verdienmodel</a></p>
                         <p><a href="#">Adverteren</a></p>
+                        <p><a href="#">Algemene voorwaarden</a></p>
                         <p><a href="#">Vacatures</a></p>
                     </div>
 

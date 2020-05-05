@@ -154,7 +154,8 @@ footer{
     color: #fff;
 }
 footer p{
-    margin: auto;
+    display: flex;
+    margin: 6px 0;
 }
 
 .bovenstukFooter{
@@ -180,6 +181,8 @@ footer a:hover{
 footer div div div p img{
     opacity: .9;
     width: 21px;
+    max-height: 21px;
+    max-width: 21px;
     user-select: none;
     margin-right: 7px;
 }
