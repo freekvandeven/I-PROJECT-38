@@ -17,7 +17,7 @@
                     } ?>
                 </tr>
                 </thead>
-                <tbody>
+                <body>
                 <?php foreach($items as $item): ?>
                     <tr>
                         <td><a href="item.php?code=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
@@ -26,7 +26,7 @@
                         <?php endforeach; ?>
                     </tr>
                 <?php endforeach;?>
-                </tbody>
+                </body>
             </table>
         </div>
         <div class="form-group text-center">

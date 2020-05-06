@@ -31,6 +31,13 @@ CREATE TABLE Feedback(
 	CONSTRAINT PK_Feedback	PRIMARY KEY	(Voorwerp, SoortGebruiker)
 );
 
+CREATE TABLE Beoordeling (
+    BeoordelingsNr 				INTEGER(20)		NOT NULL AUTO_INCREMENT,
+    Gebruikersnaam              VARCHAR(20)     NOT NULL,
+    Rating                      INTEGER(1)      NOT NULL,
+    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr, Gebruikersnaam, Rating)
+);
+
 
 CREATE TABLE Gebruiker(
 	Gebruikersnaam				VARCHAR(20)		NOT NULL,

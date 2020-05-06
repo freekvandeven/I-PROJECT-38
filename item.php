@@ -29,7 +29,17 @@ if(!empty($_GET) && isset($_GET['id'])) {
             }
         })
     </script>
-<?php
+
+    <?php
+    if(!empty($_POST) && isset($_POST['Verzenden'])){
+            echo 'Bedankt voor uw feedback!';
+            echo "Uw beoordeling was: ";
+            echo $_POST['rate'];
+            Database::rateSeller($profile_data['Gebruikersnaam'],$_POST['rate']);
+        } else {
+            require_once 'starView.php';
+        }
+
 } else {
     header('Location : catalogus.php');
 }
