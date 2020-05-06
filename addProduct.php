@@ -6,7 +6,7 @@ $parameterList = array("Titel", "Beschrijving", "Rubriek", "img", "Startprijs", 
     "Verzendinstructies");
 $user = User::getUser($_SESSION["name"]);
 if ($user["Verkoper"]) {
-    if(!empty($_POST)) {
+    if(checkPost()) {
         if (isset($_POST["Titel"]) && isset($_POST["Beschrijving"]) && isset($_POST["Startprijs"]) && isset($_FILES["img"]) && isset($_POST["Verzendinstructies"])) {
             $posts = [];
             $date = date("Y-m-d");

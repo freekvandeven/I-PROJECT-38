@@ -11,7 +11,7 @@ if(!empty($_GET) && isset($_GET['name'])){
 }
 
 # handle the login post request
-if(!empty($_POST)) {
+if(checkPost()) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         $user = User::getUser($_POST["username"]);
         if (password_verify($_POST["password"], $user['Wachtwoord'])) {

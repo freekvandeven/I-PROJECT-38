@@ -7,6 +7,7 @@
                         <form id="login-form" class="registerForm" action="" method="post">
                             <h2 class="text-center">Registreren</h2>
                             <?php if(isset($err))echo $err;?>
+                            <input type="hidden" name="token" value="<?=$token?>">
                             <!-- ACCOUNTGEGEVENS-->
                             <div class="container">
                                 <h5>Accountgegevens en beveiliging</h5>

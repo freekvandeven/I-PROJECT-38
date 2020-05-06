@@ -6,7 +6,7 @@ $parameterList = array("username", "password", "confirmation", "email", "first-n
 $optionalList = array("phone-number2", "adress2");
 
 # handle the register post request
-if(!empty($_POST)) {
+if(checkPost()) {
     # check if everything is set
     $isValid = true;
     foreach ($parameterList as $parameter) {

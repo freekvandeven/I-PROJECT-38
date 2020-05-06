@@ -8,6 +8,7 @@
                             <!-- Titel -->
                             <h2 class="text-center">Inloggen</h2>
                             <?php if(isset($err))echo $err;?>
+                            <input type="hidden" name="token" value="<?=$token?>">
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
                                 <label for="username">Gebruikersnaam:</label><br>

@@ -3,6 +3,7 @@
         <h3>Bekijk hier alle producten</h3>
         <div class="filtermenu">
             <form class="" action="catalogus.php" method="post">
+                <input type="hidden" name="token" value="<?=$token?>">
                 <select id="Rubriek" name="Rubriek">
                     <option value="rubriek">Kies Rubriek</option>
                     <?php for ($i = 0; $i < 10; $i++) :

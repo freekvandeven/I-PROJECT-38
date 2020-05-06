@@ -7,6 +7,7 @@ $profile_data = User::getUser($_SESSION['name']);
         <form id="login-form" class="updateForm" action="" method="post" enctype="multipart/form-data">
             <h2 class="text-center">Huidige gegevens</h2>
             <?php if(isset($err))echo $err;?>
+            <input type="hidden" name="token" value="<?=$token?>">
             <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
             <!-- ACCOUNTGEGEVENS-->
             <div class="container">
