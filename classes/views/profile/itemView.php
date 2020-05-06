@@ -18,7 +18,7 @@
                     } ?>
                 </tr>
                 </thead>
-                <body>
+                <tbody>
                 <?php foreach($items as $item):
                     if($item['VeilingGesloten'] == "Wel "){
                         $label = "table-success";
@@ -34,7 +34,7 @@
                         <?php endforeach; ?>
                     </tr>
                 <?php endforeach;?>
-                </body>
+                </tbody>
             </table>
         </div>
         <div class="form-group text-center">
