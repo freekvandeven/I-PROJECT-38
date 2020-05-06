@@ -13,7 +13,6 @@ if(!empty($_POST)){
         }
     }
 }
-
 $title = "profile page";
 require_once('includes/header.php');
 

@@ -38,8 +38,11 @@
                     <a style="text-decoration: none; color: inherit;" href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
                     <div class="card-body">
                         <h4 class="card-title">Verkoper</h4>
-                        <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
-                        <!--<img src="upload/users/<?= $profile_data['Gebruikersnaam'] ?>.png" class="card-img" alt="profielfoto">-->
+                        <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
+                            <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                        <?php else :?>
+                            <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
+                        <?php endif; ?>
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
                     </div>

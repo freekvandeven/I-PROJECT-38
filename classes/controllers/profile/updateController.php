@@ -15,7 +15,11 @@ if($correct) {
         ":country"=>$_POST["country"], ":email"=>$_POST["email"], ":question"=>$_POST["secret-question"], ":answer"=>$_POST["secret-answer"]);
     User::updateUser($changes);
     createSession(User::getUser($changes[":gebruikersnaam"]));
-
+    if(!empty($_FILES)){
+        if ($_FILES['img']) {
+            imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), "upload/users/".$_SESSION['name'].".png");
+        }
+    }
     if(!empty($_POST["password"]) && !empty($_POST["confirmation"])){
         if($_POST["password"] == $_POST["confirmation"]){
             User::updatePassword($_SESSION['name'], password_hash($_POST["password"], PASSWORD_DEFAULT));
