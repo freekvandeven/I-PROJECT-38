@@ -45,9 +45,6 @@ if(isset($_SESSION['loggedin'])){
                 <li class="nav-item">
                     <a class="nav-link" href="catalogus.php">Veilingen</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="navbarDropdown" href=<?=$loginlink?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?=$loginstatus?>
@@ -63,6 +60,9 @@ if(isset($_SESSION['loggedin'])){
                     <a class="nav-link" href="admin.php">Admin</a>
                 </li>
                 <?php endif;?>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="catalogus.php" method="post">
                 <input class="form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Search" name="search">
