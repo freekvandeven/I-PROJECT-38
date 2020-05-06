@@ -46,8 +46,39 @@
                 </tbody>
             </table>
         </div>
-        <div class="form-group text-center">
-            <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
-        </div>
+        <div class="row">
+            <div class="legenda col-xl-4 offset-xl-8 col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-12 col-12 ">
+                <h5 class="text-center">Legenda</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Kleur en betekenis</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-success">
+                                <td>Veiling is afgelopen en je hebt gewonnen.</td>
+                            </tr>
+
+                            <tr class="table-danger">
+                                <td>Veiling is afgelopen en je hebt verloren.</td>
+                            </tr>
+
+                            <tr class="table-warning">
+                                <td>Veiling is nog niet afgelopen maar je bent wel overgeboden.</td>
+                            </tr>
+
+                            <tr class="table-info">
+                                <td>Veiling is nog niet afgelopen maar je bent wel de hoogste bieder.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group text-center col-lg-12">
+                <p class="gaTerugKnop" style="margin-bottom: 60px;"><a href="profile.php">Ga terug</a></p>
+            </div>
     </div>
 </main>

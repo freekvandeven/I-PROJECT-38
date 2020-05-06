@@ -632,6 +632,10 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+/*************** LEGENDA CSS *************/
+.mijnVeilingenBox .row .legenda h5, .favorietenBox .row h5{
+    margin-bottom: -20px;
+}
 
 
 
