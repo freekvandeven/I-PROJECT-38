@@ -1,6 +1,6 @@
 <?php
     $items = Items::getSellerItems($_SESSION['name']);
-    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "Koper", "VeilingGesloten");
+    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
 ?>
 
 <main>
@@ -12,15 +12,23 @@
                 <thead>
                 <tr>
                     <th scope="col">Link</th>
+                    <th>Koper</th>
                     <?php foreach($displayedItems as $key){
                         echo "<th>$key</th>";
                     } ?>
                 </tr>
                 </thead>
                 <body>
-                <?php foreach($items as $item): ?>
-                    <tr>
-                        <td><a href="item.php?code=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
+                <?php foreach($items as $item):
+                    if($item['VeilingGesloten'] == "Wel "){
+                        $label = "table-success";
+                    } else {
+                        $label = "table-danger";
+                    }
+                    ?>
+                    <tr class="<?=$label?>">
+                        <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
+                        <td><a href="profile.php?id=<?=$item['Koper']?>"><?=$item['Koper']?></a></td>
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>

@@ -15,7 +15,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
         <div class="container">
             <h2>Mijn gegevens</h2>
             <div class="row">
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Persoonsgegevens</h4>
@@ -34,7 +34,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Inloggegevens</h4>
@@ -44,7 +44,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Beveiliging</h4>
@@ -54,7 +54,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Verkoper</h4>
@@ -70,7 +70,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
             <div class="row">
                 <?php
                 if($profile_data['Verkoper']) : ?>
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Mijn veilingen</h4>
@@ -79,18 +79,18 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div><?php endif; ?>
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Favoriete veilingen</h4>
-                            <p>Wanneer u op een veiling biedt, wordt deze toegevoegd aan uw favorieten. Om deze te bekijken, klikt u hieronder.</p>
+                            <p>Wanneer u op een veiling biedt, wordt deze toegevoegd aan uw favorieten.</p>
                             <a href="profile.php?action=favorite" class="btn btn-primary">Favoriete veilingen</a>
                         </div>
                     </div>
                 </div>
                 <?php
                 if($profile_data['Verkoper']) : ?>
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Product aanbieden</h4>

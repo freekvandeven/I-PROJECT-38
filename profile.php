@@ -19,6 +19,8 @@ require_once('includes/header.php');
 
 if(isset($_GET['action']) && in_array($_GET['action'], $actions)){
     require_once('classes/views/profile/'.$_GET['action'].'View.php');
+} else if(isset($_GET['id'])) {
+    require_once('classes/views/profile/inspectView.php');
 } else {
     require_once('classes/views/profile/profileView.php');
 }

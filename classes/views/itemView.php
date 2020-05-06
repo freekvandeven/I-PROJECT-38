@@ -2,10 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-md-4 mt-2">
-                <form>
+                <form method="post" action="">
                     <div class="form-group text-left">
+                        <input type="hidden" name="voorwerp" value="<?=$item['Voorwerpnummer']?>">
                         <label for="inputBod">Bieden</label>
-                        <input type="bod" class="form-control" id="inputBod" placeholder="&euro;">
+                        <input type="bod" class="form-control" name="bid" id="inputBod" placeholder="&euro;">
                     </div>
                     <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
                 </form>
@@ -24,12 +25,14 @@
                         <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
-                        <small class='text-muted'>Nog: 4min beschikbaar.</small>
+                        <small class='text-muted'></small>
+                        <p id="timer"></p>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-4 mt-2">
                 <div class="card">
+                    <a style="text-decoration: none; color: inherit;" href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
                     <div class="card-body">
                         <h4 class="card-title">Verkoper</h4>
                         <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
@@ -41,7 +44,41 @@
                                 Database::getAmountRatings($profile_data['Gebruikersnaam']);
                             ?></p>
                     </div>
+                    </a>
                 </div>
+                <button id='btn'>Klik om alle reviews te bekijken! </button>
+                <ul id="list">
+                    <li>Amos: een kwalitatief uitstekend product, maar ben wel 100 miljoen kwijt</li>
+                    <li>Joons: hallo ik ben joons en ik kief met mijn matties</li>
+                    <li>Freek: hallo ik ben freek joo it is your homie</li>
+                    <li>Anthony: joo ik ben anthony en ik houd van lekker zuupen</li>
+                </ul>
+
+                <script>
+                    const button = document.getElementById("btn");
+                    const list = document.getElementById("list");
+
+                    list.style.display = "none";
+
+                    button.addEventListener("click", (event) => {
+                        if(list.style.display == "none"){
+                            list.style.display = "block";
+                        } else {
+                            list.style.display = "none";
+                        }
+                    })
+                    <?php
+                        $datum = $item['LooptijdEindeDag'];
+                        $tijdstip = $item['LooptijdEindeTijdstip'];
+                        $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+                        echo "var my_date= '" . explode( ".",$time)[0] . "';\n";
+                    ?>
+                    my_date = my_date.replace(/-/g, "/");
+                    var d = new Date(my_date);
+                    setupCountDown('timer', d);
+
+                    //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+                </script>
             </div>
         </div>
     </div>

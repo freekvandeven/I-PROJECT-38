@@ -48,6 +48,16 @@ $profile_data = User::getUser($_SESSION['name']);
                         <label for="antwGeheimeVraag">Antwoord</label>
                         <input type="text" class="form-control" name="secret-answer" id="antwGeheimeVraag" value="<?=$profile_data['Antwoordtekst']?>">
                     </div>
+
+                    <!-- FOTO UPLOADEN -->
+                    <div class="form-group col-md-4">
+                        <label for="img">Foto</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
+                            <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document toe</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!-- PERSOONLIJKE GEGEVENS-->
