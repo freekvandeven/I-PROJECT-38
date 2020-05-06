@@ -124,27 +124,3 @@ function getSiteVisits()
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-
-function rateSeller($seller, $rating)
-{
-    global $dbh;
-    $data = $dbh->prepare('INSERT INTO Beoordeling (Verkoper,Rating) VALUES(:verkoper, :rating)');
-    $data->execute([":verkoper" => $seller], [":rating" => $rating]);
-}
-
-function getSumRating($username)
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT SUM(Rating) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
-    $data->execute([":Gebruikersnaam" => $username]);
-    return $data;
-}
-
-function getAmountRatings($username) {
-    global $dbh;
-    $data = $dbh->prepare('SELECT COUNT(BeoordelingsNr) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
-    $data->execute([":Gebruikersnaam" => $username]);
-    return $data;
-}
-
-
