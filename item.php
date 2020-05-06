@@ -22,6 +22,14 @@ if(!empty($_GET) && isset($_GET['id'])) {
     header('Location: catalogus.php');
 }
 
+if (!empty($_POST) && isset($_POST['Verzenden'])) {
+    $sent = true;
+    echo 'Bedankt voor uw feedback!';
+    echo "Uw beoordeling was: ";
+    echo $_POST['rate'];
+    Database::rateSeller($profile_data['Gebruikersnaam'], $_POST['rate']);
+}
+
 $title = "Item Page";
 
 require_once('includes/header.php');

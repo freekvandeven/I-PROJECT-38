@@ -45,6 +45,9 @@
                         <?php endif; ?>
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
+                        <p>Rating:<?php $rating = Database::getSumRating($profile_data['Gebruikersnaam']) /
+                        Database::getAmountRatings($profile_data['Gebruikersnaam']);
+                        echo $rating?></p>
                     </div>
                     </a>
                 </div>
@@ -81,6 +84,23 @@
 
                     //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
                 </script>
+                <?php if($sent == true) : ?>
+                    <form action="" method="POST">
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <button name="Verzenden" value="Verzenden">Verzenden</button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </div>

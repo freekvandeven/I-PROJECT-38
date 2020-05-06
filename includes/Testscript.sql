@@ -52,7 +52,12 @@ CREATE TABLE Gebruiker(
 	CONSTRAINT PK_Gebruiker	PRIMARY KEY	(Gebruikersnaam)
 );
 
-
+CREATE TABLE Beoordeling (
+    BeoordelingsNr 				INTEGER(20)		NOT NULL AUTO_INCREMENT,
+    Gebruikersnaam              VARCHAR(20)     NOT NULL,
+    Rating                      INTEGER(1)      NOT NULL,
+    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr, Gebruikersnaam, Rating)
+);
 
 CREATE TABLE GebruikersTelefoon(
 	Volgnr						INTEGER			NOT NULL,
