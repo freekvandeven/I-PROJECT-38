@@ -2,6 +2,7 @@
 require_once('db-config.php');
 $dbh = Database::connectToDatabase();
 
+
 function selectFromCatalog($orders)
 {
     global $serverType;
