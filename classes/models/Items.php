@@ -17,7 +17,7 @@ class Items{
     static function getBuyerItems($buyer){
         global $dbh;
         $data = $dbh->prepare('SELECT DISTINCT Voorwerpnummer, Titel, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land,
-                Looptijd, Verkoper, VeilingGesloten FROM Voorwerp v RIGHT OUTER JOIN Bod b ON b.Voorwerp=v.Voorwerpnummer WHERE Koper=:buyer1 OR Gebruiker=:buyer');
+                Looptijd, Verkoper, Koper, VeilingGesloten FROM Voorwerp v RIGHT OUTER JOIN Bod b ON b.Voorwerp=v.Voorwerpnummer WHERE Koper=:buyer1 OR Gebruiker=:buyer');
         $data->execute([":buyer"=>$buyer, ":buyer1"=>$buyer]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -83,7 +83,7 @@ class Items{
 
     static function getHighestBid($item){
         global $dbh;
-        $data = $dbh->prepare('SELECT CAST(MAX(Bodbedrag) as decimal(10,2)) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID GROUP BY Gebruiker');
+        $data = $dbh->prepare('SELECT CAST(Bodbedrag as decimal(10,2)) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY 1 DESC');
         $data->execute([":voorwerpID"=>$item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];

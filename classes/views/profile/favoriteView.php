@@ -19,8 +19,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($items as $item): ?>
-                    <tr>
+                <?php foreach($items as $item):
+                    var_dump($item['VeilingGesloten']);
+                var_dump($item['Koper']);
+                    if($item['VeilingGesloten'] == "Wel "){
+                        if($item['Koper'] == $_SESSION['name']){
+                            $label = "table-success";
+                        } else {
+                            $label = "table-danger";
+                        }
+                    } else {
+                        if(Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker'] == $_SESSION['name']){
+                            $label = "table-info";
+                        } else {
+                            $label = "table-warning";
+                        }
+                        var_dump(Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker']);
+                    }
+
+                ?>
+                    <tr class="<?=$label?>">
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
                         <td><a href="profile.php?id=<?=$item['Verkoper']?>"><?=$item['Verkoper']?></a></td>
                         <?php foreach($displayedItems as $itemName): ?>
