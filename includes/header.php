@@ -16,6 +16,7 @@ if(isset($_SESSION['loggedin'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg"/>
     <script src="js/script.js"></script>
     <title><?=$title?></title>
     <!-- bootstrap scripts -->
