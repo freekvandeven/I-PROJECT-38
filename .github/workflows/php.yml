@@ -24,7 +24,7 @@ jobs:
       uses: overtrue/phplint@master
       with:
         path: .
-        options: --exclude=*.log
+        options: --configuration=../../../.phplint.yml --exclude=vendor
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
