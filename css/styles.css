@@ -320,16 +320,15 @@ body{
 }
 
 /* De vakjes waar de gebruiker iets in moet vullen */
-.loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input, .addProductForm input, .addProductForm select, .updateForm select{
+.loginForm input, .registerForm input, .registerForm select, .upgradeForm input, .updateForm input, .addProductForm input, .addProductForm select{
     border-radius: 10px;
     transition: 200ms;
 }
 
 /* Als de gebruiker een vakje selecteert: */
-.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .upgradeForm input:focus, .updateForm input:focus, .updateForm select:focus, .addProductForm input:focus, .addProductForm select:focus{
+.loginForm input:focus, .registerForm input:focus, .registerForm select:focus, .upgradeForm input:focus, .updateForm input:focus, .addProductForm input:focus, .addProductForm select:focus{
+    outline: none;
     padding: 5px;
-    border-color: rgba(165, 105, 189, 0.8);
-    box-shadow: 0 0 10px rgb(165, 105, 189);
 }
 
 /* In de loginpagina, de linkjes van bijv: 'Wachtwoord vergeten?' */
@@ -346,7 +345,7 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a, .favorietenBox div p a{
+.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a{
     color: #000;
     text-decoration: underline;
     font-size: 18px;
@@ -354,13 +353,13 @@ body{
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover, .favorietenBox div p a:hover{
+.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover{
     text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
 }
 
-/* De 'bevestig'-knop */
+/* De knoppen aan het einde */
 .loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
@@ -378,7 +377,7 @@ body{
 }
 
 .upgradeForm .upgradeButton, .updateForm .updateButton{
-    padding: 5px 20px
+    padding: 0 20px
 }
 
 .updateForm .updateButton{
@@ -409,43 +408,43 @@ body{
     max-height: 38px;
 }
 
-/*************** Mijn Veilingen & Favoriete veilingen CSS *************/
-.mijnVeilingenBox, .favorietenBox{
+/*************** Mijn Veilingen CSS *************/
+.mijnVeilingenBox, .favoritesBox{
     margin: 0 20%;
 }
 
-.mijnVeilingenBox h2, .favorietenBox h2{
+.mijnVeilingenBox h2, .favoritesBox h2{
     font-weight: normal;
     margin-top: 75px;
 }
 
-.mijnVeilingenBox h5, .favorietenBox h5{
+.mijnVeilingenBox h5, .favoritesBox h5{
     margin-top: 30px;
     font-weight: normal;
 }
 
-.mijnVeilingenBox .table-responsive, .favorietenBox .table-responsive{
+.mijnVeilingenBox .table-responsive, .favoritesBox .table-responsive{
     margin-top: 30px;
 }
 
-.mijnVeilingenBox .gaTerugKnop, .favorietenBox .gaTerugKnop{
-    margin-top: 100px;
+.mijnVeilingenBox .gaTerugKnop, .favoritesBox .gaTerugKnop{
+    margin-top: 50px;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a, .favorietenBox .table-responsive table tbody tr td a{
+.mijnVeilingenBox .table-responsive table tbody tr td a, .favoritesBox .table-responsive table tbody tr td a{
     color: rgb(165, 105, 189);
     text-decoration: underline;
     text-decoration-color: rgb(235, 235, 235);
     transition: 400ms;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a:hover, .favorietenBox .table-responsive table tbody tr td a:hover{
+.mijnVeilingenBox .table-responsive table tbody tr td a:hover, .favoritesBox .table-responsive table tbody tr td a:hover{
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.mijnVeilingenBox div p a, .favorietenBox div p a{
+.mijnVeilingenBox div p a, .favoritesBox div p a{
     text-decoration-color: white;
-    transition: 200ms;
+    transition: 300ms;
 }
 
 /*************** ProfielPagina CSS *************/
@@ -463,21 +462,17 @@ main .container .row div .card .card-body img{
 }
 
 main .container .row div .card .card-body a{
-    margin-top: 10px;
-    font-size: 18px;
     width: 100%;
     background: #fff;
     color: rgb(165, 105, 189);
     border: 2px solid rgb(165, 105, 189);
-    border-radius: 25px;
+    border-radius: 15px;
     transition: 200ms;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
 main .container .row div .card .card-body a:hover{
     color: #fff;
     background: rgb(165, 105, 189);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
 main .container .row div .card .card-body h4{
@@ -533,8 +528,6 @@ main .container .wachtwoordVergetenForm div input{
 
 main .container .wachtwoordVergetenForm div input:focus{
     padding: 5px;
-    border-color: rgba(165, 105, 189, 0.8);
-    box-shadow: 0 0 10px rgb(165, 105, 189);
 }
 
 main .container .wachtwoordVergetenForm div .col-md-9{
@@ -584,65 +577,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-/*************** CONTACTPAGINA CSS *************/
-main .contactpaginaJumbotron{
-    margin-bottom: 50px;
-}
-
-main .container h4, main .container h5{
-    margin-bottom: 20px;
-}
-
-main .container .contactpaginaFormulier{
-    margin-top: 50px;
-}
-
-main .container .contactpaginaFormulier div{
-    background: rgb(245, 245, 245);
-    border-radius: 15px;
-    padding: 8px 12px;
-}
-
-main .container .contactpaginaFormulier div div input, main .container .contactpaginaFormulier div div textarea{
-    border-radius: 10px;
-    transition: 200ms;
-}
-
-main .container .contactpaginaFormulier div div input:focus, main .container .contactpaginaFormulier div div textarea:focus{
-    padding-left: 5px;
-    border-color: rgba(165, 105, 189, 0.8);
-    box-shadow: 0 0 10px rgb(165, 105, 189);
-}
-
-.contactpaginaButton{
-    margin-top: 50px;
-    color: rgb(165, 105, 189);
-    background: #fff;
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 25px;
-    font-size: 20px;
-    padding: 5px 50px;
-    transition: 200ms;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
-}
-
-.contactpaginaButton:hover{
-    color: #fff;
-    background: rgb(165, 105, 189);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
-}
-
 .rate {
     float: left;
     height: 46px;
     padding: 0 10px;
 }
-
 .rate:not(:checked) > input {
     position:absolute;
     top:-9999px;
 }
-
 .rate:not(:checked) > label {
     float:right;
     width:1em;
@@ -652,20 +595,16 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     font-size:30px;
     color:#ccc;
 }
-
 .rate:not(:checked) > label:before {
     content: '★ ';
 }
-
 .rate > input:checked ~ label {
     color: #ffc700;
 }
-
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
 }
-
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
