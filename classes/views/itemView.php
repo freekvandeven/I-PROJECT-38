@@ -42,6 +42,10 @@
                         <!--<img src="upload/users/<?= $profile_data['Gebruikersnaam'] ?>.png" class="card-img" alt="profielfoto">-->
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
+                        <p>Rating:<?php
+                            $rating = Database::getSumRating($profile_data['Gebruikersnaam']) /
+                                Database::getAmountRatings($profile_data['Gebruikersnaam']);
+                            ?></p>
                     </div>
                     </a>
                 </div>
