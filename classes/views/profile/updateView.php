@@ -112,7 +112,7 @@ $profile_data = User::getUser($_SESSION['name']);
             </div>
             <!-- SUBMIT-KNOP -->
             <div class="form-group text-center">
-                <button class="updateButton" type="submit" name="submit" value="update">Update Informatie</button>
+                <button class="updateButton" type="submit" name="action" value="update">Update Informatie</button>
             </div>
         </form>
     </div>
