@@ -11,7 +11,7 @@ class Items{
                                       VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
                                       :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
-        $data->execute($item);
+        return $data->execute($item);
     }
 
     static function getBuyerItems($buyer){

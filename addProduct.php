@@ -22,16 +22,22 @@ if ($user["Verkoper"]) {
                 ":Verzendkosten" => 5, ":Verzendinstructies" => $posts["Verzendinstructies"], ":Verkoper" => $user["Gebruikersnaam"],
                 ":LooptijdEindeDag" => date('Y-m-d', strtotime($date . ' + ' . $_POST['Looptijd'] . ' days')),
                 ":LooptijdEindeTijdstip" => date("H:i:s"), ":VeilingGesloten" => "Nee", ":Verkoopprijs" => $posts["Startprijs"]);
-            //insert into db
-            Items::insertItem($item);
-            // if not png
-            if ($_FILES['img']['type'] != 'image/png') {
-                //convert to png
-                imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
+            //if image is set
+            if(isset($_FILES)){
+                //try insert
+                if(Items::insertItem($item)) {
+                    // if not png
+                    if ($_FILES['img']['type'] != 'image/png') {
+                        //convert to png
+                        imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
+                    }
+                    //store file with new autoincrementId as id.png
+                    storeImg(Items::get_ItemId(),"upload/items/");
+                    header("Location: profile.php"); // send person to his item page
+                }
+            }else{
+                $err = "something went wrong";
             }
-            //store file with new autoincrementId as id.png
-            storeImg(Items::get_ItemId());
-            header("Location: profile.php"); // send person to his item page
         } else {
             $err = "please fill in all the data!";
         }
@@ -41,6 +47,6 @@ if ($user["Verkoper"]) {
 $title = "AddProduct Page";
 require_once('includes/header.php');
 
-require_once ('classes/views/addProductView.php');
+require_once('classes/views/addProductView.php');
 
 require_once('includes/footer.php');

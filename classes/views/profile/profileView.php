@@ -19,7 +19,11 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Persoonsgegevens</h4>
+                            <?php if(file_exists("upload/users/".$_SESSION['name'].".png")):?>
+                            <img src="upload/users/<?=$_SESSION['name']?>.png" class="card-img" alt="profielfoto">
+                            <?php else :?>
                             <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
+                            <?php endif;?>
                             <p>Uw profielfoto is zichtbaar voor iedereen.</p>
                             <p><b>Emailadres: </b><?=$profile_data['Mailbox']?></p>
                             <p><b>Voornaam: </b><?=$profile_data['Voornaam']?></p>

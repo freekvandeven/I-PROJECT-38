@@ -77,9 +77,8 @@ function setupDatabase()
     $data = $dbh->exec($sql);
 }
 
-function storeImg($id)
+function storeImg($id,$target_dir)
 {
-    $target_dir = "upload/items/";
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
 
@@ -89,7 +88,7 @@ function sendConfirmationEmail($mail, $username)
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     $message = "<html><body>
-                <p>Hallo $username,</p>    
+                <p>Hallo $username,</p>
                 <p>Welkom bij EenmaalAndermaal</p>
                 <p>Om de website te kunnen gebruiken moet je op onderstaande link klikken om de account te activeren</p>
                 <a href='https://iproject38.icasites.nl/login.php?name=$username' tartget='_blank'>Activeer je account</a>

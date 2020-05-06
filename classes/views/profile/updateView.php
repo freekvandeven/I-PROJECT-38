@@ -4,7 +4,7 @@ $profile_data = User::getUser($_SESSION['name']);
 
 <main>
     <div id="login-box" class="col-md-12">
-        <form id="login-form" class="updateForm" action="" method="post">
+        <form id="login-form" class="updateForm" action="" method="post" enctype="multipart/form-data">
             <h2 class="text-center">Huidige gegevens</h2>
             <?php if(isset($err))echo $err;?>
             <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
