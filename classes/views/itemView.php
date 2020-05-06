@@ -81,6 +81,7 @@
                     setupCountDown('timer', d);
 
                     //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+
                 </script>
                 <?php if($sent == true) : ?>
                 <form action="" method="POST">
