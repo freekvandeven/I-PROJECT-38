@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xl-3 col-md-4 mt-2">
                 <form method="post" action="">
-                    <label for="inputBod">Bieden</label>
+                    <label for="Startprijs">Bieden</label>
                     <div class="input-group text-left">
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
