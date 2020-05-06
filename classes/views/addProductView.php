@@ -4,6 +4,7 @@ $user = User::getUser($_SESSION["name"]);
 
 <main>
     <form id="login-form" class="addProductForm" action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="token" value="<?=$token?>">
         <h2 class="text-center">Product verkopen</h2>
         <div class="container">
             <!-- PRODUCTGEGEVENS -->

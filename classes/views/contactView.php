@@ -9,7 +9,7 @@
         <h5 class="text-center font-weight-normal">Wij proberen zo snel mogelijk te antwoorden.</h5>
 
         <form class="contactpaginaFormulier text-center" method="POST" action="">
-
+            <input type="hidden" name="token" value="<?=$token?>">
             <div class="form-row text-left">
                 <div class="form-group col-lg-3 col-md-6 ">
                     <label for="voornaam">Voornaam</label>

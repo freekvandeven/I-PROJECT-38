@@ -5,7 +5,7 @@ $logged = isset($_SESSION['admin']) && $_SESSION['admin'] == TRUE; # check if yo
 $possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill", "query"); # all possible actions
 
 # handle the login post request
-if(!empty($_POST)) { # this login handling needs to be in some seperate file combined with the login.php
+if(checkPost()) { # this login handling needs to be in some seperate file combined with the login.php
     if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["password"])) {
         $user = User::getUser($_POST["username"]);
         if (password_verify($_POST["password"], $user['Wachtwoord']) && $user['Action'] == 1) {

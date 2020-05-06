@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
-if(!empty($_POST)){
+if(checkPost()){
     checkLogin();
     $ref = $_POST['voorwerp'];
     if(isset($_POST["bid"]) && !empty($_POST["bid"])){

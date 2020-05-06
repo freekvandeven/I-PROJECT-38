@@ -3,7 +3,7 @@ session_start();
 
 $title = "Contact Page";
 
-if(!empty($_POST) && isset($_POST['first-name'],$_POST['surname'],$_POST['phone-number'], $_POST['message'])){
+if(checkPost() && isset($_POST['first-name'],$_POST['surname'],$_POST['phone-number'], $_POST['message'])){
     Database :: getFeedback($_POST['first-name'],$_POST['surname'],$_POST['phone-number'], $_POST['message']);
 }
 

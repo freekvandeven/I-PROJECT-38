@@ -8,6 +8,7 @@ $profile_data = User::getUser($_SESSION['name']);
         <div class="container">
             <h5>Verkoper gegevens</h5>
             <?php if(isset($err))echo $err;?>
+            <input type="hidden" name="token" value="<?=$token?>">
             <div class="form-row">
                 <!-- BANK -->
                 <div class="form-group col-md-6">

@@ -3,6 +3,10 @@ startAutoLoader();
 require_once('database.php');
 checkVisitor();
 checkItemDate();
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+$token = $_SESSION['token'];
 
 function checkLogin()
 {
@@ -10,6 +14,12 @@ function checkLogin()
         header('Location: login.php');
         exit();
     }
+}
+
+function checkPost()
+{
+    #check if user token is set and correct
+    return !empty($_POST) && !empty($_POST['token']) && hash_equals($_SESSION['token'], $_POST['token']);
 }
 
 function checkItemDate(){
