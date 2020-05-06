@@ -19,8 +19,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($items as $item): ?>
-                    <tr>
+                <?php foreach($items as $item):
+                    if($item['VeilingGesloten'] == "Wel "){
+                        $label = "table-success";
+                    } else {
+                        $label = "table-danger";
+                    }
+                    ?>
+                    <tr class="<?=$label?>">
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
                         <td><a href="profile.php?id=<?=$item['Koper']?>"><?=$item['Koper']?></a></td>
                         <?php foreach($displayedItems as $itemName): ?>

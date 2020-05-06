@@ -20,8 +20,6 @@
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
-                    var_dump($item['VeilingGesloten']);
-                var_dump($item['Koper']);
                     if($item['VeilingGesloten'] == "Wel "){
                         if($item['Koper'] == $_SESSION['name']){
                             $label = "table-success";
@@ -34,7 +32,6 @@
                         } else {
                             $label = "table-warning";
                         }
-                        var_dump(Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker']);
                     }
 
                 ?>
