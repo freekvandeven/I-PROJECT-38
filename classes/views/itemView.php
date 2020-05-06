@@ -3,10 +3,13 @@
         <div class="row">
             <div class="col-xl-3 col-md-4 mt-2">
                 <form method="post" action="">
-                    <div class="form-group text-left">
+                    <label for="inputBod">Bieden</label>
+                    <div class="input-group text-left">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">€</span>
+                        </div>
                         <input type="hidden" name="voorwerp" value="<?=$item['Voorwerpnummer']?>">
-                        <label for="inputBod">Bieden</label>
-                        <input type="bod" class="form-control" name="bid" id="inputBod" placeholder="&euro;">
+                        <input type="text" class="form-control" id="inputBod" name="bit" required>
                     </div>
                     <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
                 </form>

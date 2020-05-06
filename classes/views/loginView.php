@@ -11,7 +11,7 @@
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
                                 <label for="username">Gebruikersnaam:</label><br>
-                                <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" required>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" autofocus required>
                             </div>
                             <!-- Wachtwoord -->
                             <div class="form-group">

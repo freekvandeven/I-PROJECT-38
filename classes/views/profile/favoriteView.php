@@ -4,7 +4,7 @@
 ?>
 
 <main>
-    <div class="favoritesBox">
+    <div class="favorietenBox">
         <h2 class="text-center">Mijn favoriete veilingen</h2>
         <h5 class="text-center">Als u op een veiling biedt, kunt u die hieronder zien.</h5>
         <div class="table-responsive">
