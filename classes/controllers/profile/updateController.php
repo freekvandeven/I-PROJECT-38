@@ -17,6 +17,7 @@ if($correct) {
     createSession(User::getUser($changes[":gebruikersnaam"]));
     if(!empty($_FILES)){
         if ($_FILES['img']) {
+            deleteFile("upload/users/".$_SESSION['name'].".png");
             imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), "upload/users/".$_SESSION['name'].".png");
         }
     }

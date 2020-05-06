@@ -52,7 +52,11 @@ function checkIP(){
         header("Location: 404.php");
     }
 }
-
+function deleteFile($file){
+    if(file_exists($file)){
+        unlink($file);
+    }
+}
 
 function checkAdminLogin()
 {
