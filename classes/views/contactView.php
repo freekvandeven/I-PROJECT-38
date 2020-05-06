@@ -1,24 +1,38 @@
 <main>
     <!-- Welkom tekst: -->
-    <div class="jumbotron">
-        <h2 class="display-5">Welkom op EenmaalAndermaal</h2>
-        <p class="lead">EenmaalAndermaal is een online veilingsite waar u uw producten kunt aanbieden en kunt bieden op andermans producten.</p>
+    <div class="contactpaginaJumbotron jumbotron">
+        <h2 class="display-5">Welkom op de contactpagina van EenmaalAndermaal</h2>
     </div>
 
-    <h1>Contact</h1>
-    <p>Heeft u vragen? Neem dan gerust met ons contact op!: </p>
-    <form class="formulier" method="POST" action="">
-        <h2>Formulier</h2><br>
-        <label for="voornaam">Voornaam</label>
-        <input type="text" name="first-name" id="voornaam" ><br>
-        <label for="achternaam">Voornaam</label>
-        <input type="text" name="surname" id="achternaam" ><br>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" > <br>
-        <label for="telefoon"> Telefoonnummer</label>
-        <input type="tel" name="phone-number" id="telefoon" ><br>
-        <label for="bericht">Bericht</label>
-        <textarea name="message" id="bericht"></textarea> <br>
-        <button type="button" name="submit" value="submit">Verzenden</button>
-    </form>
+    <div class="container">
+        <h4 class="contactpaginaWelkom text-center font-weight-normal">Heeft u vragen en/of feedback? Vul hieronder het formulier in.</h4>
+        <h5 class="text-center font-weight-normal">Wij proberen zo snel mogelijk te antwoorden.</h5>
+
+        <form class="contactpaginaFormulier text-center" method="POST" action="">
+
+            <div class="form-row text-left">
+                <div class="form-group col-lg-3 col-md-6 ">
+                    <label for="voornaam">Voornaam</label>
+                    <input type="text" name="first-name" id="voornaam" class="form-control" placeholder="Uw voornaam" autofocus required>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    <label for="achternaam">Achternaam</label>
+                    <input type="text" name="surname" id="achternaam" class="form-control" placeholder="Uw achternaam" required>
+                </div>
+
+                <div class="form-group col-lg-5 col-md-12">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Uw emailadres" required>
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <label for="bericht">Bericht</label>
+                    <textarea name="message" id="bericht" class="form-control" rows="3" placeholder="Uw vraag en/of feedback" required></textarea>
+                </div>
+            </div>
+
+            <button type="button" name="submit" value="submit" class="contactpaginaButton">Verzenden</button>
+        </form>
+    </div>
 </main>
