@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+$sent = false;
 if(!empty($_POST)){
     checkLogin();
     $ref = $_POST['voorwerp'];
@@ -20,6 +21,15 @@ if(!empty($_GET) && isset($_GET['id'])) {
     $bids = Items::getBids($_GET['id']);
 } else {
     header('Location: catalogus.php');
+}
+
+
+if (!empty($_POST) && isset($_POST['Verzenden'])) {
+    $sent = true;
+    echo 'Bedankt voor uw feedback!';
+    echo "Uw beoordeling was: ";
+    echo $_POST['rate'];
+    Database::rateSeller($profile_data['Gebruikersnaam'], $_POST['rate']);
 }
 
 $title = "Item Page";
