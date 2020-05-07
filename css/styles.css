@@ -680,7 +680,7 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 
 .admin-text .inlogButton {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 20px; 
     padding: 5px 2%;
     color: rgb(165, 105, 189);
     background: #fff;
