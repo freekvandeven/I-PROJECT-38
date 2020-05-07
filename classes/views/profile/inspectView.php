@@ -35,6 +35,21 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Reviews</h4>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Toevoegen
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right animate slideIn" style="width: 89.5%">
+                                <form class="voegReviewToeForm" method="POST" action="">
+                                    <input type="hidden" name="token" value="<?=$token?>">
+                                    <div class="form-group col-xl-12">
+                                        <label for="review">Voeg een review toe</label>
+                                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                                    </div>
+                                    <button type="button" name="submit" value="submit" class="form-control">Toevoegen</button>
+                                </form>
+                            </div>
+                        </div>
                         <p><b>Admin</b><br>Dit is een goede verkoper, duidelijk en specifiek.</p>
                         <p><b>Herman</b><br>Uitstekende verkoper. Eén nadeel, hij is alleen een beetje sociaal beperkt.</p>
                         <p><b>Anthony</b><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a urna quis velit semper tincidunt ut non ante. Aliquam aliquam nulla id commodo consectetur. Donec ullamcorper metus molestie, iaculis arcu sed, cursus lorem. Vestibulum pulvinar sed magna a imperdiet. Vivamus auctor massa ac auctor accumsan. Nunc tempus nisl id tellus.</p>

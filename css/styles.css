@@ -679,6 +679,50 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-bottom: 50px;
 }
 
+.verkopersPagina .container .row div .card .card-body div button{
+    background: none;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 12px;
+    transition: 200ms;
+    margin-bottom: 10px;
+}
+
+.verkopersPagina .container .row div .card .card-body div button:hover, .verkopersPagina .container .row div .card .card-body div button:focus{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    border-color: rgba(165, 105, 189, 0.8);
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+}
+
+.verkopersPagina .container .row div .card .card-body div div{
+    margin-top: 5px;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+}
+
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div{
+    border: none;
+    margin: 0;
+}
+
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea{
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea:focus{
+    border-color: rgba(165, 105, 189, .6);
+    box-shadow: 0 0 15px rgba(165, 105, 189, .6);
+}
+
+
+
 .geenGewonnenVeilingen, .geenAangebodenVeilingen{
     margin: 5px 35px 17px;
     font-size: 18px;
