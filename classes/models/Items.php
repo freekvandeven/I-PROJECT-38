@@ -1,6 +1,7 @@
 <?php
 
-class Items{
+class Items
+{
 
     static function insertItem($item)
     {
@@ -14,19 +15,28 @@ class Items{
         return $data->execute($item);
     }
 
-    static function getBuyerItems($buyer){
+    static function insertIntoRubriek($itemId, $rubriekNummer)
+    {
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO VoorwerpInRubriek (Voorwerp,RubriekOpLaagsteNiveau) VALUES(:Voorwerp,:RubriekOpLaagsteNiveau)');
+        return $data->execute([":Voorwerp" => $itemId, ":RubriekOpLaagsteNiveau" => $rubriekNummer]);
+    }
+
+    static function getBuyerItems($buyer)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT DISTINCT Voorwerpnummer, Titel, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land,
                 Looptijd, Verkoper, Koper, VeilingGesloten FROM Voorwerp v RIGHT OUTER JOIN Bod b ON b.Voorwerp=v.Voorwerpnummer WHERE Koper=:buyer1 OR Gebruiker=:buyer');
-        $data->execute([":buyer"=>$buyer, ":buyer1"=>$buyer]);
+        $data->execute([":buyer" => $buyer, ":buyer1" => $buyer]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    static function getSellerItems($seller){
+    static function getSellerItems($seller)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Verkoper =:seller');
-        $data->execute([":seller"=>$seller]);
+        $data->execute([":seller" => $seller]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -40,15 +50,17 @@ class Items{
         return $result['nieuwId'];
     }
 
-    static function getItem($item){
+    static function getItem($item)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Voorwerp WHERE Voorwerpnummer = :itemId');
-        $data->execute([":itemId"=>$item]);
+        $data->execute([":itemId" => $item]);
         $result = $data->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    static function getItems(){
+    static function getItems()
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Voorwerp');
         $data->execute();
@@ -56,42 +68,57 @@ class Items{
         return $result;
     }
 
-    static function getFinishedItems(){
+    static function getFinishedItems()
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
                             (LooptijdEindeDag = :vandaag AND LooptijdEindeTijdstip < :moment))");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
-        $data->execute(array(":vandaag"=>date("Y-m-d"),":moment"=>date("H:i:s")));
+        $data->execute(array(":vandaag" => date("Y-m-d"), ":moment" => date("H:i:s")));
         #$data->execute(array(":vandaag"=>date("Y-m-d")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    static function finishItem($item, $buyer, $sellprice){
+    static function finishItem($item, $buyer, $sellprice)
+    {
         global $dbh;
         $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten='Wel', Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
-        $data->execute([":item"=>$item, ":buyer"=>$buyer, ":sellprice"=>$sellprice]);
+        $data->execute([":item" => $item, ":buyer" => $buyer, ":sellprice" => $sellprice]);
     }
 
-    static function getBids($item){
+    static function getBids($item)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT CAST(Bodbedrag AS decimal(10,2)) AS Bodbedrag, Voorwerp, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY Bodbedrag DESC');
-        $data->execute([":voorwerpID"=>$item]);
+        $data->execute([":voorwerpID" => $item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    static function getHighestBid($item){
+    static function getHighestBid($item)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT CAST(Bodbedrag as decimal(10,2)) AS Bodbedrag, Gebruiker FROM Bod WHERE Voorwerp = :voorwerpID ORDER BY 1 DESC');
-        $data->execute([":voorwerpID"=>$item]);
+        $data->execute([":voorwerpID" => $item]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
     }
 
-    static function placeBid($item, $price, $user){
+    static function placeBid($item, $price, $user)
+    {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodDag, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user, :boddag, :bodtijdstip)');
-        $data->execute(array(":voorwerp"=>$item,":bodbedrag"=>$price, ":user"=>$user, ":boddag"=>date('Y-m-d'),":bodtijdstip"=>date("H:i:s")));
+        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":boddag" => date('Y-m-d'), ":bodtijdstip" => date("H:i:s")));
     }
+
+    static function getRubrieken()
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT Rubrieknaam, Rubrieknummer FROM Rubriek');
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 }

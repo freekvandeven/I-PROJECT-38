@@ -4,14 +4,12 @@
         <div class="filtermenu">
             <form class="" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <select id="Rubriek" name="Rubriek">
-                    <option value="rubriek">Kies Rubriek</option>
-                    <?php for ($i = 0; $i < 10; $i++) :
-                        ?>
-                        <option value="rubriek<?= $i ?>">rubriek<?= $i ?></option>
+                <select id="Rubriek" name="rubriek">
+                    <option value="">Kies Rubriek</option>
                     <?php
-                    endfor;
-                    ?>
+                    foreach(Items::getRubrieken() as $rubriek){
+                        echo "<option value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
+                    } ?>
                 </select>
                 <select id="price" name="order">
                     <option value="">Kies Volgorde</option>
@@ -49,8 +47,11 @@
                         break;
                 }
             }
+            if(isset($_POST['rubriek'])){
+                $order[":rubriek"]=$_POST['rubriek'];
+            }
             if (isset($_POST['search'])) {
-                $select['titel = :where'] = $_POST['search'];
+                $select[':where'] = "%".$_POST['search']."%";
             }
             $select = array_merge($select, $order);
             if (isset($_POST['numberOfItems']))
