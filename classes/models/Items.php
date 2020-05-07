@@ -72,10 +72,9 @@ class Items
     {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
-                            (LooptijdEindeDag = :vandaag AND LooptijdEindeTijdstip < :moment))");
+                            (LooptijdEindeDag = :vandaag2 AND LooptijdEindeTijdstip < :moment))");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
-        $data->execute(array(":vandaag" => date("Y-m-d"), ":moment" => date("H:i:s")));
-        #$data->execute(array(":vandaag"=>date("Y-m-d")));
+        $data->execute(array(":vandaag" => date("Y-m-d"),":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

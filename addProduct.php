@@ -35,7 +35,7 @@ if ($user["Verkoper"]) {
                     }
                     //store file with new autoincrementId as id.png
                     storeImg($itemId,"upload/items/");
-//                    header("Location: profile.php"); // send person to his item page
+                    header("Location: profile.php"); // send person to his item page
                 }
             }else{
                 $err = "something went wrong";

@@ -43,19 +43,12 @@ class Database{
         $data->execute([":verkoper" => $seller,":rating" => $rating]);
     }
 
-    static function getSumRating($username)
+    static function getAvgRating($username)
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT SUM(Rating) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
+        $data = $dbh->prepare('SELECT AVG(cast(Rating as Float)) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
         $data->execute([":Gebruikersnaam" => $username]);
-        return $data;
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];
     }
-
-    static function getAmountRatings($username) {
-        global $dbh;
-        $data = $dbh->prepare('SELECT COUNT(BeoordelingsNr) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
-        $data->execute([":Gebruikersnaam" => $username]);
-        return $data;
-    }
-
 }
