@@ -108,6 +108,9 @@
             $i++;
             }
             ?>
+            $('form input').change(function() {
+                $(this).closest('form').submit();
+            });
         </script>
     </div>
 </main>

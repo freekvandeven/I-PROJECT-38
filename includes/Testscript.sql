@@ -145,11 +145,11 @@ ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
 		ON DELETE NO ACTION;
 
 ALTER TABLE Comments
-ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruiker)
+ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruiker)
+ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE;
