@@ -2,8 +2,8 @@
 session_start();
 require_once('includes/functions.php');
 $parameterList = array("username", "password", "confirmation", "email", "first-name", "surname", "adress", "postcode",
-    "place", "country", "phone-number", "birth-date", "secret-question", "secret-answer");
-$optionalList = array("phone-number2", "adress2");
+    "place", "country", "birth-date", "secret-question", "secret-answer");
+$optionalList = array("phone-number", "phone-number2", "adress2");
 
 # handle the register post request
 if(checkPost()) {
@@ -21,6 +21,8 @@ if(checkPost()) {
                         ":Postcode" => $_POST["postcode"], ":Plaatsnaam" => $_POST["place"], ":Land" => $_POST["country"], ":Geboortedag" => $_POST["birth-date"], ":Mailbox" => $_POST["email"], ":Wachtwoord" => $password,
                         ":Vraag" => (int)$_POST["secret-question"], ":Antwoordtekst" => $_POST["secret-answer"], ":Verkoper" => FALSE, ":Action" =>FALSE, ":Bevestiging"=> FALSE);
                     User::insertUser($user);
+                    if(isset($_POST["phone-number"]) && !empty($_POST["phone-number"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number"]);
+                    if(isset($_POST["phone-number2"]) && !empty($_POST["phone-number2"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number2"]);
                     if(sendConfirmationEmail($_POST['email'], $_POST['username'])){
                         header("Location: login.php"); # wait until user confirms email
                     } else { #mail was not succesful

@@ -60,7 +60,7 @@ CREATE TABLE Beoordeling (
 );
 
 CREATE TABLE GebruikersTelefoon(
-	Volgnr						INTEGER			NOT NULL,
+	Volgnr						INTEGER			NOT NULL AUTO_INCREMENT,
 	Gebruiker					VARCHAR(20)		NOT NULL,
 	Telefoon					VARCHAR(11)		NOT NULL,
 	CONSTRAINT PK_GebruikersTelefoon	PRIMARY KEY	(Volgnr, Gebruiker)

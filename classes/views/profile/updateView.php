@@ -78,7 +78,7 @@ $profile_data = User::getUser($_SESSION['name']);
                     <!-- TELEFOONNUMMER 2 -->
                     <div class="form-group col-md-4">
                         <label for="telnr2">Tweede telefoonnummer</label>
-                        <input type="tel" class="form-control" name="phone-number" id="telnr2" placeholder="Uw tweede telefoonnummer">
+                        <input type="tel" class="form-control" name="phone-number2" id="telnr2" placeholder="Uw tweede telefoonnummer">
                     </div>
                     <!-- ADRES 1 -->
                     <div class="form-group col-md-6">

@@ -44,8 +44,13 @@ class User{
                                                                                                                                      :Adresregel_2  ,:Postcode,:Plaatsnaam,:Land,:Geboortedag,
                                                                                                                                      :Mailbox,:Wachtwoord,:Vraag,:Antwoordtekst,:Verkoper,:Action, :Bevestiging)");
         $data->execute($user);
-        //$data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
-        //$data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
+    }
+
+    static function insertPhoneNumber($user, $phone)
+    {
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
+        $data->execute([":Gebruikersnaam" => $user, ":Telefoon" => $phone]);
     }
 
     static function getQuestions()
