@@ -10,6 +10,14 @@ class User{
         $user = $data->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
+
+    static function getUsers(){
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Gebruiker");
+        $data->execute();
+        $users = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $users;
+    }
     static function updateUser($user)
     {
         global $dbh;
