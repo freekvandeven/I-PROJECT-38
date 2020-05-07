@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/functions.php');
 
-$title = "Homepage";
+$title = "Homepage EenmaalAndermaal veilingen";
 
 require_once('includes/header.php');
 
