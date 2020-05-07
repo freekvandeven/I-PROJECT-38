@@ -674,5 +674,21 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-bottom: -20px;
 }
 
+.admin-text {
+    text-align: center;
+}
+
+.admin-text .inlogButton {
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 5px 2%;
+    color: rgb(165, 105, 189);
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 25px;
+    transition: 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+}
+
 
 
