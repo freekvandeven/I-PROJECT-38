@@ -1,5 +1,6 @@
 <?php
-require_once('includes/database.php');
+session_start();
+require_once('includes/functions.php');
 
 $title = 'Opflikkeren';
 require_once('includes/header.php');

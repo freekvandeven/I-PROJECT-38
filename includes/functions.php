@@ -96,39 +96,36 @@ function storeImg($id,$target_dir)
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
 
-function sendConfirmationEmail($mail, $username)
-{
+function sendConfirmationEmail($mail, $username){
     $subject = "Bevestig je account";
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-    $message = "<html><body>
-                <p>Hallo $username,</p>
-                <p>Welkom bij EenmaalAndermaal</p>
-                <p>Om de website te kunnen gebruiken moet je op onderstaande link klikken om de account te activeren</p>
-                <a href='https://iproject38.icasites.nl/login.php?name=$username' tartget='_blank'>Activeer je account</a>
-                </body></html>";
-    return mail($mail, $subject, $message, $headers);
+    $variables = [];
+    $variables['username'] = $username;
+    return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
 
 function notifySeller($seller){
     $user = User::getUser($seller);
     $subject = "Veiling afgelopen";
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-    $message = "<html><body>
-                <p>Je veiling is afgelopen.</p>
-
-                </body></html>";
-    mail($user['Mailbox'], $subject, $message, $headers);
+    $variables = [];
+    sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
 }
 
 function notifyBuyer($buyer){
     $user = User::getUser($buyer);
     $subject = "Veiling afgelopen";
+    $variables = [];
+    $variables["name"] = $user['Voornaam'];
+    sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
+}
+
+function sendFormattedMail($receiver, $subject, $filename, $variables){
+    # variables['name'] = "Freek";  replaces {{ name }}
+    $template = file_get_contents("classes/views/email/".$filename);
+    foreach($variables as $key => $value)
+    {
+        $template = str_replace('{{ '.$key.' }}', $value, $template);
+    }
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-    $message = "<html><body>
-                <p>Je hebt de veiling gewonnen.</p>
-                </body></html>";
-    mail($user['Mailbox'], $subject, $message, $headers);
+    return mail($receiver, $subject, $template, $headers);
 }
