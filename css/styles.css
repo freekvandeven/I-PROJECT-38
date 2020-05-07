@@ -768,4 +768,11 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+/*************** VERKOPERPRAGINA CSS *************/
+.adminPagina .jumbotron p{
+    margin-top: 20px;
+    margin-bottom: -10px;
+    font-size: 19px;
+}
+
 
