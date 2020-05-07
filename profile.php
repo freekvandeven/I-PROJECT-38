@@ -11,6 +11,9 @@ if(checkPost()){
         if($_POST['action'] == 'upgrade'){
             require_once('classes/controllers/profile/upgradeController.php');
         }
+        if($_POST['action'] == 'review'){
+            require_once('classes/controllers/profile/reviewController.php');
+        }
     }
 }
 $title = "profile page";
