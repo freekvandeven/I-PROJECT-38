@@ -26,14 +26,16 @@ if ($user["Verkoper"]) {
             if(isset($_FILES)){
                 //try insert
                 if(Items::insertItem($item)) {
+                    $itemId= Items::get_ItemId();
+                    Items::insertIntoRubriek($itemId,$_POST['Rubriek']);
                     // if not png
                     if ($_FILES['img']['type'] != 'image/png') {
                         //convert to png
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
                     }
                     //store file with new autoincrementId as id.png
-                    storeImg(Items::get_ItemId(),"upload/items/");
-                    header("Location: profile.php"); // send person to his item page
+                    storeImg($itemId,"upload/items/");
+//                    header("Location: profile.php"); // send person to his item page
                 }
             }else{
                 $err = "something went wrong";

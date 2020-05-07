@@ -48,7 +48,7 @@ class User{
         //$data->execute(array(":Gebruikersnaam" => $user["Gebruikersnaam"], ":Telefoon" => $telefoon));
     }
 
-    function getQuestions()
+    static function getQuestions()
     {
         global $dbh;
         $data = $dbh->prepare('SELECT Vraagnummer, TekstVraag FROM Vraag');

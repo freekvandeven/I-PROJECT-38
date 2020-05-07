@@ -62,7 +62,7 @@ CREATE TABLE GebruikersTelefoon(
 );
 
 CREATE TABLE Rubriek(
-	Rubrieknummer				INTEGER(20)		NOT NULL,
+	Rubrieknummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
 	Rubrieknaam					VARCHAR(32)		NOT NULL,
 	Rubriek						INTEGER(20)			NULL,
 	Volgnr						INTEGER			NOT NULL,
@@ -152,12 +152,6 @@ ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
 		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
 
-ALTER TABLE Rubriek
-ADD CONSTRAINT FK_Rubriek_rubrieknummer FOREIGN KEY (Rubriek)
-		REFERENCES Rubriek (rubrieknummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
-
 ALTER TABLE VoorwerpInRubriek
 ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
@@ -198,5 +192,11 @@ insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '01/01/2000', 'admin@han.nl',
 '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
 
+insert into Rubriek (RubriekNaam, Rubriek, Volgnr)values(
+'Autos, boten en motoren',5,5),(
+'Baby',	5,5),(
+'Muziek en instrumenten',	5,5),(
+'Elektronica',	5,5),(
+'Mode',	5,5);
 
 

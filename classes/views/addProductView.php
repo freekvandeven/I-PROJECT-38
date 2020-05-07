@@ -18,12 +18,11 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- RUBRIEK -->
                 <div class="form-group col-md-6">
                     <label for="Rubriek">Rubriek</label>
-                    <select  class="form-control" id="Rubriek" name="Rubriek" required>
-                        <option value="Auto's, boten en motoren">Autos, boten en motoren</option>
-                        <option value="Baby">Baby</option>
-                        <option value="Muziek en Instrumenten">Muziek en instrumenten</option>
-                        <option value="Elektronica">Elektronica</option>
-                        <option value="Mode">Mode</option>
+                    <select  class="custom-select" id="Rubriek" name="Rubriek" required>
+                        <?php
+                        foreach(Items::getRubrieken() as $rubriek){
+                            echo "<option value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
+                        } ?>
                     </select>
                 </div>
                 <!-- BESCHRIJVING -->

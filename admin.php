@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/functions.php');
 $logged = isset($_SESSION['admin']) && $_SESSION['admin'] == TRUE; # check if you are logged in
-$possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill", "query"); # all possible actions
+$possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill", "query","addRubriek"); # all possible actions
 
 # handle the login post request
 if(checkPost()) { # this login handling needs to be in some seperate file combined with the login.php

@@ -17,9 +17,12 @@ function selectFromCatalog($orders)
                 WHERE VeilingGesloten = 'Nee'";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
-                if (strpos($key, ":and") !== false) {
-                    $sql .= " AND " . $key;
-                    $execute[":and"] = $order;
+                if (strpos($key, ":where") !== false) {
+                    $sql .= " AND titel LIKE " . $key;
+                    $execute[":where"] = $order;
+                } else if (strpos($key, ":rubriek") !== false) {
+                    $sql .= " AND Voorwerpnummer IN (select voorwerp from voorwerpinrubriek where RubriekOpLaagsteNiveau = :rubriek )";
+                    $execute[":rubriek"] = $order;
                 }
             }
         }
@@ -40,6 +43,7 @@ function selectFromCatalog($orders)
     }
 }
 
+
 function selectFromCatalogsMSSQL($orders)
 {
     global $dbh;
@@ -55,13 +59,16 @@ function selectFromCatalogsMSSQL($orders)
     foreach ($orders as $key => $order) {
         if (!empty($order)) {
             if (strpos($key, ":where") !== false) {
-                $sql .= " WHERE " . $key;
+                $sql .= " WHERE titel LIKE " . $key;
                 $execute[":where"] = $order;
             } else if (strpos($key, ":and") !== false) {
                 $sql .= " AND " . $key;
                 $execute[":and"] = $order;
             } else if (strpos($key, ":order") !== false) {
                 $sql .= " ORDER BY " . $order;
+            } else if (strpos($key, ":rubriek") !== false) {
+                $sql .= " AND Voorwerpnummer IN (select voorwerp from voorwerpinrubriek where RubriekOpLaagsteNiveau = :rubriek )";
+                $execute[":rubriek"] = $order;
             } else if (strpos($key, "limit") !== false) {
                 $limited = true;
                 $limit = $order;
