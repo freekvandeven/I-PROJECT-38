@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS Comments;
+DROP TABLE IF EXISTS Beoordeling;
 DROP TABLE IF EXISTS Bod;
 DROP TABLE IF EXISTS Feedback;
 DROP TABLE IF EXISTS Bestand;
@@ -207,7 +209,10 @@ ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
 		ON DELETE NO ACTION;
 
 insert into Vraag (tekstvraag)
-values('Wie kan het beste koken?');
+values(
+       'Wie kan het beste koken?'),(
+       'Wat is je geboorteplaats'
+       );
 
 
 insert into Gebruiker
