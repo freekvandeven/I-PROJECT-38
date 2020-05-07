@@ -48,7 +48,7 @@
                             <!-- PERSOONLIJKE GEGEVENS-->
                             <div class="container">
                                 <h5>Persoonlijke gegevens</h5>
-                                <div class="form-row">
+                                <div class="form-row test-row">
                                     <!-- EMAILADRES -->
                                     <div class="form-group col-md-4">
                                         <label for="email">Emailadres</label>
@@ -70,15 +70,21 @@
                                         <input type="date" class="form-control" name="birth-date" id="geboortedatum" placeholder="Uw geboortedatum">
                                     </div>
                                     <!-- TELEFOONNUMMER 1 -->
-                                    <div class="form-group col-md-4">
-                                        <label for="telnr1">Telefoonnummer</label>
-                                        <input type="tel" class="form-control" id="telnr1" name="phone-number" placeholder="Uw telefoonnummer">
-                                    </div>
+                                        <div class="form-group col-md-4 telephone">
+                                            <label for="telnr1">Telefoonnummer</label>
+                                            <input type="tel" class="form-control" id="telnr1" name="phone-number" placeholder="Uw telefoonnummer">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                        <button class="add_form_field">Extra telefoonnummer
+                                            <span style="font-size:16px; font-weight:bold;">+ </span>
+                                        </button>
+                                        </div>
                                     <!-- TELEFOONNUMMER 2 -->
+                                    <!--
                                     <div class="form-group col-md-4">
                                         <label for="telnr2">Tweede telefoonnummer</label>
                                         <input type="tel" class="form-control" id="telnr2" name="phone-number2" placeholder="Uw tweede telefoonnummer">
-                                    </div>
+                                    </div> -->
                                     <!-- ADRES 1 -->
                                     <div class="form-group col-md-6">
                                         <label for="adres1">Adres</label>
@@ -119,3 +125,44 @@
         </div>
     </div>
 </main>
+
+<script>
+
+    $(document).ready(function() {
+        var max_fields = 5;
+        var wrapper = $(".test-row");
+        var add_button = $(".add_form_field");
+        Element.prototype.appendAfter = function (element) {
+            element.parentNode.insertBefore(this, element.nextSibling);
+        }, false;
+        var x = 1;
+        $(add_button).click(function(e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                alert("test");
+                x++;
+                var lastDiv = document.querySelectorAll(".telephone:last-child")
+                var newTelephone = document.createElement('div');
+                newTelephone.innerHTML = '<div class="form-group col-md-4"><label for="telnr1">Telefoonnummer</label><input type="tel" class="form-control" id="telnr1" name="phone-number" placeholder="Uw telefoonnummer"><a href="#" class="delete">Delete</a></div>'
+                newTelephone.appendAfter(lastDiv);
+                //lastDiv.parentNode.insertBefore(newTelephone, lastDiv.nextSibling);
+                /*
+                $(wrapper).append('<div class="form-group col-md-4">\n' +
+                    '                                        <label for="telnr1">Telefoonnummer ' + x  + '</label>\n' +
+                    '                                        <input type="tel" class="form-control" id="telnr1" name="phone-number" placeholder="Uw telefoonnummer">\n' +
+                    '                                    ' +
+                    '<a href="#" class="delete">Delete</a></div>'); //add input box
+
+                 */
+            } else {
+                alert('You Reached the limits')
+            }
+        });
+
+        $(wrapper).on("click", ".delete", function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    });
+</script>
