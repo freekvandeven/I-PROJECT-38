@@ -696,7 +696,7 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 }
 
 .verkopersPagina .container .row div .card .card-body div div{
-    margin-top: 5px;
+    margin-top: 2px;
     border: 2px solid rgb(165, 105, 189);
     border-radius: 10px;
 }
@@ -704,6 +704,10 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 .verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div{
     border: none;
     margin: 0;
+}
+
+.dropdown-menu{
+    width: 89%;
 }
 
 .verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea{
@@ -721,7 +725,15 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 15px rgba(165, 105, 189, .6);
 }
 
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm button{
+    width: 60%;
+    margin: 20px 0 0 20%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+}
 
+.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm button:hover{
+    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
+}
 
 .geenGewonnenVeilingen, .geenAangebodenVeilingen{
     margin: 5px 35px 17px;
@@ -737,6 +749,23 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     background: none;
     box-shadow: none;
     color: rgb(165, 105, 189);
+}
+
+.verkopersPagina .ratingForm .ratingButton{
+    margin-top: 20px;
+    padding: 2px 40px;
+    background: #fff;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    transition: 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+}
+
+.verkopersPagina .ratingForm .ratingButton:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
 

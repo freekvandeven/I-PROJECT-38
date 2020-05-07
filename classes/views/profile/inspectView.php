@@ -1,6 +1,10 @@
 <?php
 $profile_data = User::getUser($_GET['id']);
 
+if(empty($profile_data)){
+    header("location: profile.php");
+}
+
 $boughtItems = Items::getBuyerItems($profile_data['Gebruikersnaam']);
 $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
 ?>
@@ -39,14 +43,14 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 Toevoegen
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right animate slideIn" style="width: 89.5%">
+                            <div class="dropdown-menu dropdown-menu-right animate slideIn">
                                 <form class="voegReviewToeForm" method="POST" action="">
                                     <input type="hidden" name="token" value="<?=$token?>">
                                     <div class="form-group col-xl-12">
                                         <label for="review">Voeg een review toe</label>
                                         <textarea class="form-control" name="review" id="review" rows="5"></textarea>
                                     </div>
-                                    <button type="button" name="submit" value="submit" class="form-control">Toevoegen</button>
+                                    <button type="submit" name="action" value="review" class="form-control">Toevoegen</button>
                                 </form>
                             </div>
                         </div>
@@ -60,7 +64,26 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Sterren</h4>
+                        <h4 class="card-title">Rating</h4>
+                        <form class="ratingForm" action="" method="post">
+
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+
+                            <div class="text-center">
+                                <button class="ratingButton" type="submit" name="Verzenden" value="Verzenden">Verzenden</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
