@@ -1,3 +1,9 @@
+<?php
+
+$bootstrapGrid = 'col-xl-4 col-md-6 col-sm-6';
+
+?>
+
 <main class="adminPagina">
     <div class="jumbotron">
         <h2 class="display-5">Welkom master op de Adminpagina</h2>
@@ -5,83 +11,94 @@
     </div>
 
     <div class="container">
+        <h2>Website</h2>
         <div class="row">
-            <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="<?=$bootstrapGrid?>">
                 <a href="admin.php?category=auction">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">Bekijk alle veilingen</h4>
+                            <img src="images/adminimages/veilingen.png" class="card-img">
+                            <p>Bekijk hier een overzicht van alle veilingen.</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=user">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">Bekijk alle gebruikers</h4>
+                            <img src="images/adminimages/gebruikers.png" class="card-img">
+                            <p>Bekijk hier een overzicht van alle gebruikers.</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=seller">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">Bekijk alle verkopers</h4>
+                            <img src="images/adminimages/verkopers.png" class="card-img">
+                            <p>Bekijk hier een overzicht van alle verkopers.</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=statistics">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">Bekijk website statistieken</h4>
+                            <img src="images/adminimages/statistieken.png" class="card-img">
+                            <p>Bekijk hier de statistieken van de website.</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=addRubriek">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">Voeg een rubriek toe</h4>
+                            <img src="images/adminimages/rubrieken.png" class="card-img">
+                            <p>Op deze pagina is het mogelijk om een rubriek toe te voegen.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <h2>Database</h2>
+        <div class="row">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=reset">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Reset de database</h4>
+                            <img src="images/adminimages/reset.png" class="card-img">
+                            <p>Op deze pagina is het mogelijk om de database te resetten.</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
+            <div class="<?=$bootstrapGrid?>">
+                <a href="admin.php?category=query">
                     <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
                         <div class="card-body">
-                            Appel
+                            <h4 class="card-title text-center">MS SQL Server Query Editor</h4>
+                            <img src="images/adminimages/query.png" class="card-img">
+                            <p>Bekijk hier het resultaat van uw MS SQL Server query</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <a href="admin.php?category=auction">
-                    <div class="card">
-                        <h4 class="card-title text-center">Bekijk alle veilingen</h4>
-                        <div class="card-body">
-                            Appel
-                        </div>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
 
