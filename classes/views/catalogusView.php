@@ -47,11 +47,11 @@
                         break;
                 }
             }
-            if(isset($_POST['rubriek'])){
-                $order[":rubriek"]=$_POST['rubriek'];
-            }
             if (isset($_POST['search'])) {
                 $select[':where'] = "%".$_POST['search']."%";
+            }
+            if(isset($_POST['rubriek'])){
+                $select[":rubriek"]=$_POST['rubriek'];
             }
             $select = array_merge($select, $order);
             if (isset($_POST['numberOfItems']))
@@ -59,6 +59,7 @@
         } else {
             $select[':limit'] = "25";
         }
+
         $items = selectFromCatalog($select);
         $counter = 0;
         foreach ($items as $card):
@@ -92,21 +93,21 @@
         endforeach;
         ?>
         <script>
-                var my_date;
-                <?php
-                $i = 0;
-                foreach($items as $item){
-                    $datum = $item['LooptijdEindeDag'];
-                    $tijdstip = $item['LooptijdEindeTijdstip'];
-                    $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-                    echo "my_date = '" . explode( ".",$time)[0] . "';\n";
-                    ?>
-                    my_date = my_date.replace(/-/g, "/");
-                    setupCountDown('timer-<?=$i?>', new Date(my_date));
-                <?php
-                $i++;
-                }
-                    ?>
+            var my_date;
+            <?php
+            $i = 0;
+            foreach($items as $item){
+            $datum = $item['LooptijdEindeDag'];
+            $tijdstip = $item['LooptijdEindeTijdstip'];
+            $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+            echo "my_date = '" . explode( ".",$time)[0] . "';\n";
+            ?>
+            my_date = my_date.replace(/-/g, "/");
+            setupCountDown('timer-<?=$i?>', new Date(my_date));
+            <?php
+            $i++;
+            }
+            ?>
         </script>
     </div>
 </main>
