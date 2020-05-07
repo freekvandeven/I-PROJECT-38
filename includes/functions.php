@@ -27,8 +27,8 @@ function checkItemDate(){
     foreach($items as $item){
         $bid = Items::getHighestBid($item["Voorwerpnummer"]);
         Items::finishItem($item["Voorwerpnummer"],$bid["Gebruiker"],$bid["Bodbedrag"]);
-        notifySeller($item["Verkoper"]);
-        notifyBuyer($bid["Gebruiker"]);
+        notifySeller($item["Verkoper"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
+        notifyBuyer($bid["Gebruiker"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
     }
 }
 
@@ -103,24 +103,27 @@ function sendConfirmationEmail($mail, $username){
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
 
-function notifySeller($seller){
+function notifySeller($seller, $id, $price){
     $user = User::getUser($seller);
     $subject = "Veiling afgelopen";
     $variables = [];
-    $variables["name"] = $user['Voornaam'];
+    $variables["username"] = $user['Voornaam'];
+    $variables['id'] = $id;
+    $variables['offer'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
 }
 
-function notifyBuyer($buyer){
+function notifyBuyer($buyer, $id, $offer){
     $user = User::getUser($buyer);
     $subject = "Veiling afgelopen";
     $variables = [];
-    $variables["name"] = $user['Voornaam'];
+    $variables["username"] = $user['Voornaam'];
+    $variables['id'] = $id;
+    $variables['offer'] = $offer;
     sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
 }
 
 function sendFormattedMail($receiver, $subject, $filename, $variables){
-    # variables['name'] = "Freek";  replaces {{ name }}
     $template = file_get_contents("classes/views/email/".$filename);
     foreach($variables as $key => $value)
     {
