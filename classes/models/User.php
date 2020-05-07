@@ -82,4 +82,12 @@ class User{
         $data = $dbh->prepare('INSERT INTO Comments (Gebruikersnaam, FeedbackGever, Feedback) VALUES (:gebruiker, :gever, :feedback)');
         $data->execute([":gebruiker"=>$user,":gever"=>$giver,":feedback"=>$feedback]);
     }
+
+    static function getAllComments($user){
+        global $dbh;
+        $data = $dbh->prepare('SELECT * FROM Comments WHERE Gebruikersnaam = :gebruiker');
+        $data->execute(["gebruiker"=>$user]);
+        $result = $data->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

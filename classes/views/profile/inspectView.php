@@ -55,9 +55,11 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                                 </form>
                             </div>
                         </div>
+                        <?php
+                        foreach(User::getAllComments($profile_data['Gebruikersnaam']) as $comment):?>
+                            <p><b><?=$comment['FeedbackGever']?></b><br><?=$comment['Feedback']?></p>
+                        <?php endforeach;?>
                         <p><b>Admin</b><br>Dit is een goede verkoper, duidelijk en specifiek.</p>
-                        <p><b>Herman</b><br>Uitstekende verkoper. Eén nadeel, hij is alleen een beetje sociaal beperkt.</p>
-                        <p><b>Anthony</b><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a urna quis velit semper tincidunt ut non ante. Aliquam aliquam nulla id commodo consectetur. Donec ullamcorper metus molestie, iaculis arcu sed, cursus lorem. Vestibulum pulvinar sed magna a imperdiet. Vivamus auctor massa ac auctor accumsan. Nunc tempus nisl id tellus.</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +67,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Rating</h4>
+                        <h4 class="card-title">Rating: <?=round(Database::getSumRating($profile_data['Gebruikersnaam'])[""],2)?></h4>
                         <form class="ratingForm" action="" method="post">
                             <input type="hidden" name="token" value="<?=$token?>">
                             <input type="hidden" name="user" value="<?=$_GET['id']?>">
@@ -83,7 +85,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                             </div>
 
                             <div class="text-center">
-                                <button class="ratingButton" type="submit" name="Verzenden" value="Verzenden">Verzenden</button>
+                                <button class="ratingButton" type="submit" name="action" value="review">Verzenden</button>
                             </div>
                         </form>
                     </div>
