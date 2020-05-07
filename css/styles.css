@@ -768,7 +768,7 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-/*************** VERKOPERPRAGINA CSS *************/
+/*************** VERKOPERPAGINA CSS *************/
 .adminPagina .jumbotron p{
     margin-top: 20px;
     margin-bottom: -10px;
@@ -843,4 +843,45 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     }
 }
 
+/*************** CATALOGUSPAGINA CSS *************/
+.catalogusPagina form .row div{
+    margin-right: -20px;
+}
+
+.catalogusPagina form .row div label{
+    font-size: 18px;
+}
+
+.catalogusPagina .filtermenu{
+    margin-top: 30px;
+}
+
+.catalogusForm select, .catalogusForm input{
+    transition: 300ms;
+}
+
+.catalogusForm select:hover, .catalogusForm input:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.catalogusForm select:focus, .catalogusForm input:focus{
+    border-color: rgba(165, 105, 189, 0.8);
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+}
+
+.catalogusForm .zoekButton{
+    margin-top: 36px;
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 18px;
+    color: rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.catalogusForm .zoekButton:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
 
