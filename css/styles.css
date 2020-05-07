@@ -674,5 +674,25 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-bottom: -20px;
 }
 
+/*************** VERKOPERPRAGINA CSS *************/
+.verkopersPagina .container .row{
+    margin-bottom: 50px;
+}
+
+.geenGewonnenVeilingen, .geenAangebodenVeilingen{
+    margin: 5px 35px 17px;
+    font-size: 18px;
+}
+
+.verkopersPagina .container .row div .card .card-body a{
+    border: none;
+    box-shadow: none;
+}
+
+.verkopersPagina .container .row div .card .card-body a:hover{
+    background: none;
+    box-shadow: none;
+    color: rgb(165, 105, 189);
+}
 
 
