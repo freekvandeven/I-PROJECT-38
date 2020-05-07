@@ -95,7 +95,7 @@ function storeImg($id,$target_dir)
 {
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
-
+ 
 function sendConfirmationEmail($mail, $username){
     $subject = "Bevestig je account";
     $variables = [];
