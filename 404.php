@@ -1,12 +1,16 @@
 <?php
 require_once('includes/database.php');
 
-$title = 'Opflikkeren';
+$title = '404';
+
 require_once('includes/header.php');
 ?>
 <main>
-    Je hebt geen toegang tot deze website.
-    Als je onze PO bent stuur ons aub een berichtje met je IP
+        <h1>Oeps! Je pagina konden wij helaas niet vinden!</h1><br>
+        <h3>Excuses voor het ongemak!</h3><br><br>
+        <p>Niet getreurd, er is nog veel te ontdekken. Ga ervoor!<p><br>
+        <p>Klik hieronder om te een bepaald product te zoeken!</p><br>
+        <a href="catalogus.php">Zoek producten</a>
 </main>
 
 <?php
