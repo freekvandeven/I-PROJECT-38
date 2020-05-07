@@ -4,24 +4,26 @@
         <div class="filtermenu">
             <form class="" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <select id="Rubriek" name="rubriek">
+                <select id="Rubriek" name="rubriek" onchange="this.form.submit()">
                     <option value="">Kies Rubriek</option>
                     <?php
                     foreach(Items::getRubrieken() as $rubriek){
-                        echo "<option value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
+                        echo "<option ";
+                        if($rubriek['Rubrieknummer']==$_POST['rubriek']) echo "selected";
+                        echo " value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
                     } ?>
                 </select>
-                <select id="price" name="order">
+                <select id="price" name="order" onchange="this.form.submit()">
                     <option value="">Kies Volgorde</option>
-                    <option value="High">Duurste Eerst</option>
-                    <option value="Low">Goedkoopste Eerst</option>
-                    <option value="New">Nieuwste Eerst</option>
-                    <option value="Old">Oudste Eerst</option>
+                    <option <?php if($_POST['order'] == "High") echo "selected "?>value="High">Duurste Eerst</option>
+                    <option <?php if($_POST['order'] == "Low") echo "selected "?>value="Low">Goedkoopste Eerst</option>
+                    <option <?php if($_POST['order'] == "New") echo "selected "?>value="New">Nieuwste Eerst</option>
+                    <option <?php if($_POST['order'] == "Old") echo "selected "?>value="Old">Oudste Eerst</option>
                 </select>
-                <select id="numberOfItems" name="numberOfItems">
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
+                <select id="numberOfItems" name="numberOfItems" onchange="this.form.submit()">
+                    <option <?php if($_POST['numberOfItems'] == 25) echo "selected "?>value=25>25</option>
+                    <option <?php if($_POST['numberOfItems'] == 50) echo "selected "?>value=50>50</option>
+                    <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=100>100</option>
                 </select>
                 <input type="text" placeholder="Zoeken" name="search">
                 <button type="submit">Zoeken</button>
@@ -108,9 +110,6 @@
             $i++;
             }
             ?>
-            $('form input').change(function() {
-                $(this).closest('form').submit();
-            });
         </script>
     </div>
 </main>
