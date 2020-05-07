@@ -107,6 +107,7 @@ function notifySeller($seller){
     $user = User::getUser($seller);
     $subject = "Veiling afgelopen";
     $variables = [];
+    $variables["name"] = $user['Voornaam'];
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
 }
 
