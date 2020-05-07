@@ -59,6 +59,13 @@ CREATE TABLE Beoordeling (
     CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr, Gebruikersnaam, Rating)
 );
 
+CREATE TABLE Comments (
+    Gebruikersnaam              VARCHAR(20)     NOT NULL,
+    FeedbackGever               VARCHAR(20)     NOT NULL,
+    Feedback                    VARCHAR(255)    NOT NULL,
+    CONSTRAINT PK_Comments PRIMARY KEY(Gebruikersnaam, FeedbackGever)
+);
+
 CREATE TABLE GebruikersTelefoon(
 	Volgnr						INTEGER			NOT NULL AUTO_INCREMENT,
 	Gebruiker					VARCHAR(20)		NOT NULL,
@@ -134,6 +141,16 @@ ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp(Voorwerpnummer)
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION;
+
+ALTER TABLE Comments
+ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruiker)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruiker)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Bod
 ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)

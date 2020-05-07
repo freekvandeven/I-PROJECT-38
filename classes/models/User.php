@@ -73,7 +73,13 @@ class User{
 
     static function makeUser($username){
         global $dbh;
-        $stmt = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
-        $stmt->execute([":username" => $username]);
+        $data = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
+        $data->execute([":username" => $username]);
+    }
+
+    static function reviewUser($user, $giver, $feedback){
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO Comments (Gebruikersnaam, FeedbackGever, Feedback) VALUES (:gebruiker, :gever, :feedback)');
+        $data->execute([":gebruiker"=>$user,":gever"=>$giver,":feedback"=>$feedback]);
     }
 }

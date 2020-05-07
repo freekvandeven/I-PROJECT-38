@@ -46,6 +46,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                             <div class="dropdown-menu dropdown-menu-right animate slideIn">
                                 <form class="voegReviewToeForm" method="POST" action="">
                                     <input type="hidden" name="token" value="<?=$token?>">
+                                    <input type="hidden" name="user" value="<?=$_GET['id']?>">
                                     <div class="form-group col-xl-12">
                                         <label for="review">Voeg een review toe</label>
                                         <textarea class="form-control" name="review" id="review" rows="5"></textarea>
@@ -66,7 +67,8 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                     <div class="card-body">
                         <h4 class="card-title">Rating</h4>
                         <form class="ratingForm" action="" method="post">
-
+                            <input type="hidden" name="token" value="<?=$token?>">
+                            <input type="hidden" name="user" value="<?=$_GET['id']?>">
                             <div class="rate">
                                 <input type="radio" id="star5" name="rate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
