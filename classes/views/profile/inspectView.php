@@ -83,7 +83,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                             </div>
 
                             <div class="text-center">
-                                <button class="ratingButton" type="submit" name="Verzenden" value="Verzenden">Verzenden</button>
+                                <button class="ratingButton" type="submit" name="action" value="review">Verzenden</button>
                             </div>
                         </form>
                     </div>

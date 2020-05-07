@@ -39,8 +39,8 @@ class Database{
     static function rateSeller($seller, $rating)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Beoordeling (Verkoper,Rating) VALUES(:verkoper, :rating)');
-        $data->execute([":verkoper" => $seller], [":rating" => $rating]);
+        $data = $dbh->prepare('INSERT INTO Beoordeling (Gebruikersnaam, Rating) VALUES (:verkoper, :rating)');
+        $data->execute([":verkoper" => $seller,":rating" => $rating]);
     }
 
     static function getSumRating($username)
