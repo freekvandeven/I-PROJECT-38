@@ -68,7 +68,7 @@ function logPageVisitor(){
 
 function checkIP(){
     if(checkBlacklist($_SERVER["REMOTE_ADDR"])){
-        header("Location: 404.php");
+        header("Location: includes/denied.php");
     }
 }
 function deleteFile($file){

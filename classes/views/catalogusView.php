@@ -81,7 +81,6 @@
         } else {
             $select[':limit'] = "25";
         }
-
         $items = selectFromCatalog($select);
         $counter = 0;
         foreach ($items as $card):
