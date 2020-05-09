@@ -3,7 +3,7 @@ startAutoLoader();
 require_once('database.php');
 checkVisitor();
 checkItemDate();
-
+//include_once('socket.php');
 
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
@@ -67,7 +67,10 @@ function logPageVisitor(){
 }
 
 function checkIP(){
-    if(checkBlacklist($_SERVER["REMOTE_ADDR"])){
+    if(checkBlackList($_SERVER["REMOTE_ADDR"])){
+        header("Location: includes/denied.php");
+    }
+    if(!checkWhiteList($_SERVER["REMOTE_ADDR"])){
         header("Location: includes/denied.php");
     }
 }
