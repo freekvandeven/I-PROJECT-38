@@ -885,3 +885,29 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     background: rgb(165, 105, 189);
 }
 
+.catalogusPagina .productsList .btn{
+    max-width: 180px;
+    margin-top: -70px;
+    background: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    box-shadow: 0 0 7px rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.catalogusPagina .productsList .btn:hover{
+    background: rgb(116, 61, 137);
+    border-color: rgb(116, 61, 137);
+}
+
+.catalogusPagina .productsList h3{
+    margin-left: -15px;
+}
+
+@media (max-width: 1191px) {
+    .catalogusPagina .productsList .btn{
+        margin-top: 20px;
+    }
+}
+
+
