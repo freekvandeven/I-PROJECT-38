@@ -449,20 +449,20 @@ body{
 }
 
 /*************** ProfielPagina CSS *************/
-.mijnEenmaalAndermaalTitel{
+.profielPagina .mijnEenmaalAndermaalTitel{
     margin-top: 75px;
 }
 
-.mijnEenmaalAndermaalTitel h2{
+.profielPagina .mijnEenmaalAndermaalTitel h2{
     font-weight: normal;
 }
 
-main .container .row div .card .card-body img{
+.profielPagina .container .row div .card .card-body img{
     max-height: 410px;
     margin-bottom: 20px;
 }
 
-main .container .row div .card .card-body a{
+.profielPagina .container .row div .card .card-body a{
     margin-top: 10px;
     font-size: 18px;
     width: 100%;
@@ -474,13 +474,13 @@ main .container .row div .card .card-body a{
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-main .container .row div .card .card-body a:hover{
+.profielPagina .container .row div .card .card-body a:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-main .container .row div .card .card-body h4{
+.profielPagina .container .row div .card .card-body h4{
     font-weight: normal;
     margin-bottom: 25px;
     border-bottom: 1px solid rgba(0, 0, 0, .07);
@@ -489,16 +489,43 @@ main .container .row div .card .card-body h4{
     text-align: center;
 }
 
-main .container .row div .card .card-body p b{
+.profielPagina .container .row div .card .card-body p b{
     font-weight: bold;
 }
 
-main .container .container h2{
+.profielPagina .container .container h2{
     margin-top: 30px;
     padding-top: 30px;
     font-weight: normal;
-    width: 100%;
+    margin-left: -15px;
     border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.profielPagina .container .container .verkopersButton{
+    font-size: 18px;
+    max-width: 275px;
+    margin-top: -70px;
+    background: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+.profielPagina .container .container .verkopersButton:hover{
+    background: rgb(116, 61, 137);
+    border-color: rgb(116, 61, 137);
+}
+
+@media (max-width: 1200px) {
+    .profielPagina .container .container .verkopersButton{
+        margin-left: 385px;
+    }
+}
+
+@media (max-width: 765px) {
+    .profielPagina .container .container .verkopersButton{
+        margin: 20px 0 0 0;
+    }
 }
 
 /*************** WACHTWOORD VERGETEN CSS *************/
@@ -888,16 +915,18 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 .catalogusPagina .productsList .btn{
     max-width: 180px;
     margin-top: -70px;
-    background: rgb(165, 105, 189);
+    background: none;
+    font-size: 18px;
+    color: rgb(165, 105, 189);
     border: 2px solid rgb(165, 105, 189);
     border-radius: 10px;
-    box-shadow: 0 0 7px rgb(165, 105, 189);
+    box-shadow: 0 0 4px rgb(165, 105, 189);
     transition: 200ms;
 }
 
 .catalogusPagina .productsList .btn:hover{
-    background: rgb(116, 61, 137);
-    border-color: rgb(116, 61, 137);
+    background: rgb(165, 105, 189);
+    color: #fff;
 }
 
 .catalogusPagina .productsList h3{
