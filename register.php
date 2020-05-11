@@ -23,6 +23,13 @@ if(checkPost()) {
                     User::insertUser($user);
                     if(isset($_POST["phone-number"]) && !empty($_POST["phone-number"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number"]);
                     if(isset($_POST["phone-number2"]) && !empty($_POST["phone-number2"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number2"]);
+
+                    if(!preg_match( "/[\r\n]/", $_POST['username'] ) || !preg_match( "/[\r\n]/", $_POST['email'])) {
+                        if(filter_var($_POST[mail], FILTER_VALIDATE_EMAIL)){
+                            header("Location: login.php");
+                        }
+                    }
+
                     if(sendConfirmationEmail($_POST['email'], $_POST['username'])){
                         header("Location: login.php"); # wait until user confirms email
                     } else { #mail was not succesful
