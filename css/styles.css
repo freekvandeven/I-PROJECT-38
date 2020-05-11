@@ -501,31 +501,24 @@ body{
     border-top: 1px solid rgba(0, 0, 0, .1);
 }
 
-.profielPagina .container .container .verkopersButton{
-    font-size: 18px;
-    max-width: 275px;
-    margin-top: -70px;
+.profielPagina .container .container .verkopersPaginaButtonBox{
+    margin-top: -35px;
+    margin-bottom: 0px;
+}
+
+.profielPagina .verkopersPaginaButton{
     background: rgb(165, 105, 189);
-    border: 2px solid rgb(165, 105, 189);
+    color: #fff;
+    border-color: rgb(165, 105 ,189);
     border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 17px;
     transition: 200ms;
 }
 
-.profielPagina .container .container .verkopersButton:hover{
-    background: rgb(116, 61, 137);
-    border-color: rgb(116, 61, 137);
-}
-
-@media (max-width: 1200px) {
-    .profielPagina .container .container .verkopersButton{
-        margin-left: 385px;
-    }
-}
-
-@media (max-width: 765px) {
-    .profielPagina .container .container .verkopersButton{
-        margin: 20px 0 0 0;
-    }
+.profielPagina .verkopersPaginaButton:hover{
+    text-decoration: none;
+    background: rgb(126, 66, 149);
 }
 
 /*************** WACHTWOORD VERGETEN CSS *************/
@@ -669,6 +662,7 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     position:absolute;
     top:-9999px;
 }
+
 .rate:not(:checked) > label {
     float:right;
     width:1em;
@@ -678,16 +672,20 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     font-size:30px;
     color:#ccc;
 }
+
 .rate:not(:checked) > label:before {
     content: '★ ';
 }
+
 .rate > input:checked ~ label {
     color: #ffc700;
 }
+
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
 }
+
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
@@ -795,8 +793,27 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+.verkopersPagina .container .profielButtonBox{
+    margin-bottom: -5px;
+    margin-top: -40px;
+}
+
+.verkopersPagina .container .profielButtonBox .profielButton{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 17px;
+    transition: 200ms;
+}
+
+.verkopersPagina .container .profielButtonBox .profielButton:hover{
+    text-decoration: none;
+    background: rgb(126, 66, 149);
+}
+
 /*************** ADMIN-HOOFDPAGINA CSS *************/
-.adminPagina .jumbotron p, .adminPaginaSub .jumbotron p{
+.adminPagina .jumbotron p{
     margin-top: 20px;
     margin-bottom: -10px;
     font-size: 19px;
