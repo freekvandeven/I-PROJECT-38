@@ -52,4 +52,13 @@ class Database{
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
     }
+
+    static function getAmountRatings($username) {
+        global $dbh;
+        $data = $dbh->prepare('SELECT COUNT(BeoordelingsNr) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
+        $data->execute([":Gebruikersnaam" => $username]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];// untested function
+    }
+
 }
