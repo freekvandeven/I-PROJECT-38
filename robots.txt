@@ -1,0 +1,24 @@
+User-agent: *
+
+Disallow: /.github/
+Disallow: /.idea/
+Disallow: /classes/controllers/
+Disallow: /classes/models/
+Disallow: /includes/
+Disallow: /js/
+Disallow: /upload/
+Disallow: composer.json
+Disallow: composer.lock
+Disallow: README.md
+Disallow: .gitignore
+Disallow: .phplint.yml
+
+
+
+
+
+
+
+
+
+
