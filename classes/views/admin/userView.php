@@ -11,14 +11,14 @@
     <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
         <h2 class="text-center">Bekijk alle  gebruikers:</h2>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th scope="col">Gebruikersnaam</th>
-                    <?php foreach($displayedItems as $key){
-                        echo "<th>$key</th>";
-                    } ?>
-                </tr>
+                    <tr>
+                        <th scope="col">Gebruikersnaam</th>
+                        <?php foreach($displayedItems as $key){
+                            echo "<th>$key</th>";
+                        } ?>
+                    </tr>
                 </thead>
                 <tbody>
                 <?php foreach($users as $user): ?>

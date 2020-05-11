@@ -984,6 +984,10 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-top: 50px;
 }
 
+.adminPaginaSub .container .table-responsive table thead {
+    background: rgba(165, 105, 189, .7);
+}
+
 .adminPaginaSub .container .table-responsive .table tbody td a{
     color: #000;
     text-decoration: underline;
