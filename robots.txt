@@ -7,11 +7,11 @@ Disallow: /classes/models/
 Disallow: /includes/
 Disallow: /js/
 Disallow: /upload/
-Disallow: composer.json
-Disallow: composer.lock
-Disallow: README.md
-Disallow: .gitignore
-Disallow: .phplint.yml
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /README.md
+Disallow: /.gitignore
+Disallow: /.phplint.yml
 
 
 
