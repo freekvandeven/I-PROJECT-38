@@ -110,10 +110,11 @@ function storeImg($id,$target_dir)
     move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
 }
  
-function sendConfirmationEmail($mail, $username){
+function sendConfirmationEmail($mail, $username, $hash){
     $subject = "Bevestig je account";
     $variables = [];
     $variables['username'] = $username;
+    $variables['hash'] = $hash;
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
 
@@ -123,7 +124,7 @@ function notifySeller($seller, $id, $price){
     $variables = [];
     $variables["username"] = $user['Voornaam'];
     $variables['id'] = $id;
-    $variables['offer'] = $price;
+    $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
 }
 

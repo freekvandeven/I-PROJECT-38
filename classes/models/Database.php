@@ -1,9 +1,10 @@
-<?php
+ <?php
 
 class Database{
-
-    static function testMethod(){
-        echo "Testing classes";
+    public $dbh;
+    function __construct()
+    {
+        $this->dbh = self::connectToDatabase();
     }
 
     static function connectToDatabase()
@@ -36,11 +37,11 @@ class Database{
         echo $fb;
     }
 
-    static function rateSeller($seller, $rating)
+    static function rateSeller($seller,$giver, $rating)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Beoordeling (Gebruikersnaam, Rating) VALUES (:verkoper, :rating)');
-        $data->execute([":verkoper" => $seller,":rating" => $rating]);
+        $data = $dbh->prepare('INSERT INTO Beoordeling (Gebruikersnaam, GegevenDoor, Rating) VALUES (:verkoper, :gever, :rating)');
+        $data->execute([":verkoper" => $seller,"gever"=>$giver,":rating" => $rating]);
     }
 
     static function getAvgRating($username)
@@ -51,4 +52,13 @@ class Database{
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
     }
+
+    static function getAmountRatings($username) {
+        global $dbh;
+        $data = $dbh->prepare('SELECT COUNT(BeoordelingsNr) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
+        $data->execute([":Gebruikersnaam" => $username]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];// untested function
+    }
+
 }
