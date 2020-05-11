@@ -36,11 +36,11 @@ class Database{
         echo $fb;
     }
 
-    static function rateSeller($seller, $rating)
+    static function rateSeller($seller,$giver, $rating)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Beoordeling (Gebruikersnaam, Rating) VALUES (:verkoper, :rating)');
-        $data->execute([":verkoper" => $seller,":rating" => $rating]);
+        $data = $dbh->prepare('INSERT INTO Beoordeling (Gebruikersnaam, GegevenDoor, Rating) VALUES (:verkoper, :gever, :rating)');
+        $data->execute([":verkoper" => $seller,"gever"=>$giver,":rating" => $rating]);
     }
 
     static function getAvgRating($username)
