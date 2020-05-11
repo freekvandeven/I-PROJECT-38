@@ -1,6 +1,7 @@
 .idea/
 .vendor/
-includes/db-config.php
+/includes/db-config.php
 /uploads/items/*
 /uploads/users/*1
 /vendor/
+/classes/models/Secrets.php

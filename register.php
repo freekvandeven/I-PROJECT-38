@@ -14,7 +14,7 @@ if(checkPost()) {
     }
     if ($isValid) { # user filled in everything
         if ($_POST["password"] == $_POST["confirmation"]) { # check if passwords match
-            if(checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX')) { # check if domain has a mailserver running
+            if(checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX') && !filter_var($_POST[mail], FILTER_VALIDATE_EMAIL)) { # check if domain has a mailserver running
                 if (empty(User::getUser($_POST["username"]))) { #check if user already exists
                     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
                     $user = array(":Gebruikersnaam" => $_POST["username"], ":Voornaam" => $_POST["first-name"], ":Achternaam" => $_POST["surname"], ":Adresregel_1" => $_POST["adress"], ":Adresregel_2" => $_POST["adress2"],
@@ -23,7 +23,8 @@ if(checkPost()) {
                     User::insertUser($user);
                     if(isset($_POST["phone-number"]) && !empty($_POST["phone-number"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number"]);
                     if(isset($_POST["phone-number2"]) && !empty($_POST["phone-number2"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number2"]);
-                    if(sendConfirmationEmail($_POST['email'], $_POST['username'])){
+                  
+                    if(sendConfirmationEmail($_POST['email'], $_POST['username'], hash("md5",$password))){
                         header("Location: login.php"); # wait until user confirms email
                     } else { #mail was not succesful
                         User::makeUser($_POST['username']);
