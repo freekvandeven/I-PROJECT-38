@@ -76,11 +76,10 @@ CREATE TABLE GebruikersTelefoon(
 );
 
 CREATE TABLE Rubriek(
-	Rubrieknummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
-	Rubrieknaam					VARCHAR(32)		NOT NULL,
-	Rubriek						INTEGER(20)			NULL,
-	Volgnr						INTEGER			NOT NULL,
-	CONSTRAINT PK_Rubriek	PRIMARY KEY	(Rubrieknummer)
+    Rubrieknummer				INTEGER     		NOT NULL,
+    Rubrieknaam					VARCHAR(32)		    NOT NULL,
+    Rubriek						INTEGER 			    NULL,
+    Volgnr						INTEGER	            NOT NULL AUTO_INCREMENT
 );
 
 CREATE TABLE VoorwerpInRubriek(
@@ -207,6 +206,12 @@ ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
 		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
+
+ALTER TABLE Rubriek
+ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
+        REFERENCES Rubriek (Rubrieknummer)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
 
 insert into Vraag (tekstvraag)
 values(
