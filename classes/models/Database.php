@@ -1,9 +1,10 @@
-<?php
+ <?php
 
 class Database{
-
-    static function testMethod(){
-        echo "Testing classes";
+    public $dbh;
+    function __construct()
+    {
+        $this->dbh = self::connectToDatabase();
     }
 
     static function connectToDatabase()
@@ -50,6 +51,14 @@ class Database{
         $data->execute([":Gebruikersnaam" => $username]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
+    }
+
+    static function getAmountRatings($username) {
+        global $dbh;
+        $data = $dbh->prepare('SELECT COUNT(BeoordelingsNr) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
+        $data->execute([":Gebruikersnaam" => $username]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];// untested function
     }
 
 }
