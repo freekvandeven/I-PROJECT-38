@@ -8,7 +8,7 @@ class Items
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,Looptijd,
                                       LooptijdBeginDag,LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,LooptijdEindeDag,
-                                      LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs) 
+                                      LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs)
                                       VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
                                       :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
@@ -74,7 +74,7 @@ class Items
         $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
                             (LooptijdEindeDag = :vandaag2 AND LooptijdEindeTijdstip < :moment))");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
-        $data->execute(array(":vandaag" => date("Y-m-d"),":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
+        $data->execute(array(":vandaag" => date("Y-m-d"), ":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -117,6 +117,15 @@ class Items
         $data = $dbh->prepare('SELECT Rubrieknaam, Rubrieknummer FROM Rubriek');
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function soldToUser($koper, $verkoper)
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT count(*) FROM Voorwerp WHERE Verkoper = :verkoper AND Koper = :koper');
+        $data->execute([":koper"=>$koper,':verkoper'=>$verkoper]);
+        $result = $data->fetchColumn();
         return $result;
     }
 

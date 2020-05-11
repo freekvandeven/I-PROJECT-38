@@ -55,9 +55,6 @@ if(!empty($_GET) && isset($_GET['id'])) {
 
 if (!empty($_POST) && isset($_POST['Verzenden'])) {
     $sent = true;
-    echo 'Bedankt voor uw feedback!';
-    echo "Uw beoordeling was: ";
-    echo $_POST['rate'];
     Database::rateSeller($profile_data['Gebruikersnaam'], $_POST['rate']);
 }
 
