@@ -4,10 +4,41 @@ require_once('includes/functions.php');
 if(checkPost()){
     checkLogin();
     $ref = $_POST['voorwerp'];
+    // Validatie verzending bod
     if(isset($_POST["bid"]) && !empty($_POST["bid"])){
-        if($_POST["bid"] > Items::getHighestBid($ref)['Bodbedrag'] && $_POST["bid"] > Items::getItem($ref)["Startprijs"]){
-            Items::placeBid($ref, $_POST["bid"], $_SESSION['name']);
+        // initialisatie variabelen
+        $highestBid = Items::getHighestBid($ref)['Bodbedrag'];
+        $startPrijs = Items::getItem($ref)["Startprijs"];
+
+        // bepalen van startprijs
+        if($startPrijs < 10){
+            $percentage = 0.03;
+        } else if($startPrijs >= 10 && $startPrijs <= 25){
+           $percentage = 0.028;
+        } else if ($startPrijs > 25 && $startPrijs <= 50){
+            $percentage = 0.026;
+        } else if ($startPrijs > 50 && $startPrijs <= 75){
+            $percentage = 0.025;
+        } else if($startPrijs > 75 && $startPrijs <= 100){
+            $percentage = 0.021;
+        } else if($startPrijs > 100 && $startPrijs < 250){
+            $percentage = 0.018;
+        } else if($startPrijs > 250 && $startPrijs < 500){
+            $percentage = 0.013;
+        } else if($startPrijs > 500 && $startPrijs <= 750){
+            $percentage = 0.01;
+        } else if($startPrijs > 750){
+            $percentage = 0.005;
         }
+
+        $minimumIncrease = startPrijs * $percentage;
+
+        if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
+            if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
+                Items::placeBid($ref, $_POST["bid"], $_SESSION['name']);
+            }
+        }
+
     } else {
         $err = "bid is to low";
     }
