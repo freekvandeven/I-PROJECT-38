@@ -1,36 +1,42 @@
 <?php
-$profile_data = User::getUser($_GET['id']);
+$profile_data = User::getUser($_SESSION['name']);
+$profile_data_inspect_user = User::getUser($_GET['id']);
 
-if(empty($profile_data)){
+if(empty($profile_data_inspect_user)){
     header("location: profile.php");
 }
 
-$boughtItems = Items::getBuyerItems($profile_data['Gebruikersnaam']);
-$offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
+$boughtItems = Items::getBuyerItems($profile_data_inspect_user['Gebruikersnaam']);
+$offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam']);
 ?>
 
 <main class="verkopersPagina">
     <div class="VerkoperPagina jumbotron">
-        <h2 class="display-5">Welkom op de profielpagina van <?=$profile_data['Gebruikersnaam']?></h2>
+        <h2 class="display-5">Welkom op de verkoperspagina van <?=$profile_data_inspect_user['Gebruikersnaam']?></h2>
     </div>
 
     <div class="container">
         <h2>Profielgegevens</h2>
+        <?php if($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
+        <div class="profielButtonBox text-right">
+            <a class="profielButton" href="profile.php">Bekijk uw profiel</a>
+        </div>
+        <?php } ?>
         <div class="row">
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Persoonsgegevens</h4>
 
-                        <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
-                            <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                        <?php if(file_exists("upload/users/".$profile_data_inspect_user['Gebruikersnaam'].".png")):?>
+                            <img src="upload/users/<?=$profile_data_inspect_user['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
                         <?php else :?>
                             <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
                         <?php endif;?>
-                        <p><b>Naam: </b><?=$profile_data['Voornaam']?></p>
-                        <p><b>Achternaam: </b><?=$profile_data['Achternaam']?></p>
-                        <p><b>Emailadres: </b><?=$profile_data['Mailbox']?></p>
-                        <p><b>Plaatsnaam: </b><?=$profile_data['Plaatsnaam']?></p>
+                        <p><b>Naam: </b><?=$profile_data_inspect_user['Voornaam']?></p>
+                        <p><b>Achternaam: </b><?=$profile_data_inspect_user['Achternaam']?></p>
+                        <p><b>Emailadres: </b><?=$profile_data_inspect_user['Mailbox']?></p>
+                        <p><b>Plaatsnaam: </b><?=$profile_data_inspect_user['Plaatsnaam']?></p>
                     </div>
                 </div>
             </div>
@@ -56,7 +62,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                             </div>
                         </div>
                         <?php
-                        foreach(User::getAllComments($profile_data['Gebruikersnaam']) as $comment):?>
+                        foreach(User::getAllComments($profile_data_inspect_user['Gebruikersnaam']) as $comment):?>
                             <p><b><?=$comment['FeedbackGever']?></b><br><?=$comment['Feedback']?></p>
                         <?php endforeach;?>
                         <p><b>Admin</b><br>Dit is een goede verkoper, duidelijk en specifiek.</p>
@@ -67,7 +73,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Rating: <?=round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""],2)?></h4>
+                        <h4 class="card-title">Rating: <?=round(Database::getAvgRating($profile_data_inspect_user['Gebruikersnaam'])[""],2)?></h4>
                         <form class="ratingForm" action="" method="post">
                             <input type="hidden" name="token" value="<?=$token?>">
                             <input type="hidden" name="user" value="<?=$_GET['id']?>">
