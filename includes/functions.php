@@ -67,11 +67,13 @@ function logPageVisitor(){
 }
 
 function checkIP(){
-    if(checkBlackList($_SERVER["REMOTE_ADDR"])){
-        header("Location: includes/denied.php");
-    }
-    if(!checkWhiteList($_SERVER["REMOTE_ADDR"])){
-        header("Location: includes/denied.php");
+    if($_SERVER["REMOTE_ADDR"] != '::1') {
+        if (checkBlackList($_SERVER["REMOTE_ADDR"])) {
+            header("Location: includes/denied.php");
+        }
+        if (!checkWhiteList($_SERVER["REMOTE_ADDR"])) {
+            header("Location: includes/denied.php");
+        }
     }
 }
 function deleteFile($file){
