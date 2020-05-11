@@ -1,9 +1,10 @@
-<?php
+ <?php
 
 class Database{
-
-    static function testMethod(){
-        echo "Testing classes";
+    public $dbh;
+    function __construct()
+    {
+        $this->dbh = self::connectToDatabase();
     }
 
     static function connectToDatabase()
