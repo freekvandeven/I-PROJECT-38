@@ -939,4 +939,84 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     }
 }
 
+/*************** ADMINSUBPAGINA'S CSS *************/
+.adminPaginaSub .container h2{
+    margin-top: 50px;
+}
+
+.adminPaginaSub .legendaButton{
+    margin-top: -42px;
+}
+
+.adminPaginaSub .legendaButton .legendaDropdownButton{
+    background: #fff;
+    color: rgb(165, 105, 189);
+    font-size: 17px;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    transition: 200ms;
+    padding: 5px 15px;
+}
+
+.adminPaginaSub .legendaButton .legendaDropdownButton:focus, .adminPaginaSub .legendaButton .legendaDropdownButton:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    box-shadow: 0 0 7px rgb(165, 105, 189);
+}
+
+.adminPaginaSub .container .dropdown-menu{
+    max-width: 350px;
+}
+
+.adminPaginaSub .container .dropdown-menu .dropdown-item:active, .adminPaginaSub .container .dropdown-menu .dropdown-item:hover{
+    background: none;
+}
+
+.adminPaginaSub .container .table-responsive{
+    margin-top: 50px;
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td a{
+    color: #000;
+    text-decoration: underline;
+    transition: 150ms;
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td a:hover{
+    color: rgb(165, 105, 189);
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td{
+    font-size: 17px;
+}
+
+.adminPaginaSub .gaTerugKnop{
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.adminPaginaSub .gaTerugKnop a{
+    font-size: 18px;
+    color: #000;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    transition: 200ms;
+}
+
+.adminPaginaSub .gaTerugKnop a:hover{
+    text-decoration-color: rgb(165, 105, 189);
+    color: rgb(165, 105, 189);
+    padding-left: 10px;
+}
+
+.adminPaginaSub .container .dropdown-menu .dropdown-item .table thead tr th{
+    border: none;
+}
+
+@media (max-width: 751px) {
+    .adminPaginaSub .legendaButton{
+        margin-top: 25px;
+    }
+}
+
 

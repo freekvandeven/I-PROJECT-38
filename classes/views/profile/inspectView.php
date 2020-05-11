@@ -11,7 +11,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
 
 <main class="verkopersPagina">
     <div class="VerkoperPagina jumbotron">
-        <h2 class="display-5">Welkom op de profielpagina van <?=$profile_data['Gebruikersnaam']?></h2>
+        <h2 class="display-5">Welkom op de verkoperspagina van <?=$profile_data['Gebruikersnaam']?></h2>
     </div>
 
     <div class="container">
@@ -40,9 +40,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
                     <div class="card-body">
                         <h4 class="card-title">Reviews</h4>
                         <div class="text-right">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Toevoegen
-                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Toevoegen</button>
                             <div class="dropdown-menu dropdown-menu-right animate slideIn">
                                 <form class="voegReviewToeForm" method="POST" action="">
                                     <input type="hidden" name="token" value="<?=$token?>">
