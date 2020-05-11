@@ -17,6 +17,7 @@ if(isset($_POST['email'])){
         $user = User::getUserWithEmail($_POST['email']);
         $vars['email'] = $_POST['email'];
         $vars['hash'] = hash("md5",$user['Wachtwoord']);
+        $vars['username'] = $user['Voornaam'];
         sendFormattedMail($_POST['email'],"Password Reset","forgotPassword.html", $vars);
     }
 }

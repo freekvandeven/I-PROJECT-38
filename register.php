@@ -23,7 +23,7 @@ if(checkPost()) {
                     User::insertUser($user);
                     if(isset($_POST["phone-number"]) && !empty($_POST["phone-number"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number"]);
                     if(isset($_POST["phone-number2"]) && !empty($_POST["phone-number2"])) User::insertPhoneNumber($_POST["username"], $_POST["phone-number2"]);
-                    if(sendConfirmationEmail($_POST['email'], $_POST['username'])){
+                    if(sendConfirmationEmail($_POST['email'], $_POST['username'], hash("md5",$password))){
                         header("Location: login.php"); # wait until user confirms email
                     } else { #mail was not succesful
                         User::makeUser($_POST['username']);
