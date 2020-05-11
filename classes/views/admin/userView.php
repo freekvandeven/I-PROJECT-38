@@ -7,6 +7,7 @@
         <h2 class="display-5">Welkom op de gebruikerspagina</h2>
         <p>Op deze pagina kunt u alle gebruikers inzien.</p>
     </div>
+
     <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
         <h2 class="text-center">Bekijk alle  gebruikers:</h2>
         <div class="table-responsive">
@@ -33,7 +34,7 @@
         </div>
     </div>
 
-    <div class="form-group text-center col-lg-12">
+    <div class="text-center col-lg-12">
         <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
     </div>
 </main>

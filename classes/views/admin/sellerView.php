@@ -33,7 +33,7 @@ $displayedItems = array("Bank", "Bankrekening", "ControleOptie", "Creditcard");
         </div>
     </div>
 
-    <div class="form-group text-center col-lg-12">
+    <div class="text-center col-lg-12">
         <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
     </div>
 </main>

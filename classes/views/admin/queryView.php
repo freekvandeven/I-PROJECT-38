@@ -1,21 +1,30 @@
-<main class="adminPagina">
+<main class="adminPaginaSub">
     <div class="jumbotron">
-        <h2 class="display-5">Welkom master op de Adminpagina</h2>
-        <p>Op deze pagina heeft u een aantal opties waar alleen u toegang tot heeft.</p>
+        <h2 class="display-5">Welkom op de querypagina</h2>
+        <p>Op deze pagina kunt u uw informatiebehoefte inzien aan de hand van een SQL-statement.</p>
     </div>
-    <h2>Send sql queries</h2>
-    <form method="post" action="">
-        <input type="hidden" name="token" value="<?=$token?>">
-        <input type="hidden" name="category" value="query">
-        <label for="queryField">SQL Query:</label>
-        <input type="text" name="queryString" id="queryField" value="">
-        <input type="submit" value="Query">
-    </form>
-    <a href="admin.php">Go back</a><br>
-    <p>
-    <?php if(isset($result)){
-        echo "Query: " . $_POST['queryString'] . " gave result:<br>";
-        echo $result;
-    }?>
-    </p>
+
+    <div class="container">
+        <h2 class="text-center">Verzend uw SQL query</h2>
+        <form method="post" action="">
+            <input type="hidden" name="token" value="<?= $token ?>">
+            <input type="hidden" name="category" value="query">
+
+            <label class="offset-xl-3" for="queryField">SQL Query</label>
+            <input class="form-control col-lg-6 offset-xl-3" type="text" name="queryString" id="queryField" value="">
+            <div class="text-center">
+                <input class="voegRubriekToeButton form-control col-xl-2 offset-xl-5" type="submit" value="Zoeken">
+            </div>
+        </form>
+        <p>
+            <?php if (isset($result)) {
+                echo "Query: " . $_POST['queryString'] . " gave result:<br>";
+                echo $result;
+            } ?>
+        </p>
+    </div>
+
+    <div class="text-center col-lg-12">
+        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    </div>
 </main>

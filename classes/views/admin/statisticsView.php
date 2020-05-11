@@ -1,34 +1,41 @@
-<main class="adminPagina">
+<main class="adminPaginaSub">
     <div class="jumbotron">
-        <h2 class="display-5">Welkom master op de Adminpagina</h2>
-        <p>Op deze pagina heeft u een aantal opties waar alleen u toegang tot heeft.</p>
+        <h2 class="display-5">Welkom op de statistiekenpagina</h2>
+        <p>Op deze pagina kunt u de statistieken van de website inzien.</p>
     </div>
-    <h2 class="text-center">Bekijk de website statistieken:</h2>
-    <div id="piechart"></div> <!-- center this element -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        // Load google charts
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+    <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
+        <h2 class="text-center">Bekijk de website statistieken:</h2>
+        <div id="piechart">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-        // Draw the chart and set the chart values
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Page', 'Views'],
-                <?php
-                foreach(getSiteVisits() as $visit){
-                    echo "['".$visit["PageName"]."', ".$visit["Visits"]."],";
-                } ?>
-            ]);
+            <script type="text/javascript">
+                // Load google charts
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
 
-            // Optional; add a title and set the width and height of the chart
-            var options = {'title':'Site Activity', 'width':550, 'height':400};
+                // Draw the chart and set the chart values
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Page', 'Views'],
+                        <?php
+                        foreach(getSiteVisits() as $visit){
+                            echo "['".$visit["PageName"]."', ".$visit["Visits"]."],";
+                        } ?>
+                    ]);
 
-            // Display the chart inside the <div> element with id="piechart"
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
-    </script>
-    <a href="admin.php">Go back</a>
+                    // Optional; add a title and set the width and height of the chart
+                    var options = {'title':'Site Activity', 'width':550, 'height':400};
+
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="text-center col-lg-12">
+        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    </div>
 </main>
