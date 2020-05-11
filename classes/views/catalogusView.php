@@ -1,6 +1,14 @@
 <main class="catalogusPagina">
     <div class="productsList">
-        <h3>Aangeboden veilingen</h3>
+
+            <h3 class="col-md-5 col-sm-5">Aangeboden veilingen</h3>
+            <?php
+            if(isset($_SESSION['loggedin'])) {
+                ?>
+                <a href="addProduct.php" class="btn btn-primary offset-xl-6 offset-md-0">Product aanbieden</a>
+                <?php
+            }
+            ?>
         <div class="filtermenu">
             <form class="catalogusForm" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">

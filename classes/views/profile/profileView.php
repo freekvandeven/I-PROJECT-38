@@ -6,7 +6,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
 ?>
 
-<main>
+<main class="profielPagina">
     <div class="container">
         <div class="mijnEenmaalAndermaalTitel">
             <h2 class="text-center">Mijn EenmaalAndermaal</h2>
@@ -14,6 +14,9 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
         <div class="container">
             <h2>Mijn gegevens</h2>
+            <div class="verkopersPaginaButtonBox text-right">
+                <a href="profile.php?id=<?=$profile_data['Gebruikersnaam']?>" class="verkopersPaginaButton" role="button">Bekijk uw verkoperspagina</a>
+            </div>
             <div class="row">
                 <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
