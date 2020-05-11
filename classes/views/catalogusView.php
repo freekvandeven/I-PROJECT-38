@@ -1,30 +1,52 @@
-<main>
+<main class="catalogusPagina">
     <div class="productsList">
-        <h3>Bekijk hier alle producten</h3>
+        <h3>Aangeboden veilingen</h3>
         <div class="filtermenu">
-            <form class="" action="catalogus.php" method="post">
+            <form class="catalogusForm" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <select id="Rubriek" name="rubriek">
-                    <option value="">Kies Rubriek</option>
-                    <?php
-                    foreach(Items::getRubrieken() as $rubriek){
-                        echo "<option value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
-                    } ?>
-                </select>
-                <select id="price" name="order">
-                    <option value="">Kies Volgorde</option>
-                    <option value="High">Duurste Eerst</option>
-                    <option value="Low">Goedkoopste Eerst</option>
-                    <option value="New">Nieuwste Eerst</option>
-                    <option value="Old">Oudste Eerst</option>
-                </select>
-                <select id="numberOfItems" name="numberOfItems">
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-                <input type="text" placeholder="Zoeken" name="search">
-                <button type="submit">Zoeken</button>
+                <div class="row">
+                    <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
+                        <label for="Rubriek">Rubriek</label>
+                        <select class="custom-select" id="Rubriek" name="rubriek" onchange="this.form.submit()">
+                            <option value="">Kies Rubriek</option>
+                            <?php
+                            foreach(Items::getRubrieken() as $rubriek){
+                                echo "<option ";
+                                if($rubriek['Rubrieknummer']==$_POST['rubriek']) echo "selected";
+                                echo " value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
+                            } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
+                        <label for="price">Volgorde</label>
+                        <select class="custom-select" id="price" name="order" onchange="this.form.submit()">
+                            <option value="">Kies Volgorde</option>
+                            <option <?php if($_POST['order'] == "High") echo "selected "?>value="High">Duurste Eerst</option>
+                            <option <?php if($_POST['order'] == "Low") echo "selected "?>value="Low">Goedkoopste Eerst</option>
+                            <option <?php if($_POST['order'] == "New") echo "selected "?>value="New">Nieuwste Eerst</option>
+                            <option <?php if($_POST['order'] == "Old") echo "selected "?>value="Old">Oudste Eerst</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
+                        <label for="numberOfItems">Aantal</label>
+                        <select class="custom-select" id="numberOfItems" name="numberOfItems" onchange="this.form.submit()">
+                            <option <?php if($_POST['numberOfItems'] == 25) echo "selected "?>value=25>25</option>
+                            <option <?php if($_POST['numberOfItems'] == 50) echo "selected "?>value=50>50</option>
+                            <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=100>100</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
+                        <label for="zoekbalk">Zoeken</label>
+                        <input class="form-control" id="zoekbalk" type="text" placeholder="Zoeken" name="search">
+                    </div>
+
+                    <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
+                        <button id="zoekButton" class="zoekButton" type="submit">Zoeken</button>
+                    </div>
+                </div>
             </form>
         </div>
         <?php
@@ -59,7 +81,6 @@
         } else {
             $select[':limit'] = "25";
         }
-
         $items = selectFromCatalog($select);
         $counter = 0;
         foreach ($items as $card):
@@ -75,7 +96,7 @@
                     </a>
                     <div class='card-body'>
                         <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                        <p class="card-text">	&euro; <?= $card['prijs']?></p>
+                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
                         <p class='card-text'><?= $card['Beschrijving'] ?></p>
                         <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                     </div>

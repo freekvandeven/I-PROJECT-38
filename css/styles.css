@@ -768,4 +768,120 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+/*************** VERKOPERPAGINA CSS *************/
+.adminPagina .jumbotron p{
+    margin-top: 20px;
+    margin-bottom: -10px;
+    font-size: 19px;
+}
+
+.adminPagina .container{
+    margin-bottom: 100px;
+}
+
+.adminPagina .container .row div a{
+    text-decoration: none;
+    color: #000;
+}
+
+.adminPagina .container h2{
+    margin-bottom: -10px;
+}
+
+.adminPagina .container .row{
+    margin-bottom: 20px;
+}
+
+.adminPagina .container .row div a .card{
+    border: 2px solid rgba(0, 0, 0, .1);
+    border-radius: 10px;
+    transition: 300ms;
+}
+
+.adminPagina .container .row div a .card:hover{
+    border: 2px solid rgba(165, 105, 189, .4);
+    box-shadow: 0 0 20px rgba(165, 105, 189, .4);
+    background: rgba(165, 105, 189, .03);
+}
+
+.adminPagina .container .row div a .card .card-body h4{
+    color: rgb(80, 80, 80);
+}
+
+.adminPagina .container .row div a .card .card-body img{
+    height: 200px;
+    width: 80%;
+    margin-left: 10%;
+    user-select: none;
+}
+
+@media (max-width: 1200px) {
+    .adminPagina .container .row div a .card .card-body img{
+        width: 50%;
+        margin-left: 25%;
+        height: 180px;
+    }
+}
+
+@media (max-width: 990px) {
+    .adminPagina .container .row div a .card .card-body img{
+        height: 130px;
+    }
+}
+
+@media (max-width: 765px) {
+    .adminPagina .container .row div a .card .card-body img{
+        height: 90px;
+    }
+}
+
+@media (max-width: 575px) {
+    .adminPagina .container .row div a .card .card-body img{
+        width: 40%;
+        margin-left: 30%;
+        height: 150px;
+    }
+}
+
+/*************** CATALOGUSPAGINA CSS *************/
+.catalogusPagina form .row div{
+    margin-right: -20px;
+}
+
+.catalogusPagina form .row div label{
+    font-size: 18px;
+}
+
+.catalogusPagina .filtermenu{
+    margin-top: 30px;
+}
+
+.catalogusForm select, .catalogusForm input{
+    transition: 300ms;
+}
+
+.catalogusForm select:hover, .catalogusForm input:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.catalogusForm select:focus, .catalogusForm input:focus{
+    border-color: rgba(165, 105, 189, 0.8);
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+}
+
+.catalogusForm .zoekButton{
+    margin-top: 36px;
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 18px;
+    color: rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.catalogusForm .zoekButton:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
 

@@ -67,7 +67,7 @@ $offeredItems = Items::getSellerItems($profile_data['Gebruikersnaam']);
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Rating: <?=round(Database::getSumRating($profile_data['Gebruikersnaam'])[""],2)?></h4>
+                        <h4 class="card-title">Rating: <?=round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""],2)?></h4>
                         <form class="ratingForm" action="" method="post">
                             <input type="hidden" name="token" value="<?=$token?>">
                             <input type="hidden" name="user" value="<?=$_GET['id']?>">

@@ -3,6 +3,8 @@ startAutoLoader();
 require_once('database.php');
 checkVisitor();
 checkItemDate();
+//include_once('socket.php');
+
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
 }
@@ -37,6 +39,13 @@ function checkVisitor(){
     checkIP();
 }
 
+function cleanupUploadFolder(){
+    for($i=0;$i<1000;$i++){
+        if(file_exists("upload/items/".$i.".png")){
+            unlink("upload/items/".$i.".png");
+        }
+    }
+}
 function startAutoLoader(){
     #this function loads all classes in classes/models/ whenever they are called in our program.
     spl_autoload_register(function ($class_name) {
@@ -58,8 +67,13 @@ function logPageVisitor(){
 }
 
 function checkIP(){
-    if(checkBlacklist($_SERVER["REMOTE_ADDR"])){
-        header("Location: 404.php");
+    if($_SERVER["REMOTE_ADDR"] != '::1') {
+        if (checkBlackList($_SERVER["REMOTE_ADDR"])) {
+            header("Location: includes/denied.php");
+        }
+        if (!checkWhiteList($_SERVER["REMOTE_ADDR"])) {
+            header("Location: includes/denied.php");
+        }
     }
 }
 function deleteFile($file){

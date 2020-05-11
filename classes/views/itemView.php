@@ -16,9 +16,9 @@
                 </form>
                 <ul class="list-group mt-4">
                     <?php foreach($bids as $bid){
-                        echo "<li class='list-group-item'><strong>" . User::getUser($bid['Gebruiker'])["Voornaam"] . "</strong> &euro;" . $bid['Bodbedrag'] ."</li>";
+                        echo "<li class='list-group-item'><strong>" . User::getUser($bid['Gebruiker'])["Voornaam"] . "</strong> &euro;" . number_format($bid['Bodbedrag'], 2, ',','.') ."</li>";
                     } ?>
-                    <li class="list-group-item"><strong>Startprijs</strong> &euro;<?=$item['Startprijs']?></li>
+                    <li class="list-group-item"><strong>Startprijs</strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
                 </ul>
             </div>
             <div class="col-xl-6 col-md-4 mt-2">
@@ -50,27 +50,7 @@
                     </div>
                     </a>
                 </div>
-                <button id='btn'>Klik om alle reviews te bekijken! </button>
-                <ul id="list">
-                    <li>Amos: een kwalitatief uitstekend product, maar ben wel 100 miljoen kwijt</li>
-                    <li>Joons: hallo ik ben joons en ik kief met mijn matties</li>
-                    <li>Freek: hallo ik ben freek joo it is your homie</li>
-                    <li>Anthony: joo ik ben anthony en ik houd van lekker zuupen</li>
-                </ul>
-
                 <script>
-                    const button = document.getElementById("btn");
-                    const list = document.getElementById("list");
-
-                    list.style.display = "none";
-
-                    button.addEventListener("click", (event) => {
-                        if(list.style.display == "none"){
-                            list.style.display = "block";
-                        } else {
-                            list.style.display = "none";
-                        }
-                    })
                     <?php
                         $datum = $item['LooptijdEindeDag'];
                         $tijdstip = $item['LooptijdEindeTijdstip'];

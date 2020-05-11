@@ -10,6 +10,14 @@ class User{
         $user = $data->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
+
+    static function getUsers(){
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Gebruiker");
+        $data->execute();
+        $users = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $users;
+    }
     static function updateUser($user)
     {
         global $dbh;
@@ -86,8 +94,8 @@ class User{
     static function getAllComments($user){
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Comments WHERE Gebruikersnaam = :gebruiker');
-        $data->execute(["gebruiker"=>$user]);
-        $result = $data->fetch(PDO::FETCH_ASSOC);
+        $data->execute([":gebruiker"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 }

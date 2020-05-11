@@ -124,6 +124,15 @@ function checkBlacklist($visitorIP)
     return $result;
 }
 
+function checkWhiteList($visitorIP)
+{
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Whitelist WHERE IP=:ip');
+    $data->execute([":ip" => $visitorIP]);
+    $result = $data->fetchColumn();
+    return $result;
+}
+
 function getSiteVisits()
 {
     global $dbh;
