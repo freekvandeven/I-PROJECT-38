@@ -5,8 +5,12 @@
 <main>
     <div class="container">
         <h2 class="wachtwoordVergetenTitel">Wachtwoord vergeten</h2>
-        <h5 class="text-center">Vul uw emailadres in.</h5>
-        <h5 class="text-center">Wij sturen u een email met verdere instructies.</h5>
+        <?php
+        echo (empty($_POST['email']))?"
+            <h5 class=\"text-center\">Vul uw emailadres in.</h5>
+            <h5 class=\"text-center\">Wij sturen u een email met verdere instructies.</h5>":"
+            <h5 class=\"text-center\">Als dit een geldig email adress was dan hebben wij een mail verstuurd om uw wachtwoord te resetten.</h5>"
+        ?>
         <form class="wachtwoordVergetenForm" action="" method="POST">
             <div class="centerForm">
                 <div class="col-md-9">

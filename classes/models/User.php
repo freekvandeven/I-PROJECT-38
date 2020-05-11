@@ -1,9 +1,11 @@
 <?php
 
 
-class User{
+class User
+{
 
-    static function getUser($username){
+    static function getUser($username)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username");
         $data->execute([":username" => $username]);
@@ -11,13 +13,15 @@ class User{
         return $user;
     }
 
-    static function getUsers(){
+    static function getUsers()
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM Gebruiker");
         $data->execute();
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+
     static function updateUser($user)
     {
         global $dbh;
@@ -79,23 +83,44 @@ class User{
         return $result[0];
     }
 
-    static function makeUser($username){
+    static function makeUser($username)
+    {
         global $dbh;
         $data = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
         $data->execute([":username" => $username]);
     }
 
-    static function reviewUser($user, $giver, $feedback){
+    static function reviewUser($user, $giver, $feedback)
+    {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Comments (Gebruikersnaam, FeedbackGever, Feedback) VALUES (:gebruiker, :gever, :feedback)');
-        $data->execute([":gebruiker"=>$user,":gever"=>$giver,":feedback"=>$feedback]);
+        $data->execute([":gebruiker" => $user, ":gever" => $giver, ":feedback" => $feedback]);
     }
 
-    static function getAllComments($user){
+    static function getAllComments($user)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT * FROM Comments WHERE Gebruikersnaam = :gebruiker');
-        $data->execute([":gebruiker"=>$user]);
+        $data->execute([":gebruiker" => $user]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    static function validateEmail($email)
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT count(Mailbox) FROM gebruiker WHERE Mailbox = :email');
+        $data->execute([":email" => $email]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];
+    }
+
+    static function getUserWithEmail($email)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Gebruiker WHERE Mailbox = :email");
+        $data->execute([":email" => $email]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];
     }
 }
