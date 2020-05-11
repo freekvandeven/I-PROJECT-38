@@ -46,9 +46,7 @@
                         <?php endif; ?>
                         <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                         <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
-                        <p>Rating:<?php $rating = Database::getSumRating($profile_data['Gebruikersnaam']) /
-                        Database::getAmountRatings($profile_data['Gebruikersnaam']);
-                        echo $rating?></p>
+                        <p>Rating:<?=round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""],2)?></p>
                     </div>
                     </a>
                 </div>

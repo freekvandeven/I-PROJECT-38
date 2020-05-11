@@ -43,7 +43,7 @@ class Database{
         $data->execute([":verkoper" => $seller,":rating" => $rating]);
     }
 
-    static function getSumRating($username)
+    static function getAvgRating($username)
     {
         global $dbh;
         $data = $dbh->prepare('SELECT AVG(cast(Rating as Float)) FROM Beoordeling WHERE Gebruikersnaam = :Gebruikersnaam');
