@@ -123,7 +123,7 @@ function notifySeller($seller, $id, $price){
     $variables = [];
     $variables["username"] = $user['Voornaam'];
     $variables['id'] = $id;
-    $variables['offer'] = $price;
+    $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
 }
 
