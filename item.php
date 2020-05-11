@@ -11,23 +11,27 @@ if(checkPost()){
         $startPrijs = Items::getItem($ref)["Startprijs"];
 
         // bepalen van startprijs
-        if($startPrijs >= 10 && $startPrijs <= 25){
-            $minimumIncrease = ($highestBid / 100) * 0.028;
+        if($startPrijs < 10){
+            $percentage = 0.03;
+        } else if($startPrijs >= 10 && $startPrijs <= 25){
+           $percentage = 0.028;
         } else if ($startPrijs > 25 && $startPrijs <= 50){
-            $minimumIncrease = ($highestBid / 100) * 0.026;
+            $percentage = 0.026;
         } else if ($startPrijs > 50 && $startPrijs <= 75){
-            $minimumIncrease = ($highestBid / 100) * 0.025;
+            $percentage = 0.025;
         } else if($startPrijs > 75 && $startPrijs <= 100){
-            $minimumIncrease = ($highestBid / 100) * 0.021;
+            $percentage = 0.021;
         } else if($startPrijs > 100 && $startPrijs < 250){
-            $minimumIncrease = ($highestBid / 100) * 0.018;
+            $percentage = 0.018;
         } else if($startPrijs > 250 && $startPrijs < 500){
-            $minimumIncrease = ($highestBid / 100) * 0.013;
+            $percentage = 0.013;
         } else if($startPrijs > 500 && $startPrijs < 750){
-            $minimumIncrease = ($highestBid / 100) * 0.01;
+            $percentage = 0.01;
         } else if($startPrijs > 750){
-            $minimumIncrease = ($highestBid / 100) * 0.005;
+            $percentage = 0.005;
         }
+
+        $minimumIncrease = ($highestBid / 100) * 0.028;
 
         if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
             if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
