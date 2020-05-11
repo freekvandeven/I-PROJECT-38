@@ -31,7 +31,7 @@ if(checkPost()){
             $percentage = 0.005;
         }
 
-        $minimumIncrease = ($highestBid / 100) * 0.028;
+        $minimumIncrease = ($highestBid / 100) * $percentage;
 
         if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
             if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
