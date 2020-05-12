@@ -168,7 +168,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?= $item['Titel'] ?></h5>
-                            <p class="card-text">€ <?= $item['Startprijs'] ?></p>
+                            <p class="card-text">€ <?= round($item['Startprijs'],2) ?></p>
                             <p class="card-text"><?= $item['Beschrijving'] ?></p>
                             <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                         </div>
