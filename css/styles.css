@@ -764,7 +764,12 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 
 /*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
 .profielPaginaVIemandAnders .container .row{
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+.profielPaginaVIemandAnders .lijn{
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    padding-top: 20px;
 }
 
 .profielPaginaVIemandAnders .card-title{

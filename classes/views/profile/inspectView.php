@@ -128,7 +128,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
             </div> <!-- Einde row -->
         </div>
 
-        <h2>Gewonnen veilingen</h2>
+        <h2 class="lijn">Gewonnen veilingen</h2>
         <div class="container">
             <div class="row">
                 <?php $atLeastOneAuctionWon = false;
@@ -160,7 +160,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
             </div>
         </div>
 
-        <h2>Aangeboden veilingen</h2>
+        <h2 class="lijn">Aangeboden veilingen</h2>
         <div class="container">
             <div class="row">
                 <?php $offeredAtLeastOneItem = false;
