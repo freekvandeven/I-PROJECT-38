@@ -47,8 +47,12 @@ if(checkPost()){
 }
 if(!empty($_GET) && isset($_GET['id'])) {
     $item = Items::getItem($_GET['id']);
-    $profile_data = User::getUser($item['Verkoper']);
-    $bids = Items::getBids($_GET['id']);
+    if(!empty($item)) {
+        $profile_data = User::getUser($item['Verkoper']);
+        $bids = Items::getBids($_GET['id']);
+        if($item['Verkoper']!=$_SESSION['name'])
+        Items::addView($_GET['id']);
+    }
 } else {
     header('Location: catalogus.php');
 }

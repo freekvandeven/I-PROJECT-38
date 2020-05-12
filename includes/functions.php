@@ -148,3 +148,37 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     return mail($receiver, $subject, $template, $headers);
 }
+
+function generateCatalog($items)
+{
+    $counter = 0;
+    foreach ($items as $card):
+        if ($counter % 4 == 0) {
+            echo "<div class='row'>";
+        }
+        ?>
+        <div class='col-lg-3'>
+            <div class='card'>
+                <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
+                    <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top'
+                         alt='Productnaam'>
+                </a>
+                <div class='card-body'>
+                    <h5 class='card-title'><?= $card['Titel'] ?></h5>
+                    <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
+                    <p class='card-text'><?php if(strlen($card['Beschrijving'])<200) echo $card['Beschrijving']; ?></p>
+                    <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
+                </div>
+                <div class='card-footer'>
+                    <!-- Display the countdown timer in an element -->
+                    <p id="timer-<?=$counter?>"></p>
+                </div>
+            </div>
+        </div>
+        <?php
+        $counter++;
+        if ($counter % 4 == 0) {
+            echo "</div>";
+        }
+    endforeach;
+}

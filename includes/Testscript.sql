@@ -129,6 +129,7 @@ CREATE TABLE Voorwerp(
 	LooptijdEindeTijdstip		VARCHAR(8)		NOT NULL,
 	VeilingGesloten				CHAR(4)			NOT NULL,
 	Verkoopprijs				NUMERIC(19, 7)	NULL,
+	Views                       INTEGER(20)     DEFAULT 0,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
 
 );

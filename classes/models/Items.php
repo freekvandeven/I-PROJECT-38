@@ -124,9 +124,15 @@ class Items
     {
         global $dbh;
         $data = $dbh->prepare('SELECT count(*) FROM Voorwerp WHERE Verkoper = :verkoper AND Koper = :koper');
-        $data->execute([":koper"=>$koper,':verkoper'=>$verkoper]);
+        $data->execute([":koper" => $koper, ':verkoper' => $verkoper]);
         $result = $data->fetchColumn();
         return $result;
     }
 
+    static function addView($id)
+    {
+        global $dbh;
+        $data = $dbh->prepare('UPDATE Voorwerp set Views = Views + 1 where voorwerpnummer = :id');
+        $data->execute(["id"=>$id]);
+    }
 }

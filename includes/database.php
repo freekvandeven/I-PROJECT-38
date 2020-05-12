@@ -51,7 +51,7 @@ function selectFromCatalogsMSSQL($orders)
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
     $sql = "SELECT * FROM (SELECT *, ISNULL(hoogstebod ,Startprijs) as prijs
-            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp from bod
+            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp from bod WHERE Bodbedrag NOT LIKE '%[^0-9]%'
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
             where VeilingGesloten = 'Nee') as combinetable";
