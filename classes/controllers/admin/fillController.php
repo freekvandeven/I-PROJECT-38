@@ -28,10 +28,9 @@ $dbh->exec("ALTER TABLE Rubriek CHECK CONSTRAINT FK_ParentRubriek");
 #step 2.1 get all folders
 $dirs = array_filter(glob('SQL/*'), 'is_dir');
 # step 2.2
-//$currencies = [];
+
 foreach($dirs as $dir) {
 
-    /*
     # step 3 insert the new users
 
     # step 3.1 get the file
@@ -49,7 +48,7 @@ foreach($dirs as $dir) {
 
         $dbh->query(substr($insert, 0, strrpos($insert, ",")) . ')');
     }
-    */
+
 
 
     # step 4 insert items
@@ -57,74 +56,84 @@ foreach($dirs as $dir) {
     # step 4.1 get filenames
     $allfiles = scandir($dir,0);
     $files = array_diff($allfiles, array('.', '..', 'CREATE Users.sql'));
+
     # step 4.2 loop over the files
     $dbh->exec("ALTER TABLE Voorwerp NOCHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
     //$dbh->exec("DELETE FROM Voorwerp WHERE Betalingswijze='niks'");
-    foreach($files as $file) {
 
-        #INSERT Items(ID,Titel,Categorie,Postcode,Locatie,Land,Verkoper,Prijs,Valuta,Conditie,Thumbnail,Beschrijving) VALUES (120668876689,'DEN BOL Fly High Quart Pole Wakeboard + Wasserski Tower Zugstange Edelstahl neu ',14385,'67547','Duitsland','DE','hausboot56','699.0','EUR','Nieuw','img120668876689.jpg','<p align="center"><font face="Times" size="5"><strong>DEN BOL Fly High Quart Pole </strong></font></p>
-        $fileText = file_get_contents($dir . "/" . $file);
+    //$files = array_diff($files, ['9939-Scooters en brommers.sql']);
+        foreach ($files as $file) {
+            #INSERT Items(ID,Titel,Categorie,Postcode,Locatie,Land,Verkoper,Prijs,Valuta,Conditie,Thumbnail,Beschrijving) VALUES (120668876689,'DEN BOL Fly High Quart Pole Wakeboard + Wasserski Tower Zugstange Edelstahl neu ',14385,'67547','Duitsland','DE','hausboot56','699.0','EUR','Nieuw','img120668876689.jpg','<p align="center"><font face="Times" size="5"><strong>DEN BOL Fly High Quart Pole </strong></font></p>
+            $fileText = file_get_contents($dir . "/" . $file);
 
-        # step 4.3 Split file into items
-        $splitFile = explode("INSERT Items",$fileText);
-        //$refactorFile = str_replace("INSERT Items(ID,Titel,Categorie,Postcode,Locatie,Land,Verkoper,Prijs,Valuta,Conditie,Thumbnail,Beschrijving)", "INSERT INTO Voorwerp(Voorwerpnummer,Titel,)",$file);
+            # step 4.3 Split file into items
 
-        # step 4.4 split on item parts
-        array_shift($splitFile);
-        foreach($splitFile as $item) {
-            $splitParts = explode("INSERT", $item);
-            //array_shift($splitParts);
+            $splitFile = explode("INSERT Items", $fileText);
+            //$refactorFile = str_replace("INSERT Items(ID,Titel,Categorie,Postcode,Locatie,Land,Verkoper,Prijs,Valuta,Conditie,Thumbnail,Beschrijving)", "INSERT INTO Voorwerp(Voorwerpnummer,Titel,)",$file);
 
-            # step 4.5 insert item
-            $itemInsertParts = explode(") VALUES (", $splitParts[0]);
-            $output = preg_split("/(\'\,\'|\'\,|\,\')/", $itemInsertParts[1]);
+            # step 4.4 split on item parts
+            array_shift($splitFile);
+            foreach ($splitFile as $item) {
+                $splitParts = explode("INSERT", $item);
+                //array_shift($splitParts);
+
+                # step 4.5 insert item
+                $itemInsertParts = explode(") VALUES (", $splitParts[0]);
+                $output = preg_split("/(\'\,\'|\'\,|\,\')/", $itemInsertParts[1]);
 
 
-            $voorwerpNummer = $output[0];
-            $titel = $output[1];
-            $category = $output[2];
-            $postcode = $output[3];
-            $locatie = $output[4];
-            $land = $output[5];
-            $verkoper = $output[6];
-            $prijs = calculateCurrency($output[7], $output[8]);
-            $beschrijving = $output[11];
-            $currencies[] = $output[8];
-            /*
-            $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, Looptijd, LooptijdBeginDag, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeDag, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $data = $dbh->prepare($sql);
-            $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, 10,'2020-06-20', '1900-01-01 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30', '1900-01-01 12:00:00:000', 'Nee'));
-            $sql = "INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)";
-            $data = $dbh->prepare($sql);
-            $itemID = Items::get_ItemId();
-            $data->execute(array($itemID, $category));
-            $imagelink = str_replace("img", "dt_1_", $output[10]);
-            //store file with new autoincrementId as id.png
-            imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/pics/' . $imagelink )), 'upload/items/' . $itemID . '.png');
-            */
+                $voorwerpNummer = $output[0];
+                $titel = $output[1];
+                $category = $output[2];
+                $postcode = $output[3];
+                $locatie = $output[4];
+                $land = $output[5];
+                $verkoper = $output[6];
+                $prijs = calculateCurrency($output[7], $output[8]);
+                $beschrijving = $output[11];
+                $currencies[] = $output[8];
 
-            # step 4.6 insert images in bestanden
-            //array_shift($splitParts);
+                $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, Looptijd, LooptijdBeginDag, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeDag, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $data = $dbh->prepare($sql);
+                $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, 10,'2020-06-20', '1900-01-01 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30', '1900-01-01 12:00:00:000', 'Nee'));
+                $sql = "INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)";
+                $data = $dbh->prepare($sql);
+                $itemID = Items::get_ItemId();
+                $data->execute(array($itemID, $category));
+                $imagelink = str_replace("img", "dt_1_", $output[10]);
+                //store file with new autoincrementId as id.png
+                imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/pics/' . $imagelink )), 'upload/items/' . $itemID . '.png');
 
-            $output = "";
-            foreach ($splitParts as $image) {
-                $output .= $image;
 
+                # step 4.6 insert images in bestanden
+                array_shift($splitParts); // remove first insert for item
+
+
+                foreach ($splitParts as $image) {
+                    # put image into database
+
+                }
             }
         }
-    }
-    //die(print_r($currencies));
+
+
 }
-//die(print_r($currencies));
+$dbh->exec("ALTER TABLE Voorwerp CHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
+
 
 function removeBadElements($input){
     return $input;
 }
 
 function calculateCurrency($amount, $currency){
-    $currencie = array('EUR', 'GBP', 'USD', 'test');
-    return $amount;
+    //$currencie = array('EUR', 'GBP', 'USD', 'test');
+    $multiplier = 1.0;
+    if($currency == 'USD'){
+        $multiplier = 0.92;
+    } else if($currency == 'GBP'){
+        $multiplier = 1.14;
+    }
+    return $amount * $multiplier;
 }
 
-
-
+?>
