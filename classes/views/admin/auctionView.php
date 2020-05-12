@@ -8,7 +8,8 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
         <p>Op deze pagina kunt u alle veilingen inzien.</p>
     </div>
     <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
-        <h2 class="text-center">Bekijk alle veilingen:</h2>
+        <h2 class="text-center">Bekijk alle veilingen</h2>
+        <h5 class="text-center">Dit is een overzicht van alle veilingen die ooit hebben bestaan.</h5>
         <div class="legendaButton text-right">
             <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Legenda</button>
             <div class="dropdown-menu dropdown-menu-right">
