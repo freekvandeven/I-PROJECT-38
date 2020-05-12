@@ -50,6 +50,37 @@
                     </div>
                     </a>
                 </div>
+
+                <div id="info-session-account">
+                    <?php
+                    /* het ingelogde account */
+                    $usernameSession = $_SESSION['name'];
+                    echo htmlspecialchars($usernameSession);
+                    ?>
+                </div>
+
+                <div id="info-highestbid-account">
+                    <?php
+                    /* het account wat het hoogste heeft geboden */
+                    $usernameBuyer = Items::getHighestBid($ref)['Gebruiker'];
+                    echo htmlspecialchars($usernameBuyer);
+                    ?>
+                </div>
+
+                <div id="voorwerp">
+                    <?php
+                    $naamVoorwerp = Items::getItem($ref)['Titel'];
+                    echo htmlspecialcharacter($naamVoorwerp)
+                    ?>
+                </div>
+
+                <div id="info-seller-account">
+                    <?php
+                    $usernameSeller = Items::getItem($ref)['Verkoper'];
+                    echo htmlspecialchars($usernameSeller);
+                    ?>
+                </div>
+
                 <script>
                     <?php
                         $datum = $item['LooptijdEindeDag'];

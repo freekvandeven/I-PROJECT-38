@@ -22,6 +22,34 @@
             if (distance < 0) {
                 clearInterval(x);
                 el.innerHTML = "EXPIRED";
+
+                // data van ingelogde gebruiker
+                var infoSessionAccount = document.getElementById("info-session-account");
+                var accSession = infoSessionAccount.textContent;
+                document.write(accSession);
+
+                // data van gebruiker met het hoogste bod
+                var infoHighestBidAccount = document.getElementById("info-highestbid-account");
+                var accHighestBid = infoHighestBidAccount.textContent;
+                document.write(accHighestBid);
+
+                // data van gebruiker met het hoogste bod
+                var infoSellerAccount = document.getElementById("info-seller-account");
+                var accSeller = infoSellerAccount.textContent;
+                document.write(accSeller);
+
+                // het voorwerp
+                var infoItemName = document.getElementById("voorwerp");
+                var itemName = infoItemName.textContent;
+                document.write(itemName);
+
+                if(accSession === accHighestBid){
+                    document.write("Notificatie sturen naar koper");
+                    pushNotificationToBuyer(itemName);
+                } else if(accSession === accSeller){
+                    document.write("Notificatie sturen naar verkoper");
+                    pushNotificationToSeller(itemName);
+                }
             }
         }, 1000);
     }

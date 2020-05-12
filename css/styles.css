@@ -885,3 +885,6 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     background: rgb(165, 105, 189);
 }
 
+#info-session-account, #info-highestbid-account, #info-seller-account {
+    display: none;
+}
