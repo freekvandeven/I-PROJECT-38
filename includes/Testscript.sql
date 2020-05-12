@@ -59,7 +59,7 @@ CREATE TABLE Beoordeling (
     Gebruikersnaam              VARCHAR(20)     NOT NULL,
     GegevenDoor                 VARCHAR(20)     NOT NULL,
     Rating                      INTEGER(1)      NOT NULL,
-    CONSTRAINT PK_Beoordeling PRIMARY KEY(Gebruikersnaam, GegevenDoor)
+    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr, Gebruikersnaam, GegevenDoor)
 );
 
 CREATE TABLE Comments (
