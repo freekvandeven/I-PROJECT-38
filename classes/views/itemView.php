@@ -1,6 +1,5 @@
 <main class="veilingBekijkenPagina">
     <div class="container">
-
         <div class="row">
             <div class="itemInformatie col-xl-8 col-md-8">
                 <div class="card">
