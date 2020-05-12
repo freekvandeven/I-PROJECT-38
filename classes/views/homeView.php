@@ -55,9 +55,9 @@
 
     <!-- De snelst aflopende producten -->
     <div class="productsList">
-        <h3>Bekijk de snelst aflopende producten:</h3>
+        <h3>Bekijk hier de de meest trending producten:</h3>
         <?php
-        $items = selectFromCatalog(array(":limit" => "8")); // select 8 products from catalog
+        $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
         generateCatalog($items);
         ?>
         <script>
@@ -77,12 +77,5 @@
             }
             ?>
         </script>
-    </div>
-    <div class="productsList">
-        <h3>Bekijk hier de meest bekeken producten</h3>
-        <?php
-        $items = selectFromCatalog(array(":order" => "Views DESC", ":limit" => "8"));
-        generateCatalog($items);
-        ?>
     </div>
 </main>
