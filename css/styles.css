@@ -410,42 +410,88 @@ body{
 }
 
 /*************** Mijn Veilingen & Favoriete veilingen CSS *************/
-.mijnVeilingenBox, .favorietenBox{
-    margin: 0 20%;
-}
-
-.mijnVeilingenBox h2, .favorietenBox h2{
+.mijnVeilingenPagina h2, .mijnFavorietenPagina h2{
     font-weight: normal;
     margin-top: 75px;
 }
 
-.mijnVeilingenBox h5, .favorietenBox h5{
+.mijnVeilingenPagina h5, .mijnFavorietenPagina h5{
     margin-top: 30px;
     font-weight: normal;
 }
 
-.mijnVeilingenBox .table-responsive, .favorietenBox .table-responsive{
+.mijnVeilingenPagina .tabel, .mijnFavorietenPagina .tabel{
     margin-top: 30px;
 }
 
-.mijnVeilingenBox .gaTerugKnop, .favorietenBox .gaTerugKnop{
+.mijnVeilingenPagina .gaTerugKnop, .mijnFavorietenPagina .gaTerugKnop{
     margin-top: 100px;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a, .favorietenBox .table-responsive table tbody tr td a{
+.mijnVeilingenPagina .table-responsive a, .mijnFavorietenPagina .table-responsive a{
     color: rgb(165, 105, 189);
-    text-decoration: underline;
-    text-decoration-color: rgb(235, 235, 235);
-    transition: 400ms;
 }
 
-.mijnVeilingenBox .table-responsive table tbody tr td a:hover, .favorietenBox .table-responsive table tbody tr td a:hover{
+.mijnVeilingenPagina .table-responsive a:hover, .mijnFavorietenPagina .table-responsive a:hover{
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.mijnVeilingenBox div p a, .favorietenBox div p a{
+.mijnVeilingenPagina .table-responsive thead tr, .mijnFavorietenPagina .table-responsive thead tr{
+    background: rgba(165, 105, 189, .7);
+}
+
+
+.mijnVeilingenPagina .gaTerugKnop a, .mijnFavorietenPagina .gaTerugKnop a{
+    text-decoration: underline;
     text-decoration-color: white;
+    color: #000;
     transition: 200ms;
+    font-size: 18px;
+}
+
+.mijnVeilingenPagina .gaTerugKnop a:hover, .mijnFavorietenPagina .gaTerugKnop a:hover{
+    padding-left: 15px;
+    color: rgb(165, 105, 189);
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.mijnVeilingenPagina .legendaDropdownButton, .mijnFavorietenPagina .legendaDropdownButton{
+    color: rgb(165, 105, 189);
+    font-size: 18px;
+    border: none;
+    background: none;
+    transition: 300ms;
+    padding: 3px 10px;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+.mijnVeilingenPagina .legendaDropdownButton:hover,
+.mijnVeilingenPagina .legendaDropdownButton:focus,
+.mijnFavorietenPagina .legendaDropdownButton:hover,
+.mijnFavorietenPagina .legendaDropdownButton:focus{
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.mijnVeilingenPagina .dropdown-menu{
+    max-width: 350px;
+}
+
+.mijnFavorietenPagina .dropdown-menu{
+    max-width: 420px;
+}
+
+.mijnVeilingenPagina .dropdown-item:active, .mijnVeilingenPagina .dropdown-item:hover, .mijnFavorietenPagina .dropdown-item:active, .mijnFavorietenPagina .dropdown-item:hover{
+    background: none;
+}
+
+.mijnVeilingenPagina .dropdown-menu th, .mijnFavorietenPagina .dropdown-menu th{
+    border-top: none;
+    padding-top: 5px;
+}
+
+.mijnVeilingenPagina .dropdown-menu td, .mijnFavorietenPagina .dropdown-menu td{
+    font-size: 1em;
 }
 
 /*************** ProfielPagina CSS *************/
@@ -507,18 +553,35 @@ body{
 }
 
 .profielPagina .verkopersPaginaButton{
-    background: rgb(165, 105, 189);
+    font-size: 18px;
     color: #fff;
-    border-color: rgb(165, 105 ,189);
+    background: rgb(165, 105, 189);
+    padding: 5px 10px;
     border-radius: 10px;
-    padding: 10px 30px;
-    font-size: 17px;
     transition: 200ms;
 }
 
 .profielPagina .verkopersPaginaButton:hover{
     text-decoration: none;
     background: rgb(126, 66, 149);
+}
+
+@media (max-width: 575px) {
+    .profielPagina .container .container .verkopersPaginaButtonBox{
+        margin-top: 30px;
+    }
+
+    .profielPagina .verkopersPaginaButton{
+        background: none;
+        color: rgb(165, 105, 189);
+        text-decoration: underline;
+        text-decoration-color: rgb(165, 105, 189);
+    }
+
+    .profielPagina .verkopersPaginaButton:hover{
+        background: none;
+        text-decoration: underline;
+    }
 }
 
 /*************** WACHTWOORD VERGETEN CSS *************/
@@ -699,12 +762,25 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-bottom: -20px;
 }
 
-/*************** VERKOPERPRAGINA CSS *************/
-.verkopersPagina .container .row{
-    margin-bottom: 50px;
+/*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
+.profielPaginaVIemandAnders .container .row{
+    margin-bottom: 40px;
 }
 
-.verkopersPagina .container .row div .card .card-body div button{
+.profielPaginaVIemandAnders .lijn{
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    padding-top: 20px;
+}
+
+.profielPaginaVIemandAnders .card-title{
+    font-weight: normal;
+}
+
+.profielPaginaVIemandAnders .container .container .row div .card .card-body .card-img{
+    margin-bottom: 20px;
+}
+
+.profielPaginaVIemandAnders .container .row div .card .card-body div button{
     background: none;
     color: rgb(165, 105, 189);
     border: 2px solid rgb(165, 105, 189);
@@ -713,20 +789,21 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-bottom: 10px;
 }
 
-.verkopersPagina .container .row div .card .card-body div button:hover, .verkopersPagina .container .row div .card .card-body div button:focus{
+.profielPaginaVIemandAnders .container .row div .card .card-body div button:hover,
+.profielPaginaVIemandAnders .container .row div .card .card-body div button:focus{
     background: rgb(165, 105, 189);
     color: #fff;
     border-color: rgba(165, 105, 189, 0.8);
     box-shadow: 0 0 10px rgb(165, 105, 189);
 }
 
-.verkopersPagina .container .row div .card .card-body div div{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div{
     margin-top: 2px;
     border: 2px solid rgb(165, 105, 189);
     border-radius: 10px;
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div{
     border: none;
     margin: 0;
 }
@@ -735,28 +812,28 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     width: 89%;
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea{
     margin-top: 10px;
     border-radius: 10px;
     transition: 200ms;
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea:hover{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea:hover{
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm div textarea:focus{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea:focus{
     border-color: rgba(165, 105, 189, .6);
     box-shadow: 0 0 15px rgba(165, 105, 189, .6);
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm button{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm button{
     width: 60%;
     margin: 20px 0 0 20%;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.verkopersPagina .container .row div .card .card-body div div .voegReviewToeForm button:hover{
+.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm button:hover{
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
@@ -765,18 +842,18 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     font-size: 18px;
 }
 
-.verkopersPagina .container .row div .card .card-body a{
+.profielPaginaVIemandAnders .container .row div .card .card-body a{
     border: none;
     box-shadow: none;
 }
 
-.verkopersPagina .container .row div .card .card-body a:hover{
+.profielPaginaVIemandAnders .container .row div .card .card-body a:hover{
     background: none;
     box-shadow: none;
     color: rgb(165, 105, 189);
 }
 
-.verkopersPagina .ratingForm .ratingButton{
+.profielPaginaVIemandAnders .ratingForm .ratingButton{
     margin-top: 20px;
     padding: 2px 40px;
     background: #fff;
@@ -787,33 +864,51 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.verkopersPagina .ratingForm .ratingButton:hover{
+.profielPaginaVIemandAnders .ratingForm .ratingButton:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.verkopersPagina .container .profielButtonBox{
+.profielPaginaVIemandAnders .container .profielButtonBox{
     margin-bottom: -5px;
     margin-top: -40px;
 }
 
-.verkopersPagina .container .profielButtonBox .profielButton{
+.profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
     background: rgb(165, 105, 189);
     color: #fff;
-    padding: 10px 30px;
+    padding: 5px 15px;
     border-radius: 10px;
     font-size: 17px;
     transition: 200ms;
 }
 
-.verkopersPagina .container .profielButtonBox .profielButton:hover{
+.profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
     text-decoration: none;
     background: rgb(126, 66, 149);
 }
 
+@media (max-width: 575px) {
+    .profielPaginaVIemandAnders .container .profielButtonBox{
+        margin-top: 30px;
+    }
+
+    .profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
+        background: none;
+        color: rgb(165, 105, 189);
+        text-decoration: underline;
+        text-decoration-color: rgb(165, 105, 189);
+    }
+
+    .profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
+        background: none;
+        text-decoration: underline;
+    }
+}
+
 /*************** ADMIN-HOOFDPAGINA CSS *************/
-.adminPagina .jumbotron p{
+.adminPagina .jumbotron p, .adminPaginaSub .jumbotron p{
     margin-top: 20px;
     margin-bottom: -10px;
     font-size: 19px;
@@ -969,24 +1064,28 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     margin-top: 50px;
 }
 
+.adminPaginaSub .container h5{
+    margin-top: 20px;
+}
+
 .adminPaginaSub .legendaButton{
     margin-top: -42px;
 }
 
 .adminPaginaSub .legendaButton .legendaDropdownButton{
-    background: #fff;
+    background: none;
     color: rgb(165, 105, 189);
     font-size: 17px;
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 10px;
-    transition: 200ms;
-    padding: 5px 15px;
+    border: none;
+    transition: 300ms;
+    padding: 3px 10px;
+    text-decoration: underline;
+    text-decoration-color: #fff;
 }
 
-.adminPaginaSub .legendaButton .legendaDropdownButton:focus, .adminPaginaSub .legendaButton .legendaDropdownButton:hover{
-    background: rgb(165, 105, 189);
-    color: #fff;
-    box-shadow: 0 0 7px rgb(165, 105, 189);
+.adminPaginaSub .legendaButton .legendaDropdownButton:focus,
+.adminPaginaSub .legendaButton .legendaDropdownButton:hover{
+    text-decoration-color: rgb(165, 105, 189);
 }
 
 .adminPaginaSub .container .dropdown-menu{
@@ -1042,7 +1141,7 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     border: none;
 }
 
-@media (max-width: 751px) {
+@media (max-width: 900px) {
     .adminPaginaSub .legendaButton{
         margin-top: 25px;
     }
