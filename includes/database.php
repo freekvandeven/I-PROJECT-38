@@ -15,7 +15,7 @@ function selectFromCatalog($orders)
         $sql = "SELECT *, IFNULL(MAX(cast(bodbedrag as decimal(10,2))),Startprijs) as prijs
                 FROM Voorwerp v
                 LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp
-                WHERE VeilingGesloten = 'Nee'";
+                WHERE VeilingGesloten = 'Nee' AND  Bodbedrag NOT LIKE '%[^0-9]%'";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
                 if (strpos($key, ":where") !== false) {
