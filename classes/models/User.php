@@ -138,6 +138,14 @@ class User
         $data->execute([":gebruiker"=>$name]);
         $data = $dbh->prepare("UPDATE Voorwerp SET Koper = NULL WHERE Koper = :gebruiker");
         $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Beoordeling SET Gebruikersnaam = NULL WHERE Gebruikersnaam = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Beoordeling SET GegevenDoor = NULL WHERE GegevenDoor = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Comments SET Gebruikersnaam = NULL WHERE Gebruikersnaam = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Comments SET FeedbackGever = NULL WHERE FeedbackGever = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
         $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
         return $data->execute([":gebruiker"=>$name]);
     }

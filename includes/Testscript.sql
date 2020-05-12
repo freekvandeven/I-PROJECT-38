@@ -56,17 +56,18 @@ CREATE TABLE Gebruiker(
 
 CREATE TABLE Beoordeling (
     BeoordelingsNr 				INTEGER(20)		NOT NULL AUTO_INCREMENT,
-    Gebruikersnaam              VARCHAR(20)     NOT NULL,
-    GegevenDoor                 VARCHAR(20)     NOT NULL,
+    Gebruikersnaam              VARCHAR(20)     NULL,
+    GegevenDoor                 VARCHAR(20)     NULL,
     Rating                      INTEGER(1)      NOT NULL,
-    CONSTRAINT PK_Beoordeling PRIMARY KEY(Gebruikersnaam, GegevenDoor)
+    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr)
 );
 
 CREATE TABLE Comments (
-    Gebruikersnaam              VARCHAR(20)     NOT NULL,
-    FeedbackGever               VARCHAR(20)     NOT NULL,
+    FeedBackNr                  INTEGER(20)     NOT NULL AUTO_INCREMENT,
+    Gebruikersnaam              VARCHAR(20)     NULL,
+    FeedbackGever               VARCHAR(20)     NULL,
     Feedback                    VARCHAR(255)    NOT NULL,
-    CONSTRAINT PK_Comments PRIMARY KEY(Gebruikersnaam, FeedbackGever)
+    CONSTRAINT PK_Comments PRIMARY KEY(FeedBackNr)
 );
 
 CREATE TABLE GebruikersTelefoon(

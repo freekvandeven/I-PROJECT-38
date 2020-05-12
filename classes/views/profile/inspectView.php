@@ -40,7 +40,6 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                     </div>
                 </div>
             </div>
-
             <div class="col-xl-4 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
@@ -83,7 +82,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                             </div>
                         <?php endif;
                         foreach(User::getAllComments($profile_data_inspect_user['Gebruikersnaam']) as $comment):?>
-                            <p><b><?=$comment['FeedbackGever']?></b><br><?=$comment['Feedback']?></p>
+                            <p><b><?=isset($comment['FeedbackGever'])?$comment['FeedbackGever']:"Deleted User"?></b><br><?=isset($comment['FeedbackGever'])?$comment['Feedback']:"<del>".$comment['Feedback']."</del>"?></p>
                         <?php endforeach;?>
                         <p><b>Admin</b><br>Dit is een goede verkoper, duidelijk en specifiek.</p>
                     </div>
