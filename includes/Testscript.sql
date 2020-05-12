@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Vraag;
 CREATE TABLE Bod(
 	Voorwerp					INTEGER(20)		NOT NULL,
 	Bodbedrag					VARCHAR(8)		NOT NULL,
-	Gebruiker					VARCHAR(20)		NOT NULL,
+	Gebruiker					VARCHAR(20)		NULL,
 	BodDag						VARCHAR(10)		NOT NULL,
 	BodTijdstip					VARCHAR(10)		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
@@ -122,8 +122,8 @@ CREATE TABLE Voorwerp(
 	LooptijdBeginDag			DATETIME		NOT NULL,
 	LooptijdBeginTijdstip		VARCHAR(8)		NOT NULL,
 	Verzendkosten				NUMERIC(19, 7)	NOT NULL,
-	Verzendinstructies			VARCHAR(50)		NOT NULL,
-	Verkoper					VARCHAR(20)		NOT NULL,
+	Verzendinstructies			VARCHAR(50)		NULL,
+	Verkoper					VARCHAR(20)		NULL,
 	Koper						VARCHAR(20)		NULL,
 	LooptijdEindeDag			DATETIME		NOT NULL,
 	LooptijdEindeTijdstip		VARCHAR(8)		NOT NULL,

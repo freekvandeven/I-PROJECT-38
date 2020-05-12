@@ -43,6 +43,7 @@
                             <option <?php if($_POST['numberOfItems'] == 25) echo "selected "?>value=25>25</option>
                             <option <?php if($_POST['numberOfItems'] == 50) echo "selected "?>value=50>50</option>
                             <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=100>100</option>
+                            <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=10000>TEST</option>
                         </select>
                     </div>
 
@@ -86,8 +87,9 @@
             $select = array_merge($select, $order);
             if (isset($_POST['numberOfItems']))
                 $select[':limit'] = $_POST['numberOfItems'];
-        } else {
-            $select[':limit'] = "25";
+                else{
+                    $select[':limit'] = '25';
+                }
         }
         $items = selectFromCatalog($select);
         generateCatalog($items);

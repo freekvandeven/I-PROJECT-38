@@ -123,4 +123,22 @@ class User
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];
     }
+
+    static function deleteUser($name){
+        global $dbh;
+        $data = $dbh->prepare("ALTER TABLE Bod NOCHECK FK_Bod_gebruikersnaam");
+        $data->execute();
+        $data = $dbh->prepare("UPDATE Bod SET Gebruiker = NULL WHERE Gebruiker = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("ALTER TABLE Bod CHECK FK_Bod_gebruikersnaam");
+        $data->execute();
+        $data = $dbh->prepare("DELETE FROM Verkoper  WHERE Gebruiker = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Voorwerp SET Verkoper = NULL WHERE Verkoper = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("UPDATE Voorwerp SET Koper = NULL WHERE Koper = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
+        return $data->execute([":gebruiker"=>$name]);
+    }
 }

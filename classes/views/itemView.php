@@ -16,9 +16,18 @@
                 </form>
                 <ul class="list-group mt-4">
                     <?php foreach($bids as $bid){
-                        echo "<li class='list-group-item'><strong>" . User::getUser($bid['Gebruiker'])["Voornaam"] . "</strong> &euro;" . number_format($bid['Bodbedrag'], 2, ',','.') ."</li>";
+                        $user = User::getUser($bid['Gebruiker']);
+                        if(!empty($user)){
+                            $user = $user['Voornaam'];
+                            $price = number_format($bid['Bodbedrag'], 2, ',','.');
+                        }
+                        else{
+                            $user = "Deleted User";
+                            $price = "<del>".number_format($bid['Bodbedrag'], 2, ',','.')."</del>";
+                        }
+                        echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
                     } ?>
-                    <li class="list-group-item"><strong>Startprijs</strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
+                    <li class="list-group-item"><strong>Startprijs</strong> &euro; <?=number_format($item['Startprijs'], 2, ',','.')?></li>
                 </ul>
             </div>
             <div class="col-xl-6 col-md-4 mt-2">
