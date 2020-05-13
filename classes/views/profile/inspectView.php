@@ -26,6 +26,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                 </div>
             <?php } ?>
 
+            <!-- PERSOONSGEGEVENS -->
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
@@ -45,6 +46,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                     </div>
                 </div>
 
+                <!-- REVIEWS -->
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
@@ -99,28 +101,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                     </div>
                 </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            Rating: <?= round(Database::getAvgRating($profile_data_inspect_user['Gebruikersnaam'])[""], 2) ?></h4>
-                        <?php
-                        if(empty(Seller::ratedUser($_SESSION['name'],$_GET['id']))&&!empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
-                            <form class="ratingForm" action="" method="post">
-                                <input type="hidden" name="token" value="<?= $token ?>">
-                                <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
-                                <div class="rate">
-                                    <input type="radio" id="star5" name="rate" value="5"/>
-                                    <label for="star5" title="text">5 stars</label>
-                                    <input type="radio" id="star4" name="rate" value="4"/>
-                                    <label for="star4" title="text">4 stars</label>
-                                    <input type="radio" id="star3" name="rate" value="3"/>
-                                    <label for="star3" title="text">3 stars</label>
-                                    <input type="radio" id="star2" name="rate" value="2"/>
-                                    <label for="star2" title="text">2 stars</label>
-                                    <input type="radio" id="star1" name="rate" value="1"/>
-                                    <label for="star1" title="text">1 star</label>
-                                </div>
+                <!-- RATING -->
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
