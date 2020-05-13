@@ -2,16 +2,17 @@
 
 $bootstrapGrid = 'col-xl-4 col-md-6 col-sm-6';
 
-$categories = ['auction', 'user', 'seller', 'statistics', 'addRubriek', 'reset', 'query'];
+$categories = ['auction', 'user', 'seller', 'statistics', 'addRubriek', 'fill', 'reset', 'query'];
 $titles = ['Website', 'Database'];
 $websiteCategoriesAmount = 5;
-$databaseCategoriesAmount = 2;
+$databaseCategoriesAmount = 3;
 $cardTitles = ['Bekijk alle veilingen', 'Bekijk alle gebruikers', 'Bekijk alle verkopers', 'Bekijk website statistieken', 'Voeg een rubriek toe', 'Reset uw database', 'MS SQL Server Query Editor'];
 $cardText = ['Hier is een overzicht te vinden van alle veilingen die ooit hebben bestaan.',
             'Hier is een overzicht te vinden van alle gebruikers.',
             'Hier is een overzicht te vinden van alle verkopers.',
             'Hier zijn de statistieken van uw website te vinden.',
             'Op deze pagina is het mogelijk om een rubriek toe te voegen.',
+            'Op deze pagina kan je de database vullen met data.',
             'Op deze pagina is het mogelijk om de database te resetten.',
             'Bekijk hier het resultaat van uw MS SQL Server query'];
 

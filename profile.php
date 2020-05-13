@@ -14,6 +14,9 @@ if(checkPost()){
         if($_POST['action'] == 'review'){
             require_once('classes/controllers/profile/reviewController.php');
         }
+        if($_POST['action'] == 'delete'){
+            require_once('classes/controllers/profile/deleteController.php');
+        }
     }
 }
 $title = "profile page";

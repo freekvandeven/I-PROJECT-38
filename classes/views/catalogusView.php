@@ -43,6 +43,7 @@
                             <option <?php if($_POST['numberOfItems'] == 25) echo "selected "?>value=25>25</option>
                             <option <?php if($_POST['numberOfItems'] == 50) echo "selected "?>value=50>50</option>
                             <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=100>100</option>
+                            <option <?php if($_POST['numberOfItems'] == 100) echo "selected "?>value=10000>TEST</option>
                         </select>
                     </div>
 
@@ -86,41 +87,12 @@
             $select = array_merge($select, $order);
             if (isset($_POST['numberOfItems']))
                 $select[':limit'] = $_POST['numberOfItems'];
-        } else {
-            $select[':limit'] = "25";
+                else{
+                    $select[':limit'] = '25';
+                }
         }
         $items = selectFromCatalog($select);
-        $counter = 0;
-        foreach ($items as $card):
-            if ($counter % 4 == 0) {
-                echo "<div class='row'>";
-            }
-            ?>
-            <div class='col-lg-3'>
-                <div class='card'>
-                    <div class="itemImage">
-                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                            <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productnaam'>
-                        </a>
-                    </div>
-                    <div class='card-body'>
-                        <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                        <p class='card-text'><?= $card['Beschrijving'] ?></p>
-                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
-                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
-                    </div>
-                    <div class='card-footer'>
-                        <!-- Display the countdown timer in an element -->
-                        <p id="timer-<?=$counter?>"></p>
-                    </div>
-                </div>
-            </div>
-            <?php
-            $counter++;
-            if ($counter % 4 == 0) {
-                echo "</div>";
-            }
-        endforeach;
+        generateCatalog($items);
         ?>
         <script>
             var my_date;

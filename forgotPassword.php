@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once('includes/functions.php');
 //Bepaalt de vraag van de user:
 /*$profile_data = User::getUser($_SESSION['name']);
 foreach(User::getQuestion() as $question) {
@@ -11,7 +11,7 @@ foreach(User::getQuestion() as $question) {
 
 
 $title = "Forgot password";
-require_once('includes/functions.php');
+
 if(isset($_POST['email'])){
         if(User::validateEmail($_POST['email'])>0){
         $user = User::getUserWithEmail($_POST['email']);

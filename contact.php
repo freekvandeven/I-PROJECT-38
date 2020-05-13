@@ -8,8 +8,6 @@ if(checkPost() && isset($_POST['first-name'],$_POST['surname'],$_POST['phone-num
     Database :: getFeedback($_POST['first-name'],$_POST['surname'],$_POST['phone-number'], $_POST['message']);
 }
 
-require_once('includes/functions.php');
-
 require_once 'includes/header.php';
 
 require_once('classes/views/contactView.php');

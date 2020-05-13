@@ -34,7 +34,7 @@ if ($user["Verkoper"]) {
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
                     }
                     //store file with new autoincrementId as id.png
-                    storeImg($itemId,"upload/items/");
+                    storeImg($_FILES['img']['tmp_name'], $itemId,"upload/items/");
                     header("Location: profile.php"); // send person to his item page
                 }
             }else{

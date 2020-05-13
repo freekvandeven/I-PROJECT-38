@@ -25,8 +25,17 @@
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
                             <?php foreach($bids as $bid){
-                                echo "<li class='list-group-item'><strong>" . User::getUser($bid['Gebruiker'])["Voornaam"] . "</strong> &euro;" . number_format($bid['Bodbedrag'], 2, ',','.') ."</li>";
-                            } ?>
+                              $user = User::getUser($bid['Gebruiker']);
+                              if(!empty($user)){
+                                $user = $user['Voornaam'];
+                                $price = number_format($bid['Bodbedrag'], 2, ',','.');
+                              }
+                              else{
+                                $user = "Deleted User";
+                                $price = "<del>".number_format($bid['Bodbedrag'], 2, ',','.')."</del>";
+                              }
+                              echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                              } ?>
                             <li class="list-group-item"><strong>Startprijs: </strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
                         </ul>
 
@@ -82,27 +91,25 @@
                         my_date = my_date.replace(/-/g, "/");
                         var d = new Date(my_date);
                         setupCountDown('timer', d);
-
-                        //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
-                    </script>
-                    <?php if($sent == true) : ?>
-                        <form action="" method="POST">
-                            <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
-                            </div>
-                            <button name="Verzenden" value="Verzenden">Verzenden</button>
-                        </form>
-                    <?php endif; ?>
-                </div>
+                    //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+                </script>
+                <?php if($sent == false) : ?>
+                    <form action="" method="POST">
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <button name="action" value="raten">Verzenden</button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </div>

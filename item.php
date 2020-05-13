@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+
+$sent = false; // no rating has been set
 if(checkPost()){
     checkLogin();
     $ref = $_POST['voorwerp'];
@@ -43,19 +45,23 @@ if(checkPost()){
         $err = "bid is to low";
     }
 
+    if(isset($_POST['action']) && $_POST['action'] == 'raten'){
+        $sent = true;
+        Database::rateSeller($profile_data['Gebruikersnaam'], $_POST['rate']);
+    }
+
     header("Location: item.php?id=$ref");
 }
 if(!empty($_GET) && isset($_GET['id'])) {
     $item = Items::getItem($_GET['id']);
-    $profile_data = User::getUser($item['Verkoper']);
-    $bids = Items::getBids($_GET['id']);
+    if(!empty($item)) {
+        $profile_data = User::getUser($item['Verkoper']);
+        $bids = Items::getBids($_GET['id']);
+        if($item['Verkoper']!=$_SESSION['name'])
+        Items::addView($_GET['id']);
+    }
 } else {
-    header('Location: catalogus.php');
-}
-
-if (!empty($_POST) && isset($_POST['Verzenden'])) {
-    $sent = true;
-    Database::rateSeller($profile_data['Gebruikersnaam'], $_POST['rate']);
+    header('Location: catalogus.php'); // item doesn't exist
 }
 
 $title = "Item Page";

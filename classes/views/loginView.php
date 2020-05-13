@@ -12,12 +12,12 @@
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">
                                 <label for="username">Gebruikersnaam:</label><br>
-                                <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" autofocus required>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Uw gebruikersnaam" autofocus required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : ''; ?>">
                             </div>
                             <!-- Wachtwoord -->
                             <div class="form-group">
                                 <label for="password">Wachtwoord:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Uw wachtwoord" required>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Uw wachtwoord" required value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>">
                             </div>
                             <!-- "Wachtwoord vergeten?" -->
                             <div class="form-group text-left">
