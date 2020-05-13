@@ -78,11 +78,10 @@ CREATE TABLE GebruikersTelefoon(
 );
 
 CREATE TABLE Rubriek(
-	Rubrieknummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
-	Rubrieknaam					VARCHAR(32)		NOT NULL,
-	Rubriek						INTEGER(20)			NULL,
-	Volgnr						INTEGER			NOT NULL,
-	CONSTRAINT PK_Rubriek	PRIMARY KEY	(Rubrieknummer)
+    Rubrieknummer				INTEGER     		NOT NULL,
+    Rubrieknaam					VARCHAR(32)		    NOT NULL,
+    Rubriek						INTEGER 			    NULL,
+    Volgnr						INTEGER	            NOT NULL AUTO_INCREMENT
 );
 
 CREATE TABLE VoorwerpInRubriek(
@@ -113,22 +112,19 @@ CREATE TABLE Verkoper(
 CREATE TABLE Voorwerp(
 	Voorwerpnummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
 	Titel						VARCHAR(100)	NOT NULL,
-	Beschrijving				VARCHAR(255)	NOT NULL,
-	Startprijs					NUMERIC(19, 7)	NOT NULL,
+	Beschrijving				VARCHAR(2000)	NOT NULL,
+	Startprijs					NUMERIC(19, 2)	NOT NULL,
 	Betalingswijze				VARCHAR(50)		NOT NULL,
 	Betalingsinstructie			CHAR(25)		NULL,
 	Plaatsnaam					VARCHAR(255)	NOT NULL,
-	Land						CHAR(10)		NOT NULL,
-	Looptijd					CHAR(6)			NOT NULL,
-	LooptijdBeginDag			DATETIME		NOT NULL,
-	LooptijdBeginTijdstip		VARCHAR(8)		NOT NULL,
+	Land						VARCHAR(50)		NOT NULL,
+	LooptijdBeginTijdstip		DATETIME		NOT NULL,
 	Verzendkosten				NUMERIC(19, 7)	NOT NULL,
 	Verzendinstructies			VARCHAR(50)		NULL,
 	Verkoper					VARCHAR(20)		NULL,
 	Koper						VARCHAR(20)		NULL,
-	LooptijdEindeDag			DATETIME		NOT NULL,
-	LooptijdEindeTijdstip		VARCHAR(8)		NOT NULL,
-	VeilingGesloten				CHAR(4)			NOT NULL,
+	LooptijdEindeTijdstip		DATETIME		NOT NULL,
+	VeilingGesloten			 BIT			NOT NULL,
 	Verkoopprijs				NUMERIC(19, 7)	NULL,
 	Views                       INTEGER(20)     DEFAULT 0,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
@@ -210,6 +206,12 @@ ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
 		ON UPDATE CASCADE
 		ON DELETE NO ACTION;
+
+ALTER TABLE Rubriek
+ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
+        REFERENCES Rubriek (Rubrieknummer)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
 
 insert into Vraag (tekstvraag)
 values(
