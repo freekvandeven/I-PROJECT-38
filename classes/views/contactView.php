@@ -1,7 +1,8 @@
-<main>
+<main class="contactPagina">
     <!-- Welkom tekst: -->
-    <div class="contactpaginaJumbotron jumbotron">
+    <div class="jumbotron">
         <h2 class="display-5">Welkom op de contactpagina van EenmaalAndermaal</h2>
+        <p>Op deze pagina kunt u ons een vraag stellen en/of feedback geven.</p>
     </div>
 
     <div class="container">

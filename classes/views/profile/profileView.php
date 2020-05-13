@@ -7,10 +7,12 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 ?>
 
 <main class="profielPagina">
+    <div class="jumbotron">
+        <h2 class="display-5">Uw EenmaalAndermaal</h2>
+        <p>Op deze pagina kunt u uw gegevens inzien, wijzigen of verwijderen. Ook kunt u al uw activiteiten bijhouden m.b.t. veilingen.</p>
+    </div>
+
     <div class="container">
-        <div class="mijnEenmaalAndermaalTitel">
-            <h2 class="text-center">Mijn EenmaalAndermaal</h2>
-        </div>
 
         <div class="container">
 
@@ -75,7 +77,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                     </div>
                 </div>
             </div> <!-- Eind vd "ROW" -->
-            <h2>Mijn veilingen</h2>
+            <h2 class="tussenLijn">Mijn veilingen</h2>
             <div class="row">
                 <?php
                 if($profile_data['Verkoper']) : ?>

@@ -208,16 +208,9 @@ body{
     background: rgb(255, 255, 255);
 }
 
-/* DE INTRO: BOVENAAN: */
-.jumbotron{
-    padding-left: 12.5%;
-    padding-right: 12.5%;
-    background: rgb(245, 245, 245);
-}
-
 /* DE SLIDESHOW: */
 .slideshow{
-    margin: 60px 12.5% 0 12.5%;
+    margin: 40px 17% 0 17%;
 }
 
 .carousel-item div a h3{
@@ -235,11 +228,20 @@ body{
     text-decoration: none;
 }
 
-/* PRODUCTENLIJST */
-.productsList{
-    margin-top: 100px;
-    padding: 60px 12.5% 30px 12.5%;
+.homePage .products{
+    margin-top: 40px;
+    padding: 30px 17% 150px 17%;
     background: rgb(245, 245, 245);
+}
+
+.homePage .products h3{
+    font-weight: normal;
+    font-size: 30px;
+    text-align: center;
+}
+
+.homePage .products .productsList{
+    margin-top: 20px;
 }
 
 .card{
@@ -495,6 +497,19 @@ body{
 }
 
 /*************** ProfielPagina CSS *************/
+.profielPagina .jumbotron{
+    padding-left: 20%;
+}
+
+.profielPagina .jumbotron p{
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+.profielPagina .container{
+    margin-bottom: 150px;
+}
+
 .profielPagina .mijnEenmaalAndermaalTitel{
     margin-top: 75px;
 }
@@ -539,12 +554,12 @@ body{
     font-weight: bold;
 }
 
-.profielPagina .container .container h2{
+.profielPagina .tussenLijn{
     margin-top: 30px;
     padding-top: 30px;
     font-weight: normal;
     margin-left: -15px;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-top: 1px solid rgba(0, 0, 0, .07);
 }
 
 .profielPagina .container .container .verkopersPaginaButtonBox{
@@ -668,30 +683,39 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /*************** CONTACTPAGINA CSS *************/
-main .contactpaginaJumbotron{
-    margin-bottom: 50px;
+.contactPagina .jumbotron{
+    padding-left: 20%;
 }
 
-main .container h4, main .container h5{
+.contactPagina .jumbotron p{
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.contactPagina .container{
+    margin-bottom: 150px;
+}
+
+.contactPagina .container h4, main .container h5{
     margin-bottom: 20px;
 }
 
-main .container .contactpaginaFormulier{
+.contactPagina .container .contactpaginaFormulier{
     margin-top: 50px;
 }
 
-main .container .contactpaginaFormulier div{
+.contactPagina .container .contactpaginaFormulier div{
     background: rgb(245, 245, 245);
     border-radius: 15px;
     padding: 8px 12px;
 }
 
-main .container .contactpaginaFormulier div div input, main .container .contactpaginaFormulier div div textarea{
+.contactPagina .container .contactpaginaFormulier div div input, main .container .contactpaginaFormulier div div textarea{
     border-radius: 10px;
     transition: 200ms;
 }
 
-main .container .contactpaginaFormulier div div input:focus, main .container .contactpaginaFormulier div div textarea:focus{
+.contactPagina .container .contactpaginaFormulier div div input:focus, main .container .contactpaginaFormulier div div textarea:focus{
     padding-left: 5px;
     border-color: rgba(165, 105, 189, 0.8);
     box-shadow: 0 0 10px rgb(165, 105, 189);
@@ -763,6 +787,19 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 }
 
 /*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
+.profielPaginaVIemandAnders .jumbotron{
+    padding-left: 20%;
+}
+
+.profielPaginaVIemandAnders .jumbotron p{
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+.profielPaginaVIemandAnders .container{
+    margin-bottom: 150px;
+}
+
 .profielPaginaVIemandAnders .container .row{
     margin-bottom: 40px;
 }
@@ -837,6 +874,16 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+.profielPaginaVIemandAnders .container .errorReview{
+    font-size: 17px;
+    padding: 10px 20px 0 20px;
+}
+
+.profielPaginaVIemandAnders .container .errorReviewText{
+    padding: 0 20px;
+    font-size: 17px;
+}
+
 .geenGewonnenVeilingen, .geenAangebodenVeilingen{
     margin: 5px 35px 17px;
     font-size: 18px;
@@ -907,15 +954,59 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     }
 }
 
+.profielPaginaVIemandAnders .container .container .row div .card a .card-img{
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+}
+
+.profielPaginaVIemandAnders .titelLinka{
+    color: #000;
+    transition: 150ms;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+.profielPaginaVIemandAnders .titelLinka:hover{
+    color: rgb(165, 105, 189);
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.itemImage{
+    display: block;
+    height: 350px;
+    overflow: hidden;
+}
+
+.itemImage img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.profielPaginaVIemandAnders .geenReviewMelding{
+    padding: 20px 10px 0 10px;
+    font-size: 17px;
+}
+
+.profielPaginaVIemandAnders .tussenLijn{
+    border-top: .8px solid rgba(0, 0, 0, .1);
+    padding-top: 10px;
+}
+
 /*************** ADMIN-HOOFDPAGINA CSS *************/
+.adminPagina .jumbotron, .adminPaginaSub .jumbotron{
+    padding-left: 20%;
+}
+
+
 .adminPagina .jumbotron p, .adminPaginaSub .jumbotron p{
-    margin-top: 20px;
-    margin-bottom: -10px;
-    font-size: 19px;
+    font-size: 17px;
+    margin-bottom: 0;
 }
 
 .adminPagina .container{
-    margin-bottom: 100px;
+    margin-bottom: 150px;
 }
 
 .adminPagina .container .row div a{
@@ -1197,5 +1288,86 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 
 .adminPaginaSub input[name="newRubriek"]:focus{
     padding-left: 5px;
+}
+
+/******************* VEILING BEKIJKEN ******************/
+.veilingBekijkenPagina .card-header{
+    background: none;
+    font-weight: normal;
+}
+
+.veilingBekijkenPagina .aantalKeerBekeken{
+    margin-top: -36px;
+}
+
+.veilingBekijkenPagina .verkoper .card a{
+    color: #000;
+    text-decoration: none;
+}
+
+.veilingBekijkenPagina .biedingen li{
+    padding: 7px 0 7px 0;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.veilingBekijkenPagina form .plaatsUwBod{
+    margin-top: 10px;
+}
+
+.veilingBekijkenPagina form .inputBod{
+    transition: 200ms;
+}
+
+.veilingBekijkenPagina form .inputBod:focus{
+    box-shadow: 0 0 10px rgba(165, 105, 189, .6);
+    border-color: rgb(165, 105, 189);
+}
+
+.veilingBekijkenPagina .buttonBox button{
+    margin-top: 30px;
+    background: none;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 12px;
+    color: rgb(165, 105, 189);
+    font-size: 18px;
+    width: 100%;
+    transition: 200ms;
+}
+
+.veilingBekijkenPagina .buttonBox button:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+}
+
+.veilingBekijkenPagina .itemInformatie .card-img-top{
+    margin: 20px 5% 20px 5%;
+    max-width: 90%;
+}
+
+.veilingBekijkenPagina .verkoperInformatieBox{
+    margin: 30px 2% 10px 2%;
+}
+
+.veilingBekijkenPagina .verkoperInformatie{
+    margin-top: 20px;
+}
+
+.veilingBekijkenPagina .itemInformatie .card .card-text{
+    margin: 0 5%;
+}
+
+@media (max-width: 1200px){
+    .veilingBekijkenPagina .verkoper .card-img{
+        max-width: 74%;
+        margin-left: 13%;
+    }
+}
+
+@media (max-width: 770px) {
+    .veilingBekijkenPagina .verkoper .card-img{
+        max-width: 64%;
+        margin-left: 18%;
+    }
+
 }
 
