@@ -10,7 +10,7 @@ if (empty($_SESSION['token'])) {
 }
 $token = $_SESSION['token'];
 
-function checkLogin()
+function checkLogin() // check if user is logged in
 {
     if (!isset($_SESSION['loggedin'])) {
         header('Location: login.php');
@@ -40,7 +40,7 @@ function checkVisitor(){
 }
 
 function cleanupUploadFolder(){
-    for($i=0;$i<1000;$i++){
+    for($i=0;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
             unlink("upload/items/".$i.".png");
         }
@@ -76,21 +76,22 @@ function checkIP(){
         }
     }
 }
+
 function deleteFile($file){
     if(file_exists($file)){
         unlink($file);
     }
 }
 
-function checkAdminLogin()
+function checkAdminLogin() //check if person is admin
 {
     if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
-        header('Location: index.php');
+        header('Location: login.php');
         exit();
     }
 }
 
-function createSession($user)
+function createSession($user) // create session for user
 {
     session_regenerate_id();
     $_SESSION['loggedin'] = TRUE;
@@ -98,16 +99,16 @@ function createSession($user)
     $_SESSION['admin'] = $user['Action'];
 }
 
-function setupDatabase()
+function setupDatabase() // setup the database
 {
     global $dbh;
     $sql = file_get_contents('includes/Testscript.sql');
     $data = $dbh->exec($sql);
 }
 
-function storeImg($id,$target_dir)
+function storeImg($files, $id,$target_dir)
 {
-    move_uploaded_file($_FILES['img']['tmp_name'], $target_dir . $id .'.png');
+    move_uploaded_file($files, $target_dir . $id .'.png');
 }
  
 function sendConfirmationEmail($mail, $username, $hash){

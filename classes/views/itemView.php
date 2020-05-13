@@ -72,7 +72,7 @@
 
                     //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
                 </script>
-                <?php if($sent == true) : ?>
+                <?php if($sent == false) : ?>
                     <form action="" method="POST">
                         <div class="rate">
                             <input type="radio" id="star5" name="rate" value="5" />
@@ -86,7 +86,7 @@
                             <input type="radio" id="star1" name="rate" value="1" />
                             <label for="star1" title="text">1 star</label>
                         </div>
-                        <button name="Verzenden" value="Verzenden">Verzenden</button>
+                        <button name="action" value="raten">Verzenden</button>
                     </form>
                 <?php endif; ?>
             </div>

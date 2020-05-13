@@ -2,7 +2,7 @@
 
 # code for filling database with items
 
-/*
+
 # step 1 add categories
 
 $file = file_get_contents('SQL/CREATE Categorieen.sql');
@@ -22,7 +22,7 @@ foreach($inserts as $insert){
 }
 #step 1.5 reapply constraint
 $dbh->exec("ALTER TABLE Rubriek CHECK CONSTRAINT FK_ParentRubriek");
-*/
+
 # step 2 Loop over folders
 
 #step 2.1 get all folders
@@ -100,9 +100,9 @@ foreach($dirs as $dir) {
                 $data = $dbh->prepare($sql);
                 $itemID = Items::get_ItemId();
                 $data->execute(array($itemID, $category));
-                $imagelink = str_replace("img", "dt_1_", $output[10]);
+                //$imagelink = str_replace("img", "dt_1_", $output[10]);
                 //store file with new autoincrementId as id.png
-                imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/pics/' . $imagelink )), 'upload/items/' . $itemID . '.png');
+                imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
 
 
                 # step 4.6 insert images in bestanden
@@ -121,12 +121,11 @@ foreach($dirs as $dir) {
 $dbh->exec("ALTER TABLE Voorwerp CHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
 
 
-function removeBadElements($input){
+function removeBadElements($input){ // remove all bad characters
     return $input;
 }
 
 function calculateCurrency($amount, $currency){
-    //$currencie = array('EUR', 'GBP', 'USD', 'test');
     $multiplier = 1.0;
     if($currency == 'USD'){
         $multiplier = 0.92;

@@ -69,7 +69,7 @@
 
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
-                &copy; 2020 Copyright: EenmaalAndermaal
+                &copy; <?=date("Y")?> Copyright: EenmaalAndermaal
             </div>
 
         </footer>
