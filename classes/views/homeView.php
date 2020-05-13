@@ -1,4 +1,4 @@
-<main>
+<main class="homePage">
 
     <!-- Slideshow: -->
     <div class="slideshow">
@@ -48,59 +48,61 @@
     </div> <!-- Einde slideshow -->
 
     <!-- De snelst aflopende producten -->
-    <div class="productsList">
-        <h3>Bekijk onze hot products:</h3>
-        <?php
-        $items = selectFromCatalog(array(":limit"=>"8")); // select 8 products from catalog
-        $counter = 0;
-        foreach ($items as $card):
-            if ($counter % 4 == 0) {
-                echo "<div class='row'>";
-            }
-            ?>
-            <div class='col-lg-3'>
-                <div class='card'>
-                    <div class="itemImage">
-                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                            <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top'
-                                 alt='Productnaam'>
-                        </a>
-                    </div>
-                    <div class='card-body'>
-                        <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                        <p class='card-text'><?= $card['Beschrijving'] ?></p>
-                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
-                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
-                    </div>
-                    <div class='card-footer'>
-                        <!-- Display the countdown timer in an element -->
-                        <p id="timer-<?=$counter?>"></p>
+    <div class="products">
+        <h3>Onze populairste veilingen:</h3>
+        <div class="productsList">
+            <?php
+            $items = selectFromCatalog(array(":limit"=>"8")); // select 8 products from catalog
+            $counter = 0;
+            foreach ($items as $card):
+                if ($counter % 4 == 0) {
+                    echo "<div class='row'>";
+                }
+                ?>
+                <div class='col-lg-3'>
+                    <div class='card'>
+                        <div class="itemImage">
+                            <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
+                                <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top'
+                                     alt='Productnaam'>
+                            </a>
+                        </div>
+                        <div class='card-body'>
+                            <h5 class='card-title'><?= $card['Titel'] ?></h5>
+                            <p class='card-text'><?= $card['Beschrijving'] ?></p>
+                            <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
+                            <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
+                        </div>
+                        <div class='card-footer'>
+                            <!-- Display the countdown timer in an element -->
+                            <p id="timer-<?=$counter?>"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php
-            $counter++;
-            if ($counter % 4 == 0) {
-                echo "</div>";
-            }
-        endforeach;
-        ?>
-        <script>
-            var my_date;
-            <?php
-            $i = 0;
-            foreach($items as $item){
-            $datum = $item['LooptijdEindeDag'];
-            $tijdstip = $item['LooptijdEindeTijdstip'];
-            $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-            echo "my_date = '" . explode( ".",$time)[0] . "';\n";
+                <?php
+                $counter++;
+                if ($counter % 4 == 0) {
+                    echo "</div>";
+                }
+            endforeach;
             ?>
-            my_date = my_date.replace(/-/g, "/");
-            setupCountDown('timer-<?=$i?>', new Date(my_date));
-            <?php
-            $i++;
-            }
-            ?>
-        </script>
+            <script>
+                var my_date;
+                <?php
+                $i = 0;
+                foreach($items as $item){
+                $datum = $item['LooptijdEindeDag'];
+                $tijdstip = $item['LooptijdEindeTijdstip'];
+                $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+                echo "my_date = '" . explode( ".",$time)[0] . "';\n";
+                ?>
+                my_date = my_date.replace(/-/g, "/");
+                setupCountDown('timer-<?=$i?>', new Date(my_date));
+                <?php
+                $i++;
+                }
+                ?>
+            </script>
+        </div>
     </div>
 </main>
