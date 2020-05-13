@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Vraag;
 CREATE TABLE Bod(
 	Voorwerp					INTEGER(20)		NOT NULL,
 	Bodbedrag					VARCHAR(8)		NOT NULL,
-	Gebruiker					VARCHAR(20)		NOT NULL,
+	Gebruiker					VARCHAR(20)		NULL,
 	BodDag						VARCHAR(10)		NOT NULL,
 	BodTijdstip					VARCHAR(10)		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
@@ -56,17 +56,18 @@ CREATE TABLE Gebruiker(
 
 CREATE TABLE Beoordeling (
     BeoordelingsNr 				INTEGER(20)		NOT NULL AUTO_INCREMENT,
-    Gebruikersnaam              VARCHAR(20)     NOT NULL,
-    GegevenDoor                 VARCHAR(20)     NOT NULL,
+    Gebruikersnaam              VARCHAR(20)     NULL,
+    GegevenDoor                 VARCHAR(20)     NULL,
     Rating                      INTEGER(1)      NOT NULL,
-    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr, Gebruikersnaam, GegevenDoor)
+    CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr)
 );
 
 CREATE TABLE Comments (
-    Gebruikersnaam              VARCHAR(20)     NOT NULL,
-    FeedbackGever               VARCHAR(20)     NOT NULL,
+    FeedBackNr                  INTEGER(20)     NOT NULL AUTO_INCREMENT,
+    Gebruikersnaam              VARCHAR(20)     NULL,
+    FeedbackGever               VARCHAR(20)     NULL,
     Feedback                    VARCHAR(255)    NOT NULL,
-    CONSTRAINT PK_Comments PRIMARY KEY(Gebruikersnaam, FeedbackGever)
+    CONSTRAINT PK_Comments PRIMARY KEY(FeedBackNr)
 );
 
 CREATE TABLE GebruikersTelefoon(
@@ -118,13 +119,14 @@ CREATE TABLE Voorwerp(
 	Plaatsnaam					VARCHAR(255)	NOT NULL,
 	Land						VARCHAR(50)		NOT NULL,
 	LooptijdBeginTijdstip		DATETIME		NOT NULL,
-	Verzendkosten				NUMERIC(19, 2)	NOT NULL,
-	Verzendinstructies			VARCHAR(50)		NOT NULL,
-	Verkoper					VARCHAR(20)		NOT NULL,
+	Verzendkosten				NUMERIC(19, 7)	NOT NULL,
+	Verzendinstructies			VARCHAR(50)		NULL,
+	Verkoper					VARCHAR(20)		NULL,
 	Koper						VARCHAR(20)		NULL,
 	LooptijdEindeTijdstip		DATETIME		NOT NULL,
-	VeilingGesloten				BIT 			NOT NULL,
-	Verkoopprijs				NUMERIC(19, 2)	NULL,
+	VeilingGesloten			 BIT			NOT NULL,
+	Verkoopprijs				NUMERIC(19, 7)	NULL,
+	Views                       INTEGER(20)     DEFAULT 0,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
 
 );

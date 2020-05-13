@@ -15,7 +15,7 @@ function selectFromCatalog($orders)
         $sql = "SELECT *, IFNULL(MAX(cast(bodbedrag as decimal(10,2))),Startprijs) as prijs
                 FROM Voorwerp v
                 LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp
-                WHERE VeilingGesloten = 'Nee'";
+                WHERE VeilingGesloten = 'Nee' AND  Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
                 if (strpos($key, ":where") !== false) {
@@ -51,7 +51,8 @@ function selectFromCatalogsMSSQL($orders)
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
     $sql = "SELECT * FROM (SELECT *, ISNULL(hoogstebod ,Startprijs) as prijs
-            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp from bod
+            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp 
+            FROM bod WHERE Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
             where VeilingGesloten = 'Nee') as combinetable";

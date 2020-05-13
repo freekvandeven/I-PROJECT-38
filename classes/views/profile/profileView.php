@@ -108,6 +108,12 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div><?php endif; ?>
+                <div> <!--temp-->
+                    <form action="" method="post">
+                        <input type="hidden" name="token" value="<?=$token?>">
+                        <button class="registerButton" type="submit" name="action" value="delete">Delete account</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

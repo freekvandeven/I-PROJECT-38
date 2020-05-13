@@ -2,7 +2,8 @@
     <!-- Welkom tekst: -->
     <div class="jumbotron">
         <h2 class="display-5">Welkom op EenmaalAndermaal</h2>
-        <p class="lead">EenmaalAndermaal is een online veilingsite waar u uw producten kunt aanbieden en kunt bieden op andermans producten.</p>
+        <p class="lead">EenmaalAndermaal is een online veilingsite waar u uw producten kunt aanbieden en kunt bieden op
+            andermans producten.</p>
     </div>
 
     <!-- Slideshow: -->
@@ -54,39 +55,10 @@
 
     <!-- De snelst aflopende producten -->
     <div class="productsList">
-        <h3>Bekijk de snelst aflopende producten:</h3>
+        <h3>Bekijk hier de de meest trending producten:</h3>
         <?php
-        $items = selectFromCatalog(array(":limit"=>"8")); // select 8 products from catalog
-        $counter = 0;
-        foreach ($items as $card):
-            if ($counter % 4 == 0) {
-                echo "<div class='row'>";
-            }
-            ?>
-            <div class='col-lg-3'>
-                <div class='card'>
-                    <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                        <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top'
-                             alt='Productnaam'>
-                    </a>
-                    <div class='card-body'>
-                        <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
-                        <p class='card-text'><?= $card['Beschrijving'] ?></p>
-                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
-                    </div>
-                    <div class='card-footer'>
-                        <!-- Display the countdown timer in an element -->
-                        <p id="timer-<?=$counter?>"></p>
-                    </div>
-                </div>
-            </div>
-            <?php
-            $counter++;
-            if ($counter % 4 == 0) {
-                echo "</div>";
-            }
-        endforeach;
+        $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+        generateCatalog($items);
         ?>
         <script>
             var my_date;
@@ -96,7 +68,7 @@
             $datum = $item['LooptijdEindeDag'];
             $tijdstip = $item['LooptijdEindeTijdstip'];
             $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-            echo "my_date = '" . explode( ".",$time)[0] . "';\n";
+            echo "my_date = '" . explode(".", $time)[0] . "';\n";
             ?>
             my_date = my_date.replace(/-/g, "/");
             setupCountDown('timer-<?=$i?>', new Date(my_date));
