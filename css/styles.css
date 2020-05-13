@@ -837,6 +837,16 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
+.profielPaginaVIemandAnders .container .errorReview{
+    font-size: 17px;
+    padding: 10px 20px 0 20px;
+}
+
+.profielPaginaVIemandAnders .container .errorReviewText{
+    padding: 0 20px;
+    font-size: 17px;
+}
+
 .geenGewonnenVeilingen, .geenAangebodenVeilingen{
     margin: 5px 35px 17px;
     font-size: 18px;
@@ -905,6 +915,46 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
         background: none;
         text-decoration: underline;
     }
+}
+
+.profielPaginaVIemandAnders .container .container .row div .card a .card-img{
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+}
+
+.profielPaginaVIemandAnders .titelLinka{
+    color: #000;
+    transition: 150ms;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+.profielPaginaVIemandAnders .titelLinka:hover{
+    color: rgb(165, 105, 189);
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.itemImage{
+    display: block;
+    height: 350px;
+    overflow: hidden;
+}
+
+.itemImage img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.profielPaginaVIemandAnders .geenReviewMelding{
+    padding: 20px 10px 0 10px;
+    font-size: 17px;
+}
+
+.profielPaginaVIemandAnders .tussenLijn{
+    border-top: .8px solid rgba(0, 0, 0, .1);
+    padding-top: 10px;
 }
 
 /*************** ADMIN-HOOFDPAGINA CSS *************/

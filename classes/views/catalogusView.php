@@ -98,14 +98,15 @@
             ?>
             <div class='col-lg-3'>
                 <div class='card'>
-                    <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                        <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top'
-                             alt='Productnaam'>
-                    </a>
+                    <div class="itemImage">
+                        <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
+                            <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productnaam'>
+                        </a>
+                    </div>
                     <div class='card-body'>
                         <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
                         <p class='card-text'><?= $card['Beschrijving'] ?></p>
+                        <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
                         <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                     </div>
                     <div class='card-footer'>
