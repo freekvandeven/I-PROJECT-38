@@ -12,7 +12,8 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
 
 <main class="profielPaginaVIemandAnders">
     <div class="jumbotron">
-        <h2 class="display-5">Welkom op de profielpagina van <?= $profile_data['Gebruikersnaam'] ?></h2>
+        <h2 class="display-5">Profielpagina van <?= $profile_data['Gebruikersnaam'] ?></h2>
+        <p>Op deze pagina kunt u de gegevens inzien van <?=$profile_data['Gebruikersnaam']?>. Ook kunt u de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
     </div>
 
     <div class="container">
@@ -21,7 +22,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
 
             <?php if($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
                 <div class="profielButtonBox text-right">
-                    <a class="profielButton" href="profile.php">Bekijk uw profiel</a>
+                    <a class="profielButton" href="profile.php">Bekijk uw profielgegevens</a>
                 </div>
             <?php } ?>
 
@@ -36,7 +37,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                             <?php else :?>
                                 <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
                             <?php endif;?>
-                            <p><b>Naam: </b><?=$profile_data_inspect_user['Voornaam']?></p>
+                            <p><b>Voornaam: </b><?=$profile_data_inspect_user['Voornaam']?></p>
                             <p><b>Achternaam: </b><?=$profile_data_inspect_user['Achternaam']?></p>
                             <p><b>Emailadres: </b><?=$profile_data_inspect_user['Mailbox']?></p>
                             <p><b>Plaatsnaam: </b><?=$profile_data_inspect_user['Plaatsnaam']?></p>

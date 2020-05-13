@@ -1,9 +1,4 @@
 <main>
-    <!-- Welkom tekst: -->
-    <div class="jumbotron">
-        <h2 class="display-5">Welkom op EenmaalAndermaal</h2>
-        <p class="lead">EenmaalAndermaal is een online veilingsite waar u uw producten kunt aanbieden en kunt bieden op andermans producten.</p>
-    </div>
 
     <!-- Slideshow: -->
     <div class="slideshow">
@@ -54,7 +49,7 @@
 
     <!-- De snelst aflopende producten -->
     <div class="productsList">
-        <h3>Bekijk de snelst aflopende producten:</h3>
+        <h3>Bekijk onze hot products:</h3>
         <?php
         $items = selectFromCatalog(array(":limit"=>"8")); // select 8 products from catalog
         $counter = 0;

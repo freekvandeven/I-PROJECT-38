@@ -208,16 +208,9 @@ body{
     background: rgb(255, 255, 255);
 }
 
-/* DE INTRO: BOVENAAN: */
-.jumbotron{
-    padding-left: 12.5%;
-    padding-right: 12.5%;
-    background: rgb(245, 245, 245);
-}
-
 /* DE SLIDESHOW: */
 .slideshow{
-    margin: 60px 12.5% 0 12.5%;
+    margin: 60px 17% 0 17%;
 }
 
 .carousel-item div a h3{
@@ -237,8 +230,8 @@ body{
 
 /* PRODUCTENLIJST */
 .productsList{
-    margin-top: 100px;
-    padding: 60px 12.5% 30px 12.5%;
+    margin-top: 50px;
+    padding: 30px 12.5% 150px 12.5%;
     background: rgb(245, 245, 245);
 }
 
@@ -495,6 +488,19 @@ body{
 }
 
 /*************** ProfielPagina CSS *************/
+.profielPagina .jumbotron{
+    padding-left: 20%;
+}
+
+.profielPagina .jumbotron p{
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+.profielPagina .container{
+    margin-bottom: 150px;
+}
+
 .profielPagina .mijnEenmaalAndermaalTitel{
     margin-top: 75px;
 }
@@ -539,12 +545,12 @@ body{
     font-weight: bold;
 }
 
-.profielPagina .container .container h2{
+.profielPagina .tussenLijn{
     margin-top: 30px;
     padding-top: 30px;
     font-weight: normal;
     margin-left: -15px;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-top: 1px solid rgba(0, 0, 0, .07);
 }
 
 .profielPagina .container .container .verkopersPaginaButtonBox{
@@ -763,6 +769,19 @@ main .container .contactpaginaFormulier div div input:focus, main .container .co
 }
 
 /*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
+.profielPaginaVIemandAnders .jumbotron{
+    padding-left: 20%;
+}
+
+.profielPaginaVIemandAnders .jumbotron p{
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+.profielPaginaVIemandAnders .container{
+    margin-bottom: 150px;
+}
+
 .profielPaginaVIemandAnders .container .row{
     margin-bottom: 40px;
 }
