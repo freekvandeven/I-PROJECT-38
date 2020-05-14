@@ -47,28 +47,30 @@
     </div> <!-- Einde slideshow -->
 
     <!-- De snelst aflopende producten -->
-    <div class="productsList">
+    <div class="products">
         <h3>Bekijk hier de de meest trending producten:</h3>
-        <?php
-        $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
-        generateCatalog($items);
-        ?>
-        <script>
-            var my_date;
+        <div class="productsList">
             <?php
-            $i = 0;
-            foreach($items as $item){
-            $datum = $item['LooptijdEindeDag'];
-            $tijdstip = $item['LooptijdEindeTijdstip'];
-            $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-            echo "my_date = '" . explode(".", $time)[0] . "';\n";
+            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+            generateCatalog($items);
             ?>
-            my_date = my_date.replace(/-/g, "/");
-            setupCountDown('timer-<?=$i?>', new Date(my_date));
-            <?php
-            $i++;
-            }
-            ?>
-        </script>
+            <script>
+                var my_date;
+                <?php
+                $i = 0;
+                foreach($items as $item){
+                $datum = $item['LooptijdEindeDag'];
+                $tijdstip = $item['LooptijdEindeTijdstip'];
+                $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
+                echo "my_date = '" . explode(".", $time)[0] . "';\n";
+                ?>
+                my_date = my_date.replace(/-/g, "/");
+                setupCountDown('timer-<?=$i?>', new Date(my_date));
+                <?php
+                $i++;
+                }
+                ?>
+            </script>
+        </div>
     </div>
 </main>
