@@ -27,4 +27,8 @@ CREATE TABLE Visitors(
     CONSTRAINT PK_Visitors  PRIMARY KEY (IP)
 );
 
+CREATE TABLE Denied(
+    IP                VARCHAR(15) NOT NULL
+);
+
 INSERT INTO Whitelist (IP, Name) VALUES ('80.100.205.64', 'Freek'), ('86.92.74.42', 'Joons');

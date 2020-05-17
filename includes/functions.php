@@ -63,7 +63,11 @@ function logPageVisitor(){
         insertPage($currentPage);
     }
     // insert IP
-    insertVisitorIP($_SERVER["REMOTE_ADDR"]);
+    if(searchIPVisits($_SERVER["REMOTE_ADDR"])){
+        increaseIPVisits($_SERVER["REMOTE_ADDR"]);
+    } else {
+        insertVisitorIP($_SERVER["REMOTE_ADDR"]);
+    }
 }
 
 function checkIP(){

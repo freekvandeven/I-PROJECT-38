@@ -1,10 +1,15 @@
 <?php
 session_start();
+include_once('../classes/models/database.php');
+require_once('database.php');
 if(!isset($_SESSION['code'])){
     $_SESSION['code'] = rand(1000,9999);
 }
 if(isset($_POST['code']) && !empty($_POST['code'])){
     if($_POST['code'] == $_SESSION['code']){
+        $data = $dbh->prepare("INSERT INTO Denied (IP) VALUES (:ip)");
+        $data->execute([":ip"=>$_SERVER["REMOTE_ADDR"]]);
+        $_SESSION['code'] = rand(1000,9999);
         header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     } else {
         $_SESSION['code'] = rand(1000,9999);
@@ -27,39 +32,15 @@ if(isset($_POST['code']) && !empty($_POST['code'])){
     <form id="myForm" method="post">
 
     </form>
-    <!--
-    <div></div>
-    <form>
-        <label for="code">Code</label>
-        <input id="code" type="number">
-        <input type="submit" name="submit" value="prove">
-        <button name="clear" type="button"></button>
-    </form>
-    -->
 <script>
     const init = function(){
-        /*
-        const div = document.getElementsByName('div');
 
-        const input = document.getElementById('code');
-
-        const btn = document.getElementsByName('button');
-
-        btn.innerText = "Clear";
-        btn.addEventListener("click", e => {
-            input.value = "";
-        });
-
-        input.type = "text";
-
-        div.append(input);
-        div.append(btn);
-        */
         const div = document.createElement('div');
 
         const input = document.createElement('input');
         input.setAttribute("type", "number");
         input.setAttribute("name", "code");
+        input.setAttribute("readonly", "readonly");
         const submit = document.createElement('input');
         submit.setAttribute("type", "submit");
         submit.setAttribute("value", "Prove");

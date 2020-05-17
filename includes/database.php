@@ -95,6 +95,19 @@ function checkPage($currentPage)
     return $result;
 }
 
+function searchIPVisits($visitor)
+{
+    global $dbh;
+    $data = $dbh->prepare('SELECT * FROM Visitors WHERE IP = :ip');
+    $data->execute([":ip" => $visitor]);
+    $result = $data->fetchColumn();
+    return $result;
+}
+function increaseIPVisits($visitor){
+    global $dbh;
+    $data = $dbh->prepare('UPDATE Visitors SET TotalVisits = TotalVisits + 1 WHERE IP = :ip');
+    $data->execute([":ip" => $visitor]);
+}
 function increasePage($currentPage)
 {
     global $dbh;
