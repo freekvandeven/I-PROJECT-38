@@ -135,4 +135,19 @@ class Items
         $data = $dbh->prepare('UPDATE Voorwerp set Views = Views + 1 where voorwerpnummer = :id');
         $data->execute(["id"=>$id]);
     }
+
+    static function getCategories()
+    {
+        global $dbh;
+        $sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam 
+        FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
+";
+        $data = $dbh->query($sql);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        $filtered = [];
+        foreach($result as $row){
+            $filtered[$row['hoofdnaam']][$row['subnaam']] = $row['subsubnaam'];
+        }
+        return $filtered;
+    }
 }
