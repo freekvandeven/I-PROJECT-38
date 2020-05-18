@@ -274,3 +274,16 @@ function generateCategoryDropdown(){
     }
     return $html;
 }
+
+function reOrganizeArray($file_posts){
+    $new_file_array = array();
+    $file_count = count($file_posts['name']);
+    $file_keys = array_keys($file_posts);
+
+    for($i=0; $i<$file_count; $i++) {
+        foreach($file_keys as $key){
+            $new_file_array[$i][$key] = $file_posts[$key][$i];
+        }
+    }
+    return $new_file_array;
+}
