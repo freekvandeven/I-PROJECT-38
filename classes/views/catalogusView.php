@@ -1,13 +1,8 @@
 <main class="catalogusPagina">
     <div class="container">
-        <h3 class="text-center">Aangeboden veilingen</h3>
-        <?php
-        if (isset($_SESSION['loggedin'])) {
-            ?>
-            <a href="addProduct.php" class="btn btn-primary offset-xl-6 offset-md-0">Product aanbieden</a>
-            <?php
-        }
-        ?>
+        <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
+
+
         <div class="filtermenu">
             <form class="catalogusForm" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?= $token ?>">
@@ -16,7 +11,17 @@
                         <label for="zoekbalk">Zoeken</label>
                     </div>
 
-                    <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 text-center">
+                    <?php
+                    if (isset($_SESSION['loggedin'])) {
+                        ?>
+                        <div class="productAanbiedenDiv col-xl-12 offset-lg-9 offset-sm-8 offset-7">
+                            <a href="addProduct.php" class="productAanbiedenButton">Product aanbieden</a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                    <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
                         <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords" name="search">
                     </div>
 
