@@ -2,6 +2,7 @@
 session_start();
 require_once('includes/functions.php');
 checkLogin();
+registerRequest();
 $parameterList = array("Titel", "Beschrijving", "Rubriek", "img", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Looptijd",
     "Verzendinstructies");
 $user = User::getUser($_SESSION["name"]);

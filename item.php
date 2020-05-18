@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
 
 $sent = false; // no rating has been set
 if(checkPost()){

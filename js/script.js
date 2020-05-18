@@ -25,3 +25,20 @@
             }
         }, 1000);
     }
+
+    function showCategory(str){
+        if(str.length == 0) {
+            document.getElementById("searchResult").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("searchResult").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("POST", "ajax.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("request=getCategory&search=" + str);
+        }
+    }

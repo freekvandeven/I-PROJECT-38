@@ -14,17 +14,40 @@
         <div class="categorieen">
             <h4 class="font-weight-normal text-center">Categorieën</h4>
             <ul class="list-unstyled">
-                <li>categorie 1</li>
-                <ul>
-                    <li>subcategorie 1</li>
-                    <li>subcategorie 2</li>
-                </ul>
+                <li>categorie 1
+                    <ul>
+                        <li>subcategorie 1</li>
+                        <li>subcategorie 2</li>
+                    </ul>
+                </li>
 
-                <li>categorie 2</li>
-                <ul>
-                    <li>subcategorie 3</li>
-                    <li>subcategorie 4</li>
-                </ul>
+                <li>Geselecteerde Categories
+                    <ul id="selectedCategories">
+
+                    </ul>
+                </li>
+
+                <li> Zoek op categorieen
+
+                <form class="categorySearchForm" action="" method="post">
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën" name="search" autocomplete="off" onkeyup="showCategory(this.value)">
+                </form>
+                </li>
+                <li>
+                    <ul id="searchResult">
+                    </ul>
+                </li>
+
+                <script type="text/javascript">
+                    $("#searchResult").bind("click", function(e){
+                        $(e.target).closest("li").toggleClass("highlight");
+                        $("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
+                        showCategory($("#zoekcategory").val());
+                    })
+                </script>
+
+
             </ul>
         </div>
     </div>
@@ -33,7 +56,7 @@
     <div class="container">
         <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
         <div class="filtermenu">
-            <form class="catalogusForm" action="catalogus.php" method="post">
+            <form class="catalogusForm" action="catalogus.php" method="post" onkeyup="regenerateCatalog()" onchange="regenerateCatalog()">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <div class="row">
                     <div class="form-group col-xl-12 text-center">
@@ -59,14 +82,14 @@
                     </div>
 
                     <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-                        <button id="zoekButton" class="zoekButton" type="submit">Zoeken</button>
+                        <button id="zoekButton" class="zoekButton" type="submit" >Zoeken</button>
                     </div>
                 </div> <!-- einde row -->
 
                 <div class="row">
                     <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
                         <label for="Rubriek">Rubriek</label>
-                        <select class="custom-select" id="Rubriek" name="rubriek" onchange="this.form.submit()">
+                        <select class="custom-select" id="Rubriek" name="rubriek">
                             <option value="">Kies Rubriek</option>
                             <?php
                             foreach (Items::getRubrieken() as $rubriek) {
@@ -79,7 +102,7 @@
 
                     <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
                         <label for="price">Volgorde</label>
-                        <select class="custom-select" id="price" name="order" onchange="this.form.submit()">
+                        <select class="custom-select" id="price" name="order">
                             <option value="">Kies Volgorde</option>
                             <option <?php if ($_POST['order'] == "High") echo "selected " ?>value="High">Duurste Eerst
                             </option>
@@ -94,8 +117,7 @@
 
                     <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
                         <label for="numberOfItems">Aantal</label>
-                        <select class="custom-select" id="numberOfItems" name="numberOfItems"
-                                onchange="this.form.submit()">
+                        <select class="custom-select" id="numberOfItems" name="numberOfItems">
                             <option <?php if ($_POST['numberOfItems'] == 25) echo "selected " ?>value=25>25</option>
                             <option <?php if ($_POST['numberOfItems'] == 50) echo "selected " ?>value=50>50</option>
                             <option <?php if ($_POST['numberOfItems'] == 100) echo "selected " ?>value=100>100</option>
@@ -142,7 +164,7 @@
             }
         }
         $items = selectFromCatalog($select); ?>
-        <div class="productsList">
+        <div class="productsList" id="productsList">
             <?php generateCatalog($items);
             ?>
             <script>
@@ -165,3 +187,18 @@
         </div>
     </div>
 </main>
+
+<script type="text/javascript">
+    function regenerateCatalog(){
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("productsList").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("POST", "ajax.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var data = $('.catalogusForm').serialize();
+            xmlhttp.send(data.concat('&request=getCatalogus'));
+    }
+</script>

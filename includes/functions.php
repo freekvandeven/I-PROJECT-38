@@ -1,8 +1,6 @@
 <?php
 startAutoLoader();
 require_once('database.php');
-checkVisitor();
-checkItemDate();
 //include_once('socket.php');
 
 if (empty($_SESSION['token'])) {
@@ -16,6 +14,11 @@ function checkLogin() // check if user is logged in
         header('Location: login.php');
         exit();
     }
+}
+
+function registerRequest(){
+    checkVisitor();
+    checkItemDate();
 }
 
 function checkPost()

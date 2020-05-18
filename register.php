@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
 $parameterList = array("username", "password", "confirmation", "email", "first-name", "surname", "adress", "postcode",
     "place", "country", "birth-date", "secret-question", "secret-answer");
 $optionalList = array("phone-number", "phone-number2", "adress2");

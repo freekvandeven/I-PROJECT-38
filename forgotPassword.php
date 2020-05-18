@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
+
 //Bepaalt de vraag van de user:
 /*$profile_data = User::getUser($_SESSION['name']);
 foreach(User::getQuestion() as $question) {
