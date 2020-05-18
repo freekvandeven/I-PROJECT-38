@@ -1,13 +1,24 @@
 <main class="catalogusPagina">
+
+    <div class="categorieen">
+        <h4 class="font-weight-normal text-center">Categorieën</h4>
+        <ul class="list-unstyled">
+            <li>categorie 1</li>
+            <ul>
+                <li>subcategorie 1</li>
+                <li>subcategorie 2</li>
+            </ul>
+
+            <li>categorie 2</li>
+            <ul>
+                <li>subcategorie 3</li>
+                <li>subcategorie 4</li>
+            </ul>
+        </ul>
+    </div>
+
     <div class="container">
-        <h3 class="text-center">Aangeboden veilingen</h3>
-        <?php
-        if (isset($_SESSION['loggedin'])) {
-            ?>
-            <a href="addProduct.php" class="btn btn-primary offset-xl-6 offset-md-0">Product aanbieden</a>
-            <?php
-        }
-        ?>
+        <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
         <div class="filtermenu">
             <form class="catalogusForm" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?= $token ?>">
@@ -15,8 +26,22 @@
                     <div class="form-group col-xl-12 text-center">
                         <label for="zoekbalk">Zoeken</label>
                     </div>
+                </div>
 
-                    <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 text-center">
+                <div class="row">
+                    <?php
+                    if (isset($_SESSION['loggedin'])) {
+                        ?>
+                        <div class="productAanbiedenDiv offset-lg-9 offset-md-0">
+                            <a href="addProduct.php" class="productAanbiedenButton col-lg-12 col-sm-12 col-12">Product aanbieden</a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
                         <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords" name="search">
                     </div>
 

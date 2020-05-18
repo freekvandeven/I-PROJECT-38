@@ -10,15 +10,17 @@ nav{
 .bg-light {
  background-color: #5f4b8b !important;
 }
-.btn-outline-success:hover {
+.btn-outline-success {
     color: #fff;
-    background-color: #ac00ff;
-    border-color: #ac00ff;
+    border: 2px solid #fff;
+    transition: 300ms;
+    padding: 5px 10px;
 }
 
-.btn-outline-success {
-    color: #ac00ff;
-    border-color: #ac00ff;
+.btn-outline-success:hover {
+    color: rgba(255, 255, 255, .8);
+    background-color: rgba(0, 0, 0, .2);
+    border-color: rgba(255, 255, 255, .8);
 }
 
 .navbar .navbar-brand {
@@ -75,6 +77,17 @@ nav{
 }
 .navbar .navbar-link:hover {
     color: #ac00ff;
+}
+
+.navbarForm .zoekBalk{
+    width: 300px;
+    transition: 200ms;
+}
+
+.navbarForm .zoekBalk:focus{
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+    border-color: rgba(165, 105, 189, .8);
+    padding: 5px;
 }
 
 @media (max-width: 575px) {
@@ -1081,6 +1094,10 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin-top: 100px;
 }
 
+.catalogusPagina .container h3{
+    font-weight: normal;
+}
+
 .catalogusPagina form .row div{
     margin-right: -20px;
 }
@@ -1094,7 +1111,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusPagina .filtermenu{
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .catalogusForm select, .catalogusForm input{
@@ -1111,7 +1128,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusForm .zoekButton{
-    margin-top: 46px;
     background: #fff;
     border: 2px solid rgb(165, 105, 189);
     border-radius: 7px;
@@ -1126,31 +1142,60 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgb(165, 105, 189);
 }
 
-.catalogusPagina .productsList .btn{
-    max-width: 180px;
-    margin-top: -70px;
-    background: none;
-    font-size: 18px;
+.catalogusPagina .productAanbiedenDiv{
+    margin-top: -50px;
+}
+
+.catalogusPagina .productAanbiedenButton{
+    padding: 4px 10px;
+    color: #000;
+    font-size: 17px;
+    transition: 300ms;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.catalogusPagina .productAanbiedenButton:hover{
     color: rgb(165, 105, 189);
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgb(165, 105, 189);
-    transition: 200ms;
+    text-decoration: none;
+    border-color: rgb(165, 105, 189);
 }
 
-.catalogusPagina .productsList .btn:hover{
-    background: rgb(165, 105, 189);
-    color: #fff;
-}
-
-.catalogusPagina .productsList h3{
-    margin-left: -15px;
-}
-
-@media (max-width: 1191px) {
-    .catalogusPagina .productsList .btn{
-        margin-top: 20px;
+@media (max-width: 767px) {
+    .catalogusPagina .productAanbiedenDiv{
+        margin-top: -20px;
+        margin-bottom: 20px;
     }
+
+    .catalogusPagina .productAanbiedenButton{
+        border: none;
+        text-decoration: underline;
+    }
+
+    .catalogusPagina .productAanbiedenButton:hover{
+        text-decoration: underline;
+    }
+
+    .catalogusPagina .filtermenu{
+        margin-top: 50px;
+    }
+}
+
+.catalogusPagina .categorieen{
+    position: absolute;
+    margin-left: 135px;
+}
+
+.catalogusPagina .categorieen h4{
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.catalogusPagina .categorieen .list-unstyled{
+    margin-top: 20px;
+}
+
+.catalogusPagina .categorieen .list-unstyled ul{
+    list-style-type: none;
 }
 
 /*************** ADMINSUBPAGINA'S CSS *************/
