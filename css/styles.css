@@ -1167,12 +1167,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
-@media (max-width: 1191px) {
-    .catalogusPagina .productsList .btn{
-        margin-top: 20px;
-    }
-}
-
 /*************** ADMINSUBPAGINA'S CSS *************/
 .adminPaginaSub .container h2{
     margin-top: 50px;

@@ -16,8 +16,8 @@
                     <?php
                     if (isset($_SESSION['loggedin'])) {
                         ?>
-                        <div class="productAanbiedenDiv offset-lg-9 offset-sm-8 offset-7">
-                            <a href="addProduct.php" class="productAanbiedenButton">Product aanbieden</a>
+                        <div class="productAanbiedenDiv offset-lg-9 offset-md-0">
+                            <a href="addProduct.php" class="productAanbiedenButton col-lg-12 col-sm-12 col-12">Product aanbieden</a>
                         </div>
                         <?php
                     }
