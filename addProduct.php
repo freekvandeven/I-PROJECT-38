@@ -62,7 +62,7 @@ if ($user["Verkoper"]) {
                             if (Items::insertFiles($insertFilesArray)) {
                                 //stores file with new autoincrementId + _$i as id_$i.png
                                 storeImg($optionalPhotosArray[$i]['tmp_name'], $itemId . _ . $i, "upload/items/");
-                                header("Location: profile.php");
+                                header("Location: item.php?id=$itemId");
                             } else {
                                 $err = "Er ging iets mis met de database.";
                             }
