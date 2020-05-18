@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
 checkAdminLogin();
 $possible_categories = array("auction", "user", "seller", "statistics", "reset", "fill", "query","addRubriek"); # all possible actions
 

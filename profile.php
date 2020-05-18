@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
 checkLogin();
 $actions = array("update", "upgrade", "item", "favorite");
 if(checkPost()){

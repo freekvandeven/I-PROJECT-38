@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('includes/functions.php');
+registerRequest();
 
 if (!empty($_GET) && isset($_GET['name']) && isset($_GET['hash'])) {
     $user = User::getUser($_GET['name']);
