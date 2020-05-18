@@ -149,4 +149,26 @@ class User
         $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
         return $data->execute([":gebruiker"=>$name]);
     }
+
+    static function nukeUser($name){
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM Bod WHERE Gebruiker = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Verkoper  WHERE Gebruiker = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Voorwerp WHERE Verkoper = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Voorwerp WHERE Koper = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Beoordeling WHERE Gebruikersnaam = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Beoordeling WHERE GegevenDoor = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM  WHERE Gebruikersnaam = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Comments WHERE FeedbackGever = :gebruiker");
+        $data->execute([":gebruiker"=>$name]);
+        $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
+        return $data->execute([":gebruiker"=>$name]);
+    }
 }

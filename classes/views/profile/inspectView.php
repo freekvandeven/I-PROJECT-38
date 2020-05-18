@@ -12,12 +12,18 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
 
 <main class="profielPaginaVIemandAnders">
     <div class="jumbotron">
-        <h2 class="display-5">Profielpagina van <?= $profile_data['Gebruikersnaam'] ?></h2>
-        <p>Op deze pagina kunt u de gegevens inzien van <?=$profile_data['Gebruikersnaam']?>. Ook kunt u de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
+        <h2 class="display-5">Profielpagina van <?= $profile_data_inspect_user['Gebruikersnaam'] ?></h2>
+        <p>Op deze pagina kunt u de gegevens inzien van <?=$profile_data_inspect_user['Gebruikersnaam']?>. Ook kunt u de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
     </div>
 
     <div class="container">
         <h2>Profielgegevens</h2>
+        <?php if(!empty($_SESSION)&&$_SESSION['admin']==true):?>
+        <form action ='' method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
+            <input type="hidden" name="token" value="<?= $token ?>">
+            <button class="deleteButton" type="submit" name="deleteUser" value="delete"></button>
+        </form>
+        <?php endif; ?>
         <div class="container">
 
             <?php if($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
@@ -186,7 +192,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                             <div class="card-body">
                                 <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLinka"><?= $item['Titel'] ?></a></h5>
 
-                                <p class="card-text"><?= $item['Beschrijving'] ?></p>
+                                <p class="card-text"><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
                                 <p class="card-text">€ <?= number_format($item['Startprijs'],2, ',', '.') ?></p>
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                             </div>

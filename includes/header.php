@@ -58,7 +58,8 @@ if(isset($_SESSION['loggedin'])){
                     </div>
                     <?php endif;?>
                 </li>
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
+                <?php
+                if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="admin.php">Admin</a>
                 </li>
@@ -67,9 +68,9 @@ if(isset($_SESSION['loggedin'])){
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="catalogus.php" method="post">
+            <form class="navbarForm form-inline my-2 my-lg-0" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <input class="form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Search" name="search">
+                <input class="zoekBalk form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Search" name="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
             </form>
         </div>
