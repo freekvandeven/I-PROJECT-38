@@ -37,7 +37,7 @@ if ($user["Verkoper"]) {
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['thumbnail']['tmp_name'])), 'upload/items/tempItem.png');
                     }
 
-                    $insertFilesArray['Filenaam'] = $itemId . png;
+                    $insertFilesArray['Filenaam'] = "$itemId.png";
                     $insertFilesArray['Voorwerp'] = $itemId;
                     if(Items::insertFiles($insertFilesArray)) {
                         //store file with new autoincrementId as id.png
@@ -57,7 +57,7 @@ if ($user["Verkoper"]) {
                                 //convert to png
                                 imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
                             }
-                            $insertFilesArray['Filenaam'] = $itemId . _ . $i . png;
+                            $insertFilesArray['Filenaam'] = "{$itemId}_{$i}.png";
                             $insertFilesArray['Voorwerp'] = $itemId;
                             if (Items::insertFiles($insertFilesArray)) {
                                 //stores file with new autoincrementId + _$i as id_$i.png
