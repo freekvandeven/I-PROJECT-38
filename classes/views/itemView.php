@@ -55,7 +55,7 @@
                         </form>
                     </div>
                 </div>
-                <?php if(!empty($_SESSION)&&$_SESSION['admin']=true): ?>
+                <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
                 <form action ='' method='post'>
                     <input type="hidden" name="token" value="<?= $token ?>">
                     <button class="deleteButton" type="submit" name="deleteItem" value="delete"></button>

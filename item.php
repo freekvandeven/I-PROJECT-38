@@ -71,7 +71,7 @@ if(!empty($_GET) && isset($_GET['id'])) {
     header('Location: catalogus.php'); // item doesn't exist
 }
 
-if(!empty($_SESSION)&&$_SESSION['admin']=true && !empty($_POST['deleteItem'])){
+if(!empty($_SESSION)&&$_SESSION['admin']==true && !empty($_POST['deleteItem'])){
     Items::deleteItem($_GET['id']);
 }
 
