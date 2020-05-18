@@ -10,17 +10,21 @@
                     <div class="form-group col-xl-12 text-center">
                         <label for="zoekbalk">Zoeken</label>
                     </div>
+                </div>
 
+                <div class="row">
                     <?php
                     if (isset($_SESSION['loggedin'])) {
                         ?>
-                        <div class="productAanbiedenDiv col-xl-12 offset-lg-9 offset-sm-8 offset-7">
+                        <div class="productAanbiedenDiv offset-lg-9 offset-sm-8 offset-7">
                             <a href="addProduct.php" class="productAanbiedenButton">Product aanbieden</a>
                         </div>
                         <?php
                     }
                     ?>
+                </div>
 
+                <div class="row">
                     <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
                         <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords" name="search">
                     </div>
