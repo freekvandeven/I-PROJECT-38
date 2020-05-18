@@ -71,6 +71,10 @@ if(!empty($_GET) && isset($_GET['id'])) {
     header('Location: catalogus.php'); // item doesn't exist
 }
 
+if(!empty($_SESSION)&&$_SESSION['admin']=true && !empty($_POST['deleteItem'])){
+    Items::deleteItem($_GET['id']);
+}
+
 $title = "Item Page";
 
 require_once('includes/header.php');

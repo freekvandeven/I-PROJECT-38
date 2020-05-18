@@ -6,12 +6,12 @@
                     <div class='card-body'>
                         <h4 class="card-header text-center"><?=$item['Titel']?></h4>
                         <img src='upload/items/<?=$item['Voorwerpnummer']?>.png' class='card-img-top' alt='Productnaam'>
-                        <p class='card-text'><?= $item['Beschrijving'] ?></p>
+                        <p class='card-text'><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
                         <small class='text-muted'></small>
-                        <p id="timer">appel</p>
-                        <p class="aantalKeerBekeken text-right">1120 keer bekeken</p>
+                        <p id="timer">N/A</p>
+                        <p class="aantalKeerBekeken text-right"><?=$item['Views'] ?> keer bekeken</p>
                     </div>
                 </div>
             </div>
@@ -55,6 +55,12 @@
                         </form>
                     </div>
                 </div>
+                <?php if(!empty($_SESSION)&&$_SESSION['admin']=true): ?>
+                <form action ='' method='post'>
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <button class="deleteButton" type="submit" name="deleteItem" value="delete"></button>
+                </form>
+                <?php endif; ?>
             </div>
 
             <div class="col-xl-8 col-md-6">

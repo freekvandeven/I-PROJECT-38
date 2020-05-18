@@ -874,7 +874,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.profielPaginaVIemandAnders .container .errorReview{
+.profielPaginaVIemandAnders .container .errorReviewText{
     font-size: 17px;
     padding: 10px 20px 0 20px;
 }
@@ -969,7 +969,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 .itemImage{
     display: block;
-    height: 350px;
+    height: 250px;
     overflow: hidden;
 }
 

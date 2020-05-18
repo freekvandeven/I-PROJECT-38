@@ -11,7 +11,7 @@
             <input type="hidden" name="category" value="query">
 
             <label class="offset-xl-3" for="queryField">SQL Query</label>
-            <input class="form-control col-lg-6 offset-xl-3" type="text" name="queryString" id="queryField" value="" placeholder="Voorbeeld: SELECT * FROM gebruikerstelefoon">
+            <input class="form-control col-lg-6 offset-xl-3" type="text" name="queryString" id="queryField" value="">
             <div class="text-center">
                 <input class="voegRubriekToeButton form-control col-xl-2 offset-xl-5" type="submit" value="Zoeken">
             </div>

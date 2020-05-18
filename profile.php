@@ -30,4 +30,9 @@ if(isset($_GET['action']) && in_array($_GET['action'], $actions)){
     require_once('classes/views/profile/profileView.php');
 }
 
+if(!empty($_SESSION)&&$_SESSION['admin']=true && !empty($_POST['deleteUser'])){
+    User::nukeUser($_GET['id']);
+}
+
+
 require_once('includes/footer.php');
