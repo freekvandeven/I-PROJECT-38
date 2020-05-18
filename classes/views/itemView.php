@@ -9,7 +9,7 @@ $maxPhotos = 5;
                 <div class="card">
                     <div class='card-body'>
                         <h4 class="card-header text-center"><?=$item['Titel']?></h4>
-                        <div id="carouselExampleIndicators" class="carousel slide">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <?php
