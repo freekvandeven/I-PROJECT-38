@@ -146,7 +146,7 @@ class Items
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         $filtered = [];
         foreach($result as $row){
-            $filtered[$row['hoofdnaam']][$row['subnaam']] = $row['subsubnaam'];
+            $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
         }
         return $filtered;
     }

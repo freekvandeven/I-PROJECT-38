@@ -233,3 +233,24 @@ function generateCatalog($items)
         }
     endforeach;
 }
+
+function generateCategoryDropdown(){
+    $categories = Items::getCategories();
+    $html = '<ul>';
+    foreach($categories as $maincategory=>$subcategories){
+        $html .= "<li>$maincategory<ul>";
+        foreach($subcategories as $subcategory=>$subsubcategories){
+            $html .= "<li>$subcategory";
+            if(!empty($subsubcategories[0])) {
+                $html .= "<ul>";
+                foreach($subsubcategories as $subsubcategory){
+                $html .= "<li>$subsubcategory</li>";
+                }
+                $html .= "</ul>";
+            }
+            $html .= "</li>";
+        }
+        $html .= "</ul></li>";
+    }
+    return $html;
+}
