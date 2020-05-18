@@ -1142,6 +1142,13 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgb(165, 105, 189);
 }
 
+@media (max-width: 767px) {
+    .catalogusPagina .productAanbiedenDiv {
+        margin-top: -20px;
+        margin-bottom: 20px;
+    }
+}
+
 .catalogusPagina .productAanbiedenDiv{
     margin-top: -50px;
 }
@@ -1180,21 +1187,21 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
-.catalogusPagina .categorieen{
+.catalogusPagina .linkerkant{
     position: absolute;
     margin-left: 135px;
 }
 
-.catalogusPagina .categorieen h4{
+.catalogusPagina .linkerkant .categorieen h4{
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.catalogusPagina .categorieen .list-unstyled{
+.catalogusPagina .linkerkant .categorieen .list-unstyled{
     margin-top: 20px;
 }
 
-.catalogusPagina .categorieen .list-unstyled ul{
+.catalogusPagina .linkerkant .categorieen .list-unstyled ul{
     list-style-type: none;
 }
 
@@ -1416,6 +1423,5 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
         max-width: 64%;
         margin-left: 18%;
     }
-
 }
 

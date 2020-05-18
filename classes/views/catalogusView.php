@@ -1,21 +1,34 @@
 <main class="catalogusPagina">
 
-    <div class="categorieen">
-        <h4 class="font-weight-normal text-center">Categorieën</h4>
-        <ul class="list-unstyled">
-            <li>categorie 1</li>
-            <ul>
-                <li>subcategorie 1</li>
-                <li>subcategorie 2</li>
-            </ul>
+    <div class="linkerkant">
 
-            <li>categorie 2</li>
-            <ul>
-                <li>subcategorie 3</li>
-                <li>subcategorie 4</li>
+        <div class="prijsrange">
+
+        </div>
+
+        <div class="afstandsFilter">
+
+        </div>
+
+
+        <div class="categorieen">
+            <h4 class="font-weight-normal text-center">Categorieën</h4>
+            <ul class="list-unstyled">
+                <li>categorie 1</li>
+                <ul>
+                    <li>subcategorie 1</li>
+                    <li>subcategorie 2</li>
+                </ul>
+
+                <li>categorie 2</li>
+                <ul>
+                    <li>subcategorie 3</li>
+                    <li>subcategorie 4</li>
+                </ul>
             </ul>
-        </ul>
+        </div>
     </div>
+
 
     <div class="container">
         <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
