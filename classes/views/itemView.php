@@ -60,25 +60,50 @@
             <div class="col-xl-8 col-md-6">
                 <div class="verkoper">
                     <div class="card">
-                        <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
-                            <div class="card-body">
-                                <h4 class="card-header text-center">Verkoper</h4>
-                                <div class="verkoperInformatieBox row">
-                                    <div class="profielfoto col-xl-6">
-                                        <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
-                                            <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
-                                        <?php else :?>
-                                            <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="verkoperInformatie col-xl-6">
-                                        <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
-                                        <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
-                                        <p><b>Rating: </b><?=round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""],2)?></p>
-                                    </div>
+                        <div class="card-body">
+                            <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>"><h4 class="card-header text-center">Verkoper</h4></a>
+                            <div class="verkoperInformatieBox row">
+                                <div class="profielfoto col-xl-6">
+                                    <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
+                                    <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
+                                        <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                                    </a>
+                                    <?php else :?>
+                                        <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
+                                    <?php endif; ?>
+                                </div>
+                                <div class="verkoperInformatie col-xl-6">
+                                    <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
+                                    <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
+                                    <p><b>Rating: </b><?= round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""], 2) ?></p>
+                                    <?php
+                                    if(empty(Seller::ratedUser($_SESSION['name'],$_GET['id']))&&!empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
+                                        <form class="ratingForm" action="" method="post">
+                                            <input type="hidden" name="token" value="<?= $token ?>">
+                                            <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
+                                            <div class="rate">
+                                                <input type="radio" id="star5" name="rate" value="5"/>
+                                                <label for="star5" title="text">5 stars</label>
+                                                <input type="radio" id="star4" name="rate" value="4"/>
+                                                <label for="star4" title="text">4 stars</label>
+                                                <input type="radio" id="star3" name="rate" value="3"/>
+                                                <label for="star3" title="text">3 stars</label>
+                                                <input type="radio" id="star2" name="rate" value="2"/>
+                                                <label for="star2" title="text">2 stars</label>
+                                                <input type="radio" id="star1" name="rate" value="1"/>
+                                                <label for="star1" title="text">1 star</label>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button class="ratingButton" type="submit" name="action" value="review">Verzenden
+                                                </button>
+                                            </div>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+
                     </div>
                     <script>
                         <?php
@@ -92,23 +117,6 @@
                         setupCountDown('timer', d);
                     //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
                 </script>
-                <?php if($sent == false) : ?>
-                    <form action="" method="POST">
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <button name="action" value="raten">Verzenden</button>
-                    </form>
-                <?php endif; ?>
             </div>
         </div>
     </div>

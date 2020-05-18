@@ -81,14 +81,14 @@ CREATE TABLE Rubriek(
     Rubrieknummer				INTEGER     		NOT NULL,
     Rubrieknaam					VARCHAR(32)		    NOT NULL,
     Rubriek						INTEGER 			    NULL,
-    Volgnr						INTEGER	            NOT NULL AUTO_INCREMENT
+    Volgnr						INTEGER	            NOT NULL AUTO_INCREMENT,
+    CONSTRAINT PK_Rubriek	            PRIMARY KEY	(Volgnr)
 );
 
 CREATE TABLE VoorwerpInRubriek(
 	Voorwerp						INTEGER(20)			NOT NULL,
 	RubriekOpLaagsteNiveau			INTEGER(20)			NOT NULL,
 	CONSTRAINT PK_VoorwerpInRubriek	PRIMARY KEY	(Voorwerp, RubriekOpLaagsteNiveau)
-
 );
 
 
@@ -180,7 +180,7 @@ ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION,
-ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
+ADD CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
 		REFERENCES Rubriek (rubrieknummer)
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION;

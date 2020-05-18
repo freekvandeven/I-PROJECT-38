@@ -84,7 +84,6 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                         Toevoegen
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                                        <p class="errorReview">Error:</p>
                                         <p class="errorReviewText">Je kan pas een review en een rating achterlaten wanneer je een bod hebt gewonnen van deze verkoper. </p>
                                     </div>
                                 </div>
