@@ -5,6 +5,13 @@ require_once('includes/functions.php');
 $sent = false; // no rating has been set
 if(checkPost()){
     checkLogin();
+
+    if (isset($_POST['action'])){
+        if($_POST['action'] == 'review'){
+            require_once('classes/controllers/profile/reviewController.php');
+        }
+    }
+
     $ref = $_POST['voorwerp'];
     // Validatie verzending bod
     if(isset($_POST["bid"]) && !empty($_POST["bid"])){

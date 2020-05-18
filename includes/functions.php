@@ -171,7 +171,7 @@ function generateCatalog($items)
                 </div>
                 <div class='card-body'>
                     <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                    <p class='card-text'><?= $card['Beschrijving'] ?></p>
+                    <p class='card-text'><?php if(strlen($card['Beschrijving']) < 200) $card['Beschrijving']?></p>
                     <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                 </div>

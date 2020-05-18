@@ -12,26 +12,25 @@ function selectFromCatalog($orders)
         global $dbh;
         $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $execute = array();
-        $sql = "SELECT *, IFNULL(MAX(cast(bodbedrag as decimal(10,2))),Startprijs) as prijs
-                FROM Voorwerp v
-                LEFT JOIN Bod b on v.voorwerpnummer=b.voorwerp
-                WHERE VeilingGesloten = 'Nee' AND  Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null";
+        $sql = "SELECT * FROM (SELECT *, IFNULL(hoogstebod ,Startprijs) as prijs
+            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp 
+            FROM bod WHERE Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null
+            group by voorwerp) t2
+            on voorwerpnummer = voorwerp
+            where VeilingGesloten = 'Nee') as combinetable";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
                 if (strpos($key, ":where") !== false) {
-                    $sql .= " AND titel LIKE " . $key;
+                    $sql .= " WHERE titel LIKE " . $key;
                     $execute[":where"] = $order;
+                } else if (strpos($key, ":and") !== false) {
+                    $sql .= " AND " . $key;
+                    $execute[":and"] = $order;
+                } else if (strpos($key, ":order") !== false) {
+                    $sql .= " ORDER BY " . $order;
                 } else if (strpos($key, ":rubriek") !== false) {
                     $sql .= " AND Voorwerpnummer IN (select voorwerp from voorwerpinrubriek where RubriekOpLaagsteNiveau = :rubriek )";
                     $execute[":rubriek"] = $order;
-                }
-            }
-        }
-        $sql .= " GROUP BY Voorwerpnummer";
-        foreach ($orders as $key => $order) {
-            if (!empty($order)) {
-                if (strpos($key, ":order") !== false) {
-                    $sql .= " ORDER BY " . $order;
                 } else if (strpos($key, ":limit") !== false) {
                     $sql .= " LIMIT " . $key;
                     $execute["limit"] = $order;

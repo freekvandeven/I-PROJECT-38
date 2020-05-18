@@ -879,11 +879,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     padding: 10px 20px 0 20px;
 }
 
-.profielPaginaVIemandAnders .container .errorReviewText{
-    padding: 0 20px;
-    font-size: 17px;
-}
-
 .geenGewonnenVeilingen, .geenAangebodenVeilingen{
     margin: 5px 35px 17px;
     font-size: 18px;
@@ -1082,12 +1077,20 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /*************** CATALOGUSPAGINA CSS *************/
+.catalogusPagina .container{
+    margin-top: 100px;
+}
+
 .catalogusPagina form .row div{
     margin-right: -20px;
 }
 
 .catalogusPagina form .row div label{
     font-size: 18px;
+}
+
+.catalogusPagina form .row div label[for="zoekbalk"]{
+    font-size: 25px;
 }
 
 .catalogusPagina .filtermenu{
@@ -1108,10 +1111,10 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusForm .zoekButton{
-    margin-top: 36px;
+    margin-top: 46px;
     background: #fff;
     border: 2px solid rgb(165, 105, 189);
-    border-radius: 10px;
+    border-radius: 7px;
     padding: 2px 10px;
     font-size: 18px;
     color: rgb(165, 105, 189);
