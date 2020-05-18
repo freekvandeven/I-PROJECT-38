@@ -90,8 +90,11 @@ $user = User::getUser($_SESSION["name"]);
                 <div class="form-group col-md-6">
                     <label for="img">Optionele foto's (max. 5)</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="img" name="img[]" accept="image/*" multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
-                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg meerdere foto's toe</label>
+                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>
+                               onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])"
+                               required <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document
+                            toe</label>
                     </div>
                 </div>
             </div>
@@ -150,16 +153,4 @@ $user = User::getUser($_SESSION["name"]);
             <button class="addProductButton" type="submit" name="action" value="verzenden">Aanbieden</button>
         </div>
     </form>
-    <script>
-        $('#img').hide();
-        $("input[class*='input1']").keyup(function () {
-            $('#titel').html($(this).val());
-        });
-        $("input[class*='input2']").keyup(function () {
-            $('#startprijs').html($(this).val());
-        });
-        $("input[class*='input3']").keyup(function () {
-            $('#beschrijving').html("€" + $(this).val());
-        });
-    </script>
 </main>

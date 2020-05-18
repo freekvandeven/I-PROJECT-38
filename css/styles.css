@@ -279,6 +279,11 @@ body{
 
 /*********************** LOGIN-, REGISTRATIE-, UPDATE-, UPGRADE EN ADDPRODUCTFORMULIER *******************/
 /* De gehele container van de login en register */
+.cardPreview{
+    width:20%;
+    margin-left:40%;
+}
+
 #login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
     margin: 100px 0;
     max-width: 600px;
