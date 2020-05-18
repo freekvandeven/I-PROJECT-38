@@ -118,6 +118,10 @@ function storeImg($files, $id,$target_dir)
     move_uploaded_file($files, $target_dir . $id .'.png');
 }
 
+function checkImageExists($fileName) {
+    return file_exists("upload/items/$fileName");
+}
+
 function calculateDistance($point1, $point2, $unit = ''){
     $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
     //$apiKey = 'AIzaSyBA5t_6kDT86NEzXrXQSzcaZpKLbDRzBos';
@@ -235,6 +239,19 @@ function generateCatalog($items)
             echo "</div>";
         }
     endforeach;
+}
+
+function reOrganizeArray($file_posts){
+    $new_file_array = array();
+    $file_count = count($file_posts['name']);
+    $file_keys = array_keys($file_posts);
+
+    for($i=0; $i<$file_count; $i++) {
+        foreach($file_keys as $key){
+            $new_file_array[$i][$key] = $file_posts[$key][$i];
+        }
+    }
+    return $new_file_array;
 }
 
 function generateCategoryDropdown(){

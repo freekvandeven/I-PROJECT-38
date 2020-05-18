@@ -15,6 +15,14 @@ class Items
         return $data->execute($item);
     }
 
+    static function insertFiles($files)
+    {
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO Bestand (Filenaam, Voorwerp) 
+                                        VALUES (:Filenaam, :Voorwerp)');
+        return $data->execute($files);
+    }
+
     static function insertIntoRubriek($itemId, $rubriekNummer)
     {
         global $dbh;

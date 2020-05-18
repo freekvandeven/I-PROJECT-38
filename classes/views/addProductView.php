@@ -23,6 +23,7 @@ $user = User::getUser($_SESSION["name"]);
                         foreach(Items::getRubrieken() as $rubriek){
                             echo "<option value='".$rubriek['Rubrieknummer']."'>".$rubriek['Rubrieknaam']."</option>";
                         } ?>
+                        <option>appel</option>
                     </select>
                 </div>
                 <!-- BESCHRIJVING -->
@@ -48,12 +49,21 @@ $user = User::getUser($_SESSION["name"]);
                     </div>
                 </div>
 
+                <!-- THUMBNAIL UPLOADEN -->
+                <div class="form-group col-md-6">
+                    <label for="img">Thumbnail</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail" accept="image/*" required <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                        <label class="custom-file-label" for="thumbnail" data-browse="Bestand kiezen">Voeg een thumbnail toe</label>
+                    </div>
+                </div>
+
                 <!-- FOTO UPLOADEN -->
                 <div class="form-group col-md-6">
-                    <label for="img">Foto</label>
+                    <label for="img">Optionele foto's (max. 5)</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" required <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
-                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document toe</label>
+                        <input type="file" class="custom-file-input" id="img" name="img[]" accept="image/*" multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg meerdere foto's toe</label>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,7 @@
+<?php
+$maxPhotos = 5;
+?>
+
 <main class="veilingBekijkenPagina">
     <div class="container">
         <div class="row">
@@ -5,7 +9,47 @@
                 <div class="card">
                     <div class='card-body'>
                         <h4 class="card-header text-center"><?=$item['Titel']?></h4>
-                        <img src='upload/items/<?=$item['Voorwerpnummer']?>.png' class='card-img-top' alt='Productnaam'>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <?php
+                                for($i=0; $i<$maxPhotos; $i++) {
+                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) {
+                                        $dataSlideTo = $i + 1; ?>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$dataSlideTo?>"></li>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']?>.png" alt="Thumbnail">
+                                </div>
+
+                                <?php
+                                for($i=0; $i<$maxPhotos; $i++) {
+                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) { ?>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']._.$i?>.png" alt="Productfoto">
+                                    </div>
+                                <?php }
+                                } ?>
+                            </div>
+
+                            <?php
+                            if(checkImageExists("{$item['Voorwerpnummer']}_0.png")) { ?>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            <?php } ?>
+                        </div>
+
                         <p class='card-text'><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
