@@ -58,7 +58,8 @@ if(isset($_SESSION['loggedin'])){
                     </div>
                     <?php endif;?>
                 </li>
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
+                <?php
+                if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="admin.php">Admin</a>
                 </li>

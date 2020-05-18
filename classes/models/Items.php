@@ -133,7 +133,7 @@ class Items
     {
         global $dbh;
         $data = $dbh->prepare('UPDATE Voorwerp set Views = Views + 1 where voorwerpnummer = :id');
-        $data->execute(["id"=>$id]);
+        $data->execute(["id" => $id]);
     }
 
     static function getCategories()
@@ -145,9 +145,16 @@ class Items
         $data = $dbh->query($sql);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         $filtered = [];
-        foreach($result as $row){
+        foreach ($result as $row) {
             $filtered[$row['hoofdnaam']][$row['subnaam']] = $row['subsubnaam'];
         }
         return $filtered;
+    }
+
+    static function deleteItem($id)
+    {
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM Voorwerp where Voorwerpnummer = :id");
+        return $data->execute([':id'=>$id]);
     }
 }

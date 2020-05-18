@@ -111,7 +111,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                     </div>
                 </div><?php endif; ?>
                 <div> <!--temp-->
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="return confirm('Weet je zeker dat je jouw account wilt deleten? Je kan hierna niet meer terug.');">
                         <input type="hidden" name="token" value="<?=$token?>">
                         <button class="registerButton" type="submit" name="action" value="delete">Delete account</button>
                     </form>
