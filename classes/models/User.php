@@ -65,6 +65,13 @@ class User
         $data->execute([":Gebruikersnaam" => $user, ":Telefoon" => $phone]);
     }
 
+    static function insertFavorites($user, $itemID)
+    {
+        global $dbh;
+        $data = $dbh->prepare('INSERT INTO Favorieten (Gebruiker, Voorwerp) VALUES (:Gebruiker, :Voorwerp)');
+        $data->execute([":Gebruiker" => $user, ":Voorwerp" => $itemID]);
+    }
+
     static function getQuestions()
     {
         global $dbh;

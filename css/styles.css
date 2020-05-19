@@ -1147,6 +1147,22 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgb(165, 105, 189);
 }
 
+.voegFavorietToeForm .favorietButton{
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 7px;
+    padding: 2px 10px;
+    font-size: 18px;
+    color: rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.voegFavorietToeForm .favorietButton:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
+
+
 @media (max-width: 767px) {
     .catalogusPagina .productAanbiedenDiv {
         margin-top: -20px;

@@ -105,6 +105,14 @@ $maxPhotos = 5;
                     <button class="deleteButton" type="submit" name="deleteItem" value="delete"></button>
                 </form>
                 <?php endif; ?>
+                <form class="voegFavorietToeForm" method="POST" action="">
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <input type="hidden" name="item" value="<?= $_GET['id'] ?>">
+                    <div class="form-group col-xl-12">
+                        <label for="favoriet">Voeg dit item to aan uw favorieten</label>
+                    </div>
+                    <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star"></i></button>
+                </form>
             </div>
 
             <div class="col-xl-8 col-md-6">

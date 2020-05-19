@@ -11,6 +11,9 @@ if(checkPost()){
         if($_POST['action'] == 'review'){
             require_once('classes/controllers/profile/reviewController.php');
         }
+        if($_POST['action'] == 'follow'){
+            require_once('classes/controllers/profile/followController.php');
+        }
     }
 
     $ref = $_POST['voorwerp'];
