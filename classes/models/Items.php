@@ -6,13 +6,13 @@ class Items
     static function insertItem($item)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,Looptijd,
-                                      LooptijdBeginDag,LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,LooptijdEindeDag,
+        $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,
+                                      LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,
                                       LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs)
-                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
-                                      :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
+                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,
+                                      :LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
-        return $data->execute($item);
+         return $data->execute($item);
     }
 
     static function insertFiles($files)
@@ -115,8 +115,8 @@ class Items
     static function placeBid($item, $price, $user)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodDag, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user, :boddag, :bodtijdstip)');
-        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":boddag" => date('Y-m-d'), ":bodtijdstip" => date("H:i:s")));
+        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user,  GETDATE())');
+        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user));
     }
 
     static function getRubrieken()

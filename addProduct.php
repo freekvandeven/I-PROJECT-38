@@ -20,11 +20,9 @@ if ($user["Verkoper"]) {
                 ":Startprijs" => $posts["Startprijs"], ":Betalingswijze" => $posts["Betalingswijze"],
                 ":Betalingsinstructie" => $posts["Betalingsinstructie"],
                 ":Plaatsnaam" => $user["Plaatsnaam"], ":Land" => $user["Land"],
-                ":Looptijd" => $posts["Looptijd"], ":LooptijdBeginDag" => $date,
-                ":LooptijdBeginTijdstip" => date("H:i:s"),
+                ":LooptijdBeginTijdstip" => date('Y-m-d H:i:s'),
                 ":Verzendkosten" => 5, ":Verzendinstructies" => $posts["Verzendinstructies"], ":Verkoper" => $user["Gebruikersnaam"],
-                ":LooptijdEindeDag" => date('Y-m-d', strtotime($date . ' + ' . $_POST['Looptijd'] . ' days')),
-                ":LooptijdEindeTijdstip" => date("H:i:s"), ":VeilingGesloten" => "Nee", ":Verkoopprijs" => $posts["Startprijs"]);
+                ":LooptijdEindeTijdstip" => date('Y-m-d H:i:s', strTotime(' + '.$posts["Looptijd"].' days')), ":VeilingGesloten" => 0, ":Verkoopprijs" => $posts["Startprijs"]);
             //if image is set
             if(isset($_FILES['thumbnail'])){
                 //try insert
