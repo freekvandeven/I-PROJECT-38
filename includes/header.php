@@ -21,6 +21,7 @@ if(isset($_SESSION['loggedin'])){
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg"/>
     <script src="js/script.js"></script>
+    <script src="js/range.js"></script>
     <title><?=$title?></title>
     <!-- bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
