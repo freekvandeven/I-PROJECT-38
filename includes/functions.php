@@ -236,14 +236,14 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
 function generateImageLink($item, $thumbnail=true){
         if($thumbnail){
             $image = Items::getThumbnail($item);
-            if(file_exists("thumbnails/".$image)){
+            if(file_exists("thumbnails/$image") || true){ // file exists doesn't work on the files in thumbnails
                 return "thumbnails/".$image;
             } else {
                 return "upload/items/".$image;
             }
         } else {
             $images = Items::getFiles($item);
-            if(file_exists("pics/".$images[0])) {
+            if(file_exists("pics/".$images[0]) || true) { // file exists doesn't work on the files in pics
                 return "pics/" . $images[0];
             } else {
                 return "upload/items/".$images[0];
