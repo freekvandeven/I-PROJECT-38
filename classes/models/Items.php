@@ -79,7 +79,7 @@ class Items
     static function getFinishedItems()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=FALSE AND (LooptijdEindeDag < :vandaag  OR
                             (LooptijdEindeDag = :vandaag2 AND LooptijdEindeTijdstip < :moment))");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
         $data->execute(array(":vandaag" => date("Y-m-d"), ":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
@@ -90,7 +90,7 @@ class Items
     static function finishItem($item, $buyer, $sellprice)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten='Wel', Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
+        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=TRUE, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
         $data->execute([":item" => $item, ":buyer" => $buyer, ":sellprice" => $sellprice]);
     }
 
