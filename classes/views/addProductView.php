@@ -32,7 +32,7 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- TITEL -->
                 <div class="form-group col-md-6">
                     <label for="Titel">Titel</label>
-                    <input type="text" class="form-control input1" name="Titel" id="Titel"
+                    <input type="text" class="form-control input1" name="Titel" id="Titel" maxlength="25"
                            placeholder="Titel van uw product" autofocus required
                            value="<?php echo isset($_POST['Titel']) ? htmlspecialchars($_POST['Titel'], ENT_QUOTES) : ''; ?>">
                 </div>
@@ -50,8 +50,8 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- BESCHRIJVING -->
                 <div class="form-group col-md-12">
                     <label for="Beschrijving">Beschrijving</label>
-                    <input type="text" class="form-control input2" name="Beschrijving" id="Beschrijving"
-                           placeholder="Beschrijving"
+                    <input type="text" class="form-control input3" name="Beschrijving" id="Beschrijving"
+                           placeholder="Beschrijving" maxlength="200"
                            required <?php echo isset($_POST['Beschrijving']) ? htmlspecialchars($_POST['Beschrijving'], ENT_QUOTES) : ''; ?>>
                 </div>
 
@@ -59,7 +59,7 @@ $user = User::getUser($_SESSION["name"]);
                 <div class="form-group col-md-6">
                     <label for="Looptijd">Looptijd: </label>
                     <div class="input-group">
-                        <select class="form-control" name="Looptijd" id="Looptijd"
+                        <select class="form-control" name="Looptijd" id="Looptijd">
                                 required <?php echo isset($_POST['Looptijd']) ? htmlspecialchars($_POST['Looptijd'], ENT_QUOTES) : ''; ?>>
                             <option value="1">1</option>
                             <option value="3">3</option>
@@ -72,7 +72,6 @@ $user = User::getUser($_SESSION["name"]);
                         </div>
                     </div>
                 </div>
-
                 <!-- THUMBNAIL UPLOADEN -->
                 <div class="form-group col-md-6">
                     <label for="thumbnail">Thumbnail</label>
@@ -85,13 +84,16 @@ $user = User::getUser($_SESSION["name"]);
                             toe</label>
                     </div>
                 </div>
-
                 <!-- FOTO UPLOADEN -->
                 <div class="form-group col-md-6">
                     <label for="img">Optionele foto's (max. 5)</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="img" name="img[]" accept="image/*" multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
-                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg meerdere foto's toe</label>
+                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*"
+                               onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])
+                                          $('#img').show();"
+                               required <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                        <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document
+                            toe</label>
                     </div>
                 </div>
             </div>
@@ -108,7 +110,7 @@ $user = User::getUser($_SESSION["name"]);
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="text" class="form-control input3" id="Startprijs" name="Startprijs"
+                        <input type="text" class="form-control input2" id="Startprijs" name="Startprijs" maxlength="12"
                                required <?php echo isset($_POST['Startprijs']) ? htmlspecialchars($_POST['Startprijs'], ENT_QUOTES) : ''; ?>>
                     </div>
                 </div>
@@ -127,14 +129,14 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- BETALINGSINSTRUCTIES -->
                 <div class="form-group col-md-12">
                     <label for="Betalingsinstructie">Betalingsinstructies: </label>
-                    <input type="text" class="form-control" name="Betalingsinstructie" id="Betalingsinstructie"
+                    <input type="text" class="form-control" name="Betalingsinstructie" id="Betalingsinstructie" maxlength="100"
                            required <?php echo isset($_POST['Betalingsinstructie']) ? htmlspecialchars($_POST['Betalingsinstructie'], ENT_QUOTES) : ''; ?>>
                 </div>
 
                 <!-- VERZENDINSTRUCTIES -->
                 <div class="form-group col-md-12">
                     <label for="Verzendinstructies">Verzendinstructies: </label>
-                    <input type="text" class="form-control" name="Verzendinstructies" id="Verzendinstructies"
+                    <input type="text" class="form-control" name="Verzendinstructies" id="Verzendinstructies"maxlength="100"
                            required <?php echo isset($_POST['Verzendinstructies']) ? htmlspecialchars($_POST['Verzendinstructies'], ENT_QUOTES) : ''; ?>>
                 </div>
             </div>
@@ -156,10 +158,12 @@ $user = User::getUser($_SESSION["name"]);
             $('#titel').html($(this).val());
         });
         $("input[class*='input2']").keyup(function () {
-            $('#startprijs').html($(this).val());
+            $('#startprijs').html("€"+$(this).val());
         });
         $("input[class*='input3']").keyup(function () {
-            $('#beschrijving').html("€" + $(this).val());
+            var shortText = jQuery.trim($(this).val()).substring(0, 10)
+                .trim(this) + "...";
+            $('#beschrijving').html(    shortText);
         });
     </script>
 </main>
