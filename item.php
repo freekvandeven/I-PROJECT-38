@@ -48,7 +48,7 @@ if(checkPost()){
 
         if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
             if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
-                Items::placeBid($ref, $_POST["bid"], $_SESSION['name']);
+                Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
             }
         }
 

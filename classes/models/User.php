@@ -41,7 +41,7 @@ class User
     static function upgradeUser($user, $info)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=1 WHERE gebruikersnaam = :username");
+        $data = $dbh->prepare("UPDATE Gebruiker SET Verkoper=TRUE WHERE gebruikersnaam = :username");
         $data->execute([":username" => $user]);
         $data = $dbh->prepare("INSERT INTO Verkoper (Gebruiker, Bank, Bankrekening, ControleOptie, Creditcard) VALUES 
                                                                                        (:username, :bank, :bankrekening, :controle, :creditcard)");
@@ -93,7 +93,7 @@ class User
     static function makeUser($username)
     {
         global $dbh;
-        $data = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
+        $data = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=TRUE WHERE Gebruikersnaam =:username');
         $data->execute([":username" => $username]);
     }
 
@@ -171,7 +171,7 @@ class User
         $data->execute([":gebruiker"=>$name]);
         $data = $dbh->prepare("DELETE FROM Beoordeling WHERE GegevenDoor = :gebruiker");
         $data->execute([":gebruiker"=>$name]);
-        $data = $dbh->prepare("DELETE FROM  WHERE Gebruikersnaam = :gebruiker");
+        $data = $dbh->prepare("DELETE FROM Comments WHERE Gebruikersnaam = :gebruiker");
         $data->execute([":gebruiker"=>$name]);
         $data = $dbh->prepare("DELETE FROM Comments WHERE FeedbackGever = :gebruiker");
         $data->execute([":gebruiker"=>$name]);
