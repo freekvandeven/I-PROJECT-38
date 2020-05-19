@@ -112,11 +112,11 @@ class Items
         return $result[0];
     }
 
-    static function placeBid($item, $price, $user)
+    static function placeBid($item, $price, $user,$date)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user,  GETDATE())');
-        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user));
+        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user,  :date)');
+        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user,":date"=>$date));
     }
 
     static function getRubrieken()
