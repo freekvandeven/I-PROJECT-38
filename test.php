@@ -18,6 +18,6 @@ foreach($result as $row){
 }
 echo '<pre>' , var_dump($filtered) , '</pre>';
 */
-//echo calculateDistance('6671GK','6525EC', 'K');
-echo generateCategoryDropdown();
+echo calculateDistance(calculateLocation('6671GK'),calculateLocation('6525EC'));
+//echo generateCategoryDropdown();
 require_once('includes/footer.php');

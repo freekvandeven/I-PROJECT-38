@@ -121,7 +121,7 @@ function storeImg($files, $id,$target_dir)
 function checkImageExists($fileName) {
     return file_exists("upload/items/$fileName");
 }
-
+/*
 function calculateDistance($point1, $point2, $unit = ''){
     $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
     //$apiKey = 'AIzaSyBA5t_6kDT86NEzXrXQSzcaZpKLbDRzBos';
@@ -145,6 +145,8 @@ function calculateDistance($point1, $point2, $unit = ''){
     // Get latitude and longitude from the geodata
     $latitudeFrom    = $outputFrom->results[0]->geometry->location->lat;
     $longitudeFrom    = $outputFrom->results[0]->geometry->location->lng;
+    echo $latitudeFrom;
+    echo $longitudeFrom;
     $latitudeTo        = $outputTo->results[0]->geometry->location->lat;
     $longitudeTo    = $outputTo->results[0]->geometry->location->lng;
 
@@ -164,7 +166,32 @@ function calculateDistance($point1, $point2, $unit = ''){
     }else{
         return round($miles, 2).' miles';
     }
+}
+*/
 
+function calculateDistance($point1, $point2){
+    // Calculate distance between latitude and longitude
+    print_r($point1);
+    $theta    = $point1["longitude"] - $point2["longitude"];
+    $dist    = sin(deg2rad($point1["latitude"])) * sin(deg2rad($point2["latitude"])) +  cos(deg2rad($point1["latitude"])) * cos(deg2rad($point2["latitude"])) * cos(deg2rad($theta));
+    $dist    = acos($dist);
+    $dist    = rad2deg($dist);
+    $miles    = $dist * 60 * 1.1515;
+
+    // Convert unit and return distance
+    return round($miles * 1.609344, 2).' km'; // return distance in kilometer
+}
+
+function calculateLocation($location){
+    $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
+    $formattedAddrFrom = str_replace(' ', '+', $location);
+
+    $geocodeLoc= file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
+    $outputLoc = json_decode($geocodeLoc);
+    if(!empty($outputLoc->error_message)){
+        return $outputLoc->error_message;
+    }
+    return array("latitude"=> $outputLoc->results[0]->geometry->location->lat,"longitude"=>$outputLoc->results[0]->geometry->location->lng);
 }
 
 function sendConfirmationEmail($mail, $username, $hash){
