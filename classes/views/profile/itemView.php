@@ -27,7 +27,7 @@
                             <td>Veiling is afgelopen en er is GEEN bieder.</td>
                         </tr>
 
-                        <tr class="table-orange">
+                        <tr class="table-warning">
                             <td>Veiling is bezig, maar er is nog geen bieder.</td>
                         </tr>
 
@@ -63,7 +63,7 @@
                         if(isset($item['Koper'])) {
                             $label = "table-info";
                         } else{
-                            $label = "table-orange";
+                            $label = "table-warning";
                         }
                     }
                     ?>
