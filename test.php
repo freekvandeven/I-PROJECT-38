@@ -17,7 +17,7 @@ foreach($result as $row){
     $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
 }
 echo '<pre>' , var_dump($filtered) , '</pre>';
-*/
+123*/
 echo calculateDistance(calculateLocation('6671GK'),calculateLocation('6525EC'));
 //echo generateCategoryDropdown();
 require_once('includes/footer.php');
