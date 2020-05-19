@@ -23,6 +23,21 @@
                 </div>
             </div>
 
+            <div class="social-bar">
+                <div class="facebook-button">
+                    <a href="https://facebook.com/share/" target="_blank"><i class="fa fa-facebook"></i> Deel</a>
+                </div>
+                <div class="insta-button">
+                    <a href="https://instagram.com/han.nl" target="_blank"><i class="fa fa-google-plus"></i> Deel</a>
+                </div>
+                <div class="twitter-button">
+                    <a href="https://twitter.com/share?text=Bekijk nu de beste veilingssite van Nederland!&url=http://iproject38.icasites.nl/" target="_blank"><i class="fa fa-twitter"></i> Deel</a>
+                </div>
+                <div class="linkedin-button">
+                    <a href="https://linkedin.com/shareArticle?url=http://iproject38.icasites.nl/&title=Social media buttons in html" target="_blank"><i class="fa fa-linkedin"></i> Deel</a>
+                </div>
+            </div>
+
             <!-- Footer Links -->
             <div class="container text-center text-md-left mt-5">
                 <div class="row mt-3">

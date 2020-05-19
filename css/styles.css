@@ -1532,3 +1532,37 @@ input[type=range]::-ms-thumb {
     height: 18px;
     width: 18px;
 }
+
+/***********SOCIAL-SHARE_BUTTONS**********/
+
+.facebook-button, .insta-button, .twitter-button, .linkedin-button {
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+
+.facebook-button a:link , .facebook-button a:visited, .insta-button a:link, .insta-button a:visited, .twitter-button a:link, .twitter-button a:visited, .linkedin-button a:link, .linkedin-button a:visited {
+    display: block;
+    color: #fff;
+    font-family: verdana;
+    padding: 20px 0;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+.facebook-button a {
+    background-color: #306199;
+}
+
+.insta-button a{
+    background-color: #e93f2e;
+}
+
+.twitter-button a {
+    background-color: #26c4f1;
+}
+
+.linkedin-button a {
+    background-color: #007bb6;
+}
