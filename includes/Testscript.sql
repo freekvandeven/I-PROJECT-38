@@ -23,7 +23,7 @@ CREATE TABLE Bod(
 
 
 CREATE TABLE Feedback(
-	Voorwerp					INTEGER(20) 	NOT NULL,
+	Voorwerp					INTEGER      	NOT NULL,
 	SoortGebruiker				VARCHAR(20)		NOT NULL,
 	Feedbacksoort				VARCHAR(20)		NOT NULL,
 	Datum						DATETIME		NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Gebruiker(
 	Geboortedag					VARCHAR(10)		NOT NULL,
 	Mailbox						VARCHAR(128)	NOT NULL,
 	Wachtwoord					VARCHAR(128)	NOT NULL,
-	Vraag						INTEGER(20)		NOT NULL,
+	Vraag						TINYINT 		NOT NULL,
 	Antwoordtekst				VARCHAR(20)		NOT NULL,
 	Verkoper					BIT				NOT NULL,
 	Action						BIT 		    NOT NULL,
@@ -55,15 +55,15 @@ CREATE TABLE Gebruiker(
 );
 
 CREATE TABLE Beoordeling (
-    BeoordelingsNr 				INTEGER(20) 	NOT NULL AUTO_INCREMENT,
+    BeoordelingsNr 				INTEGER      	NOT NULL IDENTITY,
     Gebruikersnaam              VARCHAR(20)     NULL,
     GegevenDoor                 VARCHAR(20)     NULL,
-    Rating                      INTEGER(1)      NOT NULL,
+    Rating                      NUMERIC(1)      NOT NULL,
     CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr)
 );
 
 CREATE TABLE Comments (
-    FeedBackNr                  INTEGER(20)     NOT NULL AUTO_INCREMENT,
+    FeedBackNr                  INTEGER         NOT NULL IDENTITY,
     Gebruikersnaam              VARCHAR(20)     NULL,
     FeedbackGever               VARCHAR(20)     NULL,
     Feedback                    VARCHAR(255)    NOT NULL,
@@ -71,29 +71,28 @@ CREATE TABLE Comments (
 );
 
 CREATE TABLE GebruikersTelefoon(
-	Volgnr						INTEGER(20)	    NOT NULL AUTO_INCREMENT,
+	Volgnr						INTEGER	        NOT NULL IDENTITY,
 	Gebruiker					VARCHAR(20)		NOT NULL,
-	Telefoon					VARCHAR(11)		NOT NULL,
-	CONSTRAINT PK_GebruikersTelefoon	PRIMARY KEY	(Volgnr, Gebruiker)
+	Telefoon					VARCHAR(11)		NOT NULL UNIQUE,
+	CONSTRAINT PK_GebruikersTelefoon	PRIMARY KEY	(Gebruiker, Telefoon)
 );
 
 CREATE TABLE Rubriek(
-    Rubrieknummer				INTEGER(20)     	NOT NULL,
+    Rubrieknummer				INTEGER          	NOT NULL,
     Rubrieknaam					VARCHAR(32)		    NOT NULL,
-    Rubriek						INTEGER(20)			NULL,
-    Volgnr						INTEGER(20)         NOT NULL AUTO_INCREMENT,
+    Rubriek						INTEGER 			NULL,
+    Volgnr						INTEGER             NOT NULL IDENTITY,
     CONSTRAINT PK_Rubriek PRIMARY KEY (Rubrieknummer)
 );
 
 CREATE TABLE VoorwerpInRubriek(
-	Voorwerp						INTEGER(20)			NOT NULL AUTO_INCREMENT,
-	RubriekOpLaagsteNiveau			INTEGER(20)			NOT NULL,
+	Voorwerp						INTEGER 			NOT NULL IDENTITY,
+	RubriekOpLaagsteNiveau			INTEGER 			NOT NULL,
 	CONSTRAINT PK_VoorwerpInRubriek	PRIMARY KEY	(Voorwerp, RubriekOpLaagsteNiveau)
-
 );
 
 CREATE TABLE Vraag(
-	Vraagnummer				INTEGER(20)			NOT NULL AUTO_INCREMENT,
+	Vraagnummer				TINYINT		        NOT NULL IDENTITY,
 	TekstVraag				VARCHAR(128)		NOT NULL,
 	CONSTRAINT PK_Vraag	PRIMARY KEY	(Vraagnummer)
 );
@@ -110,13 +109,13 @@ CREATE TABLE Verkoper(
 
 
 CREATE TABLE Voorwerp(
-	Voorwerpnummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
+	Voorwerpnummer				INTEGER 		NOT NULL IDENTITY,
 	Titel						VARCHAR(100)	NOT NULL,
 	Beschrijving				VARCHAR(4000)	NOT NULL,
 	Startprijs					NUMERIC(15, 2)	NOT NULL,
 	Betalingswijze				VARCHAR(50)		NOT NULL,
 	Betalingsinstructie			CHAR(25)		NULL,
-	Plaatsnaam					VARCHAR(255)	NOT NULL,
+	Plaatsnaam					VARCHAR(60) 	NOT NULL,
 	Land						VARCHAR(50)		NOT NULL,
 	LooptijdBeginTijdstip		DATETIME		NOT NULL,
 	Verzendkosten				NUMERIC(19, 2)	NOT NULL,
@@ -124,16 +123,15 @@ CREATE TABLE Voorwerp(
 	Verkoper					VARCHAR(20)		NULL,
 	Koper						VARCHAR(20)		NULL,
 	LooptijdEindeTijdstip		DATETIME		NOT NULL,
-	VeilingGesloten			    BIT			NOT NULL,
-	Verkoopprijs				NUMERIC(19, 2)	NULL,
-	Views                       INTEGER(20)     DEFAULT 0,
+	VeilingGesloten			    BIT			    NOT NULL,
+	Verkoopprijs				NUMERIC(15, 2)	NULL,
+	Views                       INTEGER         DEFAULT 0,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
-
 );
 
 CREATE TABLE Bestand(
 	Filenaam VARCHAR(40) NOT NULL,
-	Voorwerp INTEGER(20) NOT NULL,
+	Voorwerp INTEGER     NOT NULL,
 	CONSTRAINT PK_filenaam PRIMARY KEY (Filenaam)
 );
 
@@ -217,19 +215,19 @@ ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
 insert into Vraag (tekstvraag)
 values(
        'Wie kan het beste koken?'),(
-       'Wat is je geboorteplaats'
+       'Wat is je geboorteplaats?'
        );
 
 
 insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
-'$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
+'$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 0, 'je moeder', 0, 1, 1);
 
-insert into Rubriek (RubriekNaam, Rubriek, Volgnr)values(
-'Autos, boten en motoren',5,5),(
-'Baby',	5,5),(
-'Muziek en instrumenten',	5,5),(
-'Elektronica',	5,5),(
-'Mode',	5,5);
+insert into Rubriek (RubriekNaam, Rubrieknummer)values(
+'Autos, boten en motoren',1),(
+'Baby',	2),(
+'Muziek en instrumenten',3),(
+'Elektronica',4),(
+'Mode',	5);
 
 
