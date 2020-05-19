@@ -110,8 +110,6 @@ $maxPhotos = 5;
                     <input type="hidden" name="item" value="<?= $_GET['id'] ?>">
                     <div class="form-group col-xl-12">
                         <label for="favoriet">Voeg dit item to aan uw favorieten</label>
-                        <textarea class="form-control" name="favoriet" id="favoriet"
-                                  rows="5"></textarea>
                     </div>
                     <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star"></i></button>
                 </form>
