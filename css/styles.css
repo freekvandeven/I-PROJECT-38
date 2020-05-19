@@ -509,6 +509,14 @@ body{
     font-size: 1em;
 }
 
+.mijnVeilingenPagina .table-orange{
+    background: rgba(234, 149, 64, .6);
+}
+
+.mijnVeilingenPagina .table-orange:hover{
+    background: rgba(234, 149, 64, .9);
+}
+
 /*************** ProfielPagina CSS *************/
 .profielPagina .jumbotron{
     padding-left: 20%;
