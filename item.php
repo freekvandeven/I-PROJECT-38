@@ -18,7 +18,8 @@ if(checkPost()){
 
     $ref = $_POST['voorwerp'];
     // Validatie verzending bod
-    if(isset($_POST["bid"]) && !empty($_POST["bid"])){
+    $item = Items::getItem($_GET['id']);
+    if(isset($_POST["bid"]) && !empty($_POST["bid"]&&$_SESSION['name']!=$item['Verkoper'])){
         // initialisatie variabelen
         $highestBid = Items::getHighestBid($ref)['Bodbedrag'];
         $startPrijs = Items::getItem($ref)["Startprijs"];
