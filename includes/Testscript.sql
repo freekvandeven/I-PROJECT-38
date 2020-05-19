@@ -14,11 +14,10 @@ DROP TABLE IF EXISTS Vraag;
 
 
 CREATE TABLE Bod(
-	Voorwerp					INTEGER(20) 	NOT NULL,
+	Voorwerp					INTEGER      	NOT NULL,
 	Bodbedrag					NUMERIC(15,2)	NOT NULL,
 	Gebruiker					VARCHAR(20)		NULL,
-	BodDag						VARCHAR(10)		NOT NULL,
-	BodTijdstip					VARCHAR(10)		NOT NULL,
+	BodTijdstip					DATETIME		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
 );
 
@@ -92,7 +91,6 @@ CREATE TABLE VoorwerpInRubriek(
 	CONSTRAINT PK_VoorwerpInRubriek	PRIMARY KEY	(Voorwerp, RubriekOpLaagsteNiveau)
 
 );
-
 
 CREATE TABLE Vraag(
 	Vraagnummer				INTEGER(20)			NOT NULL AUTO_INCREMENT,
