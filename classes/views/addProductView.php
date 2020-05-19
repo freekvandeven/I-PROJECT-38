@@ -1,5 +1,6 @@
 <?php
 $user = User::getUser($_SESSION["name"]);
+$maxAmountOptionalPhotos = 5;
 ?>
 
 <main class="productToevoegenPagina">
@@ -24,7 +25,8 @@ $user = User::getUser($_SESSION["name"]);
                         <!-- BESCHRIJVING -->
                         <div class="form-group col-md-12">
                             <label for="Beschrijving">Beschrijving</label>
-                            <textarea class="form-control input3" name="Beschrijving" id="Beschrijving" placeholder="Beschrijving" maxlength="4000" rows="4"
+                            <textarea class="form-control input3" name="Beschrijving" id="Beschrijving"
+                                      placeholder="Beschrijving" maxlength="4000" rows="4"
                                       required <?php echo isset($_POST['Beschrijving']) ? htmlspecialchars($_POST['Beschrijving'], ENT_QUOTES) : ''; ?>>
                             </textarea>
                         </div>
@@ -48,7 +50,9 @@ $user = User::getUser($_SESSION["name"]);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">€</span>
                                 </div>
-                                <input type="number" class="form-control input2" id="Startprijs" name="Startprijs" min="0" max="9999999999999" placeholder="Startprijs" required <?php echo isset($_POST['Startprijs']) ? htmlspecialchars($_POST['Startprijs'], ENT_QUOTES) : ''; ?>>
+                                <input type="number" class="form-control input2" id="Startprijs" name="Startprijs"
+                                       min="0" max="9999999999999" placeholder="Startprijs"
+                                       required <?php echo isset($_POST['Startprijs']) ? htmlspecialchars($_POST['Startprijs'], ENT_QUOTES) : ''; ?>>
                             </div>
                         </div>
 
@@ -57,7 +61,8 @@ $user = User::getUser($_SESSION["name"]);
                             <label for="Looptijd">Looptijd: </label>
                             <div class="input-group">
                                 <select class="form-control" name="Looptijd" id="Looptijd">
-                                    required <?php echo isset($_POST['Looptijd']) ? htmlspecialchars($_POST['Looptijd'], ENT_QUOTES) : ''; ?>>
+                                    required <?php echo isset($_POST['Looptijd']) ? htmlspecialchars($_POST['Looptijd'], ENT_QUOTES) : ''; ?>
+                                    >
                                     <option value="1">1</option>
                                     <option value="3">3</option>
                                     <option value="5" selected="selected">5</option>
@@ -74,18 +79,24 @@ $user = User::getUser($_SESSION["name"]);
                         <div class="form-group col-md-12">
                             <label for="img">Thumbnail</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail" accept="image/*" required <?php echo isset($_POST['thumbnail']) ? htmlspecialchars($_POST['thumbnail'], ENT_QUOTES) : ''; ?>
+                                <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail"
+                                       accept="image/*"
+                                       required <?php echo isset($_POST['thumbnail']) ? htmlspecialchars($_POST['thumbnail'], ENT_QUOTES) : ''; ?>
                                        onchange="document.getElementById('imgPreview').src = window.URL.createObjectURL(this.files[0])
                                        $('#imgPreview').show();">
-                                <label class="custom-file-label" for="thumbnail" data-browse="Zoeken">Voeg thumbnail toe</label>
+                                <label class="custom-file-label" for="thumbnail" data-browse="Zoeken">Voeg thumbnail
+                                    toe</label>
                             </div>
                         </div>
                         <!-- FOTO UPLOADEN -->
                         <div class="form-group col-md-12">
                             <label for="img">Optionele foto's</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" required multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
-                                <label class="custom-file-label" for="img" data-browse="Zoeken">Voeg foto's toe (max. 5)</label>
+                                <input type="file" class="multipleImages custom-file-input" id="img" name="img"
+                                       accept="image/*" required
+                                       multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                                <label class="custom-file-label" for="img" data-browse="Zoeken">Voeg foto's toe (max.
+                                    5)</label>
                             </div>
                         </div>
                     </div>
@@ -95,7 +106,7 @@ $user = User::getUser($_SESSION["name"]);
                     <h4 class="text-center">Uw veiling</h4>
                     <div class='card col-lg-12'>
                         <div class="itemImage">
-                            <img id="imgPreview" alt="Uw thumbnail"  class='card-img-top'>
+                            <img id="imgPreview" alt="Uw thumbnail" class='card-img-top'>
                         </div>
                         <div class='card-body'>
                             <h5 class='card-title' id="titel"></h5>
@@ -118,7 +129,8 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- BETALINGSWIJZE -->
                 <div class="form-group col-md-6">
                     <label for="Betalingswijze">Betalingswijze</label>
-                    <select class="form-control" id="Betalingswijze" name="Betalingswijze" required <?php echo isset($_POST['Betalingswijze']) ? htmlspecialchars($_POST['Betalingswijze'], ENT_QUOTES) : ''; ?>>
+                    <select class="form-control" id="Betalingswijze" name="Betalingswijze"
+                            required <?php echo isset($_POST['Betalingswijze']) ? htmlspecialchars($_POST['Betalingswijze'], ENT_QUOTES) : ''; ?>>
                         <option value="Contact">Contact</option>
                         <option value="Bank">Bank</option>
                         <option value="Anders">Anders</option>
@@ -130,14 +142,18 @@ $user = User::getUser($_SESSION["name"]);
                 <!-- BETALINGSINSTRUCTIES -->
                 <div class="form-group col-md-6">
                     <label for="Betalingsinstructie">Betalingsinstructies: </label>
-                    <textarea class="form-control" name="Betalingsinstructie" id="Betalingsinstructie" maxlength="25" rows="4" placeholder="Betalingsinstructies" <?php echo isset($_POST['Betalingsinstructie']) ? htmlspecialchars($_POST['Betalingsinstructie'], ENT_QUOTES) : ''; ?>>
+                    <textarea class="form-control" name="Betalingsinstructie" id="Betalingsinstructie" maxlength="25"
+                              rows="4"
+                              placeholder="Betalingsinstructies" <?php echo isset($_POST['Betalingsinstructie']) ? htmlspecialchars($_POST['Betalingsinstructie'], ENT_QUOTES) : ''; ?>>
                     </textarea>
                 </div>
 
                 <!-- VERZENDINSTRUCTIES -->
                 <div class="form-group col-md-6">
                     <label for="Verzendinstructies">Verzendinstructies: </label>
-                    <textarea class="form-control" name="Verzendinstructies" id="Verzendinstructies"maxlength="50" rows="4" placeholder="Verzendinstructies" <?php echo isset($_POST['Verzendinstructies']) ? htmlspecialchars($_POST['Verzendinstructies'], ENT_QUOTES) : ''; ?>>
+                    <textarea class="form-control" name="Verzendinstructies" id="Verzendinstructies" maxlength="50"
+                              rows="4"
+                              placeholder="Verzendinstructies" <?php echo isset($_POST['Verzendinstructies']) ? htmlspecialchars($_POST['Verzendinstructies'], ENT_QUOTES) : ''; ?>>
                     </textarea>
                 </div>
             </div>
@@ -150,22 +166,34 @@ $user = User::getUser($_SESSION["name"]);
 
         <!-- SUBMIT-KNOP -->
         <div class="form-group text-center">
-            <button class="addProductButton" type="submit" name="action" value="verzenden">Aanbieden</button>
+            <button class="addProductButton" type="submit" name="action" value="verzenden" id="submit">Aanbieden</button>
         </div>
     </form>
 
     <script>
-        $(".custom-file-input").on("change", function() {
+        $(".custom-file-input").on("change", function () {
             var thumbnail = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(thumbnail);
         });
+
+        $("#submit").click(function () {
+            if ($("#img")[0].files.length > <?=$maxAmountOptionalPhotos?>) {
+                alert("Je kan maximaal <?=$maxAmountOptionalPhotos?> optionele foto's selecteren.");
+                for(var i=0; i<$("#img")[0].files.length; i++) {
+                    delete $("#img")[0][i];
+                }
+                var url = "https://iproject38.icasites.nl/addProduct.php";
+                window.location.replace(url);
+            }
+        });
+
 
         $('#imgPreview').hide();
         $("input[class*='input1']").keyup(function () {
             $('#titel').html($(this).val());
         });
         $("input[class*='input2']").keyup(function () {
-            $('#startprijs').html("€"+$(this).val());
+            $('#startprijs').html("€" + $(this).val());
         });
         $("textarea[class*='input3']").keyup(function () {
             var shortText = jQuery.trim($(this).val()).substring(0, 15)
