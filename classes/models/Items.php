@@ -79,10 +79,9 @@ class Items
     static function getFinishedItems()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=FALSE AND (LooptijdEindeDag < :vandaag  OR
-                            (LooptijdEindeDag = :vandaag2 AND LooptijdEindeTijdstip < :moment))");
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip > :nu ");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
-        $data->execute(array(":vandaag" => date("Y-m-d"), ":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
+        $data->execute(array(":nu" => date("Y-m-d H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -164,5 +163,21 @@ class Items
         global $dbh;
         $data = $dbh->prepare("DELETE FROM Voorwerp where Voorwerpnummer = :id");
         return $data->execute([':id'=>$id]);
+    }
+
+    static function getFiles($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND NOT Filenaam LIKE '%img%'");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchColumn();
+        return $result;
+    }
+
+    static function getThumbnail($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND Filenaam LIKE '%img%'");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchColumn();
+        return $result;
     }
 }

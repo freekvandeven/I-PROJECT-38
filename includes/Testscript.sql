@@ -93,7 +93,7 @@ CREATE TABLE Rubriek(
 );
 
 CREATE TABLE VoorwerpInRubriek(
-	Voorwerp						INTEGER 			NOT NULL IDENTITY,
+	Voorwerp						INTEGER 			NOT NULL,
 	RubriekOpLaagsteNiveau			INTEGER 			NOT NULL,
 	CONSTRAINT PK_VoorwerpInRubriek	PRIMARY KEY	(Voorwerp, RubriekOpLaagsteNiveau)
 );
@@ -189,8 +189,8 @@ ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
 ALTER TABLE VoorwerpInRubriek
 ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
+		ON UPDATE CASCADE
+		ON DELETE CASCADE;
 
 ALTER TABLE VoorwerpInRubriek
 ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
