@@ -146,17 +146,17 @@ ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
+CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE;
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
 
 ALTER TABLE Bod
 ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-ADD CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
+CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE;
@@ -176,8 +176,9 @@ ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
 ALTER TABLE VoorwerpInRubriek
 ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION;
+
 ALTER TABLE VoorwerpInRubriek
 ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
 		REFERENCES Rubriek (Rubrieknummer)
@@ -188,17 +189,17 @@ ALTER TABLE Verkoper
 ADD CONSTRAINT FK_Verkoper_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
 		ON UPDATE CASCADE
-		ON DELETE NO ACTION;
+		ON DELETE CASCADE;
 
 ALTER TABLE Voorwerp
 ADD CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper FOREIGN KEY (verkoper)
 		REFERENCES Verkoper(gebruiker)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE,
-ADD	CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION,
+CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
 		REFERENCES Gebruiker(gebruikersnaam)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION;
 
 ALTER TABLE Bestand
 ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
@@ -209,8 +210,8 @@ ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
 ALTER TABLE Rubriek
 ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
         REFERENCES Rubriek (Rubrieknummer)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE;
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
 
 insert into Vraag (tekstvraag)
 values(
@@ -221,7 +222,7 @@ values(
 
 insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
-'$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 0, 'je moeder', 0, 1, 1);
+'$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
 
 insert into Rubriek (RubriekNaam, Rubrieknummer)values(
 'Autos, boten en motoren',1),(
