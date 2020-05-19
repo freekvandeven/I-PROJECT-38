@@ -11,10 +11,10 @@ if (isset($_POST)) {
                 $order[':order'] = "prijs DESC";
                 break;
             case "New":
-                $order[':order'] = "looptijdbegindag DESC";
+                $order[':order'] = "looptijdbegintijdstip DESC";
                 break;
             case "Old":
-                $order[':order'] = "looptijdbegindag ASC";
+                $order[':order'] = "looptijdbegintijdstip ASC";
                 break;
         }
     }

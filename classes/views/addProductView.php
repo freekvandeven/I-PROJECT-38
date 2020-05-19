@@ -91,7 +91,7 @@ $user = User::getUser($_SESSION["name"]);
                         <input type="file" class="custom-file-input" id="img" name="img" accept="image/*"
                                onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])
                                           $('#img').show();"
-                               required <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
+                                <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
                         <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document
                             toe</label>
                     </div>

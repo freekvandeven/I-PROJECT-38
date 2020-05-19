@@ -1,7 +1,7 @@
 <?php
 
 # code for filling database with items
-
+$dbh->exec("DELETE FROM Voorwerp WHERE Betalingswijze='niks'");
 
 # step 1 add categories
 
@@ -38,7 +38,7 @@ foreach($dirs as $dir) {
 
     #step 3.2 fix insert string
     $refactorFile = str_replace("INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES (",
-        "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',3,1, 1, 1,",$userFile);
+        "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',1,1, 1, 1,",$userFile);
     # step 3.3 split file in inserts
     $inserts = explode("\n", $refactorFile);
 
@@ -93,17 +93,17 @@ foreach($dirs as $dir) {
                 $beschrijving = $output[11];
                 $currencies[] = $output[8];
 
-                $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, Looptijd, LooptijdBeginDag, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeDag, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $data = $dbh->prepare($sql);
-                $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, 10,'2020-06-20', '1900-01-01 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30', '1900-01-01 12:00:00:000', 'Nee'));
+                $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30 12:00:00:000', FALSE));
                 $sql = "INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)";
                 $data = $dbh->prepare($sql);
                 $itemID = Items::get_ItemId();
                 $data->execute(array($itemID, $category));
                 //$imagelink = str_replace("img", "dt_1_", $output[10]);
                 //store file with new autoincrementId as id.png
-                imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
-
+                //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
+                Items::insertFiles(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
 
                 # step 4.6 insert images in bestanden
                 array_shift($splitParts); // remove first insert for item
@@ -111,7 +111,7 @@ foreach($dirs as $dir) {
 
                 foreach ($splitParts as $image) {
                     # put image into database
-
+                    //Items::insertFiles(array(":Filenaam"=>,":Voorwerp"=>$itemID));
                 }
             }
         }

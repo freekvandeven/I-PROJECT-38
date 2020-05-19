@@ -1147,6 +1147,22 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgb(165, 105, 189);
 }
 
+.voegFavorietToeForm .favorietButton{
+    background: #fff;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 7px;
+    padding: 2px 10px;
+    font-size: 18px;
+    color: rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.voegFavorietToeForm .favorietButton:hover{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
+
+
 @media (max-width: 767px) {
     .catalogusPagina .productAanbiedenDiv {
         margin-top: -20px;
@@ -1430,3 +1446,89 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
+/********** RANGE PRICE AND DISTANCE **********/
+
+.price-slider, .distance-slider{
+    width: 200px;
+    position: relative;
+    height: 4em;
+}
+
+.price-slider svg,
+.price-slider input[type=range] {
+    position: absolute;
+    left: 0;
+    bottom: 10%;
+}
+
+.distance-slider svg,
+.distance-slider input[type=range] {
+    position: absolute;
+    left: 0;
+    bottom: 10%;
+}
+
+input[type=number] {
+    font-size: 0.65em;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number]:invalid,
+input[type=number]:out-of-range {
+    border: 2px solid #e60023;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: rgb(211, 164, 238);
+    border: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    z-index: 2;
+    position: relative;
+    border: 1px solid rgb(0,0,0);
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: rgb(189, 110, 235);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    border: 0;
+}
+
+input[type=range]::-moz-range-thumb {
+    z-index: 2;
+    position: relative;
+    height: 18px;
+    width: 18px;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+    position: relative;
+    border: 1px solid green;
+    height: 18px;
+    width: 18px;
+}

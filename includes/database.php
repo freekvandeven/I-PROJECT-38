@@ -17,7 +17,7 @@ function selectFromCatalog($orders)
             FROM bod WHERE Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
-            where VeilingGesloten = 'Nee') as combinetable";
+            where VeilingGesloten = 0) as combinetable";
         foreach ($orders as $key => $order) {
             if (!empty($order)) {
                 if (strpos($key, ":where") !== false) {
@@ -54,7 +54,7 @@ function selectFromCatalogsMSSQL($orders)
             FROM bod WHERE Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
-            where VeilingGesloten = 'Nee') as combinetable";
+            where VeilingGesloten = 0) as combinetable";
     $limited = false;
     $limit = 0;
     foreach ($orders as $key => $order) {
