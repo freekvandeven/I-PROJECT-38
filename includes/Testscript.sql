@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Beoordeling;
 DROP TABLE IF EXISTS Bod;
@@ -68,6 +69,12 @@ CREATE TABLE Comments (
     FeedbackGever               VARCHAR(20)     NULL,
     Feedback                    VARCHAR(255)    NOT NULL,
     CONSTRAINT PK_Comments PRIMARY KEY(FeedBackNr)
+);
+
+CREATE TABLE Favorieten (
+    Gebruiker                  INTEGER     NOT NULL,
+    Voorwerp                   VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_Favorieten PRIMARY KEY(Gebruiker, Voorwerp)
 );
 
 CREATE TABLE GebruikersTelefoon(
@@ -153,6 +160,12 @@ ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE;
+
+Alter TABLE Favorieten
+ADD CONSTRAINT FK_Favorieten_voorwerpnummer FOREIGN KEY (Voorwerp)
+		REFERENCES Voorwerp (voorwerpnummer)
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION,
 
 ALTER TABLE Bod
 ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)
