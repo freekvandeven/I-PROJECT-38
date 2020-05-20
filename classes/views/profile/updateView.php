@@ -5,9 +5,9 @@ $profile_data = User::getUser($_SESSION['name']);
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
 <script src="includes/darkMode.js"></script>
 
-<main>
-    <div id="login-box" class="col-md-12">
-        <form id="login-form" class="updateForm" action="" method="post" enctype="multipart/form-data">
+<main class="updateGegevensPagina">
+    <div class="container col-xl-12">
+        <form class="updateForm" action="" method="post" enctype="multipart/form-data">
             <h2 class="text-center">Huidige gegevens</h2>
             <?php if(isset($err))echo $err;?>
             <input type="hidden" name="token" value="<?=$token?>">
@@ -53,12 +53,12 @@ $profile_data = User::getUser($_SESSION['name']);
                         <input type="text" class="form-control" name="secret-answer" id="antwGeheimeVraag" value="<?=$profile_data['Antwoordtekst']?>">
                     </div>
 
-                    <!-- FOTO UPLOADEN -->
+                    <!-- PROFIELFOTO UPLOADEN -->
                     <div class="form-group col-md-4">
-                        <label for="img">Foto</label>
+                        <label for="img">Profielfoto</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
-                            <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Voeg je document toe</label>
+                            <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Pas uw profielfoto aan</label>
                         </div>
                     </div>
 
@@ -111,11 +111,11 @@ $profile_data = User::getUser($_SESSION['name']);
                 </div>
             </div>
             <!-- GA-TERUG-KNOP -->
-            <div class="form-group text-center">
-                <a href="profile.php">Ga terug</a><br>
+            <div class="gaTerugKnopBox text-center">
+                <a href="profile.php">Ga terug</a>
             </div>
             <!-- SUBMIT-KNOP -->
-            <div class="form-group text-center">
+            <div class="text-center">
                 <button class="updateButton" type="submit" name="action" value="update">Update Informatie</button>
             </div>
         </form>

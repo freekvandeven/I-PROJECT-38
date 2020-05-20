@@ -372,7 +372,6 @@ body{
 
 .upgradeForm h2, .updateForm h2{
     margin-bottom: 35px;
-    isolation: isolate;
 }
 
 /* De 'Registreren' titel */
@@ -456,11 +455,34 @@ body{
 }
 
 .upgradeForm .upgradeButton, .updateForm .updateButton{
-    padding: 5px 20px
+    padding: 5px 50px
 }
 
 .updateForm .updateButton{
-    margin-bottom: 100px;
+    padding: 6px 75px;
+    margin-bottom: 200px;
+}
+
+.updateGegevensPagina .container .updateForm p{
+    margin-bottom: 40px;
+}
+
+.updateGegevensPagina .container .updateForm .container h5{
+    font-size: 21px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-bottom: 15px;
+}
+
+.updateGegevensPagina .container .updateForm .container .form-row .form-group .custom-file label{
+    border-radius: 10px;
+}
+
+.updateGegevensPagina .container .updateForm .container .form-row .form-group .custom-file label::after{
+    border-radius: 0 10px 10px 0;
+}
+
+.updateGegevensPagina .container .updateForm .gaTerugKnopBox{
+    margin-bottom: 30px
 }
 
 /* Als de gebruiker over de knop hovert met zijn muis */
@@ -480,7 +502,7 @@ body{
     isolation: isolate;
 }
 
-.upgradeForm, .updateForm{
+.updateForm{
     margin-top: 100px;
 }
 
@@ -535,6 +557,22 @@ body{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     border-color: rgb(165, 105, 189);
     padding-left: 5px;
+}
+
+.upgradePagina .container h2{
+    margin-top: 75px;
+}
+
+.upgradePagina .container p{
+    margin: 25px 0 50px 0;
+}
+
+.upgradePagina .container  .upgradeForm .gaTerugKnopBox{
+    margin: 40px 0 25px 0;
+}
+
+.upgradePagina .container .upgradeForm  .container .subTitel{
+    font-size: 21px;
 }
 
 /*************** Mijn Veilingen & Favoriete veilingen CSS *************/
@@ -1972,5 +2010,76 @@ footer,
 
 .darkmode--activated .profielPagina .row .card .card-body .btn:hover{
     box-shadow: 0 0 10px rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+/********* UPDATEVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .updateGegevensPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .updateGegevensPagina .container .updateForm .container h5{
+    border-color: rgba(230, 230, 230, .3);
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .updateGegevensPagina .container .updateForm .gaTerugKnopBox a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .updateGegevensPagina .container .updateForm .gaTerugKnopBox a:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton:hover{
+    background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .updateGegevensPagina .container .updateForm p{
+    color: rgb(230, 230, 230);
+}
+
+/********* UPGRADEVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .upgradePagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .upgradePagina .container p{
+    color: rgb(230, 230, 230);
+}
+
+
+.darkmode--activated .upgradePagina .gaTerugKnopBox .gaTerugKnop{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .upgradePagina .gaTerugKnopBox .gaTerugKnop:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .upgradePagina .container .upgradeForm  .container .subTitel{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .upgradePagina .container .upgradeForm div .upgradeButton{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
+}
+
+.darkmode--activated .upgradePagina .container .upgradeForm div .upgradeButton:hover{
+    background: rgb(165, 105, 189);
     color: rgb(40, 40, 40);
 }
