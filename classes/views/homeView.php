@@ -1,4 +1,8 @@
 <main class="homePage">
+    <!-- Darkmode Toggle -->
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+    <script src="includes/darkMode.js"></script>
+
     <!-- Slideshow: -->
     <div class="slideshow">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -54,6 +58,7 @@
             $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
             generateCatalog($items);
             ?>
+
             <script>
                 var my_date;
                 <?php
@@ -74,6 +79,3 @@
         </div>
     </div>
 </main>
-
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>

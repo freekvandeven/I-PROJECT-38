@@ -1499,7 +1499,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 /******************************* DARKMODE *********************************/
 
 .darkmode-toggle{
-    z-index: 1;
+    z-index: 10;
 }
 
 /********* ADDPRODUCTVIEW.PHP *********/
@@ -1674,3 +1674,30 @@ footer,
 .darkmode--activated .forgotPasswordPagina .container .wachtwoordVergetenForm .wachtwoordVergetenButton:hover{
     color: rgb(40, 40, 40);
 }
+
+/********* HOMEVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .homePage{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .homePage .products{
+    background: rgb(70, 70, 70);
+}
+
+.darkmode--activated .homePage .carousel-caption,
+.darkmode--activated .homePage .carousel-caption a h3{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .homePage .carousel-item img{
+    opacity: .8;
+}
+
+.darkmode--activated .homePage .products h3,
+.darkmode--activated .homePage .card .card-body h5{
+    color: rgb(230, 230, 230);
+}
+
