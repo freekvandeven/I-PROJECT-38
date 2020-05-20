@@ -1,16 +1,9 @@
 <main class="catalogusPagina">
 
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+    <script src="includes/darkMode.js"></script>
+
     <div class="linkerkant">
-
-        <div class="prijsrange">
-
-        </div>
-
-        <div class="afstandsFilter">
-
-        </div>
-
-
         <div class="categorieen">
             <h4 class="font-weight-normal text-center">Categorieën</h4>
             <ul class="list-unstyled">
@@ -197,6 +190,3 @@
         xmlhttp.send(data.concat('&request=getCatalogus'));
     }
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>

@@ -2154,46 +2154,46 @@ footer{
 
 /******************** RANGE PRICE AND DISTANCE ********************/
 
-.price-slider, .distance-slider{
+.catalogusPagina .price-slider, .distance-slider{
     width: 200px;
     position: relative;
     height: 4em;
 }
 
-.price-slider svg,
-.price-slider input[type=range] {
+.catalogusPagina .price-slider svg,
+.catalogusPagina .price-slider input[type=range] {
     position: absolute;
     left: 0;
     bottom: 10%;
 }
 
-.distance-slider svg,
-.distance-slider input[type=range] {
+.catalogusPagina .distance-slider svg,
+.catalogusPagina .distance-slider input[type=range] {
     position: absolute;
     left: 0;
     bottom: 10%;
 }
 
-input[type=number] {
+.catalogusPagina input[type=number] {
     font-size: 0.65em;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+.catalogusPagina input[type=number]::-webkit-outer-spin-button,
+.catalogusPagina input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
-input[type=number]:invalid,
-input[type=number]:out-of-range {
+.catalogusPagina input[type=number]:invalid,
+.catalogusPagina input[type=number]:out-of-range {
     border: 2px solid #e60023;
 }
 
-input[type=range] {
+.catalogusPagina input[type=range] {
     -webkit-appearance: none;
     width: 100%;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+.catalogusPagina input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
     height: 5px;
     cursor: pointer;
@@ -2201,7 +2201,7 @@ input[type=range]::-webkit-slider-runnable-track {
     border: 0;
 }
 
-input[type=range]::-webkit-slider-thumb {
+.catalogusPagina input[type=range]::-webkit-slider-thumb {
     z-index: 2;
     position: relative;
     border: 1px solid rgb(0,0,0);
@@ -2214,25 +2214,25 @@ input[type=range]::-webkit-slider-thumb {
     margin-top: -7px;
 }
 
-input[type=range]::-moz-range-track {
+.catalogusPagina input[type=range]::-moz-range-track {
     width: 100%;
     border: 0;
 }
 
-input[type=range]::-moz-range-thumb {
+.catalogusPagina input[type=range]::-moz-range-thumb {
     z-index: 2;
     position: relative;
     height: 18px;
     width: 18px;
 }
 
-input[type=range]::-ms-track {
+.catalogusPagina input[type=range]::-ms-track {
     width: 100%;
     height: 5px;
     cursor: pointer;
 }
 
-input[type=range]::-ms-thumb {
+.catalogusPagina input[type=range]::-ms-thumb {
     position: relative;
     border: 1px solid green;
     height: 18px;
