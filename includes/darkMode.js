@@ -3,7 +3,7 @@ var options = {
     right: '32px', // default: '32px'
     left: 'unset', // default: 'unset'
     time: '0.3s', // default: '0.3s'
-    mixColor: 'rgb(180, 180, 180)', // default: '#fff'
+    mixColor: 'rgb(200, 200, 200)', // default: '#fff'
     backgroundColor: 'rgb(255, 255, 255)',  // default: '#fff'
     buttonColorDark: '#100f2c',  // default: '#100f2c'
     buttonColorLight: '#fff', // default: '#fff'

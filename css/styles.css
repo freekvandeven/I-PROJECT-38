@@ -463,9 +463,16 @@ body{
 }
 
 .addProductPagina .addProductForm .productContainer .row .productGegevens .form-row .form-group textarea,
-.addProductPagina .addProductForm .container .form-row .form-group textarea{
+.addProductPagina .addProductForm .container .form-row .form-group textarea,
+.addProductPagina .addProductForm .custom-file label,
+.addProductPagina .addProductForm .custom-file label::after{
     border-radius: 10px;
     transition: 200ms;
+}
+
+.addProductPagina .addProductForm .custom-file label::after{
+    border-left: none;
+    border-radius: 0 10px 10px 0;
 }
 
 .addProductPagina .addProductForm textarea:focus{
@@ -1490,9 +1497,20 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /******************************* DARKMODE *********************************/
-.addProductButton, footer{
+
+.darkmode-toggle{
+    z-index: 1;
+}
+
+/****** ADDPRODUCTVIEW.PHP ******/
+
+/*** ISOLATIONS ***/
+footer,
+.addProductPagina .addProductForm .form-group{
     isolation: isolate;
 }
+
+/*** DARKMODE CSS ***/
 
 .darkmode--activated h1, .darkmode--activated h2, .darkmode--activated h3, .darkmode--activated h4, .darkmode--activated h5{
     color: rgb(240, 240, 240);
@@ -1515,12 +1533,25 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .darkmode--activated input:focus,
 .darkmode--activated textarea:focus,
 .darkmode--activated select:focus,
-.darkmode--activated .card{
-    background: rgb(245, 245, 245);
+.darkmode--activated .card,
+.darkmode--activated .custom-file label{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+    border: 1px solid rgb(80, 80, 80);
 }
 
-.addProductPagina .addProductForm .form-group{
-    isolation: isolate;
+.darkmode--activated .input-group-prepend span, .darkmode--activated .input-group-append span, .darkmode--activated .custom-file label::after{
+    background: rgb(65, 65, 65);
+    color: rgb(230, 230, 230);
+    border: none;
+}
+
+.darkmode--activated .addProductPagina .cardPreviewBox .card-body h5, .darkmode--activated .addProductPagina .cardPreviewBox .card-body a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .addProductPagina .cardPreviewBox .card-body a:hover{
+    color: rgb(150, 150, 150);
 }
 
 .darkmode--activated .addProductPagina .addProductForm .form-group a{
@@ -1532,7 +1563,8 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .darkmode--activated .addProductButton{
-    background: rgb(245, 245, 245);
+    background: rgb(100, 100, 100);
+    color: rgb(230, 230, 230);
     box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 
@@ -1541,6 +1573,21 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     color: rgb(50, 50, 50);
 }
 
-.darkmode--activated .input-group-prepend span, .darkmode--activated .input-group-append span{
-    background: rgb(240, 240, 240);
+/****** ADMINVIEW.PHP ******/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .adminPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .jumbotron{
+    background: rgb(60, 60, 60);
+}
+
+.darkmode--activated .jumbotron p,
+.darkmode--activated .jumbotron h2,
+.darkmode--activated .container h2,
+.darkmode--activated .adminPagina .container .card .card-body .card-title{
+    color: rgb(230 ,230, 230);
 }
