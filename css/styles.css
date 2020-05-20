@@ -15,6 +15,7 @@ nav{
     border: 2px solid #fff;
     transition: 300ms;
     padding: 5px 10px;
+    border-radius: 7px;
 }
 
 .btn-outline-success:hover {
@@ -80,14 +81,27 @@ nav{
 }
 
 .navbarForm .zoekBalk{
-    width: 300px;
-    transition: 200ms;
+    width: 600px;
+    transition: 300ms;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(40, 40, 40, .4);
 }
 
 .navbarForm .zoekBalk:focus{
-    box-shadow: 0 0 10px rgb(165, 105, 189);
-    border-color: rgba(165, 105, 189, .8);
+    box-shadow: 0 0 15px rgba(40, 40, 40, .9);
     padding: 5px;
+}
+
+@media (max-width: 1496px) {
+    .navbarForm .zoekBalk{
+        width: 400px;
+    }
+}
+
+@media (max-width: 1230px) {
+    .navbarForm .zoekBalk{
+        width: 250px;
+    }
 }
 
 @media (max-width: 575px) {
@@ -153,7 +167,7 @@ nav{
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
     color: #ac00ff;
 }
-.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-ite   m.active {
     color: #ac00ff;
     background-color: #5f4b8b;
 }
@@ -518,7 +532,7 @@ body{
 @media (max-width: 992px) {
     .addProductPagina .addProductForm .container .row .cardPreviewBox{
         margin-top: 30px;
-        padding-left: 0px;
+        padding-left: 0;
         border: none;
     }
 
@@ -550,6 +564,14 @@ body{
 
 .addProductPagina .addProductForm .custom-file label::after{
     border-left: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.addProductPagina .addProductForm .input-group-prepend span{
+    border-radius: 10px 0 0 10px;
+}
+
+.addProductPagina .addProductForm .input-group-append span{
     border-radius: 0 10px 10px 0;
 }
 
@@ -1152,17 +1174,21 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.itemImage{
+.itemImage, .itemImageProfilePage{
     display: block;
-    height: 300px;
+    height: 400px;
     overflow: hidden;
     margin-bottom: 20px;
 }
 
-.itemImage img{
+.itemImage img, .itemImageProfilePage img{
     margin: 0 auto;
     width: 100%;
     height: auto;
+}
+
+.itemImageProfilePage{
+    height: 260px;
 }
 
 .profielPaginaVIemandAnders .geenReviewMelding{
@@ -1621,11 +1647,14 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     z-index: 10;
 }
 
+footer{
+    isolation: isolate;
+}
+
 /********* ADDPRODUCTVIEW.PHP *********/
 
     /*** ISOLATIONS ***/
-footer,
-.addProductPagina .addProductForm .form-group{
+.addProductPagina{
     isolation: isolate;
 }
 
@@ -1681,14 +1710,15 @@ footer,
 }
 
 .darkmode--activated .addProductButton{
-    background: rgb(100, 100, 100);
-    color: rgb(230, 230, 230);
-    box-shadow: 0 0 20px rgb(165, 105, 189);
+    background: rgb(200, 200, 200);
+    color: rgb(110, 110, 110);
+    border-color: rgb(110, 110, 110);
+    box-shadow: 0 0 20px rgb(110, 110, 110);
 }
 
 .darkmode--activated .addProductButton:hover{
     box-shadow: 0 0 20px rgb(165, 105, 189);
-    color: rgb(50, 50, 50);
+    color: rgb(230, 230, 230);
 }
 
 /********* ADMINVIEW.PHP *********/
@@ -1752,14 +1782,17 @@ footer,
 }
 
 .darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton{
-    background: rgb(110, 110, 110);
-    color: rgb(230, 230, 230);
-    box-shadow: 0 0 15px rgb(165, 105, 189);
+    background: rgb(200, 200, 200);
+    color: rgb(40, 40, 40);
+    box-shadow: 0 0 15px rgb(40, 40, 40);
+    border-color: rgb(40, 40, 40);
 }
 
 .darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton:hover{
     background: rgb(165, 105, 189);
-    color: rgb(40, 40, 40);
+    color: rgb(230, 230, 230);
+    border-color: rgb(165, 105, 189);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 
 /********* FORGOTPASSWORDVIEW.PHP *********/
@@ -2025,6 +2058,10 @@ footer,
     color: rgb(230, 230, 230);
 }
 
+.darkmode--activated .updateGegevensPagina .container .updateForm p{
+    color: rgb(230, 230, 230);
+}
+
 .darkmode--activated .updateGegevensPagina .container .updateForm .gaTerugKnopBox a{
     color: rgb(230, 230, 230);
 }
@@ -2034,17 +2071,17 @@ footer,
 }
 
 .darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton{
-    background: rgb(80, 80, 80);
-    color: rgb(230, 230, 230);
+    background: rgb(200, 200, 200);
+    color: rgb(40, 40, 40);
+    border-color: rgb(40, 40, 40);
+    box-shadow: 0 0 20px rgb(40, 40, 40);
 }
 
 .darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton:hover{
     background: rgb(165, 105, 189);
-    color: rgb(40, 40, 40);
-}
-
-.darkmode--activated .updateGegevensPagina .container .updateForm p{
     color: rgb(230, 230, 230);
+    border-color: rgb(165, 105, 189);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 
 /********* UPGRADEVIEW.PHP *********/
@@ -2080,5 +2117,19 @@ footer,
 
 .darkmode--activated .upgradePagina .container .upgradeForm div .upgradeButton:hover{
     background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+/********* FOOTER.PHP *********/
+
+/*** CSS ***/
+.darkmode--activated .btn-outline-success{
+    border-color: rgb(150, 150, 150);
+    color: rgb(150, 150, 150);
+}
+
+.darkmode--activated .btn-outline-success:hover{
+    background: rgb(165, 105, 189);
+    border-color: rgb(165, 105, 189);
     color: rgb(40, 40, 40);
 }

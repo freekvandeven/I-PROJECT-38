@@ -120,4 +120,11 @@ $profile_data = User::getUser($_SESSION['name']);
             </div>
         </form>
     </div>
+
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var thumbnail = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(thumbnail);
+        });
+    </script>
 </main>

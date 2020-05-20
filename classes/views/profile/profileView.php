@@ -30,7 +30,9 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         <div class="card-body">
                             <h4 class="subTitel card-title">Persoonsgegevens</h4>
                             <?php if(file_exists("upload/users/".$_SESSION['name'].".png")):?>
-                            <img src="upload/users/<?=$_SESSION['name']?>.png" class="card-img" alt="profielfoto">
+                            <div class="itemImageProfilePage">
+                                <img src="upload/users/<?=$_SESSION['name']?>.png" class="card-img" alt="profielfoto">
+                            </div>
                             <?php else :?>
                             <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
                             <?php endif;?>
