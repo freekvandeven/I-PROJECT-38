@@ -103,7 +103,7 @@ foreach($dirs as $dir) {
                 //$imagelink = str_replace("img", "dt_1_", $output[10]);
                 //store file with new autoincrementId as id.png
                 //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
-                Items::insertFiles(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
+                Items::insertFile(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
 
                 # step 4.6 insert images in bestanden
                 array_shift($splitParts); // remove first insert for item

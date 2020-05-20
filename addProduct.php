@@ -34,10 +34,7 @@ if ($user["Verkoper"]) {
                         //convert to png
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['thumbnail']['tmp_name'])), 'upload/items/tempItem.png');
                     }
-
-                    $insertFilesArray['Filenaam'] = "cstimg$itemId.png";
-                    $insertFilesArray['Voorwerp'] = $itemId;
-                    if(Items::insertFiles($insertFilesArray)) {
+                    if(Items::insertFile(array('Filenaam'=>"cstimg$itemId.png",'Voorwerp'=>$itemId))) {
                         //store file with new autoincrementId as id.png
                         storeImg($_FILES['thumbnail']['tmp_name'], "cstimg".$itemId,"upload/items/");
                     } else {
@@ -51,21 +48,21 @@ if ($user["Verkoper"]) {
                         // per photo
                         for($i=0; $i<count($optionalPhotosArray) && $i < $maxOptionalPhotos; $i++) {
                             // converts to .png
+
                             if ($optionalPhotosArray[$i]['type'] != 'image/png') {
                                 //convert to png
-                                imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
+                                imagepng(imagecreatefromstring(file_get_contents($optionalPhotosArray[$i]['tmp_name'])), 'upload/items/tempItem.png');
                             }
-                            $insertFilesArray['Filenaam'] = "cst{$itemId}_{$i}.png";
-                            $insertFilesArray['Voorwerp'] = $itemId;
-                            if (Items::insertFiles($insertFilesArray)) {
+
+                            if (Items::insertFile(array('Filenaam'=>"cst{$itemId}_{$i}.png",'Voorwerp'=>$itemId))) {
                                 //stores file with new autoincrementId + _$i as id_$i.png
-                                storeImg($optionalPhotosArray[$i]['tmp_name'], "cst".$itemId . _ . $i, "upload/items/");
-                                header("Location: item.php?id=$itemId");
+                                storeImg($optionalPhotosArray[$i]['tmp_name'], "cst" . $itemId . "_" . $i, "upload/items/");
                             } else {
                                 $err = "Er ging iets mis met de database.";
                             }
                         }
                     }
+                    header("Location: item.php?id=$itemId");
                 } else{
                     $err = "Er ging iets mis met de database.";
                 }

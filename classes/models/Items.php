@@ -15,7 +15,7 @@ class Items
          return $data->execute($item);
     }
 
-    static function insertFiles($files)
+    static function insertFile($files)
     {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Bestand (Filenaam, Voorwerp) 
@@ -169,7 +169,7 @@ class Items
         global $dbh;
         $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND NOT Filenaam LIKE '%img%'");
         $data->execute([":item"=>$item]);
-        $result = $data->fetchColumn();
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }
 

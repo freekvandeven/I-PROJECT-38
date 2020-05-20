@@ -92,7 +92,7 @@ $maxAmountOptionalPhotos = 5;
                         <div class="form-group col-md-12">
                             <label for="img">Optionele foto's</label>
                             <div class="custom-file">
-                                <input type="file" class="multipleImages custom-file-input" id="img" name="img"
+                                <input type="file" class="multipleImages custom-file-input" id="img" name="img[]"
                                        accept="image/*" required
                                        multiple <?php echo isset($_POST['img']) ? htmlspecialchars($_POST['img'], ENT_QUOTES) : ''; ?>>
                                 <label class="custom-file-label" for="img" data-browse="Zoeken">Voeg foto's toe (max.
