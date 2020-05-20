@@ -300,7 +300,7 @@ body{
     font-size: 18px;
 }
 
-.productToevoegenPagina .addProductForm{
+.addProductPagina .addProductForm{
     margin-top: 50px;
     margin-bottom: 100px;
 }
@@ -319,15 +319,18 @@ body{
 .loginForm h2, .registerForm h2, .upgradeForm h2, .updateForm h2{
     font-weight: normal;
     color: rgb(80, 80, 80);
+    isolation: isolate;
 }
 
 .upgradeForm h2, .updateForm h2{
     margin-bottom: 35px;
+    isolation: isolate;
 }
 
 /* De 'Registreren' titel */
 .registerForm h2, .addProductForm h2{
     margin-bottom: 50px;
+    isolation: isolate;
 }
 
 /* De woorden bij de vakjes (bijv: Gebruikersnaam/Wachtwoord) */
@@ -367,6 +370,7 @@ body{
     text-decoration: underline;
     font-size: 18px;
     transition: 200ms;
+    isolation: isolate;
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
@@ -374,23 +378,25 @@ body{
     text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
+    isolation: isolate;
 }
 
 /* De 'bevestig'-knop */
 .loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
-    padding: 5px 30%;
+    padding: 10px 30%;
     color: rgb(165, 105, 189);
     background: #fff;
     border: 2px solid rgb(165, 105, 189);
     border-radius: 25px;
     transition: 200ms;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+    isolation: isolate;
 }
 
 .registerForm .registerButton, .addProductForm .addProductButton{
-    padding: 0 50px;
+    padding: 5px 50px;
 }
 
 .upgradeForm .upgradeButton, .updateForm .updateButton{
@@ -415,61 +421,64 @@ body{
     padding: 20px;
     margin-bottom: 40px;
     border-radius: 20px;
+    isolation: isolate;
 }
 
 .upgradeForm, .updateForm{
     margin-top: 100px;
 }
 
-.productToevoegenPagina .addProductForm .container .form-row div div span{
+.addProductPagina .addProductForm .container .form-row div div span{
     max-height: 38px;
 }
 
-.productToevoegenPagina .addProductForm .container .row .cardPreviewBox{
+.addProductPagina .addProductForm .container .row .cardPreviewBox{
     padding-left: 100px;
     border-left: 1px solid rgba(0, 0, 0, .15);
 }
 
 @media (max-width: 992px) {
-    .productToevoegenPagina .addProductForm .container .row .cardPreviewBox{
+    .addProductPagina .addProductForm .container .row .cardPreviewBox{
         margin-top: 30px;
         padding-left: 0px;
         border: none;
     }
 
-    .productToevoegenPagina .addProductForm .container .row  h4{
+    .addProductPagina .addProductForm .container .row  h4{
         text-align: left;
     }
 }
 
-.productToevoegenPagina .addProductForm .container .row .cardPreviewBox .card{
+.addProductPagina .addProductForm .container .row .cardPreviewBox .card{
     padding: 0;
 }
 
-.productToevoegenPagina .addProductForm .container h4{
+.addProductPagina .addProductForm .container h4{
     font-weight: normal;
     padding-bottom: 10px;
 }
 
-.productToevoegenPagina .addProductForm .productContainer{
+.addProductPagina .addProductForm .productContainer{
     min-height: 620px;
 }
 
-.productToevoegenPagina .addProductForm .productContainer .row .productGegevens .form-row .form-group textarea,
-.productToevoegenPagina .addProductForm .container .form-row .form-group textarea{
+.addProductPagina .addProductForm .productContainer .row .productGegevens .form-row .form-group textarea,
+.addProductPagina .addProductForm .container .form-row .form-group textarea{
     border-radius: 10px;
     transition: 200ms;
 }
 
-.productToevoegenPagina .addProductForm textarea:focus{
+.addProductPagina .addProductForm textarea:focus{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     border-color: rgb(165, 105, 189);
+    padding-left: 5px;
 }
 
 /*************** Mijn Veilingen & Favoriete veilingen CSS *************/
 .mijnVeilingenPagina h2, .mijnFavorietenPagina h2{
     font-weight: normal;
     margin-top: 75px;
+    isolation: isolate;
 }
 
 .mijnVeilingenPagina h5, .mijnFavorietenPagina h5{
@@ -483,6 +492,7 @@ body{
 
 .mijnVeilingenPagina .gaTerugKnop, .mijnFavorietenPagina .gaTerugKnop{
     margin-top: 100px;
+    isolation: isolate;
 }
 
 .mijnVeilingenPagina .table-responsive a, .mijnFavorietenPagina .table-responsive a{
@@ -504,12 +514,14 @@ body{
     color: #000;
     transition: 200ms;
     font-size: 18px;
+    isolation: isolate;
 }
 
 .mijnVeilingenPagina .gaTerugKnop a:hover, .mijnFavorietenPagina .gaTerugKnop a:hover{
     padding-left: 15px;
     color: rgb(165, 105, 189);
     text-decoration-color: rgb(165, 105, 189);
+    isolation: isolate;
 }
 
 .mijnVeilingenPagina .legendaDropdownButton, .mijnFavorietenPagina .legendaDropdownButton{
@@ -571,6 +583,7 @@ body{
 
 .profielPagina .mijnEenmaalAndermaalTitel h2{
     font-weight: normal;
+    isolation: isolate;
 }
 
 .profielPagina .container .row div .card .card-body img{
@@ -662,6 +675,7 @@ main .container .wachtwoordVergetenForm{
 main .container h2, main .container h5{
     font-weight: normal;
     color: rgb(80, 80, 80);
+    isolation: isolate;
 }
 
 main .container .wachtwoordVergetenTitel{
@@ -703,6 +717,7 @@ main .container .wachtwoordVergetenForm div{
 
 main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop{
     margin-top: 30px;
+    isolation: isolate;
 }
 
 main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a{
@@ -711,12 +726,14 @@ main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a{
     text-decoration: underline;
     text-decoration-color: #fff;
     transition: 200ms;
+    isolation: isolate;
 }
 
 main .container .wachtwoordVergetenForm .centerForm div .gaTerugKnop a:hover{
     text-decoration-color: rgb(165, 105, 189);
     color: rgb(165, 105, 189);
     padding-left: 10px;
+    isolation: isolate;
 }
 
 main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButton{
@@ -1066,6 +1083,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 .adminPagina .container h2{
     margin-bottom: -10px;
+    isolation: isolate;
 }
 
 .adminPagina .container .row{
@@ -1250,6 +1268,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 /*************** ADMINSUBPAGINA'S CSS *************/
 .adminPaginaSub .container h2{
     margin-top: 50px;
+    isolation: isolate;
 }
 
 .adminPaginaSub .container h5{
@@ -1309,6 +1328,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .adminPaginaSub .gaTerugKnop{
     margin-top: 75px;
     margin-bottom: 200px;
+    isolation: isolate;
 }
 
 .adminPaginaSub .gaTerugKnop a{
@@ -1317,12 +1337,14 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration: underline;
     text-decoration-color: #fff;
     transition: 200ms;
+    isolation: isolate;
 }
 
 .adminPaginaSub .gaTerugKnop a:hover{
     text-decoration-color: rgb(165, 105, 189);
     color: rgb(165, 105, 189);
     padding-left: 10px;
+    isolation: isolate;
 }
 
 .adminPaginaSub .container .dropdown-menu .dropdown-item .table thead tr th{
@@ -1467,3 +1489,58 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
+/******************************* DARKMODE *********************************/
+.addProductButton, footer{
+    isolation: isolate;
+}
+
+.darkmode--activated h1, .darkmode--activated h2, .darkmode--activated h3, .darkmode--activated h4, .darkmode--activated h5{
+    color: rgb(240, 240, 240);
+}
+
+.darkmode--activated label{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .registerForm .container,
+.darkmode--activated .upgradeForm .container,
+.darkmode--activated .updateForm .container,
+.darkmode--activated .addProductForm .container{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated input,
+.darkmode--activated textarea,
+.darkmode--activated select,
+.darkmode--activated input:focus,
+.darkmode--activated textarea:focus,
+.darkmode--activated select:focus,
+.darkmode--activated .card{
+    background: rgb(245, 245, 245);
+}
+
+.addProductPagina .addProductForm .form-group{
+    isolation: isolate;
+}
+
+.darkmode--activated .addProductPagina .addProductForm .form-group a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .addProductPagina .addProductForm .form-group a:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .addProductButton{
+    background: rgb(245, 245, 245);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
+}
+
+.darkmode--activated .addProductButton:hover{
+    box-shadow: 0 0 20px rgb(165, 105, 189);
+    color: rgb(50, 50, 50);
+}
+
+.darkmode--activated .input-group-prepend span, .darkmode--activated .input-group-append span{
+    background: rgb(240, 240, 240);
+}
