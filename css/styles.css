@@ -1417,9 +1417,17 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /******************* VEILING BEKIJKEN ******************/
+.veilingBekijkenPagina .container{
+    margin-bottom: 200px;
+}
+
 .veilingBekijkenPagina .card-header{
     background: none;
     font-weight: normal;
+}
+
+.veilingBekijkenPagina .card{
+    border-radius: 10px;
 }
 
 .veilingBekijkenPagina .aantalKeerBekeken{
@@ -1429,6 +1437,10 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .veilingBekijkenPagina .verkoper .card a{
     color: #000;
     text-decoration: none;
+}
+
+.veilingBekijkenPagina .bieden{
+    margin-bottom: 10px;
 }
 
 .veilingBekijkenPagina .biedingen li{
@@ -1701,3 +1713,61 @@ footer,
     color: rgb(230, 230, 230);
 }
 
+/********* ITEMVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .veilingBekijkenPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .veilingBekijkenPagina .card{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .veilingBekijkenPagina .biedingen li{
+    background: rgb(80, 80, 80);
+}
+
+.darkmode--activated .veilingBekijkenPagina .btn{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+    box-shadow: 0 0 15px rgb(165, 105, 189);
+}
+
+/********* LOGINVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .loginPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .loginPagina #login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
+    background: rgb(110, 110, 110);
+    border-color: rgb(110, 110, 110);
+}
+
+.darkmode--activated .loginPagina .form-group a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .loginPagina .form-group a:hover{
+    color: rgb(180, 180, 180);
+}
+
+.loginPagina .inlogButton{
+    padding: 5px 110px;
+    transition: 300ms;
+}
+
+.darkmode--activated .loginPagina .inlogButton{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+    box-shadow: 0 0 15px rgb(165, 105, 189);
+}
+
+.darkmode--activated .loginPagina .inlogButton:hover{
+    background: rgb(165, 105, 189);
+    color: rgb(50, 50, 50);
+}
