@@ -278,9 +278,57 @@ body{
 }
 
 /*********************** LOGIN-, REGISTRATIE-, UPDATE-, UPGRADE EN ADDPRODUCTFORMULIER *******************/
-/* De gehele container van de login en register */
+.registerPagina .container{
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
 
-#login .container #login-row #login-column #login-box, #register .container #login-row #login-column #login-box{
+.registerPagina .container .subcontainer{
+    background: rgb(240, 240, 240);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+
+.registerPagina .container .subcontainer h5{
+    font-size: 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-bottom: 15px;
+}
+
+.registerPagina .inputVelden{
+    padding: 0 20px;
+}
+
+.registerPagina .gaTerugKnopBox{
+    margin: 40px 0 20px 0;
+}
+
+.registerPagina .gaTerugKnop{
+    color: #000;
+    font-size: 18px;
+    transition: 150ms;
+    text-decoration: underline;
+}
+
+.registerPagina .gaTerugKnop:hover{
+    color: rgb(165, 105, 189);
+    padding-left: 15px
+}
+
+.registerPagina .registerButton{
+    margin-top: 30px;
+    padding: 5px 100px;
+    background: none;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    font-size: 20px;
+    transition: 200ms;
+    color: rgb(165, 105, 189);
+}
+
+/* De gehele container van de login */
+#login .container #login-row #login-column #login-box{
     margin: 100px 0;
     max-width: 600px;
     height: 100%;
@@ -311,7 +359,7 @@ body{
 }
 
 /* De padding tussen de form en de rand van de gehele container */
-#login .container #login-row #login-column #login-box #login-form, #register .container #login-row #login-column #login-box #login-form {
+#login .container #login-row #login-column #login-box #login-form{
     padding: 20px;
 }
 
@@ -382,7 +430,7 @@ body{
 }
 
 /* De 'bevestig'-knop */
-.loginForm .inlogButton, .registerForm .registerButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
+.loginForm .inlogButton, .upgradeForm .upgradeButton, .updateForm .updateButton, .addProductForm .addProductButton{
     margin-top: 10px;
     font-size: 20px;
     padding: 10px 30%;
@@ -395,7 +443,7 @@ body{
     isolation: isolate;
 }
 
-.registerForm .registerButton, .addProductForm .addProductButton{
+.addProductForm .addProductButton{
     padding: 5px 50px;
 }
 
@@ -1770,4 +1818,39 @@ footer,
 .darkmode--activated .loginPagina .inlogButton:hover{
     background: rgb(165, 105, 189);
     color: rgb(50, 50, 50);
+}
+
+/********* REGISTERVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .registerPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .registerPagina .container .subcontainer{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .registerPagina .container .subcontainer h5{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .registerPagina .container .gaTerugKnop{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .registerPagina .container .gaTerugKnop:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .registerPagina .registerButton{
+    background: rgb(110, 110, 110);
+    color: rgb(230, 230, 230);
+    box-shadow: 0 0 15px rgb(165, 105, 189);
+}
+
+.darkmode--activated .registerPagina .registerButton:hover{
+    background: rgb(165, 105, 189);
+    color: rgb(60, 60, 60);
 }
