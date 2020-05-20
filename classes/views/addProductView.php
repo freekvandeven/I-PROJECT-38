@@ -5,7 +5,7 @@ $maxAmountOptionalPhotos = 5;
 
 <main class="productToevoegenPagina">
 
-    <form id="login-form" class="addProductForm" action="" method="post" enctype="multipart/form-data">
+    <form id="addProduct" class="addProductForm" action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="token" value="<?= $token ?>">
         <h2 class="text-center font-weight-normal">Product verkopen</h2>
         <div class="productContainer container">
@@ -176,14 +176,10 @@ $maxAmountOptionalPhotos = 5;
             $(this).siblings(".custom-file-label").addClass("selected").html(thumbnail);
         });
 
-        $("#submit").click(function () {
+        $(".multipleImages").on("change", function () {
             if ($("#img")[0].files.length > <?=$maxAmountOptionalPhotos?>) {
-                alert("Je kan maximaal <?=$maxAmountOptionalPhotos?> optionele foto's selecteren.");
-                for(var i=0; i<$("#img")[0].files.length; i++) {
-                    delete $("#img")[0][i];
-                }
-                var url = "https://iproject38.icasites.nl/addProduct.php";
-                window.location.replace(url);
+                var aantalFotosGeselecteerd = $("#img")[0].files.length;
+                alert("Je hebt " + aantalFotosGeselecteerd + " optionele foto's geselecteerd. De eerste 5 worden meegenomen.");
             }
         });
 
