@@ -1,5 +1,18 @@
-/******************NAV******************/
+/*
+navbar: rgb(135, 110, 189)
+footer bovenste deel: rgb(95, 75, 139)
+footer onderste deel: rgb(135, 110, 189)
+algemene details (knoppen bijv.): rgb(165, 105, 189)
+
+ */
+
+
+
+
+
+/****************** NAV-BAR ******************/
 nav{
+    background: rgb(135, 110, 189);
 }
 .dropdown:hover>.dropdown-menu{
     display:block;
@@ -177,7 +190,7 @@ main{
 }
 /********************* FOOTER*********************/
 footer{
-    background-color: #5f4b8b;
+    background-color: rgb(95, 75, 139);
     color: #fff;
 }
 footer p{
@@ -186,7 +199,7 @@ footer p{
 }
 
 .bovenstukFooter{
-    background: #876EBD;
+    background: rgb(135, 110, 189);
 }
 
 footer div div div hr{
@@ -2053,7 +2066,6 @@ footer{
 
 .darkmode--activated .profielPagina .row .card .card-body .btn{
     background: rgb(60, 60, 60);
-    box-shadow: 0 0 10px rgb(165, 105, 189);
 }
 
 .darkmode--activated .profielPagina .row .card .card-body .btn:hover{
@@ -2139,15 +2151,31 @@ footer{
 /********* FOOTER.PHP *********/
 
 /*** CSS ***/
+.darkmode--activated footer{ /* Onderste stuk vd footer */
+    background: rgba(95, 75, 139, .4);
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated footer .bovenstukFooter{ /* Bovenste stuk vd footer */
+    background: rgba(135, 110, 189, .4);
+}
+
 .darkmode--activated .btn-outline-success{
-    border-color: rgb(150, 150, 150);
-    color: rgb(150, 150, 150);
+    border-color: rgb(200, 200, 200);
+    color: rgb(200, 200, 200);
 }
 
 .darkmode--activated .btn-outline-success:hover{
     background: rgb(165, 105, 189);
     border-color: rgb(165, 105, 189);
-    color: rgb(40, 40, 40);
+    color: rgb(230, 230, 230);
+}
+
+/********* HEADER.PHP --> NAVBAR *********/
+
+/*** CSS ***/
+.darkmode--activated nav{
+    background: rgba(135, 110, 189, .6);
 }
 
 /************* EINDE DARKMODE CSS *************/
