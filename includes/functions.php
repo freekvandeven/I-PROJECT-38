@@ -325,7 +325,17 @@ function evalSelectPOST(){
     $select = array();
     if (isset($_POST)) {
         if (isset($_POST['search'])) {
-            $select[':where'] = "%" . $_POST['search'] . "%";
+            $select[':search'] = "%" . $_POST['search'] . "%";
+        }
+        if(!empty($_POST['minimum'])&&$_POST['minimum']>1&&$_POST['minimum']<1000000){
+            $select[':val1'] = $_POST['minimum'];
+        }else{
+            $select[':val1'] =  1;
+        }
+        if(!empty($_POST['maximum'])&&$_POST['maximum']>1&&$_POST['maximum']<1000000) {
+            $select[':val2'] = $_POST['maximum'];
+        }else{
+            $select[':val2'] = 1000000;
         }
         if (isset($_POST['rubriek'])) {
             $select[":rubriek"] = $_POST['rubriek'];
@@ -363,17 +373,21 @@ function evalSelectPOST(){
                 case "50":
                     $select[':limit'] = "50";
                     break;
-                case "75":
+                case "100":
                     $select[':limit'] = "75";
                     break;
-                case "TEST":
+                case "10000":
                     $select[':limit'] = "10000";
+                    break;
                 default:
                     $select[':limit'] = "25";
             }
         else{
             $select[':limit'] = "25";
         }
+    }else{
+        $select[':val1'] =  1;
+        $select[':val2'] = 1000000;
     }
     return $select;
 }
