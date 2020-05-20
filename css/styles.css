@@ -300,7 +300,7 @@ body{
     font-size: 18px;
 }
 
-.addProductForm{
+.productToevoegenPagina .addProductForm{
     margin-top: 50px;
     margin-bottom: 100px;
 }
@@ -421,46 +421,47 @@ body{
     margin-top: 100px;
 }
 
-.addProductForm .container .form-row div div span{
+.productToevoegenPagina .addProductForm .container .form-row div div span{
     max-height: 38px;
 }
 
-.addProductForm .container .row .cardPreviewBox{
+.productToevoegenPagina .addProductForm .container .row .cardPreviewBox{
     padding-left: 100px;
     border-left: 1px solid rgba(0, 0, 0, .15);
 }
 
 @media (max-width: 992px) {
-    .addProductForm .container .row .cardPreviewBox{
+    .productToevoegenPagina .addProductForm .container .row .cardPreviewBox{
         margin-top: 30px;
         padding-left: 0px;
         border: none;
     }
 
-    .addProductForm .container .row  h4{
+    .productToevoegenPagina .addProductForm .container .row  h4{
         text-align: left;
     }
 }
 
-.addProductForm .container .row .cardPreviewBox .card{
+.productToevoegenPagina .addProductForm .container .row .cardPreviewBox .card{
     padding: 0;
 }
 
-.addProductForm .container h4{
+.productToevoegenPagina .addProductForm .container h4{
     font-weight: normal;
     padding-bottom: 10px;
 }
 
-.addProductForm .productContainer{
+.productToevoegenPagina .addProductForm .productContainer{
     min-height: 620px;
 }
 
-.addProductForm textarea{
+.productToevoegenPagina .addProductForm .productContainer .row .productGegevens .form-row .form-group textarea,
+.productToevoegenPagina .addProductForm .container .form-row .form-group textarea{
     border-radius: 10px;
     transition: 200ms;
 }
 
-.addProductForm textarea:focus{
+.productToevoegenPagina .addProductForm textarea:focus{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     border-color: rgb(165, 105, 189);
 }
