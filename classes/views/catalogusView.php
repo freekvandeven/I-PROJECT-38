@@ -131,11 +131,11 @@
                     </div>
 
                     <div class="price-slider"><span>from
-                        &euro;<input type="number" value="5000" min="0" max="1000000" name="minimum"/> to
-                        &euro;<input type="number" value="50000" min="0" max="1000000" name="maximum"/>
+                        &euro;<input type="number" value="1" min="1" max="1000000" name="minimum"/> to
+                        &euro;<input type="number" value="1000000" min="1" max="1000000" name="maximum"/>
                         </span>
-                        <input value="25000" min="0" max="1000000" step="10" type="range"/>
-                        <input value="50000" min="0" max="1000000" step="10" type="range"/>
+                        <input value="1" min="1" max="1000000" step="10" type="range"/>
+                        <input value="1000000" min="1" max="1000000" step="10" type="range"/>
                         <svg width="100%" height="24">
                             <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
                                   stroke-dasharray="1 28"></line>
@@ -143,8 +143,8 @@
                     </div>
                     <script>testJava(".price-slider")</script>
                     <div class="distance-slider"><span>Van
-                        <input type="number" value="10" min="0" max="355" name="minimum"/>km tot
-                        <input type="number" value="100" min="0" max="355" name="maximum"/>km
+                        <input type="number" value="10" min="0" max="355" name="minimumDistance"/>km tot
+                        <input type="number" value="100" min="0" max="355" name="maximumDistance"/>km
                         </span>
                         <input value="10" min="0" max="355" step="1" type="range"/>
                         <input value="80" min="0" max="355" step="1" type="range"/>
