@@ -9,5 +9,8 @@
         <input type="hidden" name="category" value="fill">
         <input type="submit" value="fill">
     </form>
+    <button onclick="startDatabaseFill()">Start my new script</button>
+
+    <div id="outputField"></div>
     <a href="admin.php">Go back</a>
 </main>

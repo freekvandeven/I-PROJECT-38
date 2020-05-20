@@ -3,6 +3,7 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 
+if($_SESSION['loggedin']) header('Location: profile.php');
 if (!empty($_GET) && isset($_GET['name']) && isset($_GET['hash'])) {
     $user = User::getUser($_GET['name']);
     if (!empty($user)) {

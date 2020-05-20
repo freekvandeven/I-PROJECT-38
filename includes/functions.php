@@ -286,6 +286,11 @@ function generateCatalog($items)
             echo "</div>";
         }
     endforeach;
+        /*
+        if ($counter % 4 != 0){
+            echo "</div>";
+        }
+        */
 }
 
 function reOrganizeArray($file_posts){

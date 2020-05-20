@@ -42,3 +42,26 @@
             xmlhttp.send("request=getCategory&search=" + str);
         }
     }
+
+    function sendAjaxStep(step){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                document.getElementById("outputField").innerHTML = "step " + step + " completed!";
+                if(!this.responseText.includes("finished")){
+                    sendAjaxStep(step+1);
+                } else {
+                    document.getElementById("outputField").innerHTML = "Finished!";
+                }
+            }
+        };
+        xmlhttp.open("POST", "ajax.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send('request=fillCatalogus&step='+ step);
+    }
+
+    function startDatabaseFill(){
+        if(confirm("Are you sure you want to fill the database?(This could take atleast 15 minutes)")) {
+            sendAjaxStep(0);
+        }
+    }
