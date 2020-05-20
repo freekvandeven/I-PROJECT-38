@@ -1,8 +1,8 @@
 <?php
 
 # code for filling database with items
-
-
+$dbh->exec("DELETE FROM Voorwerp WHERE Betalingswijze='niks'");
+$dbh->exec("DELETE FROM Gebruiker WHERE Voornaam='Testvoornaam'");
 # step 1 add categories
 
 $file = file_get_contents('SQL/CREATE Categorieen.sql');
@@ -29,6 +29,14 @@ $dbh->exec("ALTER TABLE Rubriek CHECK CONSTRAINT FK_ParentRubriek");
 $dirs = array_filter(glob('SQL/*'), 'is_dir');
 # step 2.2
 
+
+# step 3 setup Prepares
+$voorwerpInsert = $dbh->prepare("INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$voorwerpRubriek = $dbh->prepare("INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)");
+$imageInsert = $dbh->prepare("{CALL fileInsert(?, ?)}");
+$imageInsert->bindParam(1, $imageFile, PDO::PARAM_STR);
+$imageInsert->bindParam(2, $itemID, PDO::PARAM_INT);
+
 foreach($dirs as $dir) {
 
     # step 3 insert the new users
@@ -38,7 +46,7 @@ foreach($dirs as $dir) {
 
     #step 3.2 fix insert string
     $refactorFile = str_replace("INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES (",
-        "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',3,1, 1, 1,",$userFile);
+        "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',1,1, 1, 1,",$userFile);
     # step 3.3 split file in inserts
     $inserts = explode("\n", $refactorFile);
 
@@ -93,17 +101,15 @@ foreach($dirs as $dir) {
                 $beschrijving = $output[11];
                 $currencies[] = $output[8];
 
-                $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, Looptijd, LooptijdBeginDag, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeDag, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $data = $dbh->prepare($sql);
-                $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, 10,'2020-06-20', '1900-01-01 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30', '1900-01-01 12:00:00:000', 'Nee'));
-                $sql = "INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)";
-                $data = $dbh->prepare($sql);
+                $voorwerpInsert->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30 12:00:00:000', FALSE));
                 $itemID = Items::get_ItemId();
-                $data->execute(array($itemID, $category));
+                $voorwerpRubriek->execute(array($itemID, $category));
+
                 //$imagelink = str_replace("img", "dt_1_", $output[10]);
                 //store file with new autoincrementId as id.png
-                imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
-
+                //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
+                $imageInsert->execute(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
+                //Items::insertFile(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
 
                 # step 4.6 insert images in bestanden
                 array_shift($splitParts); // remove first insert for item
@@ -111,12 +117,13 @@ foreach($dirs as $dir) {
 
                 foreach ($splitParts as $image) {
                     # put image into database
-
+                    $imageFile = explode('\'',$image)[1];
+                    $imageInsert->execute();
+                    //$imageInsert->execute(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
+                    //Items::insertFile(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
                 }
             }
         }
-
-
 }
 $dbh->exec("ALTER TABLE Voorwerp CHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
 

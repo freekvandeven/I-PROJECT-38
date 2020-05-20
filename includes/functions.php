@@ -17,8 +17,8 @@ function checkLogin() // check if user is logged in
 }
 
 function registerRequest(){
-    checkVisitor();
-    checkItemDate();
+    //checkVisitor();
+    //checkItemDate();
 }
 
 function checkPost()
@@ -43,7 +43,7 @@ function checkVisitor(){
 }
 
 function cleanupUploadFolder(){
-    for($i=0;$i<40000;$i++){
+    for($i=10000;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
             unlink("upload/items/".$i.".png");
         }
@@ -233,6 +233,25 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
     return mail($receiver, $subject, $template, $headers);
 }
 
+function generateImageLink($item, $thumbnail=true){
+        if($thumbnail){
+            $image = Items::getThumbnail($item);
+            if(strpos($image, 'cst')!==false){ // file exists doesn't work on the files in thumbnails
+                return "upload/items/".$image;
+            } else {
+                return "thumbnails/".$image;
+            }
+        } else {
+            $images = Items::getFiles($item);
+            if(strpos($images[1], 'cst')!==false) { // file exists doesn't work on the files in pics
+                return preg_filter('/^/', 'upload/items/', $images);
+                //return array("upload/items/".$images[0][0]);
+            } else {
+                return preg_filter('/^/', 'pics/', $images);
+            }
+        }
+}
+
 function generateCatalog($items)
 {
     $counter = 0;
@@ -245,7 +264,8 @@ function generateCatalog($items)
             <div class='card'>
                 <div class="itemImage">
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                        <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productnaam'>
+                        <img src='<?php echo generateImageLink($card['Voorwerpnummer'],true); ?>' class='card-img-top' alt='Productnaam'>
+                        <!--<img src='upload/items/<?= $card["Voorwerpnummer"]?>.png' class='card-img-top' alt='Productnaam'>-->
                     </a>
                 </div>
                 <div class='card-body'>
@@ -266,6 +286,11 @@ function generateCatalog($items)
             echo "</div>";
         }
     endforeach;
+        /*
+        if ($counter % 4 != 0){
+            echo "</div>";
+        }
+        */
 }
 
 function reOrganizeArray($file_posts){
@@ -300,4 +325,75 @@ function generateCategoryDropdown(){
         $html .= "</ul></li>";
     }
     return $html;
+}
+
+function evalSelectPOST(){
+    $select = array();
+    if (isset($_POST)) {
+        if (isset($_POST['search'])) {
+            $select[':search'] = "%" . $_POST['search'] . "%";
+        }
+        if(!empty($_POST['minimum'])&&$_POST['minimum']>1&&$_POST['minimum']<1000000){
+            $select[':val1'] = $_POST['minimum'];
+        }else{
+            $select[':val1'] =  1;
+        }
+        if(!empty($_POST['maximum'])&&$_POST['maximum']>1&&$_POST['maximum']<1000000) {
+            $select[':val2'] = $_POST['maximum'];
+        }else{
+            $select[':val2'] = 1000000;
+        }
+        if (isset($_POST['rubriek'])) {
+            $select[":rubriek"] = $_POST['rubriek'];
+        }
+        if (isset($_POST['order'])) {
+            switch ($_POST['order']) {
+                case "Low":
+                    $select[':order'] = "prijs ASC";
+                    break;
+                case "High":
+                    $select[':order'] = "prijs DESC";
+                    break;
+                case "New":
+                    $select[':order'] = "looptijdbegintijdstip DESC";
+                    break;
+                case "Old":
+                    $select[':order'] = "looptijdbegintijdstip ASC";
+                    break;
+                default:
+                    $select[':order'] = "n";
+                    break;
+            }
+        } else{ $select[':order'] = "n";}
+        if (isset($_POST['offset'])) {
+            $select[':offset'] = $_POST['offset'];
+        } else {
+            $select[':offset'] = " ";
+        }
+// evaluate number of items cannot be used in prepared statements so it is converted to one of the following values:
+        if (isset($_POST['numberOfItems']))
+            switch($_POST['numberOfItems']){
+                case "25":
+                    $select[':limit'] = "25";
+                    break;
+                case "50":
+                    $select[':limit'] = "50";
+                    break;
+                case "100":
+                    $select[':limit'] = "75";
+                    break;
+                case "10000":
+                    $select[':limit'] = "10000";
+                    break;
+                default:
+                    $select[':limit'] = "25";
+            }
+        else{
+            $select[':limit'] = "25";
+        }
+    }else{
+        $select[':val1'] =  1;
+        $select[':val2'] = 1000000;
+    }
+    return $select;
 }
