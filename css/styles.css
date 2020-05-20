@@ -413,7 +413,11 @@ body{
 }
 
 /* In de registerpagina, de tekst: Ik heb al een account */
-.registerForm div a p, .upgradeForm a, .updateForm a, .addProductForm div a, .mijnVeilingenBox div p a, .favorietenBox div p a{
+.registerForm div a p,
+.upgradeForm a, .updateForm a,
+.addProductForm div a,
+.mijnVeilingenPagina .gaTerugKnopBox .gaTerugKnop,
+.mijnFavorietenPagina .gaTerugKnopBox .gaTerugKnop{
     color: #000;
     text-decoration: underline;
     font-size: 18px;
@@ -422,7 +426,11 @@ body{
 }
 
 /* het hierbovenstaande, alleen de gebruiker hovert eroverheen met zijn muis */
-.registerForm div a p:hover, .upgradeForm a:hover, .updateForm a:hover, .addProductForm div a:hover, .mijnVeilingenBox div p a:hover, .favorietenBox div p a:hover{
+.registerForm div a p:hover,
+.upgradeForm a:hover, .updateForm a:hover,
+.addProductForm div a:hover,
+.mijnVeilingenPagina .gaTerugKnop:hover,
+.mijnFavorietenPagina .gaTerugKnop:hover{
     text-decoration: underline;
     padding-left: 15px;
     color: rgb(165, 105, 189);
@@ -545,8 +553,8 @@ body{
     margin-top: 30px;
 }
 
-.mijnVeilingenPagina .gaTerugKnop, .mijnFavorietenPagina .gaTerugKnop{
-    margin-top: 100px;
+.mijnVeilingenPagina .gaTerugKnopBox, .mijnFavorietenPagina .gaTerugKnopBox{
+    margin-top: 75px;
     isolation: isolate;
 }
 
@@ -560,6 +568,14 @@ body{
 
 .mijnVeilingenPagina .table-responsive thead tr, .mijnFavorietenPagina .table-responsive thead tr{
     background: rgba(165, 105, 189, .7);
+}
+
+.mijnVeilingenPagina .table-responsive thead tr th, .mijnFavorietenPagina .table-responsive thead tr th{
+    border: none;
+}
+
+.mijnVeilingenPagina .table tbody tr td a{
+    text-decoration: underline;
 }
 
 
@@ -588,6 +604,7 @@ body{
     padding: 3px 10px;
     text-decoration: underline;
     text-decoration-color: #fff;
+    margin-bottom: 20px;
 }
 
 .mijnVeilingenPagina .legendaDropdownButton:hover,
@@ -1853,4 +1870,52 @@ footer,
 .darkmode--activated .registerPagina .registerButton:hover{
     background: rgb(165, 105, 189);
     color: rgb(60, 60, 60);
+}
+
+/********* ITEMVIEW.PHP & FAVORITESVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .mijnVeilingenPagina, .darkmode--activated .mijnFavorietenPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .mijnVeilingenPagina .table thead tr th,
+.darkmode--activated .mijnVeilingenPagina .legendaDropdownButton,
+.darkmode--activated .mijnFavorietenPagina .table thead tr th,
+.darkmode--activated .mijnFavorietenPagina .legendaDropdownButton{
+    color: rgb(230, 230, 230);
+    font-weight: normal;
+    border: none;
+}
+
+.darkmode--activated .mijnVeilingenPagina .table tbody tr,
+.darkmode--activated .mijnFavorietenPagina .table tbody tr{
+    opacity: .75;
+}
+
+.darkmode--activated .mijnVeilingenPagina .table tbody tr td,
+.darkmode--activated .mijnFavorietenPagina .table tbody tr td{
+    border: none;
+}
+
+/* De "Legenda" -knop */
+.darkmode--activated .mijnVeilingenPagina .legendaDropdownButton:hover,
+.darkmode--activated .mijnVeilingenPagina .legendaDropdownButton:focus,
+.darkmode--activated .mijnFavorietenPagina .legendaDropdownButton:hover,
+.darkmode--activated .mijnFavorietenPagina .legendaDropdownButton:focus,
+/* De "Ga terug" -knop */
+.darkmode--activated .mijnVeilingenPagina .gaTerugKnop:hover,
+.darkmode--activated .mijnFavorietenPagina .gaTerugKnop:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .mijnVeilingenPagina .gaTerugKnop,
+.darkmode--activated .mijnFavorietenPagina .gaTerugKnop{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .mijnVeilingenPagina .dropdown-menu,
+.darkmode--activated .mijnFavorietenPagina .dropdown-menu{
+    background: rgb(80, 80, 80);
 }

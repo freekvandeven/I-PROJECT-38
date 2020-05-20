@@ -6,6 +6,9 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
+
 <main class="profielPagina">
     <div class="jumbotron">
         <h2 class="display-5">Uw EenmaalAndermaal</h2>

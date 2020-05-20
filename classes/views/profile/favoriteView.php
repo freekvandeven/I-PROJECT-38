@@ -3,6 +3,9 @@
     $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
+
 <main class="mijnFavorietenPagina">
     <h2 class="text-center">Mijn favoriete veilingen</h2>
     <h5 class="text-center">Als u op een veiling biedt, kunt u die hieronder zien.</h5>
@@ -18,20 +21,16 @@
                                 <th>Kleur en betekenis</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr class="table-success">
                                 <td>Je hebt de veiling gewonnen.</td>
                             </tr>
-
                             <tr class="table-danger">
                                 <td>Je hebt de veiling verloren.</td>
                             </tr>
-
                             <tr class="table-warning">
                                 <td>Je bent overboden op een actieve veiling.</td>
                             </tr>
-
                             <tr class="table-info">
                                 <td>Je bent de hoogste bieder op een actieve veiling.</td>
                             </tr>
@@ -67,7 +66,6 @@
                             $label = "table-warning";
                         }
                     }
-
                     ?>
                     <tr class="<?=$label?>">
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
@@ -82,7 +80,8 @@
         </div>
     </div>
 
-    <div class="form-group text-center">
-        <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a href="profile.php" class="gaTerugKnop">Ga terug</a>
     </div>
 </main>
+

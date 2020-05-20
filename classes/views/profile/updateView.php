@@ -2,6 +2,9 @@
 $profile_data = User::getUser($_SESSION['name']);
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
+
 <main>
     <div id="login-box" class="col-md-12">
         <form id="login-form" class="updateForm" action="" method="post" enctype="multipart/form-data">
