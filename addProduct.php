@@ -35,11 +35,11 @@ if ($user["Verkoper"]) {
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['thumbnail']['tmp_name'])), 'upload/items/tempItem.png');
                     }
 
-                    $insertFilesArray['Filenaam'] = "cst$itemId.png";
+                    $insertFilesArray['Filenaam'] = "cstimg$itemId.png";
                     $insertFilesArray['Voorwerp'] = $itemId;
                     if(Items::insertFiles($insertFilesArray)) {
                         //store file with new autoincrementId as id.png
-                        storeImg($_FILES['thumbnail']['tmp_name'], "cst".$itemId,"upload/items/");
+                        storeImg($_FILES['thumbnail']['tmp_name'], "cstimg".$itemId,"upload/items/");
                     } else {
                         $err = "Er ging iets mis met de database.";
                     }

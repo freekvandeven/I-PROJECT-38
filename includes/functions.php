@@ -43,7 +43,7 @@ function checkVisitor(){
 }
 
 function cleanupUploadFolder(){
-    for($i=0;$i<40000;$i++){
+    for($i=10000;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
             unlink("upload/items/".$i.".png");
         }
@@ -236,10 +236,10 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
 function generateImageLink($item, $thumbnail=true){
         if($thumbnail){
             $image = Items::getThumbnail($item);
-            if(strpos($image, 'cst')==false){ // file exists doesn't work on the files in thumbnails
-                return "thumbnails/".$image;
-            } else {
+            if(strpos($image, 'cst')!==false){ // file exists doesn't work on the files in thumbnails
                 return "upload/items/".$image;
+            } else {
+                return "thumbnails/".$image;
             }
         } else {
             $images = Items::getFiles($item);
