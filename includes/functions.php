@@ -321,3 +321,60 @@ function generateCategoryDropdown(){
     }
     return $html;
 }
+
+function evalSelectPOST(){
+    $select = array();
+    if (isset($_POST)) {
+        if (isset($_POST['search'])) {
+            $select[':where'] = "%" . $_POST['search'] . "%";
+        }
+        if (isset($_POST['rubriek'])) {
+            $select[":rubriek"] = $_POST['rubriek'];
+        }
+        if (isset($_POST['order'])) {
+            switch ($_POST['order']) {
+                case "Low":
+                    $select[':order'] = "prijs ASC";
+                    break;
+                case "High":
+                    $select[':order'] = "prijs DESC";
+                    break;
+                case "New":
+                    $select[':order'] = "looptijdbegintijdstip DESC";
+                    break;
+                case "Old":
+                    $select[':order'] = "looptijdbegintijdstip ASC";
+                    break;
+                default:
+                    $select[':order'] = "n";
+                    break;
+            }
+        } else{ $select[':order'] = "n";}
+        if (isset($_POST['offset'])) {
+            $select[':offset'] = $_POST['offset'];
+        } else {
+            $select[':offset'] = " ";
+        }
+// evaluate number of items cannot be used in prepared statements so it is converted to one of the following values:
+        if (isset($_POST['numberOfItems']))
+            switch($_POST['numberOfItems']){
+                case "25":
+                    $select[':limit'] = "25";
+                    break;
+                case "50":
+                    $select[':limit'] = "50";
+                    break;
+                case "75":
+                    $select[':limit'] = "75";
+                    break;
+                case "TEST":
+                    $select[':limit'] = "10000";
+                default:
+                    $select[':limit'] = "25";
+            }
+        else{
+            $select[':limit'] = "25";
+        }
+    }
+    return $select;
+}

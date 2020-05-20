@@ -110,11 +110,20 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                         </div>
                     </div>
                 </div><?php endif; ?>
+                <div class="col-xl-4 col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Account verwijderen</h4>
+                            <p>Als u uw account wilt verwijderen kan dat. Dit verwijdert ook alle geschiedenis waar u in voorkomt. </p>
+                            <form action="" method="post" onsubmit="return confirm('Weet je zeker dat je jouw account wilt deleten? Je kan hierna niet meer terug.');">
+                                <input type="hidden" name="token" value="<?=$token?>">
+                                <button class="btn btn-primary" type="submit" name="action" value="delete">Delete account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div> <!--temp-->
-                    <form action="" method="post" onsubmit="return confirm('Weet je zeker dat je jouw account wilt deleten? Je kan hierna niet meer terug.');">
-                        <input type="hidden" name="token" value="<?=$token?>">
-                        <button class="registerButton" type="submit" name="action" value="delete">Delete account</button>
-                    </form>
+
                 </div>
             </div>
         </div>
