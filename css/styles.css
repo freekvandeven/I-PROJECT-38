@@ -1502,16 +1502,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     z-index: 1;
 }
 
-/****** ADDPRODUCTVIEW.PHP ******/
+/********* ADDPRODUCTVIEW.PHP *********/
 
-/*** ISOLATIONS ***/
+    /*** ISOLATIONS ***/
 footer,
 .addProductPagina .addProductForm .form-group{
     isolation: isolate;
 }
 
-/*** DARKMODE CSS ***/
-
+    /*** CSS ***/
 .darkmode--activated h1, .darkmode--activated h2, .darkmode--activated h3, .darkmode--activated h4, .darkmode--activated h5{
     color: rgb(240, 240, 240);
 }
@@ -1573,14 +1572,14 @@ footer,
     color: rgb(50, 50, 50);
 }
 
-/****** ADMINVIEW.PHP ******/
+/********* ADMINVIEW.PHP *********/
 
-/*** ISOLATIONS ***/
+    /*** ISOLATIONS ***/
 .darkmode--activated .adminPagina{
     isolation: isolate;
 }
 
-/*** CSS ***/
+    /*** CSS ***/
 .darkmode--activated .jumbotron{
     background: rgb(60, 60, 60);
 }
@@ -1590,4 +1589,88 @@ footer,
 .darkmode--activated .container h2,
 .darkmode--activated .adminPagina .container .card .card-body .card-title{
     color: rgb(230 ,230, 230);
+}
+
+/********* CATALOGUSVIEW.PHP *********/
+
+    /*** ISOLATIONS ***/
+
+    /*** CSS ***/
+.darkmode--activated .catalogusPagina .categorieen,
+.darkmode--activated .catalogusPagina .productAanbiedenDiv .productAanbiedenButton,
+.darkmode--activated .catalogusPagina .card .card-body h5{
+    color: rgb(230, 230, 230);
+    border-color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .catalogusPagina .productAanbiedenDiv .productAanbiedenButton:hover{
+    color: rgb(165, 105, 189);
+    border-color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .catalogusPagina .zoekButton{
+    background: none;
+}
+
+.darkmode--activated .catalogusPagina .zoekButton:hover{
+    background: rgb(165, 105, 189);
+    color: rgb(50, 50, 50);
+}
+
+/********* CONTACTVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .contactPagina{
+    isolation: isolate;
+}
+/*** CSS ***/
+.darkmode--activated .contactPagina .container h5{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .contactPagina .contactpaginaFormulier div{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton{
+    background: rgb(110, 110, 110);
+    color: rgb(230, 230, 230);
+    box-shadow: 0 0 15px rgb(165, 105, 189);
+}
+
+.darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton:hover{
+    background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+/********* FORGOTPASSWORDVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .forgotPasswordPagina{
+    isolation: isolate;
+}
+/*** CSS ***/
+.darkmode--activated .forgotPasswordPagina h5{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .forgotPasswordPagina .wachtwoordVergetenForm .centerForm .emailContainer{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .forgotPasswordPagina .container .wachtwoordVergetenForm .gaTerugKnop a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .forgotPasswordPagina .container .wachtwoordVergetenForm .gaTerugKnop a:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .forgotPasswordPagina .container .wachtwoordVergetenForm .wachtwoordVergetenButton{
+    background: rgb(110, 110, 110);
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .forgotPasswordPagina .container .wachtwoordVergetenForm .wachtwoordVergetenButton:hover{
+    color: rgb(40, 40, 40);
 }
