@@ -11,11 +11,15 @@ if(checkPost()){
         if($_POST['action'] == 'review'){
             require_once('classes/controllers/profile/reviewController.php');
         }
+        if($_POST['action'] == 'follow'){
+            require_once('classes/controllers/profile/followController.php');
+        }
     }
 
     $ref = $_POST['voorwerp'];
     // Validatie verzending bod
-    if(isset($_POST["bid"]) && !empty($_POST["bid"])){
+    $item = Items::getItem($_GET['id']);
+    if(isset($_POST["bid"]) && !empty($_POST["bid"]&&$_SESSION['name']!=$item['Verkoper'])){
         // initialisatie variabelen
         $highestBid = Items::getHighestBid($ref)['Bodbedrag'];
         $startPrijs = Items::getItem($ref)["Startprijs"];
@@ -45,7 +49,7 @@ if(checkPost()){
 
         if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
             if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
-                Items::placeBid($ref, $_POST["bid"], $_SESSION['name']);
+                Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
             }
         }
 

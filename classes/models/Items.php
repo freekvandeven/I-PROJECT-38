@@ -6,13 +6,13 @@ class Items
     static function insertItem($item)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,Looptijd,
-                                      LooptijdBeginDag,LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,LooptijdEindeDag,
+        $data = $dbh->prepare('INSERT INTO Voorwerp (Titel,Beschrijving,Startprijs,Betalingswijze,Betalingsinstructie,Plaatsnaam,Land,
+                                      LooptijdBeginTijdstip,Verzendkosten,Verzendinstructies,Verkoper,
                                       LooptijdEindeTijdstip,VeilingGesloten,Verkoopprijs)
-                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,:Looptijd,
-                                      :LooptijdBeginDag,:LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,:LooptijdEindeDag,
+                                      VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,
+                                      :LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
-        return $data->execute($item);
+         return $data->execute($item);
     }
 
     static function insertFiles($files)
@@ -79,10 +79,9 @@ class Items
     static function getFinishedItems()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND (LooptijdEindeDag < :vandaag  OR
-                            (LooptijdEindeDag = :vandaag2 AND LooptijdEindeTijdstip < :moment))");
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip > :nu ");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
-        $data->execute(array(":vandaag" => date("Y-m-d"), ":vandaag2" => date("Y-m-d"), ":moment" => date("H:i:s")));
+        $data->execute(array(":nu" => date("Y-m-d H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -90,7 +89,7 @@ class Items
     static function finishItem($item, $buyer, $sellprice)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten='Wel', Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
+        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=TRUE, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
         $data->execute([":item" => $item, ":buyer" => $buyer, ":sellprice" => $sellprice]);
     }
 
@@ -112,11 +111,11 @@ class Items
         return $result[0];
     }
 
-    static function placeBid($item, $price, $user)
+    static function placeBid($item, $price, $user,$date)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodDag, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user, :boddag, :bodtijdstip)');
-        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":boddag" => date('Y-m-d'), ":bodtijdstip" => date("H:i:s")));
+        $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user,  :date)');
+        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user,":date"=>$date));
     }
 
     static function getRubrieken()
@@ -164,5 +163,21 @@ class Items
         global $dbh;
         $data = $dbh->prepare("DELETE FROM Voorwerp where Voorwerpnummer = :id");
         return $data->execute([':id'=>$id]);
+    }
+
+    static function getFiles($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND NOT Filenaam LIKE '%img%'");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchColumn();
+        return $result;
+    }
+
+    static function getThumbnail($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND Filenaam LIKE '%img%'");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchColumn();
+        return $result;
     }
 }

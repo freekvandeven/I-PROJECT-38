@@ -20,11 +20,9 @@ if ($user["Verkoper"]) {
                 ":Startprijs" => $posts["Startprijs"], ":Betalingswijze" => $posts["Betalingswijze"],
                 ":Betalingsinstructie" => $posts["Betalingsinstructie"],
                 ":Plaatsnaam" => $user["Plaatsnaam"], ":Land" => $user["Land"],
-                ":Looptijd" => $posts["Looptijd"], ":LooptijdBeginDag" => $date,
-                ":LooptijdBeginTijdstip" => date("H:i:s"),
+                ":LooptijdBeginTijdstip" => date('Y-m-d H:i:s'),
                 ":Verzendkosten" => 5, ":Verzendinstructies" => $posts["Verzendinstructies"], ":Verkoper" => $user["Gebruikersnaam"],
-                ":LooptijdEindeDag" => date('Y-m-d', strtotime($date . ' + ' . $_POST['Looptijd'] . ' days')),
-                ":LooptijdEindeTijdstip" => date("H:i:s"), ":VeilingGesloten" => "Nee", ":Verkoopprijs" => $posts["Startprijs"]);
+                ":LooptijdEindeTijdstip" => date('Y-m-d H:i:s', strTotime(' + '.$posts["Looptijd"].' days')), ":VeilingGesloten" => 0, ":Verkoopprijs" => $posts["Startprijs"]);
             //if image is set
             if(isset($_FILES['thumbnail'])){
                 //try insert
@@ -37,11 +35,11 @@ if ($user["Verkoper"]) {
                         imagepng(imagecreatefromstring(file_get_contents($_FILES['thumbnail']['tmp_name'])), 'upload/items/tempItem.png');
                     }
 
-                    $insertFilesArray['Filenaam'] = "$itemId.png";
+                    $insertFilesArray['Filenaam'] = "cstimg$itemId.png";
                     $insertFilesArray['Voorwerp'] = $itemId;
                     if(Items::insertFiles($insertFilesArray)) {
                         //store file with new autoincrementId as id.png
-                        storeImg($_FILES['thumbnail']['tmp_name'], $itemId,"upload/items/");
+                        storeImg($_FILES['thumbnail']['tmp_name'], "cstimg".$itemId,"upload/items/");
                     } else {
                         $err = "Er ging iets mis met de database.";
                     }
@@ -57,11 +55,11 @@ if ($user["Verkoper"]) {
                                 //convert to png
                                 imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), 'upload/items/tempItem.png');
                             }
-                            $insertFilesArray['Filenaam'] = "{$itemId}_{$i}.png";
+                            $insertFilesArray['Filenaam'] = "cst{$itemId}_{$i}.png";
                             $insertFilesArray['Voorwerp'] = $itemId;
                             if (Items::insertFiles($insertFilesArray)) {
                                 //stores file with new autoincrementId + _$i as id_$i.png
-                                storeImg($optionalPhotosArray[$i]['tmp_name'], $itemId . _ . $i, "upload/items/");
+                                storeImg($optionalPhotosArray[$i]['tmp_name'], "cst".$itemId . _ . $i, "upload/items/");
                                 header("Location: item.php?id=$itemId");
                             } else {
                                 $err = "Er ging iets mis met de database.";

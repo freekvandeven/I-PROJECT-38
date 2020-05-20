@@ -17,8 +17,8 @@ function checkLogin() // check if user is logged in
 }
 
 function registerRequest(){
-    checkVisitor();
-    checkItemDate();
+    //checkVisitor();
+    //checkItemDate();
 }
 
 function checkPost()
@@ -43,7 +43,7 @@ function checkVisitor(){
 }
 
 function cleanupUploadFolder(){
-    for($i=0;$i<40000;$i++){
+    for($i=10000;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
             unlink("upload/items/".$i.".png");
         }
@@ -233,6 +233,24 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
     return mail($receiver, $subject, $template, $headers);
 }
 
+function generateImageLink($item, $thumbnail=true){
+        if($thumbnail){
+            $image = Items::getThumbnail($item);
+            if(strpos($image, 'cst')!==false){ // file exists doesn't work on the files in thumbnails
+                return "upload/items/".$image;
+            } else {
+                return "thumbnails/".$image;
+            }
+        } else {
+            $images = Items::getFiles($item);
+            if(strpos($images[0], 'cst')==false) { // file exists doesn't work on the files in pics
+                return "pics/" . $images[0];
+            } else {
+                return "upload/items/".$images[0];
+            }
+        }
+}
+
 function generateCatalog($items)
 {
     $counter = 0;
@@ -245,7 +263,8 @@ function generateCatalog($items)
             <div class='card'>
                 <div class="itemImage">
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                        <img src='upload/items/<?= $card['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productnaam'>
+                        <img src='<?php echo generateImageLink($card['Voorwerpnummer'],true); ?>' class='card-img-top' alt='Productnaam'>
+                        <!--<img src='upload/items/<?= $card["Voorwerpnummer"]?>.png' class='card-img-top' alt='Productnaam'>-->
                     </a>
                 </div>
                 <div class='card-body'>
