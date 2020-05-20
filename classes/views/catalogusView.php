@@ -29,10 +29,11 @@
 
                 <li> Zoek op categorieen
 
-                <form class="categorySearchForm" action="" method="post">
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën" name="search" autocomplete="off" onkeyup="showCategory(this.value)">
-                </form>
+                    <form class="categorySearchForm" action="" method="post">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
+                               name="search" autocomplete="off" onkeyup="showCategory(this.value)">
+                    </form>
                 </li>
                 <li>
                     <ul id="searchResult">
@@ -40,7 +41,7 @@
                 </li>
 
                 <script type="text/javascript">
-                    $("#searchResult").bind("click", function(e){
+                    $("#searchResult").bind("click", function (e) {
                         $(e.target).closest("li").toggleClass("highlight");
                         $("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
                         showCategory($("#zoekcategory").val());
@@ -56,7 +57,8 @@
     <div class="container">
         <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
         <div class="filtermenu">
-            <form class="catalogusForm" action="catalogus.php" method="post" onkeyup="regenerateCatalog()" onchange="regenerateCatalog()">
+            <form class="catalogusForm" action="catalogus.php" method="post" onkeyup="regenerateCatalog()"
+                  onchange="regenerateCatalog()">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <div class="row">
                     <div class="form-group col-xl-12 text-center">
@@ -69,7 +71,8 @@
                     if (isset($_SESSION['loggedin'])) {
                         ?>
                         <div class="productAanbiedenDiv offset-lg-9 offset-md-0">
-                            <a href="addProduct.php" class="productAanbiedenButton col-lg-12 col-sm-12 col-12">Product aanbieden</a>
+                            <a href="addProduct.php" class="productAanbiedenButton col-lg-12 col-sm-12 col-12">Product
+                                aanbieden</a>
                         </div>
                         <?php
                     }
@@ -78,11 +81,12 @@
 
                 <div class="row">
                     <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                        <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords" name="search">
+                        <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords"
+                               name="search">
                     </div>
 
                     <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-                        <button id="zoekButton" class="zoekButton" type="submit" >Zoeken</button>
+                        <button id="zoekButton" class="zoekButton" type="submit">Zoeken</button>
                     </div>
                 </div> <!-- einde row -->
 
@@ -133,7 +137,8 @@
                         <input value="25000" min="0" max="1000000" step="10" type="range"/>
                         <input value="50000" min="0" max="1000000" step="10" type="range"/>
                         <svg width="100%" height="24">
-                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12" stroke-dasharray="1 28"></line>
+                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
+                                  stroke-dasharray="1 28"></line>
                         </svg>
                     </div>
                     <script>testJava(".price-slider")</script>
@@ -144,7 +149,8 @@
                         <input value="10" min="0" max="355" step="1" type="range"/>
                         <input value="80" min="0" max="355" step="1" type="range"/>
                         <svg width="100%" height="24">
-                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12" stroke-dasharray="1 28"></line>
+                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
+                                  stroke-dasharray="1 28"></line>
                         </svg>
                     </div>
                     <script>testJava(".distance-slider")</script>
@@ -154,39 +160,7 @@
 
 
         <?php
-        $select = array();
-        if (isset($_POST)) {
-            $order = array();
-            if (isset($_POST['order'])) {
-                switch ($_POST['order']) {
-                    case "Low":
-                        $order[':order'] = "prijs ASC";
-                        break;
-                    case "High":
-                        $order[':order'] = "prijs DESC";
-                        break;
-                    case "New":
-                        $order[':order'] = "looptijdbegindag DESC";
-                        break;
-                    case "Old":
-                        $order[':order'] = "looptijdbegindag ASC";
-                        break;
-                }
-            }
-            if (isset($_POST['search'])) {
-                $select[':where'] = "%" . $_POST['search'] . "%";
-            }
-            if (isset($_POST['rubriek'])) {
-                $select[":rubriek"] = $_POST['rubriek'];
-            }
-            $select = array_merge($select, $order);
-            if (isset($_POST['numberOfItems']))
-                $select[':limit'] = $_POST['numberOfItems'];
-            else {
-                $select[':limit'] = '25';
-            }
-        }
-        $items = selectFromCatalog($select); ?>
+        $items = selectFromCatalog(evalSelectPOST()); ?>
         <div class="productsList" id="productsList">
             <?php generateCatalog($items);
             ?>
@@ -212,16 +186,16 @@
 </main>
 
 <script type="text/javascript">
-    function regenerateCatalog(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                    document.getElementById("productsList").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("POST", "ajax.php", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            var data = $('.catalogusForm').serialize();
-            xmlhttp.send(data.concat('&request=getCatalogus'));
+    function regenerateCatalog() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("productsList").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("POST", "ajax.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        var data = $('.catalogusForm').serialize();
+        xmlhttp.send(data.concat('&request=getCatalogus'));
     }
 </script>

@@ -19,7 +19,7 @@ if(isset($_SESSION['loggedin'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg"/>
+    <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg" id="favicon"/>
     <script src="js/script.js"></script>
     <script src="js/range.js"></script>
     <title><?=$title?></title>
@@ -36,6 +36,22 @@ if(isset($_SESSION['loggedin'])){
                 location.href = this.href;
             });
         });
+    </script>
+    <!-- favicon notifaction function-->
+    <script>
+        var icon = 'images/icon.svg';
+        var iconNotifcation = 'images/notification.svg';
+        var notified =false;
+        changeFavicon();
+        function changeFavicon() {
+            if(notified == false){
+                document.getElementById('favicon').href = iconNotifcation;
+                notified = !notified;
+            }else{
+                document.getElementById('favicon').href = icon;
+                notified = !notified;
+            }
+        }
     </script>
 </head>
 <body>
