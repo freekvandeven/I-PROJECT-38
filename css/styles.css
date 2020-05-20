@@ -931,6 +931,10 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
+.profielPaginaVIemandAnders{
+    margin-bottom: 200px;
+}
+
 .profielPaginaVIemandAnders .jumbotron{
     padding-left: 20%;
 }
@@ -941,7 +945,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .profielPaginaVIemandAnders .container{
-    margin-bottom: 150px;
+    margin-bottom: 75px;
 }
 
 .profielPaginaVIemandAnders .container .row{
@@ -953,12 +957,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     padding-top: 20px;
 }
 
-.profielPaginaVIemandAnders .card-title{
+.profielPaginaVIemandAnders .subTitel{
     font-weight: normal;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
 .profielPaginaVIemandAnders .container .container .row div .card .card-body .card-img{
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .profielPaginaVIemandAnders .container .row div .card .card-body div button{
@@ -1093,28 +1100,23 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
-.profielPaginaVIemandAnders .container .container .row div .card a .card-img{
-    min-width: 100%;
-    max-width: 100%;
-    max-height: 400px;
-}
-
-.profielPaginaVIemandAnders .titelLinka{
+.profielPaginaVIemandAnders .titelLink-a{
     color: #000;
     transition: 150ms;
     text-decoration: underline;
     text-decoration-color: #fff;
 }
 
-.profielPaginaVIemandAnders .titelLinka:hover{
+.profielPaginaVIemandAnders .titelLink-a:hover{
     color: rgb(165, 105, 189);
     text-decoration-color: rgb(165, 105, 189);
 }
 
 .itemImage{
     display: block;
-    height: 250px;
+    height: 300px;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .itemImage img{
@@ -1918,4 +1920,23 @@ footer,
 .darkmode--activated .mijnVeilingenPagina .dropdown-menu,
 .darkmode--activated .mijnFavorietenPagina .dropdown-menu{
     background: rgb(80, 80, 80);
+}
+
+/********* INSPECTVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .profielPaginaVIemandAnders{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .profielPaginaVIemandAnders .subTitel,
+.darkmode--activated .profielPaginaVIemandAnders .lijn{
+    border-color: rgba(230 ,230, 230, .2);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .geenAangebodenVeilingen,
+.darkmode--activated .profielPaginaVIemandAnders .geenGewonnenVeilingen,
+.darkmode--activated .profielPaginaVIemandAnders .titelLink-a{
+    color: rgb(230, 230, 230);
 }

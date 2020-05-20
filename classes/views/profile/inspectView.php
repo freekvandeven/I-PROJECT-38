@@ -40,10 +40,11 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Persoonsgegevens</h4>
-
+                            <h4 class="subTitel card-title text-center">Persoonsgegevens</h4>
                             <?php if(file_exists("upload/users/".$profile_data_inspect_user['Gebruikersnaam'].".png")):?>
+                            <div class="itemImage">
                                 <img src="upload/users/<?=$profile_data_inspect_user['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                            </div>
                             <?php else :?>
                                 <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
                             <?php endif;?>
@@ -59,7 +60,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Reviews</h4>
+                            <h4 class="subTitel card-title text-center">Reviews</h4>
                             <?php
                             if (!empty(Items::soldToUser($_SESSION['name'], $_GET['id'])) &&
                                 empty(Seller::commentedOnUser($_SESSION['name'], $_GET['id']))&& $_SESSION['name']!=$_GET['id']):
@@ -113,7 +114,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">
+                            <h4 class="subTitel card-title text-center">
                                 Rating: <?= round(Database::getAvgRating($profile_data_inspect_user['Gebruikersnaam'])[""], 2) ?></h4>
                             <?php
                             if(empty(Seller::ratedUser($_SESSION['name'],$_GET['id']))&&!empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
@@ -150,7 +151,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
             <div class="row">
                 <?php $atLeastOneAuctionWon = false;
                 foreach ($boughtItems as $item):
-                    if ($item['VeilingGesloten'] == 'Wel'):
+                    if ($item['VeilingGesloten'] == 1):
                         $atLeastOneAuctionWon = true; ?> <!-- true zetten zodat de melding: 'Er zijn nog geen gewonnen veilingen' niet kan worden weergegeven. -->
 
                         <div class="col-xl-4 col-md-6 col-sm-6">
@@ -159,7 +160,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                     <img src='upload/items/<?= $item['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productafbeelding'>
                                 </a>
                                 <div class="card-body">
-                                    <a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLinka">
+                                    <a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a">
                                         <h5 class="titelLink card-title"><?= $item['Titel'] ?></h5>
                                     </a>
                                     <p class="card-text">€ <?= $item['prijs'] ?></p>
@@ -193,9 +194,9 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                 </a>
                             </div>
                             <div class="card-body">
-                                <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLinka"><?= $item['Titel'] ?></a></h5>
+                                <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a"><?= $item['Titel'] ?></a></h5>
 
-                                <p class="card-text"><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
+                                <p class="card-text"><?php if(strlen($item['Beschrijving'])<200) echo $item['Beschrijving']; ?></p>
                                 <p class="card-text">€ <?= number_format($item['Startprijs'],2, ',', '.') ?></p>
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                             </div>
