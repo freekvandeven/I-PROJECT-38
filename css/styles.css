@@ -1111,8 +1111,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .profielPaginaVIemandAnders .container .profielButtonBox{
-    margin-bottom: -5px;
-    margin-top: -60px;
+    margin-top: -40px;
 }
 
 .profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
