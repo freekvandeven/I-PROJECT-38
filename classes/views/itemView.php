@@ -1,5 +1,6 @@
 <?php
 $maxPhotos = 5;
+$images = generateImageLink($item['Voorwerpnummer'], false);
 ?>
 
 <main class="veilingBekijkenPagina">
@@ -13,32 +14,26 @@ $maxPhotos = 5;
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <?php
-                                for($i=0; $i<$maxPhotos; $i++) {
-                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) {
-                                        $dataSlideTo = $i + 1; ?>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$dataSlideTo?>"></li>
+                                for($i=1; $i<count($images); $i++) { // pointer to next image ?>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>"></li>
                                     <?php
-                                    }
                                 }
                                 ?>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']?>.png" alt="Thumbnail">
+                                    <img class="d-block w-100" src="<?=$images[0];?>" alt="Thumbnail">
                                 </div>
 
                                 <?php
-                                for($i=0; $i<$maxPhotos; $i++) {
-                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) { ?>
+                                for($i=1; $i<count($images); $i++): ?>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']._.$i?>.png" alt="Productfoto">
+                                        <img class="d-block w-100" src="<?=$images[$i];?>" alt="Productfoto">
                                     </div>
-                                <?php }
-                                } ?>
+                                <?php endfor; ?>
                             </div>
-
                             <?php
-                            if(checkImageExists("{$item['Voorwerpnummer']}_0.png")) { ?>
+                            if(count($images) > 1): ?>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -47,7 +42,7 @@ $maxPhotos = 5;
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
-                            <?php } ?>
+                            <?php endif; ?>
                         </div>
 
                         <p class='card-text'><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
@@ -100,11 +95,17 @@ $maxPhotos = 5;
                     </div>
                 </div>
                 <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
-                <form action ='' method='post'>
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <button class="deleteButton" type="submit" name="deleteItem" value="delete"></button>
-                </form>
+                    <form method="post" action="">
+                        <input type="hidden" name="token" value="<?= $token ?>">
+                        <div class="buttonBox text-center col-xl-10 offset-xl-1">
+                            <button class=".btn-outline-danger" type="submit" name="deleteItem" value="delete">Delete veiling</button>
+                        </div>
+                    </form>
                 <?php endif; ?>
+                <form class="voegFavorietToeForm" method="POST" action="">
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star" id="deleteButton"></i></button>
+                </form>
             </div>
 
             <div class="col-xl-8 col-md-6">

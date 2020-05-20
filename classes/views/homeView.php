@@ -55,7 +55,7 @@
         <h3>Bekijk hier de de meest trending producten:</h3>
         <div class="productsList">
             <?php
-            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF(day, getdate(),LooptijdEindeDag))*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
             generateCatalog($items);
             ?>
 
@@ -64,10 +64,8 @@
                 <?php
                 $i = 0;
                 foreach($items as $item){
-                $datum = $item['LooptijdEindeDag'];
-                $tijdstip = $item['LooptijdEindeTijdstip'];
-                $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-                echo "my_date = '" . explode(".", $time)[0] . "';\n";
+                    $time = $item['LooptijdEindeTijdstip'];
+                    echo "my_date = '" . explode(".", $time)[0] . "';\n";
                 ?>
                 my_date = my_date.replace(/-/g, "/");
                 setupCountDown('timer-<?=$i?>', new Date(my_date));
