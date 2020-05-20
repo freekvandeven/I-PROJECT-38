@@ -51,7 +51,7 @@
         <h3>Bekijk hier de de meest trending producten:</h3>
         <div class="productsList">
             <?php
-            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
             generateCatalog($items);
             ?>
             <script>
