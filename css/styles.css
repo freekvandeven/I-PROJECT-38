@@ -354,7 +354,7 @@ body{
 }
 
 /* De subtitels (bijv: Accountgegevens en beveiliging) */
-.registerForm h5, .verkoperFor h5, .updateForm h5, .addProductForm .container h5{
+.registerForm h5, .verkoperForm h5, .updateForm h5, .addProductForm .container h5{
     margin-bottom: 20px;
 }
 
@@ -649,6 +649,10 @@ body{
     margin-bottom: 150px;
 }
 
+.profielPagina .card{
+    border-radius: 10px;
+}
+
 .profielPagina .mijnEenmaalAndermaalTitel{
     margin-top: 75px;
 }
@@ -702,23 +706,20 @@ body{
     border-top: 1px solid rgba(0, 0, 0, .07);
 }
 
+.profielPagina .titel{
+    padding: 0;
+}
+
 .profielPagina .container .container .verkopersPaginaButtonBox{
     margin-top: -35px;
-    margin-bottom: 0px;
 }
 
 .profielPagina .verkopersPaginaButton{
     font-size: 18px;
-    color: #fff;
-    background: rgb(165, 105, 189);
-    padding: 5px 10px;
-    border-radius: 10px;
+    color: rgb(165, 105, 189);
+    margin: 5px 15px;
     transition: 200ms;
-}
-
-.profielPagina .verkopersPaginaButton:hover{
-    text-decoration: none;
-    background: rgb(126, 66, 149);
+    text-decoration: underline;
 }
 
 @media (max-width: 575px) {
@@ -952,6 +953,14 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin-bottom: 40px;
 }
 
+.profielPaginaVIemandAnders .card{
+    border-radius: 10px;
+}
+
+.profielPaginaVIemandAnders .titel{
+    padding: 0;
+}
+
 .profielPaginaVIemandAnders .lijn{
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding-top: 20px;
@@ -1065,21 +1074,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 .profielPaginaVIemandAnders .container .profielButtonBox{
     margin-bottom: -5px;
-    margin-top: -40px;
+    margin-top: -60px;
 }
 
 .profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
-    background: rgb(165, 105, 189);
-    color: #fff;
-    padding: 5px 15px;
-    border-radius: 10px;
-    font-size: 17px;
+    color: rgb(165, 105, 189);
+    margin: 5px 15px;
+    font-size: 18px;
     transition: 200ms;
-}
-
-.profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
-    text-decoration: none;
-    background: rgb(126, 66, 149);
+    text-decoration: underline;
 }
 
 @media (max-width: 575px) {
@@ -1939,4 +1942,35 @@ footer,
 .darkmode--activated .profielPaginaVIemandAnders .geenGewonnenVeilingen,
 .darkmode--activated .profielPaginaVIemandAnders .titelLink-a{
     color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
+    color: rgb(230, 230, 230);
+    text-decoration-color: rgb(230, 230, 230);
+}
+
+/********* PROFILEVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .profielPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .profielPagina .verkopersPaginaButton:hover{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .subTitel{
+    border-bottom: 1px solid rgba(230, 230, 230, .2);
+}
+
+.darkmode--activated .profielPagina .row .card .card-body .btn{
+    background: rgb(60, 60, 60);
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+}
+
+.darkmode--activated .profielPagina .row .card .card-body .btn:hover{
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
 }

@@ -19,7 +19,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
         <div class="container">
 
-            <h2>Mijn gegevens</h2>
+            <h2 class="titel col-xl-3 col-md-6 col-sm-6">Mijn gegevens</h2>
             <div class="verkopersPaginaButtonBox text-right">
                 <a href="profile.php?id=<?=$profile_data['Gebruikersnaam']?>" class="verkopersPaginaButton" role="button">Bekijk uw verkoperspagina</a>
             </div>
@@ -28,7 +28,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Persoonsgegevens</h4>
+                            <h4 class="subTitel card-title">Persoonsgegevens</h4>
                             <?php if(file_exists("upload/users/".$_SESSION['name'].".png")):?>
                             <img src="upload/users/<?=$_SESSION['name']?>.png" class="card-img" alt="profielfoto">
                             <?php else :?>
@@ -51,7 +51,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Inloggegevens</h4>
+                            <h4 class="subTitel card-title">Inloggegevens</h4>
                             <p><b>Gebruikersnaam: </b><?=$profile_data['Gebruikersnaam']?></p>
                             <p><b>Wachtwoord: </b>*****</p>
                             <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
@@ -61,7 +61,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Beveiliging</h4>
+                            <h4 class="subTitel card-title">Beveiliging</h4>
                             <p><b>Vraag: </b><?php echo User::getQuestion($profile_data['Vraag']);?></p>
                             <p><b>Antwoord: </b><?=$profile_data['Antwoordtekst']?></p>
                             <a href="profile.php?action=update" class="btn btn-primary">Wijzig</a>
@@ -71,7 +71,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-3 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Verkoper</h4>
+                            <h4 class="subTitel card-title">Verkoper</h4>
                             <p><b>Verkoper: </b><?=$verkoper?></p>
                             <?php if(!$profile_data['Verkoper']) : ?>
                             <a href="profile.php?action=upgrade" class="btn btn-primary">Wijzig</a>
@@ -87,7 +87,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Mijn veilingen</h4>
+                            <h4 class="subTitel card-title">Mijn veilingen</h4>
                             <p>Om uw aangeboden veilingen te bekijken, klikt u hieronder op de knop.</p>
                             <a href="profile.php?action=item" class="btn btn-primary">Bekijk mijn veilingen</a>
                         </div>
@@ -96,7 +96,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Favoriete veilingen</h4>
+                            <h4 class="subTitel card-title">Favoriete veilingen</h4>
                             <p>Wanneer u op een veiling biedt, wordt deze toegevoegd aan uw favorieten.</p>
                             <a href="profile.php?action=favorite" class="btn btn-primary">Favoriete veilingen</a>
                         </div>
@@ -107,7 +107,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                 <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Product aanbieden</h4>
+                            <h4 class="subTitel card-title">Product aanbieden</h4>
                             <p>Als u een verkoper bent, kunt u tweedehands product aanbieden op EenmaalAndermaal. </p>
                             <a href="addProduct.php" class="btn btn-primary">Product aanbieden</a>
                         </div>

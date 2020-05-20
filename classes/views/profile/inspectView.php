@@ -20,7 +20,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
     </div>
 
     <div class="container">
-        <h2>Profielgegevens</h2>
+        <h2 class="titel col-xl-3 col-md-6 col-sm-6">Profielgegevens</h2>
         <?php if($_SESSION['admin']):?>
         <form action ='' method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
             <input type="hidden" name="token" value="<?= $token ?>">
