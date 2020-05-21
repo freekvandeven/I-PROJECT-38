@@ -163,21 +163,18 @@
         $items = selectFromCatalog(evalSelectPOST()); ?>
         <div class="productsList" id="productsList">
             <?php generateCatalog($items);
+            $timerDates = array_column($items, 'LooptijdEindeTijdstip');
+            for($i=0;$i<count($timerDates);$i++){
+                $timerDates[$i] = explode(".", $timerDates[$i])[0];
+            }
             ?>
-            <script>
-                var my_date;
-                <?php
-                $i = 0;
-                foreach($items as $item){
-                $time = $item['LooptijdEindeTijdstip'];
-                echo "my_date = '" . explode(".", $time)[0] . "';\n";
-                ?>
-                my_date = my_date.replace(/-/g, "/");
-                setupCountDown('timer-<?=$i?>', new Date(my_date));
-                <?php
-                $i++;
+
+            <script type="text/javascript">
+                var timerDates = <?php echo json_encode($timerDates); ?>;
+                initializeCountdownDates(timerDates);
+                if(!countdown) { // if countdown hasn't been started
+                    setupCountdownTimers();
                 }
-                ?>
             </script>
         </div>
     </div>
@@ -189,6 +186,11 @@
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("productsList").innerHTML = this.responseText;
+                //var obj = eval( "(" + this.response + ")" );
+                //eval( obj.script );
+                $("#productsList").find("script").each(function(){
+                    eval($(this).text());
+                });
             }
         };
         xmlhttp.open("POST", "ajax.php", true);
