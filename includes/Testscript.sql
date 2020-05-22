@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Notificaties;
 DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Beoordeling;
@@ -141,6 +142,17 @@ CREATE TABLE Bestand(
 	Voorwerp INTEGER     NOT NULL,
 	CONSTRAINT PK_filenaam PRIMARY KEY (Filenaam)
 );
+
+CREATE TABLE Notificaties(
+    Bericht  VARCHAR(256) NOT NULL,
+    Ontvanger VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE Notificaties
+ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Feedback
 ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
