@@ -1260,7 +1260,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .adminPagina .container .row div a .card:hover{
     border: 2px solid rgba(165, 105, 189, .4);
     box-shadow: 0 0 20px rgba(165, 105, 189, .4);
-    background: rgba(165, 105, 189, .03);
+    background: rgba(165, 105, 189, .05);
 }
 
 .adminPagina .container .row div a .card .card-body h4{
@@ -1296,10 +1296,166 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 @media (max-width: 575px) {
     .adminPagina .container .row div a .card .card-body img{
-        width: 40%;
-        margin-left: 30%;
+        width: 100%;
+        margin-left: 0;
         height: 150px;
     }
+}
+
+/*************** ADMINSUBPAGINA'S CSS *************/
+.adminPaginaSub .container h2{
+    margin-top: 50px;
+    isolation: isolate;
+}
+
+.adminPaginaSub .text-center{
+    font-weight: normal;
+}
+
+.adminPaginaSub .container h5{
+    margin-top: 20px;
+}
+
+.adminPaginaSub .legendaButton{
+    margin-top: -42px;
+}
+
+.adminPaginaSub .legendaButton .legendaDropdownButton{
+    background: none;
+    color: rgb(165, 105, 189);
+    font-size: 17px;
+    border: none;
+    transition: 300ms;
+    padding: 3px 10px;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+.adminPaginaSub .legendaButton .legendaDropdownButton:focus,
+.adminPaginaSub .legendaButton .legendaDropdownButton:hover{
+    text-decoration-color: rgb(165, 105, 189);
+}
+
+.adminPaginaSub .container .dropdown-menu{
+    max-width: 350px;
+}
+
+.adminPaginaSub .container .dropdown-menu .dropdown-item:active, .adminPaginaSub .container .dropdown-menu .dropdown-item:hover{
+    background: none;
+}
+
+.adminPaginaSub .container .table-responsive{
+    margin-top: 50px;
+}
+
+.adminPaginaSub .container .table-responsive table thead {
+    background: rgba(165, 105, 189, .7);
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td a{
+    color: #000;
+    text-decoration: underline;
+    transition: 150ms;
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td a:hover{
+    color: rgb(165, 105, 189);
+}
+
+.adminPaginaSub .container .table-responsive .table tbody td{
+    font-size: 17px;
+}
+
+.adminPaginaSub .gaTerugKnopBox{
+    margin-top: 75px;
+    margin-bottom: 200px;
+    isolation: isolate;
+}
+
+.adminPaginaSub .gaTerugKnop{
+    font-size: 18px;
+    color: #000;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    transition: 200ms;
+    isolation: isolate;
+}
+
+.adminPaginaSub .gaTerugKnop:hover{
+    text-decoration-color: rgb(165, 105, 189);
+    color: rgb(165, 105, 189);
+    padding-left: 10px;
+    isolation: isolate;
+}
+
+.adminPaginaSub .container .dropdown-menu .dropdown-item .table thead tr th{
+    border: none;
+}
+
+@media (max-width: 900px) {
+    .adminPaginaSub .legendaButton{
+        margin-top: 25px;
+    }
+}
+
+.adminPaginaSub .container form{
+    margin-top: 50px;
+}
+
+.adminPaginaSub .container form .text-center input{
+    margin-top: 30px;
+}
+
+.adminPaginaSub .container form .text-center input{
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 15px;
+    background: none;
+    color: rgb(165, 105, 189);
+    font-size: 18px;
+    transition: 200ms;
+}
+
+.adminPaginaSub .container form label{
+    font-size: 18px;
+}
+
+.adminPaginaSub .container form input{
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+.adminPaginaSub .container form input:focus{
+    box-shadow: 0 0 15px rgba(165, 105, 189, .5);
+    border-color: rgba(165, 105, 189, .5);
+}
+
+.adminPaginaSub .container form .text-center input:hover{
+    background: rgb(165, 105, 189);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(165, 105, 189, .6);
+}
+
+.adminPaginaSub .container form .text-center input[value="Reset"]{
+    border-color: red;
+    color: red;
+}
+
+.adminPaginaSub .container form .text-center input[value="Reset"]:hover{
+    background: red;
+    color: #fff;
+    box-shadow: 0 0 10px red;
+}
+
+.adminPaginaSub input[name="newRubriek"]:focus{
+    padding-left: 5px;
+}
+
+.adminPaginaSub .container .redBackground{
+    background: rgba(255, 64, 64, .8);
+}
+
+.adminPaginaSub .container .greenBackground{
+    background: rgba(0, 191, 48, .5);
 }
 
 /*************** CATALOGUSPAGINA CSS *************/
@@ -1432,150 +1588,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 .catalogusPagina .linkerkant .categorieen .list-unstyled ul{
     list-style-type: none;
-}
-
-/*************** ADMINSUBPAGINA'S CSS *************/
-.adminPaginaSub .container h2{
-    margin-top: 50px;
-    isolation: isolate;
-}
-
-.adminPaginaSub .container h5{
-    margin-top: 20px;
-}
-
-.adminPaginaSub .legendaButton{
-    margin-top: -42px;
-}
-
-.adminPaginaSub .legendaButton .legendaDropdownButton{
-    background: none;
-    color: rgb(165, 105, 189);
-    font-size: 17px;
-    border: none;
-    transition: 300ms;
-    padding: 3px 10px;
-    text-decoration: underline;
-    text-decoration-color: #fff;
-}
-
-.adminPaginaSub .legendaButton .legendaDropdownButton:focus,
-.adminPaginaSub .legendaButton .legendaDropdownButton:hover{
-    text-decoration-color: rgb(165, 105, 189);
-}
-
-.adminPaginaSub .container .dropdown-menu{
-    max-width: 350px;
-}
-
-.adminPaginaSub .container .dropdown-menu .dropdown-item:active, .adminPaginaSub .container .dropdown-menu .dropdown-item:hover{
-    background: none;
-}
-
-.adminPaginaSub .container .table-responsive{
-    margin-top: 50px;
-}
-
-.adminPaginaSub .container .table-responsive table thead {
-    background: rgba(165, 105, 189, .7);
-}
-
-.adminPaginaSub .container .table-responsive .table tbody td a{
-    color: #000;
-    text-decoration: underline;
-    transition: 150ms;
-}
-
-.adminPaginaSub .container .table-responsive .table tbody td a:hover{
-    color: rgb(165, 105, 189);
-}
-
-.adminPaginaSub .container .table-responsive .table tbody td{
-    font-size: 17px;
-}
-
-.adminPaginaSub .gaTerugKnop{
-    margin-top: 75px;
-    margin-bottom: 200px;
-    isolation: isolate;
-}
-
-.adminPaginaSub .gaTerugKnop a{
-    font-size: 18px;
-    color: #000;
-    text-decoration: underline;
-    text-decoration-color: #fff;
-    transition: 200ms;
-    isolation: isolate;
-}
-
-.adminPaginaSub .gaTerugKnop a:hover{
-    text-decoration-color: rgb(165, 105, 189);
-    color: rgb(165, 105, 189);
-    padding-left: 10px;
-    isolation: isolate;
-}
-
-.adminPaginaSub .container .dropdown-menu .dropdown-item .table thead tr th{
-    border: none;
-}
-
-@media (max-width: 900px) {
-    .adminPaginaSub .legendaButton{
-        margin-top: 25px;
-    }
-}
-
-.adminPaginaSub .container form{
-    margin-top: 50px;
-}
-
-.adminPaginaSub .container form .text-center input{
-    margin-top: 30px;
-}
-
-.adminPaginaSub .container form .text-center input{
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 15px;
-    background: none;
-    color: rgb(165, 105, 189);
-    font-size: 18px;
-    transition: 200ms;
-}
-
-.adminPaginaSub .container form label{
-    font-size: 18px;
-}
-
-.adminPaginaSub .container form input{
-    border-radius: 10px;
-    transition: 200ms;
-}
-
-.adminPaginaSub .container form input:focus{
-    box-shadow: 0 0 15px rgba(165, 105, 189, .5);
-    border-color: rgba(165, 105, 189, .5);
-}
-
-.adminPaginaSub .container form .text-center input:hover{
-    background: rgb(165, 105, 189);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(165, 105, 189, .6);
-}
-
-.adminPaginaSub .container form .text-center input[value="Reset"]{
-    border-color: red;
-    color: red;
-}
-
-.adminPaginaSub .container form .text-center input[value="Reset"]:hover{
-    background: red;
-    color: #fff;
-    box-shadow: 0 0 10px red;
-}
-
-.adminPaginaSub input[name="newRubriek"]:focus{
-    padding-left: 5px;
 }
 
 /******************* VEILING BEKIJKEN ******************/
@@ -1750,25 +1762,6 @@ footer{
     color: rgb(230, 230, 230);
 }
 
-/********* ADMINVIEW.PHP *********/
-
-    /*** ISOLATIONS ***/
-.darkmode--activated .adminPagina{
-    isolation: isolate;
-}
-
-    /*** CSS ***/
-.darkmode--activated .jumbotron{
-    background: rgb(60, 60, 60);
-}
-
-.darkmode--activated .jumbotron p,
-.darkmode--activated .jumbotron h2,
-.darkmode--activated .container h2,
-.darkmode--activated .adminPagina .container .card .card-body .card-title{
-    color: rgb(230 ,230, 230);
-}
-
 /********* CATALOGUSVIEW.PHP *********/
 
     /*** ISOLATIONS ***/
@@ -1802,6 +1795,14 @@ footer{
     isolation: isolate;
 }
 /*** CSS ***/
+.darkmode--activated .contactPagina .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
+.darkmode--activated .contactPagina .jumbotron p{
+    color: rgb(230, 230, 230);
+}
+
 .darkmode--activated .contactPagina .container h5{
     color: rgb(230, 230, 230);
 }
@@ -2032,6 +2033,15 @@ footer{
 }
 
 /*** CSS ***/
+.darkmode--activated .profielPaginaVIemandAnders .container h2,
+.darkmode--activated .profielPaginaVIemandAnders .jumbotron p{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
 .darkmode--activated .profielPaginaVIemandAnders .subTitel,
 .darkmode--activated .profielPaginaVIemandAnders .lijn{
     border-color: rgba(230 ,230, 230, .2);
@@ -2056,6 +2066,15 @@ footer{
 }
 
 /*** CSS ***/
+.darkmode--activated .profielPagina .container .container h2,
+.darkmode--activated .profielPagina .jumbotron p{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .profielPagina .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
 .darkmode--activated .profielPagina .verkopersPaginaButton:hover{
     color: rgb(230, 230, 230);
 }
@@ -2177,6 +2196,127 @@ footer{
 .darkmode--activated nav{
     background: rgba(135, 110, 189, .6);
 }
+
+/********* ADMINVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .adminPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .adminPagina .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
+.darkmode--activated .adminPagina .jumbotron p,
+.darkmode--activated .adminPagina .jumbotron h2,
+.darkmode--activated .adminPagina .container h2,
+.darkmode--activated .adminPagina .container .card .card-body .card-title{
+    color: rgb(230 ,230, 230);
+}
+
+.darkmode--activated .adminPagina .container .row div a .card{
+    background: rgb(90, 90, 90);
+    border: 4px solid rgb(140, 140, 140);
+}
+
+.darkmode--activated .adminPagina .container .row div a .card:hover{
+    border-color: rgb(165, 105, 189);
+    box-shadow: 0 0 30px rgba(165, 105, 189);
+    background: rgb(70, 70, 70);
+}
+
+/********* ADMINPAGINA --> ADDRUBRIEKVIEW.PHP, AUCTIONVIEW.PHP, FILLVIEW.PHP, QUERYVIEW.PHP, RESETVIEW.PHP, SELLERVIEW.PHP, STATISTICSVIEW.PHP, USERVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .adminPaginaSub{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .adminPaginaSub .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
+.darkmode--activated .adminPaginaSub .jumbotron p,
+.darkmode--activated .adminPaginaSub .container h2,
+.darkmode--activated .adminPaginaSub .gaTerugKnop{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .adminPaginaSub .container .voegRubriekToeButton{
+    background: rgb(40, 40, 40);
+}
+
+.darkmode--activated .adminPaginaSub .gaTerugKnop:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table thead tr th{
+    border-color: rgba(165, 105, 189, .1);
+    background: rgba(165, 105, 189, .1);
+    color: rgb(230, 230, 230);
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.darkmode--activated .adminPaginaSub .container .legendaButton button,
+.darkmode--activated .adminPaginaSub .container .legendaButton .dropdown-menu .dropdown-item .table thead tr th,
+.darkmode--activated .adminPaginaSub .container .legendaButton .dropdown-menu .dropdown-item .table tbody tr td{
+    color: rgb(230, 230, 230);
+    font-weight: normal;
+}
+
+.darkmode--activated .adminPaginaSub .container .legendaButton button:hover,
+.darkmode--activated .adminPaginaSub .container .legendaButton button:focus{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .adminPaginaSub .container .legendaButton .dropdown-menu{
+    background: rgb(80, 80, 80);
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody tr td,
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody tr td a{
+    border: none;
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .adminPaginaSub .container .legendaButton .dropdown-menu .dropdown-item .table tbody tr td{
+    border: none;
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .lightBackground{
+    background: rgb(90, 90, 90);
+    transition: 200ms;
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .darkBackground{
+    background: rgb(70, 70, 70);
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .lightBackground:hover,
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .darkBackground:hover{
+    background: rgb(167, 132, 181);
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .redBackground{
+    background: rgba(255, 64, 64, .8);
+    transition: 200ms;
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .greenBackground{
+    background: rgba(0, 191, 48, .5);
+    transition: 200ms;
+}
+
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .redBackground:hover,
+.darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .greenBackground:hover{
+    background: rgba(90, 90, 90);
+}
+
+
 
 /************* EINDE DARKMODE CSS *************/
 

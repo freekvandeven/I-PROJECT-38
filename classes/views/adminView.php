@@ -1,6 +1,6 @@
 <?php
 
-$bootstrapGrid = 'col-xl-4 col-md-6 col-sm-6';
+$bootstrapGrid = 'col-xl-4 col-md-6 col-sm-6 col-6';
 
 $categories = ['auction', 'user', 'seller', 'statistics', 'addRubriek', 'reset', 'fill', 'query'];
 $titles = ['Website', 'Database'];

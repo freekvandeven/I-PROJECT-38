@@ -1,3 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
+
 <main class="adminPaginaSub">
     <div class="jumbotron">
         <h2 class="display-5">Welkom op de querypagina</h2>
@@ -24,7 +27,7 @@
         </p>
     </div>
 
-    <div class="text-center col-lg-12">
-        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
 </main>

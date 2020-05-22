@@ -1,4 +1,7 @@
-<main class="adminPagina">
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
+
+<main class="adminPaginaSub">
     <div class="jumbotron">
         <h2 class="display-5">Welkom master op de Adminpagina</h2>
         <p>Op deze pagina heeft u een aantal opties waar alleen u toegang tot heeft.</p>
@@ -12,5 +15,8 @@
     <button onclick="startDatabaseFill()">Start my new script</button>
 
     <div id="outputField"></div>
-    <a href="admin.php">Go back</a>
+
+    <div class="gaTerugKnopBox text-center">
+        <a href="admin.php" class="gaTerugKnop">Ga terug</a>
+    </div>
 </main>
