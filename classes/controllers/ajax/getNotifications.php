@@ -1,8 +1,8 @@
 <?php
 // get amount of notifications
-$data = $dbh->prepare("SELECT COUNT(*) FROM Notificaties WHERE Ontvanger = :user");
-$data->execute([":user"=>$_SESSION['name']]);
-$result = $data->fetchColumn();
-if(!empty($result)){
-    echo $result;
+if(isset($_SESSION['name'])) {
+    $notifications = User::getNotifications($_SESSION['name']);
+    if (!empty($notifications)) {
+        echo $notifications;
+    }
 }

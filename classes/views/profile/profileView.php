@@ -120,6 +120,16 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                                 <button class="btn btn-primary" type="submit" name="action" value="delete">Delete account</button>
                             </form>
                         </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Notificaties Bekijken</h4>
+                            <p>Hier kunt u notificaties zien en chatten met andere gebruikers.  </p>
+                            <a href="profile.php?action=notifications" class="btn btn-primary">Notificaties</a>
+                        </div>
                     </div>
                 </div>
                 <div> <!--temp-->
