@@ -188,7 +188,7 @@
                 document.getElementById("productsList").innerHTML = this.responseText;
                 //var obj = eval( "(" + this.response + ")" );
                 //eval( obj.script );
-                $("#productsList").find("script").each(function(){
+                $("#productsList").find("script").each(function(){ // evaluate the javascript returned inside the ajax response
                     eval($(this).text());
                 });
             }

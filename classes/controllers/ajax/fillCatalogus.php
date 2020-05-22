@@ -40,6 +40,10 @@ switch ($_POST["step"]) {
         $dbh->exec("ALTER TABLE Voorwerp NOCHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
         echo "busy";
         break;
+    case 27:
+        // deze stap werkt niet, doe niks
+
+        break;
     default:
         if (($_POST["step"] - 3) >= count($files)) {
             // turn on constraint
