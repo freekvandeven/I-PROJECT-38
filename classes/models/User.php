@@ -22,6 +22,13 @@ class User
         return $users;
     }
 
+    static function notifyUser($user, $message)
+    {
+        global $dbh;
+        $data = $dbh->prepare("INSERT INTO Notificaties VALUES (:message, :user)");
+        $data->execute([$user, $message]);
+    }
+
     static function updateUser($user)
     {
         global $dbh;

@@ -21,7 +21,7 @@ if(checkPost()){
     $item = Items::getItem($_GET['id']);
     if(isset($_POST["bid"]) && !empty($_POST["bid"]&&$_SESSION['name']!=$item['Verkoper'])){
         // initialisatie variabelen
-        $highestBid = Items::getHighestBid($ref)['Bodbedrag'];
+        $highestBid = Items::getHighestBid($ref);
         $startPrijs = Items::getItem($ref)["Startprijs"];
 
         // bepalen van startprijs
@@ -47,9 +47,10 @@ if(checkPost()){
 
         $minimumIncrease = startPrijs * $percentage;
 
-        if($_POST["bid"] > $highestBid && $_POST["bid"] > $startPrijs){
-            if( ($_POST["bid"] - $highestBid) > $minimumIncrease){
+        if($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs){
+            if( ($_POST["bid"] - $highestBid['Bodbedrag']) > $minimumIncrease){
                 Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
+                User::notifyUser($highestBid['Gebruiker']);
             }
         }
 
