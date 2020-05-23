@@ -186,9 +186,9 @@
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("productsList").innerHTML = this.responseText;
-                //var obj = eval( "(" + this.response + ")" );
-                //eval( obj.script );
-                $("#productsList").find("script").each(function(){ // evaluate the javascript returned inside the ajax response
+
+                // evaluate the javascript returned inside the ajax response
+                $("#productsList").find("script").each(function(){
                     eval($(this).text());
                 });
             }

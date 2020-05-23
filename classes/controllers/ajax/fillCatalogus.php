@@ -42,7 +42,7 @@ switch ($_POST["step"]) {
         break;
     case 27:
         // deze stap werkt niet, doe niks
-
+        echo "busy";
         break;
     default:
         if (($_POST["step"] - 3) >= count($files)) {
