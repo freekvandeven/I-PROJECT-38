@@ -6,9 +6,6 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
 
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>
-
 <main class="profielPagina">
     <div class="jumbotron">
         <h2 class="display-5">Uw EenmaalAndermaal</h2>
@@ -27,7 +24,7 @@ $verkoper = ($profile_data['Verkoper']) ? 'Ja' : 'Nee';
                     <div class="card">
                         <div class="card-body">
                             <h4 class="subTitel card-title">Persoonsgegevens</h4>
-                            <div class="itemImage">
+                            <div class="itemImageProfilePage">
                               <img src="<?= getProfileImage($_SESSION['name']) ?>" class="card-img" alt="profielfoto">
                             </div>
                             <p>Uw profielfoto is zichtbaar voor iedereen.</p>

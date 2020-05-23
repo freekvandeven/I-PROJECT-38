@@ -57,7 +57,7 @@ nav{
 .navbar .navbar-nav .nav-link {
     color: #ffffff;
     border-radius: .25rem;
-    margin: 0 0.25em;
+    margin: 0 3px;
 }
 .navbar .navbar-nav .nav-link:not(.disabled):hover,
 .navbar .navbar-nav .nav-link:not(.disabled):focus {
@@ -94,7 +94,7 @@ nav{
 }
 
 .navbarForm .zoekBalk{
-    width: 600px;
+    width: 750px;
     transition: 300ms;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(40, 40, 40, .4);
@@ -103,6 +103,12 @@ nav{
 .navbarForm .zoekBalk:focus{
     box-shadow: 0 0 15px rgba(40, 40, 40, .9);
     padding: 5px;
+}
+
+@media (max-width: 1630px) {
+    .navbarForm .zoekBalk{
+        width: 600px;
+    }
 }
 
 @media (max-width: 1496px) {
@@ -114,6 +120,18 @@ nav{
 @media (max-width: 1230px) {
     .navbarForm .zoekBalk{
         width: 250px;
+    }
+}
+
+@media (max-width: 1075px) {
+    nav .profielDropdown {
+        display: none;
+    }
+}
+
+@media (max-width: 975px) {
+    navbarForm .zoekBalk{
+        margin-left: 0;
     }
 }
 
@@ -1899,17 +1917,15 @@ footer{
 }
 
 .darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton{
-    background: rgb(200, 200, 200);
-    color: rgb(40, 40, 40);
-    box-shadow: 0 0 15px rgb(40, 40, 40);
-    border-color: rgb(40, 40, 40);
+    background: rgb(40, 40, 40);
+    color: rgb(165, 105, 189);
+    box-shadow: 0 0 15px rgb(165, 105, 189);
+    margin-bottom: 150px;
 }
 
 .darkmode--activated .contactPagina .contactpaginaFormulier .contactpaginaButton:hover{
     background: rgb(165, 105, 189);
-    color: rgb(230, 230, 230);
-    border-color: rgb(165, 105, 189);
-    box-shadow: 0 0 20px rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
 }
 
 /********* FORGOTPASSWORDVIEW.PHP *********/
@@ -2198,7 +2214,8 @@ footer{
 }
 
 /*** CSS ***/
-.darkmode--activated .updateGegevensPagina .container .updateForm .container h5{
+.darkmode--activated .updateGegevensPagina .container .updateForm .container h5,
+.darkmode--activated .updateGegevensPagina h2{
     border-color: rgba(230, 230, 230, .3);
     color: rgb(230, 230, 230);
 }
@@ -2216,17 +2233,14 @@ footer{
 }
 
 .darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton{
-    background: rgb(200, 200, 200);
-    color: rgb(40, 40, 40);
-    border-color: rgb(40, 40, 40);
-    box-shadow: 0 0 20px rgb(40, 40, 40);
+    background: rgb(40, 40, 40);
+    color: rgb(165, 105, 189);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 
 .darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton:hover{
     background: rgb(165, 105, 189);
-    color: rgb(230, 230, 230);
-    border-color: rgb(165, 105, 189);
-    box-shadow: 0 0 20px rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
 }
 
 /********* UPGRADEVIEW.PHP *********/

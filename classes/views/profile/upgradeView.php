@@ -2,9 +2,6 @@
 $profile_data = User::getUser($_SESSION['name']);
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>
-
 <main class="upgradePagina">
     <div class="container">
         <h2 class="text-center">Wordt een verkoper</h2>

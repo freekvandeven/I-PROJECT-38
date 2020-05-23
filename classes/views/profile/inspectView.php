@@ -10,9 +10,6 @@ $boughtItems = Items::getBuyerItems($profile_data_inspect_user['Gebruikersnaam']
 $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam']);
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>
-
 <main class="profielPaginaVIemandAnders">
     <div class="jumbotron">
         <h2 class="display-5">Profielpagina van <?= $profile_data_inspect_user['Gebruikersnaam'] ?></h2>

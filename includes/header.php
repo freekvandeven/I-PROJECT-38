@@ -23,11 +23,14 @@ if(isset($_SESSION['loggedin'])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
     <!-- custom stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg" id="favicon"/>
     <script src="js/script.js"></script>
     <script src="js/range.js"></script>
+    <script src="js/darkMode.js"></script>
     <title><?=$title?></title>
 
     <!-- jquerry to make bootstrap dropdown a clickable link-->
@@ -68,22 +71,8 @@ if(isset($_SESSION['loggedin'])){
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="profile.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="<?= getProfileImage($_SESSION['name']); ?>" width="30" height="30" class="rounded-circle" alt="profielfoto">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <?php if($loggedin): ?>
-                        <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
-                        <a class="dropdown-item" href="profile.php?action=notifications">Notifications</a>
-                        <a class="dropdown-item" href="logout.php">Log Out</a>
-                        <?php else: ?>
-                        <a class="dropdown-item" href="login.php">Login</a>
-                        <a class="dropdown-item" href="register.php">Register</a>
-                        <?php endif; ?>
-                    </div>
-                </li>
             </ul>
+
             <form class="navbarForm form-inline ml-md-5" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
                 <div class="text-center">
@@ -91,6 +80,22 @@ if(isset($_SESSION['loggedin'])){
                 </div>
                 <button class="btn btn-outline-success" type="submit">Zoeken</button>
             </form>
+        </div>
+
+        <div class="profielDropdown dropdown">
+            <a class="nav-link dropdown-toggle" href="profile.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="<?= getProfileImage($_SESSION['name']); ?>" width="30" height="30" class="rounded-circle" alt="profielfoto">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <?php if($loggedin): ?>
+                    <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
+                    <a class="dropdown-item" href="profile.php?action=notifications">Notifications</a>
+                    <a class="dropdown-item" href="logout.php">Log Out</a>
+                <?php else: ?>
+                    <a class="dropdown-item" href="login.php">Login</a>
+                    <a class="dropdown-item" href="register.php">Register</a>
+                <?php endif; ?>
+            </div>
         </div>
     </nav>
 

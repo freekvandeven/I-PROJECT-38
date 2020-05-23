@@ -138,6 +138,3 @@
         </form>
     </div>
 </main>
-
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>

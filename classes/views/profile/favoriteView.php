@@ -3,9 +3,6 @@
     $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-<script src="includes/darkMode.js"></script>
-
 <main class="mijnFavorietenPagina">
     <h2 class="text-center">Mijn favoriete veilingen</h2>
     <h5 class="text-center">Als u op een veiling biedt, kunt u die hieronder zien.</h5>
