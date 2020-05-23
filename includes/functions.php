@@ -121,6 +121,14 @@ function storeImg($files, $id,$target_dir)
 function checkImageExists($fileName) {
     return file_exists("upload/items/$fileName");
 }
+
+function getProfileImage($user){
+    if(isset($user) && file_exists("upload/users/".$user.".png")){
+        return "upload/users/$user.png";
+    } else {
+        return "images/profilePicture.png";
+    }
+}
 /*
 function calculateDistance($point1, $point2, $unit = ''){
     $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';

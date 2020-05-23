@@ -1,9 +1,11 @@
 <?php
 if(isset($_SESSION['loggedin'])){
     $loginstatus = 'Profile';
+    $loggedin = true;
     $loginlink = 'profile.php';
 } else {
     $loginstatus = 'Login';
+    $loggedin = false;
     $loginlink = 'login.php';
 }
 ?>
@@ -68,15 +70,10 @@ if(isset($_SESSION['loggedin'])){
                 <li class="nav-item">
                     <a class="nav-link" href="catalogus.php">Veilingen</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" id="navbarDropdown" href=<?=$loginlink?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item ">
+                    <a class="nav-link" href=<?=$loginlink?>>
                         <?=$loginstatus?>
                     </a>
-                    <?php if($loginstatus!='Login') :?> <!-- conditional logout only if logged in -->
-                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                        <a class='dropdown-item' href='logout.php'>Logout</a>
-                    </div>
-                    <?php endif;?>
                 </li>
                 <?php
                 if(isset($_SESSION['admin']) && $_SESSION['admin']): ?>
@@ -86,6 +83,21 @@ if(isset($_SESSION['loggedin'])){
                 <?php endif;?>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="profile.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= getProfileImage($_SESSION['name']); ?>" width="30" height="30" class="rounded-circle" alt="profielfoto">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <?php if($loggedin): ?>
+                        <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
+                        <a class="dropdown-item" href="profile.php?action=notifications">Notifications</a>
+                        <a class="dropdown-item" href="logout.php">Log Out</a>
+                        <?php else: ?>
+                        <a class="dropdown-item" href="login.php">Login</a>
+                        <a class="dropdown-item" href="register.php">Register</a>
+                        <?php endif; ?>
+                    </div>
                 </li>
             </ul>
             <form class="navbarForm form-inline my-2 my-lg-0" action="catalogus.php" method="post">

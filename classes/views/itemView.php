@@ -115,13 +115,9 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>"><h4 class="card-header text-center">Verkoper</h4></a>
                             <div class="verkoperInformatieBox row">
                                 <div class="profielfoto col-xl-6">
-                                    <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
                                     <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
-                                        <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                                        <img src="<?=getProfileImage($profile_data['Gebruikersnaam'])?>.png" class="card-img" alt="profielfoto">
                                     </a>
-                                    <?php else :?>
-                                        <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
-                                    <?php endif; ?>
                                 </div>
                                 <div class="verkoperInformatie col-xl-6">
                                     <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
@@ -157,16 +153,8 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
                     </div>
                     <script>
-                        <?php
-                        $datum = $item['LooptijdEindeDag'];
-                        $tijdstip = $item['LooptijdEindeTijdstip'];
-                        $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-                        echo "var my_date= '" . explode( ".",$time)[0] . "';\n";
-                        ?>
-                        my_date = my_date.replace(/-/g, "/");
-                        var d = new Date(my_date);
-                        setupCountDown('timer', d);
-                    //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+                        <?php $tijdstip = $item['LooptijdEindeTijdstip']; //get the countdown date ?>
+                        setupCountDown('timer', new Date("<?=explode(".", $tijdstip)[0];?>")); // start the countdowntimer
                 </script>
             </div>
         </div>
