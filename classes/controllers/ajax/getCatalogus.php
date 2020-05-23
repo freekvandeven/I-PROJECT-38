@@ -2,21 +2,17 @@
 $items = selectFromCatalog(evalSelectPOST());
 
 generateCatalog($items);
+$timerDates = array_column($items, 'LooptijdEindeTijdstip');
+for($i=0;$i<count($timerDates);$i++){
+    $timerDates[$i] = explode(".", $timerDates[$i])[0];
+}
+
 ?>
+
 <script type="text/javascript">
-    var my_date;
-    <?php
-    $i = 0;
-    foreach($items as $item){
-    $datum = $item['LooptijdEindeDag'];
-    $tijdstip = $item['LooptijdEindeTijdstip'];
-    $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-    echo "my_date = '" . explode(".", $time)[0] . "';\n";
-    ?>
-    my_date = my_date.replace(/-/g, "/");
-    setupCountDown('timer-<?=$i?>', new Date(my_date));
-    <?php
-    $i++;
+    var timerDates = <?php echo json_encode($timerDates); ?>;
+    initializeCountdownDates(timerDates);
+    if(!countdown) { // if countdown hasn't been started
+        setupCountdownTimers();
     }
-    ?>
 </script>

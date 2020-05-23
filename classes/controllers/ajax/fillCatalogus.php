@@ -40,13 +40,17 @@ switch ($_POST["step"]) {
         $dbh->exec("ALTER TABLE Voorwerp NOCHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
         echo "busy";
         break;
+    case 27:
+        // deze stap werkt niet, doe niks
+        echo "busy";
+        break;
     default:
         if (($_POST["step"] - 3) >= count($files)) {
             // turn on constraint
             $dbh->exec("ALTER TABLE Voorwerp CHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
             echo "finished";
         } else {
-            $file = $files[$_POST["step"] - 2];
+            $file = $files[$_POST["step"] - 3];
             if (strpos($file,"CREATE Users.sql") !== false) {
                 echo "creating users";
                 # step 3 insert the new users
@@ -56,7 +60,7 @@ switch ($_POST["step"]) {
                 echo $file;
                 #step 3.2 fix insert string
                 $refactorFile = str_replace("INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES (",
-                    "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',1,1, 1, 1,", $userFile);
+                    "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Latitude, Longitude, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',52.718239,6.267012,1,1, 1, 1,", $userFile);
                 # step 3.3 split file in inserts
                 $inserts = explode("\n", $refactorFile);
 

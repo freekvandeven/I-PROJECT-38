@@ -1,8 +1,8 @@
-<main class="homePage">
-    <!-- Darkmode Toggle -->
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-    <script src="includes/darkMode.js"></script>
+<!-- Darkmode Toggle -->
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+<script src="includes/darkMode.js"></script>
 
+<main class="homePage">
     <!-- Slideshow: -->
     <div class="slideshow">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -57,22 +57,18 @@
             <?php
             $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
             generateCatalog($items);
+            $timerDates = array_column($items, 'LooptijdEindeTijdstip');
+            for($i=0;$i<count($timerDates);$i++){
+                $timerDates[$i] = explode(".", $timerDates[$i])[0];
+            }
             ?>
-
-            <script>
-                var my_date;
-                <?php
-                $i = 0;
-                foreach($items as $item){
-                    $time = $item['LooptijdEindeTijdstip'];
-                    echo "my_date = '" . explode(".", $time)[0] . "';\n";
-                ?>
-                my_date = my_date.replace(/-/g, "/");
-                setupCountDown('timer-<?=$i?>', new Date(my_date));
-                <?php
-                $i++;
+          
+            <script type="text/javascript">
+                var timerDates = <?php echo json_encode($timerDates); ?>;
+                initializeCountdownDates(timerDates);
+                if(!countdown) { // if countdown hasn't been started
+                    setupCountdownTimers();
                 }
-                ?>
             </script>
         </div>
     </div>

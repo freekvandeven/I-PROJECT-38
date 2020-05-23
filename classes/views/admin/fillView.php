@@ -13,7 +13,7 @@
         <input type="submit" value="fill">
     </form>
     <button onclick="startDatabaseFill()">Start my new script</button>
-
+    <button onclick="abortDatabaseFill()">Abort!!!</button>
     <div id="outputField"></div>
 
     <div class="gaTerugKnopBox text-center">

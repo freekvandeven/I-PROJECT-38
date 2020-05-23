@@ -41,13 +41,9 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                     <div class="card">
                         <div class="card-body">
                             <h4 class="subTitel card-title text-center">Persoonsgegevens</h4>
-                            <?php if(file_exists("upload/users/".$profile_data_inspect_user['Gebruikersnaam'].".png")):?>
                             <div class="itemImage">
-                                <img src="upload/users/<?=$profile_data_inspect_user['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                              <img src="<?=getProfileImage($profile_data_inspect_user['Gebruikersnaam'])?>" class="card-img" alt="profielfoto">
                             </div>
-                            <?php else :?>
-                                <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
-                            <?php endif;?>
                             <p><b>Voornaam: </b><?=$profile_data_inspect_user['Voornaam']?></p>
                             <p><b>Achternaam: </b><?=$profile_data_inspect_user['Achternaam']?></p>
                             <p><b>Emailadres: </b><?=$profile_data_inspect_user['Mailbox']?></p>
