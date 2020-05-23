@@ -61,7 +61,7 @@ if(isset($_SESSION['loggedin'])){
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
@@ -88,10 +88,12 @@ if(isset($_SESSION['loggedin'])){
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
             </ul>
-            <form class="navbarForm form-inline my-2 my-lg-0" action="catalogus.php" method="post">
+            <form class="navbarForm form-inline ml-md-5" action="catalogus.php" method="post">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <input class="zoekBalk form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Search" name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
+                <div class="text-center">
+                    <input class="zoekBalk form-control mr-md-2" type="search" placeholder="Zoeken" aria-label="Search" name="search">
+                </div>
+                <button class="btn btn-outline-success" type="submit">Zoeken</button>
             </form>
         </div>
     </nav>
