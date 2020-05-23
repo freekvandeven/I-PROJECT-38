@@ -218,6 +218,7 @@ function notifySeller($seller, $id, $price){
     $variables['id'] = $id;
     $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
+    User::notifyUser($seller,"Je veiling is afgelopen");
 }
 
 function notifyBuyer($buyer, $id, $offer){
@@ -228,6 +229,7 @@ function notifyBuyer($buyer, $id, $offer){
     $variables['id'] = $id;
     $variables['offer'] = $offer;
     sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
+    User::notifyUser($buyer, "Je hebt de veiling gewonnen");
 }
 
 function sendFormattedMail($receiver, $subject, $filename, $variables){

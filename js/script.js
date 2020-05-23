@@ -95,3 +95,48 @@
     function abortDatabaseFill(){
         xmlhttp.abort();
     }
+    /*
+    function updateNotfications(){
+        alert("test");
+    }
+
+    $("button").click(function(){
+        $.post("demo_test_post.asp",
+            {
+                name: "Donald Duck",
+                city: "Duckburg"
+            },
+            function(data, status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+    });
+     */
+    $(document).ready(function(){
+        setInterval(
+        function notify(){
+            $.post("ajax.php",
+                {
+                    request: "getNotifications"
+                },
+                function(data,status){
+                    if (!$.trim(data)){
+                        updateIcon(false);
+                        //alert("you don't have notifications");
+                    } else {
+                        updateIcon(true);
+                        //alert("you have " + data + " notifications");
+                    }
+                });
+            return notify;
+        }(), 600000);
+    });
+
+    function updateIcon(notification){
+        var icon = 'images/icon.svg';
+        var iconNotifcation = 'images/notification.svg';
+        if(notification){
+            document.getElementById('favicon').href = iconNotifcation;
+        }else{
+            document.getElementById('favicon').href = icon;
+        }
+    }
