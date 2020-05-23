@@ -21,6 +21,28 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+    static function getNotifications($user)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT Bericht FROM Notificaties WHERE Ontvanger = :user");
+        $data->execute([":user"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    static function clearNotifications($user)
+    {
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM Notificaties WHERE Ontvanger = :user");
+        $data->execute(["user"=>$user]);
+    }
+
+    static function notifyUser($user, $message)
+    {
+        global $dbh;
+        $data = $dbh->prepare("INSERT INTO Notificaties VALUES (:message, :user)");
+        $data->execute([$user, $message]);
+    }
 
     static function updateUser($user)
     {
