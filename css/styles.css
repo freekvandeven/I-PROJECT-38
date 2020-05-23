@@ -1893,6 +1893,11 @@ footer{
     color: rgb(50, 50, 50);
 }
 
+.darkmode--activated .catalogusPagina .price-slider,
+.darkmode--activated .catalogusPagina .distance-slider{
+    color: rgb(230, 230, 230);
+}
+
 /********* CONTACTVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
@@ -2427,7 +2432,5 @@ footer{
 .darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .greenBackground:hover{
     background: rgb(90, 90, 90);
 }
-
-
 
 /************* EINDE DARKMODE CSS *************/
