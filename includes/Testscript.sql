@@ -73,8 +73,8 @@ CREATE TABLE Comments (
 );
 
 CREATE TABLE Favorieten (
-    Gebruiker                  INTEGER     NOT NULL,
-    Voorwerp                   VARCHAR(20) NOT NULL,
+    Gebruiker                  VARCHAR(20) NOT NULL,
+    Voorwerp                   INTEGER     NOT NULL,
     CONSTRAINT PK_Favorieten PRIMARY KEY(Gebruiker, Voorwerp)
 );
 
@@ -145,7 +145,8 @@ CREATE TABLE Bestand(
 
 CREATE TABLE Notificaties(
     Bericht  VARCHAR(256) NOT NULL,
-    Ontvanger VARCHAR(20) NOT NULL
+    Ontvanger VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Ontvanger)
 );
 
 ALTER TABLE Notificaties

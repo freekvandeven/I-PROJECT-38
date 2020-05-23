@@ -17,7 +17,7 @@ function checkLogin() // check if user is logged in
 }
 
 function registerRequest(){
-    //checkVisitor();
+    checkVisitor();
     //checkItemDate();
 }
 
@@ -129,53 +129,6 @@ function getProfileImage($user){
         return "images/profilePicture.png";
     }
 }
-/*
-function calculateDistance($point1, $point2, $unit = ''){
-    $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
-    //$apiKey = 'AIzaSyBA5t_6kDT86NEzXrXQSzcaZpKLbDRzBos';
-    $formattedAddrFrom = str_replace(' ', '+', $point1);
-    $formattedAddrTo = str_replace(' ', '+', $point2);
-
-    // Geocoding API request with start address
-    $geocodeFrom = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
-    $outputFrom = json_decode($geocodeFrom);
-    if(!empty($outputFrom->error_message)){
-        return $outputFrom->error_message;
-    }
-
-    // Geocoding API request with end address
-    $geocodeTo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false&key='.$apiKey);
-    $outputTo = json_decode($geocodeTo);
-    if(!empty($outputTo->error_message)){
-        return $outputTo->error_message;
-    }
-
-    // Get latitude and longitude from the geodata
-    $latitudeFrom    = $outputFrom->results[0]->geometry->location->lat;
-    $longitudeFrom    = $outputFrom->results[0]->geometry->location->lng;
-    echo $latitudeFrom;
-    echo $longitudeFrom;
-    $latitudeTo        = $outputTo->results[0]->geometry->location->lat;
-    $longitudeTo    = $outputTo->results[0]->geometry->location->lng;
-
-    // Calculate distance between latitude and longitude
-    $theta    = $longitudeFrom - $longitudeTo;
-    $dist    = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-    $dist    = acos($dist);
-    $dist    = rad2deg($dist);
-    $miles    = $dist * 60 * 1.1515;
-
-    // Convert unit and return distance
-    $unit = strtoupper($unit);
-    if($unit == "K"){
-        return round($miles * 1.609344, 2).' km';
-    }elseif($unit == "M"){
-        return round($miles * 1609.344, 2).' meters';
-    }else{
-        return round($miles, 2).' miles';
-    }
-}
-*/
 
 function calculateDistance($point1, $point2){
     // Calculate distance between latitude and longitude
@@ -208,6 +161,12 @@ function sendConfirmationEmail($mail, $username, $hash){
     $variables['username'] = $username;
     $variables['hash'] = $hash;
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
+}
+function notifyFollowers($item){
+    foreach(Items::getFollowers($item) as $follower) // get all item followers
+    {
+        User::notifyUser($follower, "Er is een item geupdate");
+    }
 }
 
 function notifySeller($seller, $id, $price){

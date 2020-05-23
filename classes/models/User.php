@@ -40,8 +40,8 @@ class User
     static function notifyUser($user, $message)
     {
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO Notificaties VALUES (:message, :user)");
-        $data->execute([$user, $message]);
+        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Ontvanger) VALUES (:message, :user)");
+        $data->execute([":message"=>$message, ":user"=>$user]);
     }
 
     static function updateUser($user)

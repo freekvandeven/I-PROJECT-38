@@ -179,5 +179,13 @@ class Items
         $data->execute([":item"=>$item]);
         $result = $data->fetchColumn();
         return $result;
+    } //TODO FIX THIS
+
+    static function getFollowers($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Gebruiker FROM Favorieten WHERE Voorwerp = :item");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
     }
 }

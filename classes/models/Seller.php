@@ -26,4 +26,12 @@ class Seller{
         $result = $data->fetchColumn();
         return $result;
     }
+
+    static function getSoldTo($user){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Koper FROM Voorwerp WHERE Verkoper = :user AND NOT ISNULL(Koper)");
+        $data->execute([":user"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
 }

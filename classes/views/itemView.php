@@ -97,13 +97,15 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                 <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
                     <form method="post" action="">
                         <input type="hidden" name="token" value="<?= $token ?>">
+                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
                         <div class="buttonBox text-center col-xl-10 offset-xl-1">
-                            <button class=".btn-outline-danger" type="submit" name="deleteItem" value="delete">Delete veiling</button>
+                            <button class=".btn-outline-danger" type="submit" name="action" value="delete">Delete veiling</button>
                         </div>
                     </form>
                 <?php endif; ?>
-                <form class="voegFavorietToeForm" method="POST" action="">
+                <form class="voegFavorietToeForm" method="post" action="">
                     <input type="hidden" name="token" value="<?= $token ?>">
+                    <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
                     <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star" id="deleteButton"></i></button>
                 </form>
             </div>
