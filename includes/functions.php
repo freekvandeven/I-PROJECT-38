@@ -248,9 +248,9 @@ function generateCatalog($items)
             echo "<div class='row'>";
         }
         ?>
-        <div class='col-lg-3'>
+        <div class='col-xl-3 col-6'>
             <div class='card'>
-                <div class="itemImage">
+                <div class="itemImageCatalogusPage">
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
                         <img src='<?php echo generateImageLink($card['Voorwerpnummer'],true); ?>' class='card-img-top' alt='Productnaam'>
                         <!--<img src='upload/items/<?= $card["Voorwerpnummer"]?>.png' class='card-img-top' alt='Productnaam'>-->
