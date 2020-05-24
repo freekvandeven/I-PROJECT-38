@@ -117,11 +117,11 @@
                 },
                 function(data,status){
                     if (!$.trim(data)){
-                        updateIcon(false);
-                        //alert("you don't have notifications");
+                        $("#notificationsDropdown").text('Notificaties (0)');
+                        updateIcon(false); // you don't have notifications
                     } else {
-                        updateIcon(true);
-                        //alert("you have " + data + " notifications");
+                        $("#notificationsDropdown").text('Notificaties ('+$.trim(data)+')');
+                        updateIcon(true); // you have notifications
                     }
                 });
             return notify;

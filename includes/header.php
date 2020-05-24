@@ -89,7 +89,9 @@ if(isset($_SESSION['loggedin'])){
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <?php if($loggedin): ?>
                     <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
-                    <a class="dropdown-item" href="profile.php?action=notifications">Notifications</a>
+                    <a class="dropdown-item" id="notificationsDropdown" href="profile.php?action=notifications">Notificaties (2)</a>
+                    <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen</a>
+                    <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten</a>
                     <a class="dropdown-item" href="logout.php">Log Out</a>
                 <?php else: ?>
                     <a class="dropdown-item" href="login.php">Login</a>
