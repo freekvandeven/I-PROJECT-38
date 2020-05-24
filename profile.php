@@ -3,7 +3,7 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 checkLogin();
-$actions = array("update", "upgrade", "item", "favorite");
+$actions = array("update", "upgrade", "item", "favorite", "notifications");
 if(checkPost()){
     if (isset($_POST['action'])){
         if($_POST['action'] == 'update'){
@@ -17,6 +17,9 @@ if(checkPost()){
         }
         if($_POST['action'] == 'delete'){
             require_once('classes/controllers/profile/deleteController.php');
+        }
+        if($_POST['action'] == 'notifications'){
+            require_once('classes/controllers/profile/notificationsController.php');
         }
     }
 }

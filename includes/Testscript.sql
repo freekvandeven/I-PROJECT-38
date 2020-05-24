@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS Notificaties;
+DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Beoordeling;
 DROP TABLE IF EXISTS Bod;
@@ -14,21 +16,19 @@ DROP TABLE IF EXISTS Vraag;
 
 
 CREATE TABLE Bod(
-	Voorwerp					INTEGER(20)		NOT NULL,
-	Bodbedrag					VARCHAR(8)		NOT NULL,
+	Voorwerp					INTEGER      	NOT NULL,
+	Bodbedrag					NUMERIC(15,2)	NOT NULL,
 	Gebruiker					VARCHAR(20)		NULL,
-	BodDag						VARCHAR(10)		NOT NULL,
-	BodTijdstip					VARCHAR(10)		NOT NULL,
+	BodTijdstip					DATETIME		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
 );
 
 
 CREATE TABLE Feedback(
-	Voorwerp					INTEGER(20)		NOT NULL,
+	Voorwerp					INTEGER      	NOT NULL,
 	SoortGebruiker				VARCHAR(20)		NOT NULL,
 	Feedbacksoort				VARCHAR(20)		NOT NULL,
-	Dag							VARCHAR(10)		NOT NULL,
-	Tijdstip					VARCHAR(10)		NOT NULL,
+	Datum						DATETIME		NOT NULL,
 	Commentaar					VARCHAR(128)		NULL,
 	CONSTRAINT PK_Feedback	PRIMARY KEY	(Voorwerp, SoortGebruiker)
 );
@@ -43,10 +43,12 @@ CREATE TABLE Gebruiker(
 	Postcode					VARCHAR(7)		NOT NULL,
 	Plaatsnaam					VARCHAR(50)		NOT NULL,
 	Land						VARCHAR(50)		NOT NULL,
+	Latitude                    DECIMAL(10, 8)      NULL,
+	Longitude                   DECIMAL(11, 8)      NULL,
 	Geboortedag					VARCHAR(10)		NOT NULL,
 	Mailbox						VARCHAR(128)	NOT NULL,
 	Wachtwoord					VARCHAR(128)	NOT NULL,
-	Vraag						INTEGER			NOT NULL,
+	Vraag						TINYINT 		NOT NULL,
 	Antwoordtekst				VARCHAR(20)		NOT NULL,
 	Verkoper					BIT				NOT NULL,
 	Action						BIT 		    NOT NULL,
@@ -55,114 +57,135 @@ CREATE TABLE Gebruiker(
 );
 
 CREATE TABLE Beoordeling (
-    BeoordelingsNr 				INTEGER(20)		NOT NULL AUTO_INCREMENT,
+    BeoordelingsNr 				INTEGER      	NOT NULL IDENTITY,
     Gebruikersnaam              VARCHAR(20)     NULL,
     GegevenDoor                 VARCHAR(20)     NULL,
-    Rating                      INTEGER(1)      NOT NULL,
+    Rating                      NUMERIC(1)      NOT NULL,
     CONSTRAINT PK_Beoordeling PRIMARY KEY(BeoordelingsNr)
 );
 
 CREATE TABLE Comments (
-    FeedBackNr                  INTEGER(20)     NOT NULL AUTO_INCREMENT,
+    FeedBackNr                  INTEGER         NOT NULL IDENTITY,
     Gebruikersnaam              VARCHAR(20)     NULL,
     FeedbackGever               VARCHAR(20)     NULL,
     Feedback                    VARCHAR(255)    NOT NULL,
     CONSTRAINT PK_Comments PRIMARY KEY(FeedBackNr)
 );
 
+CREATE TABLE Favorieten (
+    Gebruiker                  VARCHAR(20) NOT NULL,
+    Voorwerp                   INTEGER     NOT NULL,
+    CONSTRAINT PK_Favorieten PRIMARY KEY(Gebruiker, Voorwerp)
+);
+
 CREATE TABLE GebruikersTelefoon(
-	Volgnr						INTEGER			NOT NULL AUTO_INCREMENT,
+	Volgnr						INTEGER	        NOT NULL IDENTITY,
 	Gebruiker					VARCHAR(20)		NOT NULL,
-	Telefoon					VARCHAR(11)		NOT NULL,
-	CONSTRAINT PK_GebruikersTelefoon	PRIMARY KEY	(Volgnr, Gebruiker)
+	Telefoon					VARCHAR(11)		NOT NULL UNIQUE,
+	CONSTRAINT PK_GebruikersTelefoon	PRIMARY KEY	(Gebruiker, Telefoon)
 );
 
 CREATE TABLE Rubriek(
-    Rubrieknummer				INTEGER(20)     	NOT NULL,
+    Rubrieknummer				INTEGER          	NOT NULL,
     Rubrieknaam					VARCHAR(32)		    NOT NULL,
-    Rubriek						INTEGER(20)			NULL,
-    Volgnr						INTEGER(20)         NOT NULL AUTO_INCREMENT,
+    Rubriek						INTEGER 			NULL,
+    Volgnr						INTEGER             NOT NULL IDENTITY,
     CONSTRAINT PK_Rubriek PRIMARY KEY (Rubrieknummer)
 );
 
 CREATE TABLE VoorwerpInRubriek(
-	Voorwerp						INTEGER(20)			NOT NULL AUTO_INCREMENT,
-	RubriekOpLaagsteNiveau			INTEGER(20)			NOT NULL,
+	Voorwerp						INTEGER 			NOT NULL,
+	RubriekOpLaagsteNiveau			INTEGER 			NOT NULL,
 	CONSTRAINT PK_VoorwerpInRubriek	PRIMARY KEY	(Voorwerp, RubriekOpLaagsteNiveau)
-
 );
 
-
 CREATE TABLE Vraag(
-	Vraagnummer				INTEGER				NOT NULL AUTO_INCREMENT,
+	Vraagnummer				TINYINT		        NOT NULL IDENTITY,
 	TekstVraag				VARCHAR(128)		NOT NULL,
 	CONSTRAINT PK_Vraag	PRIMARY KEY	(Vraagnummer)
 );
 
 CREATE TABLE Verkoper(
 	Gebruiker					VARCHAR(20) NOT NULL,
-	Bank						CHAR(8)NULL,
-	Bankrekening				VARCHAR(10) NULL,
-	ControleOptie				CHAR(10) NOT NULL,
-	Creditcard					CHAR(19) NULL,
+	Bank						VARCHAR(40)     NULL,
+	Bankrekening				VARCHAR(10)     NULL,
+	ControleOptie				CHAR(10)    NOT NULL,
+	Creditcard					CHAR(19)        NULL,
 	CONSTRAINT PK_Verkoper PRIMARY KEY (gebruiker)
 );
 
 
 
 CREATE TABLE Voorwerp(
-	Voorwerpnummer				INTEGER(20)		NOT NULL AUTO_INCREMENT,
+	Voorwerpnummer				INTEGER 		NOT NULL IDENTITY,
 	Titel						VARCHAR(100)	NOT NULL,
-	Beschrijving				VARCHAR(2000)	NOT NULL,
-	Startprijs					NUMERIC(19, 2)	NOT NULL,
+	Beschrijving				VARCHAR(4000)	NOT NULL,
+	Startprijs					NUMERIC(15, 2)	NOT NULL,
 	Betalingswijze				VARCHAR(50)		NOT NULL,
 	Betalingsinstructie			CHAR(25)		NULL,
-	Plaatsnaam					VARCHAR(255)	NOT NULL,
+	Plaatsnaam					VARCHAR(60) 	NOT NULL,
 	Land						VARCHAR(50)		NOT NULL,
 	LooptijdBeginTijdstip		DATETIME		NOT NULL,
-	Verzendkosten				NUMERIC(19, 7)	NOT NULL,
+	Verzendkosten				NUMERIC(19, 2)	NOT NULL,
 	Verzendinstructies			VARCHAR(50)		NULL,
 	Verkoper					VARCHAR(20)		NULL,
 	Koper						VARCHAR(20)		NULL,
 	LooptijdEindeTijdstip		DATETIME		NOT NULL,
-	VeilingGesloten			 BIT			NOT NULL,
-	Verkoopprijs				NUMERIC(19, 7)	NULL,
-	Views                       INTEGER(20)     DEFAULT 0,
+	VeilingGesloten			    BIT			    NOT NULL,
+	Verkoopprijs				NUMERIC(15, 2)	NULL,
+	Views                       INTEGER         DEFAULT 0,
 	CONSTRAINT PK_Voorwerpnummer PRIMARY KEY (Voorwerpnummer)
-
 );
 
 CREATE TABLE Bestand(
 	Filenaam VARCHAR(40) NOT NULL,
-	Voorwerp INTEGER(20) NOT NULL,
+	Voorwerp INTEGER     NOT NULL,
 	CONSTRAINT PK_filenaam PRIMARY KEY (Filenaam)
 );
+
+CREATE TABLE Notificaties(
+    Bericht  VARCHAR(256) NOT NULL,
+    Ontvanger VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Ontvanger)
+);
+
+ALTER TABLE Notificaties
+ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Feedback
 ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp(Voorwerpnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
+		ON UPDATE CASCADE
+		ON DELETE CASCADE;
 
 ALTER TABLE Comments
 ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-ADD CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
+CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
         REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE;
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+Alter TABLE Favorieten
+ADD CONSTRAINT FK_Favorieten_voorwerpnummer FOREIGN KEY (Voorwerp)
+		REFERENCES Voorwerp (voorwerpnummer)
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION,
 
 ALTER TABLE Bod
 ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION,
-ADD CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
 		ON UPDATE CASCADE
-		ON DELETE NO ACTION;
+		ON DELETE CASCADE;
 
 ALTER TABLE Gebruiker
 ADD CONSTRAINT FK_Gebruiker_vraagnummer FOREIGN KEY (Vraag)
@@ -174,40 +197,41 @@ ALTER TABLE GebruikersTelefoon
 ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
 		ON UPDATE CASCADE
-		ON DELETE NO ACTION;
+		ON DELETE CASCADE;
 
 ALTER TABLE VoorwerpInRubriek
 ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
+		ON UPDATE CASCADE
+		ON DELETE CASCADE;
+
 ALTER TABLE VoorwerpInRubriek
 ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
 		REFERENCES Rubriek (Rubrieknummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
+		ON UPDATE CASCADE
+		ON DELETE CASCADE;
 
 ALTER TABLE Verkoper
 ADD CONSTRAINT FK_Verkoper_gebruikersnaam FOREIGN KEY (Gebruiker)
 		REFERENCES Gebruiker (gebruikersnaam)
 		ON UPDATE CASCADE
-		ON DELETE NO ACTION;
+		ON DELETE CASCADE;
 
 ALTER TABLE Voorwerp
 ADD CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper FOREIGN KEY (verkoper)
 		REFERENCES Verkoper(gebruiker)
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION,
-ADD	CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
+CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
 		REFERENCES Gebruiker(gebruikersnaam)
-		ON UPDATE CASCADE
+		ON UPDATE NO ACTION
 		ON DELETE NO ACTION;
 
 ALTER TABLE Bestand
 ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
 		REFERENCES Voorwerp (voorwerpnummer)
 		ON UPDATE CASCADE
-		ON DELETE NO ACTION;
+		ON DELETE CASCADE;
 
 ALTER TABLE Rubriek
 ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
@@ -218,19 +242,19 @@ ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
 insert into Vraag (tekstvraag)
 values(
        'Wie kan het beste koken?'),(
-       'Wat is je geboorteplaats'
+       'Wat is je geboorteplaats?'
        );
 
 
 insert into Gebruiker
-values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '01/01/2000', 'admin@han.nl',
+values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
 '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
 
-insert into Rubriek (RubriekNaam, Rubriek, Volgnr)values(
-'Autos, boten en motoren',5,5),(
-'Baby',	5,5),(
-'Muziek en instrumenten',	5,5),(
-'Elektronica',	5,5),(
-'Mode',	5,5);
+insert into Rubriek (RubriekNaam, Rubrieknummer)values(
+'Autos, boten en motoren',1),(
+'Baby',	2),(
+'Muziek en instrumenten',3),(
+'Elektronica',4),(
+'Mode',	5);
 
 

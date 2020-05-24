@@ -2,6 +2,7 @@
     $users = User::getUsers();
     $displayedItems = array("Voornaam", "Achternaam", "Adresregel_1", "Postcode", "Land", "Mailbox");
 ?>
+
 <main class="adminPaginaSub">
     <div class="jumbotron">
         <h2 class="display-5">Welkom op de gebruikerspagina</h2>
@@ -21,20 +22,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($users as $user): ?>
-                    <tr>
+                <?php
+                $teller = 0;
+                foreach($users as $user):
+                    if($teller % 2 == 0) $tableClass = "lightBackground";
+                    else $tableClass = "darkBackground";
+                    ?>
+                    <tr class="<?=$tableClass?>">
                         <td><a href="profile.php?id=<?=$user['Gebruikersnaam']?>"><?=$user["Gebruikersnaam"]?></a></td>
-                        <?php foreach($displayedItems as $userDetail): ?>
-                            <td><?=$user[$userDetail]?></td>
-                        <?php endforeach; ?>
+                        <?php
+
+                        foreach($displayedItems as $userDetail):
+                            echo "<td>".$user[$userDetail]."</td>";
+                        endforeach; ?>
                     </tr>
-                <?php endforeach;?>
+                    <?php $teller++;
+                endforeach;?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="text-center col-lg-12">
-        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
 </main>

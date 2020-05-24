@@ -1,62 +1,76 @@
 <?php
 $items = Items::getItems();
-$displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
+$displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
+
 <main class="adminPaginaSub">
     <div class="jumbotron">
         <h2 class="display-5">Welkom op de veilingenpagina</h2>
         <p>Op deze pagina kunt u alle veilingen inzien.</p>
     </div>
+
+    <h2 class="text-center">Bekijk alle veilingen:</h2>
+
     <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
-        <h2 class="text-center">Bekijk alle veilingen:</h2>
         <div class="legendaButton text-right">
             <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Legenda</button>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-item">
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th>Kleur en betekenis</th>
-                        </tr>
+                            <tr>
+                                <th>Kleur en betekenis</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr class="table-success">
-                            <td>Veiling is nog niet afgelopen.</td>
-                        </tr>
+                            <tr class="greenBackground">
+                                <td>Veiling is nog actief.</td>
+                            </tr>
 
-                        <tr class="table-danger">
-                            <td>Veiling is afgelopen.</td>
-                        </tr>
+                            <tr class="redBackground">
+                                <td>Veiling is afgelopen.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Item</th>
+                        <th>Item</th>
                         <th>Verkoper</th>
                         <?php foreach($displayedItems as $key){
                             echo "<th>$key</th>";
                         } ?>
+                        <th>Veiling gesloten</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
-                    if($item['VeilingGesloten'] == "Wel ") {
-                        $label = "table-danger";
+                    if($item['VeilingGesloten'] == 1) {
+                        $label = "redBackground";
                     } else {
-                        $label = "table-success";
+                        $label = "greenBackground";
                     }
                     ?>
                     <tr class="<?=$label?>">
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
                         <td><a href="profile.php?id=<?=$item['Verkoper']?>"><?=$item['Verkoper']?></a></td>
-                        <?php foreach($displayedItems as $itemDetail): ?>
-                            <td><?=$item[$itemDetail]?></td>
-                        <?php endforeach; ?>
+                        <?php foreach($displayedItems as $itemDetail):
+                            if(isset($item[$itemDetail])) {
+                                echo "<td>" . $item[$itemDetail] . "</td>";
+                            } else {
+                                echo "<td>-</td>";
+                            }
+                        endforeach;
+
+                        if(isset($item['VeilingGesloten'])) if($item['VeilingGesloten']) $veilingGeslotenTekst = "Ja"; else $veilingGeslotenTekst = "Nee";
+                        else $veilingGeslotenTekst = "Geen informatie bekend.";
+
+                        echo "<td>".$veilingGeslotenTekst."</td>" ?>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -64,7 +78,7 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
         </div>
     </div>
 
-    <div class="text-center col-lg-12">
-        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
 </main>
