@@ -3,12 +3,7 @@ navbar: rgb(135, 110, 189)
 footer bovenste deel: rgb(95, 75, 139)
 footer onderste deel: rgb(135, 110, 189)
 algemene details (knoppen bijv.): rgb(165, 105, 189)
-
  */
-
-
-
-
 
 /****************** NAV-BAR ******************/
 nav{
@@ -39,6 +34,7 @@ nav{
 
 .navbar .navbar-brand {
     color: #ffffff;
+    transition: 200ms;
 }
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus {
@@ -58,6 +54,7 @@ nav{
     color: #ffffff;
     border-radius: .25rem;
     margin: 0 3px;
+    transition: 200ms;
 }
 .navbar .navbar-nav .nav-link:not(.disabled):hover,
 .navbar .navbar-nav .nav-link:not(.disabled):focus {
@@ -105,6 +102,30 @@ nav{
     padding: 5px;
 }
 
+nav .profielDropdown .dropdown-menu{
+    background: rgb(117, 100, 156);
+}
+
+nav .profielDropdown .dropdown-menu a{
+    color: #fff;
+}
+
+nav .profielDropdown .dropdown-menu a:hover,
+nav .profielDropdown .dropdown-menu a:focus{
+    background: rgb(230, 230, 230);
+    color: rgb(117, 100, 156);
+}
+
+nav .profielDropdown #navbarDropdownMenuLink{
+    color: rgb(89, 79, 117);
+}
+
+nav .profielDropdown #navbarDropdownMenuLink:hover,
+nav .profielDropdown #navbarDropdownMenuLink:focus {
+    color: purple;
+}
+
+
 @media (max-width: 1630px) {
     .navbarForm .zoekBalk{
         width: 600px;
@@ -123,15 +144,9 @@ nav{
     }
 }
 
-@media (max-width: 1075px) {
+@media (max-width: 991px) {
     nav .profielDropdown {
         display: none;
-    }
-}
-
-@media (max-width: 975px) {
-    navbarForm .zoekBalk{
-        margin-left: 0;
     }
 }
 
@@ -206,6 +221,7 @@ nav{
 main{
     min-height: calc(100vh - 112px);
 }
+
 /********************* FOOTER*********************/
 footer{
     background-color: rgb(95, 75, 139);
@@ -1529,21 +1545,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgb(165, 105, 189);
 }
 
-.voegFavorietToeForm .favorietButton{
-    background: #fff;
-    border: 2px solid rgb(165, 105, 189);
-    border-radius: 7px;
-    padding: 2px 10px;
-    font-size: 18px;
-    color: rgb(165, 105, 189);
-    transition: 200ms;
-}
-
-.voegFavorietToeForm .favorietButton:hover{
-    color: #fff;
-    background: rgb(165, 105, 189);
-}
-
 
 @media (max-width: 767px) {
     .catalogusPagina .productAanbiedenDiv {
@@ -1610,7 +1611,8 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 /******************* VEILING BEKIJKEN ******************/
 .veilingBekijkenPagina .container{
-    margin-bottom: 200px;
+    margin-top: 50px;
+    margin-bottom: 150px;
 }
 
 .veilingBekijkenPagina .card-header{
@@ -1669,6 +1671,32 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     color: #fff;
 }
 
+.veilingBekijkenPagina .verwijderVeilingButton,
+.veilingBekijkenPagina .voegToeAanFavorietenButton {
+    font-size: 17px;
+    background: none;
+    border: none;
+    color: red;
+    padding: 5px 7px;
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+.veilingBekijkenPagina .voegToeAanFavorietenButton{
+    color: rgb(165, 105, 189);
+}
+
+.veilingBekijkenPagina .container .row .itemInformatie .card .card-body .card-header .row{
+    margin: 0px -40px;
+}
+
+.veilingBekijkenPagina .verwijderVeilingButton:hover,
+.veilingBekijkenPagina .verwijderVeilingButton:focus,
+.veilingBekijkenPagina .voegToeAanFavorietenButton:hover,
+.veilingBekijkenPagina .voegToeAanFavorietenButton:focus{
+    text-decoration: underline;
+}
+
 .veilingBekijkenPagina .itemInformatie .card-img-top{
     margin: 20px 5% 20px 5%;
     max-width: 90%;
@@ -1700,7 +1728,79 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     }
 }
 
-/******************** CATALOGUSPAGINA --> RANGE PRICE & DISTANCE ********************/
+/******************* NOTIFICATIES ******************/
+.notificatiesPagina .container{
+    background: none;
+}
+
+.notificatiesPagina .jumbotron h2,
+.notificatiesPagina .jumbotron p{
+    margin-left: 20%;
+}
+
+.notificatiesPagina .jumbotron p{
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.notificatiesPagina .container .row .card{
+    background: rgb(253, 253, 253);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 2px solid rgb(210, 210, 210);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.notificatiesPagina .container .row .card .card-body .card-title{
+    font-size: 23px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    padding-bottom: 10px;
+    margin-bottom: 20px
+}
+
+.notificatiesPagina .container .row .card .card-body form .card-text {
+    margin-top: 10px;
+}
+
+
+.notificatiesPagina .container .row .card .card-body .notificaties p{
+    text-align: center;
+}
+
+.notificatiesPagina .container .row .card .card-body .list-group a,
+.notificatiesPagina .container .row .card .card-body form .list-group input{
+    padding: 10px;
+    background: rgb(250, 250, 250);
+    margin-top: 5px;
+    font-size: 17px
+}
+
+.notificatiesPagina .container .row div .card .card-body .gebruikerSelecterenForm .list-group{
+    margin-left: 30px;
+}
+
+.notificatiesPagina .container .row .card .verwijderNotificatiesButton{
+    margin-top: 20px;
+    padding: 5px 30px;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 20px;
+    font-size: 19px;
+    background: none;
+    color: rgb(165, 105, 189);
+    transition: 200ms;
+}
+
+.notificatiesPagina .container .row .card .verwijderNotificatiesButton:hover,
+.notificatiesPagina .container .row .card .verwijderNotificatiesButton:focus{
+    background: rgb(165, 105, 189);
+    color: #fff;
+}
+
+.notificatiesPagina .container .row .card .card-body .card-text{
+    font-size: 18px;
+}
+
+/******************* CATALOGUSPAGINA --> PRICE-SLIDER / DISTANCE-SLIDER ******************/
 
 .catalogusPagina .price-slider, .distance-slider{
     width: 200px;
@@ -1787,16 +1887,39 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     width: 18px;
 }
 
-/**********PRIVACY-POLICY***********/
+/******************* PRIVACY-POLICY ******************/
 
-.Privacy-Policy {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(161, 146, 168);
+.privacyPolicyPage .jumbotron h2,
+.privacyPolicyPage .jumbotron p{
+    margin-left: 20%;
 }
 
-.Privacy-Policy p {
-    font-size: 19px;
+.privacyPolicyPage .jumbotron p{
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.privacyPolicyPage .container{
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.privacyPolicyPage .container p {
+    font-size: 17px;
+}
+
+.privacyPolicyPage .container div{
+    margin-bottom: 30px; /* Ruimte tussen de divs(onderwerpen) */
+    background: rgba(0, 0, 0, .03);
+    border: 2px solid rgba(165, 105, 189, .5);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.privacyPolicyPage .container div h4{
+    font-weight: normal;
+    border-bottom: 1px solid rgba(165, 105, 189, .7);
+    padding: 0 0 10px 0;
 }
 
 /******************************* DARKMODE *********************************/
@@ -1881,9 +2004,9 @@ footer{
 
 /********* CATALOGUSVIEW.PHP *********/
 
-    /*** ISOLATIONS ***/
+/*** ISOLATIONS ***/
 
-    /*** CSS ***/
+/*** CSS ***/
 .darkmode--activated .catalogusPagina .categorieen,
 .darkmode--activated .catalogusPagina .productAanbiedenDiv .productAanbiedenButton,
 .darkmode--activated .catalogusPagina .card .card-body h5{
@@ -2018,14 +2141,28 @@ footer{
     background: rgb(110, 110, 110);
 }
 
+.darkmode--activated .veilingBekijkenPagina h4 {
+    border-color: rgba(255, 255, 255, .25);
+}
+
 .darkmode--activated .veilingBekijkenPagina .biedingen li{
     background: rgb(80, 80, 80);
 }
 
 .darkmode--activated .veilingBekijkenPagina .btn{
-    background: rgb(80, 80, 80);
-    color: rgb(230, 230, 230);
+    background: rgb(60, 60, 60);
+    color: rgb(165, 105, 189);
     box-shadow: 0 0 15px rgb(165, 105, 189);
+}
+
+.darkmode--activated .veilingBekijkenPagina .voegToeAanFavorietenButton{
+    color: rgb(230, 230, 230);
+    text-decoration: underline;
+}
+
+.darkmode--activated .veilingBekijkenPagina .voegToeAanFavorietenButton:hover,
+.darkmode--activated .veilingBekijkenPagina .voegToeAanFavorietenButton:focus{
+    color: rgb(170, 170, 170);
 }
 
 /********* LOGINVIEW.PHP *********/
@@ -2444,5 +2581,79 @@ footer{
 .darkmode--activated .adminPaginaSub .container .table-responsive .table tbody .greenBackground:hover{
     background: rgb(90, 90, 90);
 }
+
+/********* NOTIFICATIONSVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .notificatiesPagina{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .notificatiesPagina .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
+.darkmode--activated .notificatiesPagina .jumbotron h2,
+.darkmode--activated .notificatiesPagina .jumbotron p{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .notificatiesPagina .container .row .card{
+    background: rgb(110, 110, 110);
+    border-color: rgb(110, 110, 110);
+    box-shadow: 0 0 20px rgba(110, 110, 110, .8);
+}
+
+.darkmode--activated .notificatiesPagina .container .row .card .card-body .card-title{
+    color: rgb(230, 230, 230);
+    border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.darkmode--activated .notificatiesPagina .container .row .card .card-body .list-group a,
+.darkmode--activated .notificatiesPagina .container .row .card .card-body form .list-group input{
+    background: rgb(90, 90, 90);
+    color: rgb(230, 230, 230);
+    border-color: rgb(100, 100, 100);
+}
+
+.darkmode--activated .notificatiesPagina .container .row .card .verwijderNotificatiesButton{
+    border-color: rgb(165, 105, 189);
+    background: rgb(80, 80, 80);
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .notificatiesPagina .container .row .card .verwijderNotificatiesButton:hover,
+.darkmode--activated .notificatiesPagina .container .row .card .verwijderNotificatiesButton:focus{
+    background: rgb(165, 105, 189);
+    color: rgb(230, 230, 230);
+}
+
+/********* AVGVIEW.PHP *********/
+
+/*** ISOLATIONS ***/
+.darkmode--activated .privacyPolicyPage{
+    isolation: isolate;
+}
+
+/*** CSS ***/
+.darkmode--activated .privacyPolicyPage .jumbotron{
+    background: rgb(50, 50, 50);
+}
+
+.darkmode--activated .privacyPolicyPage .jumbotron h2,
+.darkmode--activated .privacyPolicyPage .jumbotron p,
+.darkmode--activated .privacyPolicyPage .container div p{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .privacyPolicyPage .container div{
+    background: rgb(80, 80, 80);
+}
+
+.darkmode--activated .privacyPolicyPage .container div h4{
+    border-color: rgb(165, 105, 189);
+}
+
 
 /************* EINDE DARKMODE CSS *************/

@@ -9,7 +9,27 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
             <div class="itemInformatie col-xl-8 col-md-8">
                 <div class="card">
                     <div class='card-body'>
-                        <h4 class="card-header text-center"><?=$item['Titel']?></h4>
+                        <h4 class="card-header text-center"><?=$item['Titel']?>
+                            <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
+                            <div class="row">
+                                    <form class="voegFavorietToeForm col-6" method="post" action="">
+                                        <input type="hidden" name="token" value="<?= $token ?>">
+                                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
+                                        <div class="voegToeAanFavorietenButtonBox text-left">
+                                            <button type="submit" name="action" value="follow" class="voegToeAanFavorietenButton">Favorieten+</button>
+                                        </div>
+                                    </form>
+
+                                    <form method="post" action="" class="col-6">
+                                        <input type="hidden" name="token" value="<?= $token ?>">
+                                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
+                                        <div class="verwijderVeilingButtonBox text-right">
+                                            <button class="verwijderVeilingButton" type="submit" name="action" value="delete">Veiling verwijderen</button>
+                                        </div>
+                                    </form>
+                            </div>
+                            <?php endif; ?>
+                        </h4>
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -58,7 +78,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
             <div class="col-xl-4 col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-header text-center">Bieden</h4>
+                        <h4 class="bieden card-header text-center">Bieden</h4>
                         <p>Biedingen</p>
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
@@ -94,20 +114,6 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                         </form>
                     </div>
                 </div>
-                <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
-                    <form method="post" action="">
-                        <input type="hidden" name="token" value="<?= $token ?>">
-                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
-                        <div class="buttonBox text-center col-xl-10 offset-xl-1">
-                            <button class=".btn-outline-danger" type="submit" name="action" value="delete">Delete veiling</button>
-                        </div>
-                    </form>
-                <?php endif; ?>
-                <form class="voegFavorietToeForm" method="post" action="">
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
-                    <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star" id="deleteButton"></i></button>
-                </form>
             </div>
 
             <div class="col-xl-8 col-md-6">
@@ -118,7 +124,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             <div class="verkoperInformatieBox row">
                                 <div class="profielfoto col-xl-6">
                                     <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
-                                        <img src="<?=getProfileImage($profile_data['Gebruikersnaam'])?>.png" class="card-img" alt="profielfoto">
+                                        <img src="<?=getProfileImage($profile_data['Gebruikersnaam'])?>" class="card-img" alt="profielfoto">
                                     </a>
                                 </div>
                                 <div class="verkoperInformatie col-xl-6">
