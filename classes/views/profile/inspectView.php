@@ -150,7 +150,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         <div class="col-xl-4 col-md-6 col-sm-6">
                             <div class="card">
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>'>
-                                    <img src='upload/items/<?= $item['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productafbeelding'>
+                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>' class='card-img-top' alt='Productafbeelding'>
                                 </a>
                                 <div class="card-body">
                                     <a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a">
@@ -183,7 +183,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         <div class="card">
                             <div class="itemImage">
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>'>
-                                    <img src='upload/items/<?= $item['Voorwerpnummer'] ?>.png' class='card-img-top' alt='Productafbeelding'>
+                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>' class='card-img-top' alt='Productafbeelding'>
                                 </a>
                             </div>
                             <div class="card-body">

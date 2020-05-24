@@ -45,7 +45,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             <?php endif; ?>
                         </div>
 
-                        <p class='card-text'><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
+                        <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
                         <small class='text-muted'></small>

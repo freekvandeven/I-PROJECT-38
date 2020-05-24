@@ -212,9 +212,8 @@ function generateImageLink($item, $thumbnail=true){
             }
         } else {
             $images = Items::getFiles($item);
-            if(strpos($images[1], 'cst')!==false) { // file exists doesn't work on the files in pics
+            if(strpos($images[0], 'cst')!==false) { // file exists doesn't work on the files in pics
                 return preg_filter('/^/', 'upload/items/', $images);
-                //return array("upload/items/".$images[0][0]);
             } else {
                 return preg_filter('/^/', 'pics/', $images);
             }

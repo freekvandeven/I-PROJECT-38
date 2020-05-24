@@ -1,4 +1,5 @@
     countdown = false;
+    fillStarted = false;
     function setupCountDown(element, closingDate) {
         var el = document.getElementById(element);
         var countDownDate = closingDate.getTime();
@@ -73,11 +74,18 @@
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                document.getElementById("outputField").innerHTML = "step " + step + " completed!";
+                document.getElementById("outputField").innerHTML = this.responseText.split('\n')[0];
                 if(!this.responseText.includes("finished")){
+                    var percentage = this.responseText.split('\n')[2];
+                    document.getElementById("fillProgress").innerText = percentage + '%';
+                    document.getElementById("fillProgress").setAttribute("aria-valuenow", percentage);
+                    document.getElementById("fillProgress").style.width = percentage + '%';
                     sendAjaxStep(step+1);
                 } else {
                     document.getElementById("outputField").innerHTML = "Finished!";
+                    document.getElementById("fillProgress").style.width = '100%';
+                    document.getElementById("fillProgress").innerText = '100%';
+                    document.getElementById("fillProgress").setAttribute("aria-valuenow", 100);
                 }
             }
         };
@@ -87,30 +95,19 @@
     }
 
     function startDatabaseFill(){
-        if(confirm("Are you sure you want to fill the database?(This could take atleast 15 minutes)")) {
-            sendAjaxStep(0);
+        if(!fillStarted) { // if the fill hasn't started yet
+            if (confirm("Are you sure you want to fill the database?(This could take atleast 15 minutes)")) {
+                fillStarted = true;
+                document.getElementById("databaseFillButton").innerText = "Abort!";
+                sendAjaxStep(0);
+            }
+        } else { // abort the filling
+            xmlhttp.abort();
+            document.getElementById("databaseFillButton").innerText = "Start Filling!";
+            fillStarted = false;
         }
     }
 
-    function abortDatabaseFill(){
-        xmlhttp.abort();
-    }
-    /*
-    function updateNotfications(){
-        alert("test");
-    }
-
-    $("button").click(function(){
-        $.post("demo_test_post.asp",
-            {
-                name: "Donald Duck",
-                city: "Duckburg"
-            },
-            function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
-            });
-    });
-     */
     $(document).ready(function(){
         setInterval(
         function notify(){
