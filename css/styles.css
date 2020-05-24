@@ -1221,23 +1221,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.itemImage, .itemImageProfilePage{
-    display: block;
-    height: 250px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.itemImage img, .itemImageProfilePage img{
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-}
-
-.itemImageProfilePage{
-    height: 260px;
-}
-
 .profielPaginaVIemandAnders .geenReviewMelding{
     padding: 20px 10px 0 10px;
     font-size: 17px;
@@ -1246,6 +1229,33 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .profielPaginaVIemandAnders .tussenLijn{
     border-top: .8px solid rgba(0, 0, 0, .1);
     padding-top: 10px;
+}
+
+.itemImage, .itemImageProfilePage{
+    display: block;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/*************** FOTO'S / IMAGES CSS *************/
+
+.itemImage img, .itemImageProfilePage img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.homePage .itemImage{
+    height: 350px;
+}
+
+.profielPaginaVIemandAnders .itemImage{
+    height: 350px;
+}
+
+.itemImageProfilePage{
+    height: 260px;
 }
 
 /*************** ADMIN-HOOFDPAGINA CSS *************/
