@@ -58,7 +58,7 @@
                 $timerDates[$i] = explode(".", $timerDates[$i])[0];
             }
             ?>
-
+          
             <script type="text/javascript">
                 var timerDates = <?php echo json_encode($timerDates); ?>;
                 initializeCountdownDates(timerDates);

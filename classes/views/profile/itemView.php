@@ -14,26 +14,23 @@
                 <div class="dropdown-item">
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th>Kleur en betekenis</th>
-                        </tr>
+                            <tr>
+                                <th>Kleur en betekenis</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr class="table-success">
-                            <td>Veiling is afgelopen en er is WEL een bieder.</td>
-                        </tr>
-
-                        <tr class="table-danger">
-                            <td>Veiling is afgelopen en er is GEEN bieder.</td>
-                        </tr>
-
-                        <tr class="table-warning">
-                            <td>Veiling is bezig, maar er is nog geen bieder.</td>
-                        </tr>
-
-                        <tr class="table-info">
-                            <td>Veiling is bezig en er is al een bieder.</td>
-                        </tr>
+                            <tr class="table-success">
+                                <td>Veiling is afgelopen en er is WEL een bieder.</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <td>Veiling is afgelopen en er is GEEN bieder.</td>
+                            </tr>
+                            <tr class="table-warning">
+                                <td>Veiling is bezig, maar er is nog geen bieder.</td>
+                            </tr>
+                            <tr class="table-info">
+                                <td>Veiling is bezig en er is al een bieder.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -44,8 +41,8 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Link</th>
-                    <th>Koper</th>
+                    <th>Veilingnr.</th>
+                    <th>Hoogste bieder</th>
                     <?php foreach($displayedItems as $key){
                         echo "<th>$key</th>";
                     } ?>
@@ -53,7 +50,7 @@
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
-                    if($item['VeilingGesloten'] == "Wel "){
+                    if($item['VeilingGesloten'] == 1){
                         if(isset($item['Koper'])) {
                             $label = "table-success";
                         } else {
@@ -68,8 +65,14 @@
                     }
                     ?>
                     <tr class="<?=$label?>">
-                        <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
-                        <td><a href="profile.php?id=<?=$item['Koper']?>"><?=$item['Koper']?></a></td>
+                        <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Veiling <?=$item["Voorwerpnummer"]?></a></td>
+                        <td>
+                            <?php if(isset($item['Koper'])) { ?>
+                            <a href="profile.php?id=<?=$item['Koper']?>"><?=$item['Koper']?></a> <?php }
+                            else { ?>
+                            Er heeft nog niemand geboden :(
+                            <?php } ?>
+                        </td>
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>
@@ -80,7 +83,7 @@
         </div>
     </div>
 
-    <div class="form-group text-center">
-        <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a href="profile.php" class="gaTerugKnop">Ga terug</a>
     </div>
 </main>

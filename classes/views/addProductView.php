@@ -3,11 +3,11 @@ $user = User::getUser($_SESSION["name"]);
 $maxAmountOptionalPhotos = 5;
 ?>
 
-<main class="productToevoegenPagina">
+<main class="addProductPagina">
 
     <form id="addProduct" class="addProductForm" action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="token" value="<?= $token ?>">
-        <h2 class="text-center font-weight-normal">Product verkopen</h2>
+        <h2 class="text-center font-weight-normal col-sm-6 offset-sm-3 col-4 offset-4">Product verkopen</h2>
         <div class="productContainer container">
             <div class="row">
                 <div class="productGegevens col-lg-6">
@@ -27,8 +27,7 @@ $maxAmountOptionalPhotos = 5;
                             <label for="Beschrijving">Beschrijving</label>
                             <textarea class="form-control input3" name="Beschrijving" id="Beschrijving"
                                       placeholder="Beschrijving" maxlength="4000" rows="4"
-                                      required <?php echo isset($_POST['Beschrijving']) ? htmlspecialchars($_POST['Beschrijving'], ENT_QUOTES) : ''; ?>>
-                            </textarea>
+                                      required <?php echo isset($_POST['Beschrijving']) ? htmlspecialchars($_POST['Beschrijving'], ENT_QUOTES) : ''; ?>></textarea>
                         </div>
 
                         <!-- RUBRIEK -->
@@ -144,8 +143,7 @@ $maxAmountOptionalPhotos = 5;
                     <label for="Betalingsinstructie">Betalingsinstructies: </label>
                     <textarea class="form-control" name="Betalingsinstructie" id="Betalingsinstructie" maxlength="25"
                               rows="4"
-                              placeholder="Betalingsinstructies" <?php echo isset($_POST['Betalingsinstructie']) ? htmlspecialchars($_POST['Betalingsinstructie'], ENT_QUOTES) : ''; ?>>
-                    </textarea>
+                              placeholder="Betalingsinstructies" <?php echo isset($_POST['Betalingsinstructie']) ? htmlspecialchars($_POST['Betalingsinstructie'], ENT_QUOTES) : ''; ?>></textarea>
                 </div>
 
                 <!-- VERZENDINSTRUCTIES -->
@@ -153,8 +151,7 @@ $maxAmountOptionalPhotos = 5;
                     <label for="Verzendinstructies">Verzendinstructies: </label>
                     <textarea class="form-control" name="Verzendinstructies" id="Verzendinstructies" maxlength="50"
                               rows="4"
-                              placeholder="Verzendinstructies" <?php echo isset($_POST['Verzendinstructies']) ? htmlspecialchars($_POST['Verzendinstructies'], ENT_QUOTES) : ''; ?>>
-                    </textarea>
+                              placeholder="Verzendinstructies" <?php echo isset($_POST['Verzendinstructies']) ? htmlspecialchars($_POST['Verzendinstructies'], ENT_QUOTES) : ''; ?>></textarea>
                 </div>
             </div>
         </div>

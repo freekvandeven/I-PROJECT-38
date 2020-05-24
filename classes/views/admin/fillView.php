@@ -1,4 +1,4 @@
-<main class="adminPagina">
+<main class="adminPaginaSub">
     <div class="jumbotron">
         <h2 class="display-5">Welkom master op de Adminpagina</h2>
         <p>Op deze pagina heeft u een aantal opties waar alleen u toegang tot heeft.</p>
@@ -12,5 +12,8 @@
     <button onclick="startDatabaseFill()">Start my new script</button>
     <button onclick="abortDatabaseFill()">Abort!!!</button>
     <div id="outputField"></div>
-    <a href="admin.php">Go back</a>
+
+    <div class="gaTerugKnopBox text-center">
+        <a href="admin.php" class="gaTerugKnop">Ga terug</a>
+    </div>
 </main>
