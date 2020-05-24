@@ -84,6 +84,26 @@ function checkIP(){
     }
 }
 
+function displayInformation($array, $notifications){
+    if(sizeof($array) == 0) {
+        if($notifications) {
+            echo '<p>Er zijn nog geen notificaties :(</p>';
+        } else {
+            echo '<p>Nog geen gebruikers :(</p>';
+        }
+    } else {
+        if($notifications) {
+            foreach ($array as $user) { ?>
+                <input type="submit" class='list-group-item list-group-item-action' value="<?=$user?>"> <?php
+            }
+        } else {
+            foreach ($array as $notification) { ?>
+                <a href='#' class='list-group-item list-group-item-action'><?=$notification?></a> <?php
+            }
+        }
+    }
+}
+
 function deleteFile($file){
     if(file_exists($file)){
         unlink($file);
