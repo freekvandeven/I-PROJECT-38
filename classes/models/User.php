@@ -21,6 +21,14 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+    static function getUsersLimit($limit)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT TOP ".$limit." * FROM Gebruiker");
+        $data->execute();
+        $users = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $users;
+    }
     static function getNotifications($user)
     {
         global $dbh;

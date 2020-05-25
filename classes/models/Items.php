@@ -76,6 +76,15 @@ class Items
         return $result;
     }
 
+    static function getItemsLimit($limit)
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT TOP '.$limit.' * FROM Voorwerp');
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function getFinishedItems()
     {
         global $dbh;
