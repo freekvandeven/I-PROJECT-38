@@ -122,6 +122,7 @@
                     } else {
                         $("#notificationsDropdown").text('Notificaties ('+$.trim(data)+')');
                         updateIcon(true); // you have notifications
+                        sendPushNotification("Je hebt" + data + " notificaties");
                     }
                 });
             return notify;
@@ -135,5 +136,23 @@
             document.getElementById('favicon').href = iconNotifcation;
         }else{
             document.getElementById('favicon').href = icon;
+        }
+    }
+
+    function sendPushNotification(message){
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+            var notification = new Notification(message, {
+                icon: 'https://iproject38.icasites.nl/images/icon.svg'
+            });
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                    var notification = new Notification(message, {
+                        icon: 'https://iproject38.icasites.nl/images/icon.svg'
+                    });
+                }
+            });
         }
     }

@@ -29,7 +29,7 @@ class Seller{
 
     static function getSoldTo($user){
         global $dbh;
-        $data = $dbh->prepare("SELECT Koper FROM Voorwerp WHERE Verkoper = :user AND NOT ISNULL(Koper)");
+        $data = $dbh->prepare("SELECT DISTINCT Koper FROM Voorwerp WHERE Verkoper = :user AND NOT Koper IS NULL");
         $data->execute([":user"=>$user]);
         $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;

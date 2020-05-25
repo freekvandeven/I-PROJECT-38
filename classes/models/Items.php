@@ -88,7 +88,7 @@ class Items
     static function getFinishedItems()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip > :nu ");
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip < :nu ");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
         $data->execute(array(":nu" => date("Y-m-d H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -98,7 +98,7 @@ class Items
     static function finishItem($item, $buyer, $sellprice)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=TRUE, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
+        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=1, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
         $data->execute([":item" => $item, ":buyer" => $buyer, ":sellprice" => $sellprice]);
     }
 
@@ -161,7 +161,7 @@ class Items
         $data = $dbh->query($sql);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         $filtered = [];
-        foreach($result as $row){
+        foreach($result as $row){ // loop over all results
             $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
         }
         return $filtered;
