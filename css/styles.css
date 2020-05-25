@@ -1301,23 +1301,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.itemImage, .itemImageProfilePage{
-    display: block;
-    height: 400px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.itemImage img, .itemImageProfilePage img{
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-}
-
-.itemImageProfilePage{
-    height: 260px;
-}
-
 .profielPaginaVIemandAnders .geenReviewMelding{
     padding: 20px 10px 0 10px;
     font-size: 17px;
@@ -1326,6 +1309,33 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .profielPaginaVIemandAnders .tussenLijn{
     border-top: .8px solid rgba(0, 0, 0, .1);
     padding-top: 10px;
+}
+
+.itemImage, .itemImageProfilePage{
+    display: block;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/*************** FOTO'S / IMAGES CSS *************/
+
+.itemImage img, .itemImageProfilePage img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.homePage .itemImage{
+    height: 350px;
+}
+
+.profielPaginaVIemandAnders .itemImage{
+    height: 350px;
+}
+
+.itemImageProfilePage{
+    height: 260px;
 }
 
 /*************** ADMIN-HOOFDPAGINA CSS *************/
@@ -1612,7 +1622,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 /*************** CATALOGUSPAGINA CSS *************/
 .catalogusPagina .container{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .catalogusPagina .container h3{
@@ -1710,8 +1720,95 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusPagina .linkerkant{
+    width: 200px;
+    margin: 200px 0 0 100px;
+}
+
+.catalogusPagina .container{
+    margin-left: 100px;
+}
+
+@media (max-width: 1560px) {
+    .catalogusPagina .container{
+        width: 900px;
+    }
+}
+
+@media (max-width: 1320px) {
+    .catalogusPagina .container{
+        width: 700px;
+        margin-left: 75px;
+    }
+
+    .catalogusPagina .linkerkant{
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 1065px) {
+    .catalogusPagina .container{
+        width: 630px;
+        margin-left: 40px;
+    }
+}
+
+.catalogusPagina .row .categorieenButton{
+    display: none;
     position: absolute;
-    margin-left: 135px;
+    margin: 80px 10% 0 10%;
+    width: 60%;
+}
+
+.catalogusPagina .row .categorieenButton button{
+    background: none;
+    border: none;
+    transition: 200ms;
+}
+
+.catalogusPagina .row .categorieenButton button:focus{
+    color: rgb(165, 105, 189);
+}
+
+.catalogusPagina .categorySearchForm input{
+    border-color: rgb(165, 105, 189);
+    border-radius: 10px;
+    transition: 200ms;
+}
+
+.catalogusPagina .categorySearchForm input:hover,
+.catalogusPagina .categorySearchForm input:focus{
+    box-shadow: 0 0 10px rgb(165, 105, 189);
+}
+
+.catalogusPagina .dropdownItem p{
+    font-size: 20px;
+}
+
+.catalogusPagina .dropdownItem{
+    padding: 20px;
+}
+
+.catalogusPagina .row .categorieenButton .dropdown-menu .dropdownItem ul li{
+    list-style-type: none;
+}
+
+@media (max-width: 991px) {
+    .catalogusPagina .linkerkant{
+        display: none;
+    }
+
+    .catalogusPagina .container{
+        margin: 30px 10% 150px 10%;
+        width: 80%;
+    }
+
+    .catalogusPagina .row .categorieenButton{
+        display: block;
+    }
+}
+
+.catalogusPagina .row{
+    width: 100%;
 }
 
 .catalogusPagina .linkerkant .categorieen h4{
@@ -1726,6 +1823,29 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .catalogusPagina .linkerkant .categorieen .list-unstyled ul{
     list-style-type: none;
 }
+
+.catalogusPagina .row .linkerkant .categorieen .list-unstyled li p{
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1560px) {
+    .catalogusPagina .itemImage {
+        height: 200px;
+    }
+}
+
+@media (max-width: 1320px) {
+    .catalogusPagina .itemImage {
+        height: 155px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .catalogusPagina .itemImage {
+        height: 320px;
+    }
+}
+
 
 /******************* VEILING BEKIJKEN ******************/
 .veilingBekijkenPagina .container{
@@ -2123,7 +2243,9 @@ footer{
 /********* CATALOGUSVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
-
+.darkmode--activated .catalogusPagina{
+    isolation: isolate;
+}
 /*** CSS ***/
 .darkmode--activated .catalogusPagina .categorieen,
 .darkmode--activated .catalogusPagina .productAanbiedenDiv .productAanbiedenButton,
@@ -2149,6 +2271,21 @@ footer{
 .darkmode--activated .catalogusPagina .price-slider,
 .darkmode--activated .catalogusPagina .distance-slider{
     color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .catalogusPagina .row .categorieenButton button,
+.darkmode--activated .catalogusPagina .row .categorieenButton .dropdown-menu .dropdownItem p,
+.darkmode--activated .catalogusPagina .row .categorieenButton .dropdown-menu .dropdownItem ul li{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .catalogusPagina .row .categorieenButton button:focus,
+.darkmode--activated .catalogusPagina .row .categorieenButton button:active{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .catalogusPagina .row .categorieenButton .dropdown-menu{
+    background: rgb(90, 90, 90);
 }
 
 /********* CONTACTVIEW.PHP *********/
