@@ -67,14 +67,31 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                             }
                         endforeach;
 
-                        if(isset($item['VeilingGesloten'])) if($item['VeilingGesloten']) $veilingGeslotenTekst = "Ja"; else $veilingGeslotenTekst = "Nee";
-                        else $veilingGeslotenTekst = "Geen informatie bekend.";
+                        if(isset($item['VeilingGesloten'])) {
+                            if($item['VeilingGesloten']) {
+                                $veilingGeslotenTekst = "Ja";
+                            } else {
+                                $veilingGeslotenTekst = "Nee";
+                            }
+                        } else {
+                            $veilingGeslotenTekst = "Niet bekend.";
+                        }
 
                         echo "<td>".$veilingGeslotenTekst."</td>" ?>
+                        <form method="POST" onsubmit="return confirm('Weet u zeker dat u deze veiling wilt verwijderen?');">
+                            <input type="hidden" name="token" value="<?= $token ?>">
+                            <input type="hidden" name="action" value="auction">
+                            <td class="verwijderButton">
+                                <button type="submit" value="test" name="deleteAuction">
+                                    <img src="images/adminimages/delete.png" alt="Delete">
+                                </button>
+                            </td>
+                        </form>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
+
         </div>
     </div>
 

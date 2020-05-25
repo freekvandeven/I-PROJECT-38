@@ -1,6 +1,6 @@
 <?php
     $items = Items::getSellerItems($_SESSION['name']);
-    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
+    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
 
 <main class="mijnVeilingenPagina">
@@ -19,16 +19,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-success">
+                            <tr class="table-green">
                                 <td>Veiling is afgelopen en er is WEL een bieder.</td>
                             </tr>
-                            <tr class="table-danger">
+                            <tr class="table-red">
                                 <td>Veiling is afgelopen en er is GEEN bieder.</td>
                             </tr>
-                            <tr class="table-warning">
+                            <tr class="table-orange">
                                 <td>Veiling is bezig, maar er is nog geen bieder.</td>
                             </tr>
-                            <tr class="table-info">
+                            <tr class="table-blue">
                                 <td>Veiling is bezig en er is al een bieder.</td>
                             </tr>
                         </tbody>
@@ -40,27 +40,28 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>Veilingnr.</th>
-                    <th>Hoogste bieder</th>
-                    <?php foreach($displayedItems as $key){
-                        echo "<th>$key</th>";
-                    } ?>
-                </tr>
+                    <tr>
+                        <th>Veilingnr.</th>
+                        <th>Hoogste bieder</th>
+                        <?php foreach($displayedItems as $key){
+                            echo "<th>$key</th>";
+                        } ?>
+                        <th>Veiling gesloten</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
                     if($item['VeilingGesloten'] == 1){
                         if(isset($item['Koper'])) {
-                            $label = "table-success";
+                            $label = "table-green";
                         } else {
-                            $label = "table-danger";
+                            $label = "table-red";
                         }
                     } else {
                         if(isset($item['Koper'])) {
-                            $label = "table-info";
+                            $label = "table-blue";
                         } else{
-                            $label = "table-warning";
+                            $label = "table-orange";
                         }
                     }
                     ?>
@@ -73,9 +74,24 @@
                             Er heeft nog niemand geboden :(
                             <?php } ?>
                         </td>
-                        <?php foreach($displayedItems as $itemName): ?>
-                            <td><?=$item[$itemName]?></td>
-                        <?php endforeach; ?>
+                        <?php foreach($displayedItems as $itemName):
+                            if(isset($itemName)) {
+                                echo '<td>'.$item[$itemName].'</td>';
+                            } else {
+                                echo '<td>-</td>';
+                            }
+                            endforeach; ?>
+                        <td>
+                            <?php
+                            if(isset($item['VeilingGesloten'])) {
+                                if($item['VeilingGesloten']) {
+                                    echo 'Ja';
+                                } else {
+                                    echo 'Nee';
+                                }
+                            }
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
