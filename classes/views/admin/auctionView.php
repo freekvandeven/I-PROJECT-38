@@ -1,5 +1,5 @@
 <?php
-$items = Items::getItems();
+$items = Items::getItemsLimit(100);
 $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
 

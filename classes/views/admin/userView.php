@@ -1,5 +1,5 @@
 <?php
-    $users = User::getUsers();
+    $users = User::getUsersLimit(100);
     $displayedItems = array("Voornaam", "Achternaam", "Adresregel_1", "Postcode", "Land", "Mailbox");
 ?>
 
