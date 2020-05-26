@@ -21,12 +21,11 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-
-    static function getUsersLimit($limit)
+    static function getUsersLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT TOP " . $limit . " * FROM Gebruiker");
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Gebruiker WHERE Gebruikersnaam LIKE :search");
+        $data->execute([":search"=>'%' . $search . '%']);
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
@@ -34,9 +33,9 @@ class User
     static function getNotifications($user)
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT Bericht FROM Notificaties WHERE Ontvanger = :user");
-        $data->execute([":user" => $user]);
-        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        $data = $dbh->prepare("SELECT Bericht, Link FROM Notificaties WHERE Ontvanger = :user");
+        $data->execute([":user"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -47,11 +46,11 @@ class User
         $data->execute(["user" => $user]);
     }
 
-    static function notifyUser($user, $message)
+    static function notifyUser($user, $message, $link = '#')
     {
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Ontvanger) VALUES (:message, :user)");
-        $data->execute([":message" => $message, ":user" => $user]);
+        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Link, Ontvanger) VALUES (:message, :link, :user)");
+        $data->execute([":message"=>$message, ":link"=>$link, ":user"=>$user]);
     }
 
     static function updateUser($user)

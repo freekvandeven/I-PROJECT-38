@@ -92,15 +92,17 @@ function displayInformation($array, $notifications){
             echo '<p>Nog geen gebruikers :(</p>';
         }
     } else {
+        $html = "";
         if($notifications) {
-            foreach ($array as $user) { ?>
-                <input type="submit" class='list-group-item list-group-item-action' value="<?=$user?>"> <?php
+            foreach ($array as $notification) {
+                $html .= "<a href='" . $notification['Link'] . "' class='list-group-item list-group-item-action'>" . $notification['Bericht'] . "</a>";
             }
         } else {
-            foreach ($array as $notification) { ?>
-                <a href='#' class='list-group-item list-group-item-action'><?=$notification?></a> <?php
+            foreach ($array as $user) {
+                $html .= "<input type='submit' class='list-group-item list-group-item-action' name='user' value='$user'>";
             }
         }
+        return $html;
     }
 }
 

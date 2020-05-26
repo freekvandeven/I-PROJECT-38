@@ -2133,6 +2133,82 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     width: 18px;
 }
 
+/********EMAIL-TEMPLATE-IMPROVEMENT*********/
+
+.email-template {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    background-color: rgb(235, 231, 231);
+}
+
+.email-template a , .email-template img{
+    margin: 0 auto;
+    display:block;
+    text-align: center;
+}
+
+
+.email-template #aankondiging{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-shadow: rgb(255, 255, 255);
+}
+
+.email-template #prijs {
+    font-weight: bold;
+    color: rgb(110, 65, 110);
+    display: inline;
+}
+
+.email-template {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    background-color: rgb(235, 231, 231);
+}
+
+.email-template #aankondiging{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-shadow: rgb(255, 255, 255);
+}
+
+.email-template #prijs {
+    font-weight: bold;
+    color: rgb(110, 65, 110);
+    display: inline;
+}
+
+.email-template #nieuws {
+    text-decoration: underline;
+    text-shadow:rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: xx-large;
+    color: rgb(205, 114, 218);
+}
+
+
+.email-template a:link {
+    text-decoration: none;
+    color: rgb(205, 114, 218);
+    font-size: x-large;
+}
+
+.email-template a:visited {
+    text-decoration: none;
+}
+
+.email-template a:hover {
+    text-decoration: underline;
+    color: rgb(205, 114, 218);
+    font-size: xx-large;
+}
+
+.email-template a:active {
+    text-decoration: underline;
+}
+
 /******************* PRIVACY-POLICY ******************/
 
 .privacyPolicyPage .jumbotron h2,

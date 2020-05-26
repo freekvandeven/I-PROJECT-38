@@ -1,5 +1,5 @@
 <?php
-$items = Items::getItemsLimit(100);
+$items = Items::getItemsLimit(100, $_GET['search']);
 $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
 
@@ -35,7 +35,11 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                 </div>
             </div>
         </div>
-
+        <form class="categorySearchForm" action="" method="get">
+            <input type="hidden" name="category" value="auction">
+            <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op veilingtitel" value="<?=$_GET['search']?>"
+                   name="search" autocomplete="off">
+        </form>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -78,11 +82,11 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                         }
 
                         echo "<td>".$veilingGeslotenTekst."</td>" ?>
-                        <form method="POST" onsubmit="return confirm('Weet u zeker dat u deze veiling wilt verwijderen?');">
+                        <form method="post" onsubmit="return confirm('Weet u zeker dat u deze veiling wilt verwijderen?');">
                             <input type="hidden" name="token" value="<?= $token ?>">
-                            <input type="hidden" name="action" value="auction">
+                            <input type="hidden" name="category" value="auction">
                             <td class="verwijderButton">
-                                <button type="submit" value="test" name="deleteAuction">
+                                <button type="submit" value="<?=$item['Voorwerpnummer']?>" name="deleteAuction">
                                     <img src="images/adminimages/delete.png" alt="Delete">
                                 </button>
                             </td>

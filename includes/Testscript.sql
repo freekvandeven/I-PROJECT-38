@@ -156,9 +156,23 @@ CREATE TABLE Bestand(
 
 CREATE TABLE Notificaties(
     Bericht  VARCHAR(256) NOT NULL,
+    Link       VARCHAR(64) DEFAULT '#',
     Ontvanger VARCHAR(20) NOT NULL,
-    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Ontvanger)
+    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Link, Ontvanger)
 );
+
+CREATE TABLE Bericht(
+    Message   VARCHAR(256) NOT NULL,
+    Verzender VARCHAR(20)  NOT NULL,
+    Ontvanger VARCHAR(20)  NOT NULL,
+    Tijdstip    DATETIME   DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE Bericht
+ADD CONSTRAINT FK_Bericht_Verzender FOREIGN KEY (Verzender)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Notificaties
 ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
