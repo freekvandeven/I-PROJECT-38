@@ -242,9 +242,8 @@ function generateImageLink($item, $thumbnail=true){
         }
 }
 
-function generateCatalog($items)
+function generateCatalog($items, $counter = 0, $new = false)
 {
-    $counter = 0;
     foreach ($items as $card):
         if ($counter % 4 == 0) {
             echo "<div class='row'>";
@@ -267,6 +266,9 @@ function generateCatalog($items)
                 <div class='card-footer'>
                     <!-- Display the countdown timer in an element -->
                     <p id="timer-<?=$counter?>"></p>
+                    <?php if($new):?>
+                        <p><?=round((strtotime(date('Y-m-d H:i:s'))-strtotime($card['LooptijdBeginTijdstip']))/60,0);?> minuten geleden</p>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -276,7 +278,7 @@ function generateCatalog($items)
             echo "</div>";
         }
     endforeach;
-        if ($counter % 4 != 0) {
+        if ($counter % 4 != 0){
             echo "</div>";
         }
 }
