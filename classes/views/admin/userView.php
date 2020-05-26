@@ -38,9 +38,9 @@
                         $teller++; ?>
                         <form method="POST" onsubmit="return confirm('Weet u zeker dat u deze gebruiker wilt verwijderen?');">
                             <input type="hidden" name="token" value="<?= $token ?>">
-                            <input type="hidden" name="action" value="user">
+                            <input type="hidden" name="category" value="user">
                             <td class="verwijderButton">
-                                <button type="submit" value="test" name="deleteUser">
+                                <button type="submit" value="<?=$user['Gebruikersnaam']?>" name="deleteUser">
                                     <img src="images/adminimages/delete.png" alt="Delete">
                                 </button>
                             </td>

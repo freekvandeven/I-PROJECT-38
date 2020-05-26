@@ -78,11 +78,11 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                         }
 
                         echo "<td>".$veilingGeslotenTekst."</td>" ?>
-                        <form method="POST" onsubmit="return confirm('Weet u zeker dat u deze veiling wilt verwijderen?');">
+                        <form method="post" onsubmit="return confirm('Weet u zeker dat u deze veiling wilt verwijderen?');">
                             <input type="hidden" name="token" value="<?= $token ?>">
-                            <input type="hidden" name="action" value="auction">
+                            <input type="hidden" name="category" value="auction">
                             <td class="verwijderButton">
-                                <button type="submit" value="test" name="deleteAuction">
+                                <button type="submit" value="<?=$item['Voorwerpnummer']?>" name="deleteAuction">
                                     <img src="images/adminimages/delete.png" alt="Delete">
                                 </button>
                             </td>
