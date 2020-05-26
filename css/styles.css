@@ -726,6 +726,24 @@ body{
     margin-bottom: 20px;
 }
 
+.mijnFavorietenPagina .verwijderButton{
+    padding: 0;
+    width: 40px;
+    height: 48px;
+}
+
+.mijnFavorietenPagina .verwijderButton button{
+    height: 100%;
+    width: 40px;
+    border: none;
+    background: #fff;
+    color: #fff;
+}
+
+.mijnFavorietenPagina .verwijderButton button img{
+    width: 100%;
+}
+
 .mijnVeilingenPagina .legendaDropdownButton:hover,
 .mijnVeilingenPagina .legendaDropdownButton:focus,
 .mijnFavorietenPagina .legendaDropdownButton:hover,

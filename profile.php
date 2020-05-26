@@ -18,6 +18,9 @@ if(checkPost()){
         if($_POST['action'] == 'delete'){
             require_once('classes/controllers/profile/deleteController.php');
         }
+        if($_POST['action'] == 'favorite'){
+            require_once('classes/controllers/profile/favoriteController.php');
+        }
         if($_POST['action'] == 'notifications'){
             require_once('classes/controllers/profile/notificationsController.php');
         }

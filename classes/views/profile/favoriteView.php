@@ -1,11 +1,12 @@
 <?php
     $items = Items::getBuyerItems($_SESSION['name']);
-    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
+    $followed = Buyer::getFollowedItems($_SESSION['name']);
+    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land");
 ?>
 
 <main class="mijnFavorietenPagina">
-    <h2 class="text-center">Mijn favoriete veilingen</h2>
-    <h5 class="text-center">Als u op een veiling biedt, kunt u die hieronder zien.</h5>
+    <h2 class="text-center">Mijn actieve veilingen</h2>
+    <h5 class="text-center">Als u op een veiling biedt of wint, kunt u die hieronder zien.</h5>
 
     <div class="tabel col-xl-10 offset-xl-1">
         <div class="legendaButton text-right">
@@ -46,23 +47,16 @@
                         <?php foreach($displayedItems as $key){
                             echo "<th>$key</th>";
                         } ?>
+                        <th>Eindtijd</th>
                         <th>Veiling gesloten</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
                     if($item['VeilingGesloten'] == 1){
-                        if($item['Koper'] == $_SESSION['name']){
-                            $label = "table-green";
-                        } else {
-                            $label = "table-red";
-                        }
+                        $label = ($item['Koper'] == $_SESSION['name']) ? "table-green" : "table-red";
                     } else {
-                        if(Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker'] == $_SESSION['name']){
-                            $label = "table-blue";
-                        } else {
-                            $label = "table-orange";
-                        }
+                        $label = (Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker'] == $_SESSION['name']) ? "table-blue" : "table-orange";
                     }
                     ?>
                     <tr class="<?=$label?>">
@@ -71,17 +65,81 @@
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>
-                        <td>
-                            <?php
-                            if(isset($item['VeilingGesloten'])) {
-                                if($item['VeilingGesloten']) {
-                                    echo 'Ja';
-                                } else {
-                                    echo 'Nee';
-                                }
-                            }
-                            ?>
-                        </td>
+                        <td><?=explode( ".",$item['LooptijdEindeTijdstip'])[0]?></td>
+                        <td><?php echo ($item['VeilingGesloten']) ? 'Ja' : 'Nee'; ?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h2 class="text-center">Mijn favoriete veilingen</h2>
+    <h5 class="text-center">Als u op een veiling volgt, kunt u die hieronder zien.</h5>
+
+    <div class="tabel col-xl-10 offset-xl-1">
+        <div class="legendaButton text-right">
+            <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Legenda</button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Kleur en betekenis</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-green">
+                            <td>Je hebt de veiling gewonnen.</td>
+                        </tr>
+                        <tr class="table-red">
+                            <td>Je hebt de veiling verloren.</td>
+                        </tr>
+                        <tr class="table-orange">
+                            <td>Je bent overboden op een actieve veiling.</td>
+                        </tr>
+                        <tr class="table-blue">
+                            <td>Je bent de hoogste bieder op een actieve veiling.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Link</th>
+                    <th>Verkoper</th>
+                    <?php foreach($displayedItems as $key){
+                        echo "<th>$key</th>";
+                    } ?>
+                    <th>Eindtijd</th>
+                    <th>Veiling gesloten</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($followed as $item):
+                    $label = ($item['VeilingGesloten']) ? "table-red" : "table-green";
+                    ?>
+                    <tr class="<?=$label?>">
+                        <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
+                        <td><a href="profile.php?id=<?=$item['Verkoper']?>"><?=$item['Verkoper']?></a></td>
+                        <?php foreach($displayedItems as $itemName): ?>
+                            <td><?=$item[$itemName]?></td>
+                        <?php endforeach; ?>
+                        <td><?=explode( ".",$item['LooptijdEindeTijdstip'])[0]?></td>
+                        <td><?php echo ($item['VeilingGesloten']) ? 'Ja' : 'Nee'; ?></td>
+                        <form method="post" onsubmit="return confirm('Weet u zeker dat u deze veiling niet meer wilt volgen?');">
+                            <input type="hidden" name="token" value="<?= $token ?>">
+                            <input type="hidden" name="action" value="favorite">
+                            <td class="verwijderButton">
+                                <button type="submit" value="<?=$item['Voorwerpnummer']?>" name="deleteFollow">
+                                    <img src="images/adminimages/delete.png" alt="Delete">
+                                </button>
+                            </td>
+                        </form>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
