@@ -1,12 +1,17 @@
 <html>
 <body>
-<h5>Hallo {{ username }}</h5>
-<p>Goed nieuws!</p><br>
-<p>U heeft zojuist een product gekocht voor maar {{ offer }} euro!</p><br>
-<p>Bekijk het product wat u gekocht heeft op de site!</p><br>
-<a href='https://iproject38.icasites.nl/item.php?id={{ id }}' target='_blank'>Klik hier!</a><br>
-<p>Wilt u feedback achterlaten op deze verkoper? Dan kan dat ook. gebruik hiervoor de onderstaande link.</p>
-<a href='https://iproject38.icasites.nl/profile.php?id={{ id }}' target='_blank'>Klik hier!</a><br>
-<p>Groeten van het EenmaalAndermaal Team</p>
+<div class="email-template">
+    <h3 id="aankondiging">Hallo {{ username }}</h3>
+    <p id="nieuws">Goed nieuws!</p>
+    <p>U heeft zojuist een product gekocht voor maar <div id="prijs"> {{ offer }} </div> euro!</p>
+    <p>Bekijk het product wat u gekocht heeft op de site!</p>
+    <a href='https://iproject38.icasites.nl/item.php?id={{ id }}' target='_blank'>Klik hier!</a>
+    <p>Wilt u feedback achterlaten op deze verkoper? Dan kan dat ook! Gebruik hiervoor de onderstaande link.</p>
+    <a href='https://iproject38.icasites.nl/profile.php?id={{ id }}' target='_blank'>Klik hier!</a>
+    <p>Groeten van het EenmaalAndermaal Team</p>
+    <img src="images/icon.svg" alt="Icon van EenmaalAndermaal">
+</div>
 </body>
 </html>
+
+
