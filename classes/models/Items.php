@@ -15,7 +15,7 @@ class Items
          return $data->execute($item);
     }
 
-    static function insertFiles($files)
+    static function insertFile($files)
     {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Bestand (Filenaam, Voorwerp) 
@@ -76,10 +76,19 @@ class Items
         return $result;
     }
 
+    static function getItemsLimit($limit, $search = '')
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
+        $data->execute([":search"=>'%' . $search. '%']);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function getFinishedItems()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip > :nu ");
+        $data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten=0 AND LooptijdEindeTijdstip < :nu ");
         #$data = $dbh->prepare("SELECT * FROM Voorwerp WHERE VeilingGesloten='Nee' AND LooptijdEindeDag < :vandaag");
         $data->execute(array(":nu" => date("Y-m-d H:i:s")));
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -89,7 +98,7 @@ class Items
     static function finishItem($item, $buyer, $sellprice)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=TRUE, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
+        $data = $dbh->prepare("UPDATE Voorwerp SET VeilingGesloten=1, Koper=:buyer, Verkoopprijs=:sellprice WHERE Voorwerpnummer = :item");
         $data->execute([":item" => $item, ":buyer" => $buyer, ":sellprice" => $sellprice]);
     }
 
@@ -152,7 +161,7 @@ class Items
         $data = $dbh->query($sql);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         $filtered = [];
-        foreach($result as $row){
+        foreach($result as $row){ // loop over all results
             $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
         }
         return $filtered;
@@ -169,7 +178,7 @@ class Items
         global $dbh;
         $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND NOT Filenaam LIKE '%img%'");
         $data->execute([":item"=>$item]);
-        $result = $data->fetchColumn();
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }
 
@@ -178,6 +187,14 @@ class Items
         $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND Filenaam LIKE '%img%'");
         $data->execute([":item"=>$item]);
         $result = $data->fetchColumn();
+        return $result;
+    } //TODO FIX THIS
+
+    static function getFollowers($item){
+        global $dbh;
+        $data = $dbh->prepare("SELECT Gebruiker FROM Favorieten WHERE Voorwerp = :item");
+        $data->execute([":item"=>$item]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }
 }

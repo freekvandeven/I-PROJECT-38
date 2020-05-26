@@ -1,6 +1,6 @@
 <?php
     $items = Items::getBuyerItems($_SESSION['name']);
-    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd", "VeilingGesloten");
+    $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
 
 <main class="mijnFavorietenPagina">
@@ -18,21 +18,17 @@
                                 <th>Kleur en betekenis</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr class="table-success">
+                            <tr class="table-green">
                                 <td>Je hebt de veiling gewonnen.</td>
                             </tr>
-
-                            <tr class="table-danger">
+                            <tr class="table-red">
                                 <td>Je hebt de veiling verloren.</td>
                             </tr>
-
-                            <tr class="table-warning">
+                            <tr class="table-orange">
                                 <td>Je bent overboden op een actieve veiling.</td>
                             </tr>
-
-                            <tr class="table-info">
+                            <tr class="table-blue">
                                 <td>Je bent de hoogste bieder op een actieve veiling.</td>
                             </tr>
                         </tbody>
@@ -44,30 +40,30 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>Link</th>
-                    <th>Verkoper</th>
-                    <?php foreach($displayedItems as $key){
-                        echo "<th>$key</th>";
-                    } ?>
-                </tr>
+                    <tr>
+                        <th>Link</th>
+                        <th>Verkoper</th>
+                        <?php foreach($displayedItems as $key){
+                            echo "<th>$key</th>";
+                        } ?>
+                        <th>Veiling gesloten</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <?php foreach($items as $item):
-                    if($item['VeilingGesloten'] == "Wel "){
+                    if($item['VeilingGesloten'] == 1){
                         if($item['Koper'] == $_SESSION['name']){
-                            $label = "table-success";
+                            $label = "table-green";
                         } else {
-                            $label = "table-danger";
+                            $label = "table-red";
                         }
                     } else {
                         if(Items::getHighestBid($item['Voorwerpnummer'])['Gebruiker'] == $_SESSION['name']){
-                            $label = "table-info";
+                            $label = "table-blue";
                         } else {
-                            $label = "table-warning";
+                            $label = "table-orange";
                         }
                     }
-
                     ?>
                     <tr class="<?=$label?>">
                         <td><a href="item.php?id=<?=$item['Voorwerpnummer']?>">Voorwerp <?=$item["Voorwerpnummer"]?></a></td>
@@ -75,6 +71,17 @@
                         <?php foreach($displayedItems as $itemName): ?>
                             <td><?=$item[$itemName]?></td>
                         <?php endforeach; ?>
+                        <td>
+                            <?php
+                            if(isset($item['VeilingGesloten'])) {
+                                if($item['VeilingGesloten']) {
+                                    echo 'Ja';
+                                } else {
+                                    echo 'Nee';
+                                }
+                            }
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -82,7 +89,8 @@
         </div>
     </div>
 
-    <div class="form-group text-center">
-        <p class="gaTerugKnop"><a href="profile.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a href="profile.php" class="gaTerugKnop">Ga terug</a>
     </div>
 </main>
+

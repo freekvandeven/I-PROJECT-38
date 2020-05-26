@@ -1,7 +1,6 @@
 <?php
-if (isset($_POST['item']) && !empty($_POST['item'])) {
+if (isset($_POST['voorwerp']) && !empty($_POST['voorwerp'])) {
     if (isset($_SESSION['name']) && !empty($_SESSION['name'])) {
-        User::insertFavorites($_SESSION['name'], $_POST['item']);
+        User::insertFavorites($_SESSION['name'], $_POST['voorwerp']);
     }
-    $_GET['id'] = $_POST['item'];
 }

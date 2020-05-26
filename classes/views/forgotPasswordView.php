@@ -2,7 +2,7 @@
 
 ?>
 
-<main>
+<main class="forgotPasswordPagina">
     <div class="container">
         <h2 class="wachtwoordVergetenTitel">Wachtwoord vergeten</h2>
         <?php
@@ -13,7 +13,7 @@
         ?>
         <form class="wachtwoordVergetenForm" action="" method="POST">
             <div class="centerForm">
-                <div class="col-md-9">
+                <div class="emailContainer col-md-9">
                     <label for="email">Emailadres</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Uw emailadres" required>
                 </div>

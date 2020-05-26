@@ -2,7 +2,7 @@
 
 # code for filling database with items
 $dbh->exec("DELETE FROM Voorwerp WHERE Betalingswijze='niks'");
-
+$dbh->exec("DELETE FROM Gebruiker WHERE Voornaam='Testvoornaam'");
 # step 1 add categories
 
 $file = file_get_contents('SQL/CREATE Categorieen.sql');
@@ -28,6 +28,14 @@ $dbh->exec("ALTER TABLE Rubriek CHECK CONSTRAINT FK_ParentRubriek");
 #step 2.1 get all folders
 $dirs = array_filter(glob('SQL/*'), 'is_dir');
 # step 2.2
+
+
+# step 3 setup Prepares
+$voorwerpInsert = $dbh->prepare("INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$voorwerpRubriek = $dbh->prepare("INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)");
+$imageInsert = $dbh->prepare("{CALL fileInsert(?, ?)}");
+$imageInsert->bindParam(1, $imageFile, PDO::PARAM_STR);
+$imageInsert->bindParam(2, $itemID, PDO::PARAM_INT);
 
 foreach($dirs as $dir) {
 
@@ -93,17 +101,15 @@ foreach($dirs as $dir) {
                 $beschrijving = $output[11];
                 $currencies[] = $output[8];
 
-                $sql = "INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $data = $dbh->prepare($sql);
-                $data->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30 12:00:00:000', FALSE));
-                $sql = "INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)";
-                $data = $dbh->prepare($sql);
+                $voorwerpInsert->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000',5.00,'testinstructie',$verkoper,'2020-06-30 12:00:00:000', FALSE));
                 $itemID = Items::get_ItemId();
-                $data->execute(array($itemID, $category));
+                $voorwerpRubriek->execute(array($itemID, $category));
+
                 //$imagelink = str_replace("img", "dt_1_", $output[10]);
                 //store file with new autoincrementId as id.png
                 //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
-                Items::insertFiles(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
+                $imageInsert->execute(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
+                //Items::insertFile(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
 
                 # step 4.6 insert images in bestanden
                 array_shift($splitParts); // remove first insert for item
@@ -111,12 +117,13 @@ foreach($dirs as $dir) {
 
                 foreach ($splitParts as $image) {
                     # put image into database
-                    //Items::insertFiles(array(":Filenaam"=>,":Voorwerp"=>$itemID));
+                    $imageFile = explode('\'',$image)[1];
+                    $imageInsert->execute();
+                    //$imageInsert->execute(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
+                    //Items::insertFile(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
                 }
             }
         }
-
-
 }
 $dbh->exec("ALTER TABLE Voorwerp CHECK CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper");
 
