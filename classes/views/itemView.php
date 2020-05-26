@@ -24,7 +24,12 @@ $maxPhotos = 5;
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']?>.png" alt="Thumbnail">
+                                    <div class="img-magnifier-container">
+                                        <img id="image" class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']?>.png" alt="Thumbnail">
+                                    </div>
+                                    <script>
+                                        enableZoom("image", 1.4);
+                                    </script>
                                 </div>
 
                                 <?php
