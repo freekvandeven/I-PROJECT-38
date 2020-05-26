@@ -1533,28 +1533,7 @@ input[type=range]::-ms-thumb {
     width: 18px;
 }
 
-/**********EMAIL-TEMPLATE*********/
-
-.email-template {
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 22px;
-    background-color: rgb(235, 231, 231);
-}
-
-.email-template #aankondiging{
-    font-size: xx-large;
-    text-transform: capitalize;
-    text-shadow: rgb(255, 255, 255);
-}
-
-.email-template #prijs {
-    font-weight: bold;
-    color: rgb(110, 65, 110);
-    display: inline;
-}
-
-/**********EMAIL-TEMPLATE*********/
+/********EMAIL-TEMPLATE-IMPROVEMENT*********/
 
 .email-template {
     text-align: center;
@@ -1581,8 +1560,6 @@ input[type=range]::-ms-thumb {
     color: rgb(110, 65, 110);
     display: inline;
 }
-
-/**********EMAIL-TEMPLATE*********/
 
 .email-template {
     text-align: center;
@@ -1631,3 +1608,5 @@ input[type=range]::-ms-thumb {
 .email-template a:active {
     text-decoration: underline;
 }
+
+
