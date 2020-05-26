@@ -98,11 +98,13 @@
         if(!fillStarted) { // if the fill hasn't started yet
             if (confirm("Are you sure you want to fill the database?(This could take atleast 15 minutes)")) {
                 fillStarted = true;
+                document.getElementById("loader").style.display = 'block';
                 document.getElementById("databaseFillButton").innerText = "Abort!";
                 sendAjaxStep(0);
             }
         } else { // abort the filling
             xmlhttp.abort();
+            document.getElementById("loader").style.display = 'none';
             document.getElementById("databaseFillButton").innerText = "Start Filling!";
             fillStarted = false;
         }

@@ -5,6 +5,7 @@
     </div>
     <div class="container">
     <h3>Vul de database met een csv bestand:</h3>
+        <div id="loader" style="display: none;"></div>
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" id="fillProgress" role="progressbar"
                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
