@@ -1013,7 +1013,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     color: #fff;
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
-
+/*************** SETTINGS CSS ******************/
+.custom-control-input:checked~.custom-control-label::before {
+    background-color:rgb(165, 105, 189);
+    border-color:rgb(165, 105, 189);
+}
+.custom-control-input:checked~.custom-control-label:visited {
+    box-shadow:rgb(165, 105, 189);
+    border-color:rgb(165, 105, 189);
+}
 /*************** CONTACTPAGINA CSS *************/
 .contactPagina .jumbotron{
     padding-left: 20%;

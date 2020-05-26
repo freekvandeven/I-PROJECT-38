@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS GebruikersInstellingen
 DROP TABLE IF EXISTS Notificaties;
 DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
@@ -55,6 +56,16 @@ CREATE TABLE Gebruiker(
 	Bevestiging                 BIT             NOT NULL,
 	CONSTRAINT PK_Gebruiker	PRIMARY KEY	(Gebruikersnaam)
 );
+
+CREATE TABLE GebruikersInstellingen(
+	Gebruiker	VARCHAR(20)		NOT NULL DEFAULT 0,
+	reccomendations BIT NOT NULL DEFAULT 0,
+	darkmode BIT NOT NULL DEFAULT 0,
+	notifications BIT NOT NULL DEFAULT 0,
+	superTracking BIT NOT NULL DEFAULT 0,
+	emails BIT NOT NULL DEFAULT 0,
+	constraint PK_GebruikersInstellingen_Gebruiker PRIMARY KEY (Gebruiker)
+)
 
 CREATE TABLE Beoordeling (
     BeoordelingsNr 				INTEGER      	NOT NULL IDENTITY,
@@ -238,6 +249,12 @@ ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
         REFERENCES Rubriek (Rubrieknummer)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION;
+
+ALTER TABLE gebruikersinstellingen
+ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
+REFERENCES Gebruiker(Gebruikersnaam)
+ON UPDATE CASCADE
+ON DELETE CASCADE
 
 insert into Vraag (tekstvraag)
 values(
