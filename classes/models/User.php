@@ -32,9 +32,9 @@ class User
     static function getNotifications($user)
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT Bericht FROM Notificaties WHERE Ontvanger = :user");
+        $data = $dbh->prepare("SELECT Bericht, Link FROM Notificaties WHERE Ontvanger = :user");
         $data->execute([":user"=>$user]);
-        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -45,11 +45,11 @@ class User
         $data->execute(["user"=>$user]);
     }
 
-    static function notifyUser($user, $message)
+    static function notifyUser($user, $message, $link = '#')
     {
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Ontvanger) VALUES (:message, :user)");
-        $data->execute([":message"=>$message, ":user"=>$user]);
+        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Link, Ontvanger) VALUES (:message, :link, :user)");
+        $data->execute([":message"=>$message, ":link"=>$link, ":user"=>$user]);
     }
 
     static function updateUser($user)
