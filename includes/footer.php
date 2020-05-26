@@ -6,17 +6,17 @@
 
                         <!-- Tekst boven de footer -->
                         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                            <h5 class="mb-0">Volg ons nu ook op social media!</h5>
+                            <h5 class="mb-0">Deel onze website op social media!</h5>
                         </div>
 
                         <!-- Social media links -->
                         <div class="col-md-6 col-lg-7 text-center text-md-right">
                             <!-- Facebook -->
-                            <a href="#"><img src="images/footerimages/facebook.png" alt="Facebook logo"></a>
+                            <a href="https://facebook.com/share/" target="_blank"><img src="images/footerimages/facebook.png" alt="Facebook logo"></a>
                             <!-- Twitter -->
-                            <a href="#"><img src="images/footerimages/twitter.png" alt="Twitter logo"></a>
+                            <a href="https://twitter.com/share?text=Bekijk nu de beste veilingssite van Nederland!&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']?>"><img src="images/footerimages/twitter.png" alt="Twitter logo"></a>
                             <!-- Instagram -->
-                            <a href="#"><img src="images/footerimages/instagram.png" alt="Instagram logo"></a>
+                            <a href="https://instagram.com/han.nl" target="_blank"><img src="images/footerimages/instagram.png" alt="Instagram logo"></a>
                         </div>
 
                     </div>
@@ -38,26 +38,26 @@
                         <h5>Handige links</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><a href="profile.php">Jouw account</a></p>
-                        <p><a href="#">Veilingen bekijken</a></p>
-                        <p><a href="#">Product verkopen</a></p>
-                        <p><a href="#">Help</a></p>
+                        <p><a href="catalogus.php">Veilingen bekijken</a></p>
+                        <p><a href="addProduct.php">Product verkopen</a></p>
+                        <p><a href="footer.php?action=FAQ">Help</a></p>
                     </div>
 
                     <!-- 3e kolom -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h5>Over ons</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                        <p><a href="#">Verdienmodel</a></p>
-                        <p><a href="#">Adverteren</a></p>
-                        <p><a href="#">Algemene voorwaarden</a></p>
-                        <p><a href="#">Vacatures</a></p>
+                        <p><a href="footer.php?action=profit">Verdienmodel</a></p>
+                        <p><a href="footer.php?action=advertise">Adverteren</a></p>
+                        <p><a href="footer.php?action=AVG">Algemene voorwaarden</a></p>
+                        <p><a href="footer.php?action=vacancies">Vacatures</a></p>
                     </div>
 
                     <!-- 4e kolom -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h5>Contact</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                        <p><img src="images/footerimages/plaats.png" alt="Home image">8th Ave, New York, New York</p>
+                        <p><img src="images/footerimages/plaats.png" alt="Home image">42nd Street, New York, New York</p>
                         <p><a href="mailto:anthonyvago2001@gmail.com"><img src="images/footerimages/mail.png" alt="Email image">info@EenmaalAndermaal.com</a></p>
                         <p><a href="tel:+31 6 123456"><img src="images/footerimages/telefoon.png" alt="Phone image">+31 6 123456</a></p>
                         <p><a href="tel:0612345678"><img src="images/footerimages/mobiel.png" alt="Phone image">06 12345678</a></p>

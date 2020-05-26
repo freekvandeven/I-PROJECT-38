@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS GebruikersInstellingen
+DROP TABLE IF EXISTS Notificaties;
 DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Beoordeling;
@@ -55,6 +57,16 @@ CREATE TABLE Gebruiker(
 	CONSTRAINT PK_Gebruiker	PRIMARY KEY	(Gebruikersnaam)
 );
 
+CREATE TABLE GebruikersInstellingen(
+	Gebruiker	VARCHAR(20)		NOT NULL DEFAULT 0,
+	reccomendations BIT NOT NULL DEFAULT 0,
+	darkmode BIT NOT NULL DEFAULT 0,
+	notifications BIT NOT NULL DEFAULT 0,
+	superTracking BIT NOT NULL DEFAULT 0,
+	emails BIT NOT NULL DEFAULT 0,
+	constraint PK_GebruikersInstellingen_Gebruiker PRIMARY KEY (Gebruiker)
+)
+
 CREATE TABLE Beoordeling (
     BeoordelingsNr 				INTEGER      	NOT NULL IDENTITY,
     Gebruikersnaam              VARCHAR(20)     NULL,
@@ -72,8 +84,8 @@ CREATE TABLE Comments (
 );
 
 CREATE TABLE Favorieten (
-    Gebruiker                  INTEGER     NOT NULL,
-    Voorwerp                   VARCHAR(20) NOT NULL,
+    Gebruiker                  VARCHAR(20) NOT NULL,
+    Voorwerp                   INTEGER     NOT NULL,
     CONSTRAINT PK_Favorieten PRIMARY KEY(Gebruiker, Voorwerp)
 );
 
@@ -141,6 +153,32 @@ CREATE TABLE Bestand(
 	Voorwerp INTEGER     NOT NULL,
 	CONSTRAINT PK_filenaam PRIMARY KEY (Filenaam)
 );
+
+CREATE TABLE Notificaties(
+    Bericht  VARCHAR(256) NOT NULL,
+    Link       VARCHAR(64) DEFAULT '#',
+    Ontvanger VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Link, Ontvanger)
+);
+
+CREATE TABLE Bericht(
+    Message   VARCHAR(256) NOT NULL,
+    Verzender VARCHAR(20)  NOT NULL,
+    Ontvanger VARCHAR(20)  NOT NULL,
+    Tijdstip    DATETIME   DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE Bericht
+ADD CONSTRAINT FK_Bericht_Verzender FOREIGN KEY (Verzender)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
+
+ALTER TABLE Notificaties
+ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Feedback
 ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
@@ -225,6 +263,12 @@ ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
         REFERENCES Rubriek (Rubrieknummer)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION;
+
+ALTER TABLE gebruikersinstellingen
+ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
+REFERENCES Gebruiker(Gebruikersnaam)
+ON UPDATE CASCADE
+ON DELETE CASCADE
 
 insert into Vraag (tekstvraag)
 values(

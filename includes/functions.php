@@ -17,8 +17,8 @@ function checkLogin() // check if user is logged in
 }
 
 function registerRequest(){
-    //checkVisitor();
-    //checkItemDate();
+    checkVisitor();
+    checkItemDate();
 }
 
 function checkPost()
@@ -43,7 +43,7 @@ function checkVisitor(){
 }
 
 function cleanupUploadFolder(){
-    for($i=0;$i<40000;$i++){
+    for($i=10000;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
             unlink("upload/items/".$i.".png");
         }
@@ -84,6 +84,28 @@ function checkIP(){
     }
 }
 
+function displayInformation($array, $notifications){
+    if(sizeof($array) == 0) {
+        if($notifications) {
+            echo '<p>Er zijn nog geen notificaties :(</p>';
+        } else {
+            echo '<p>Nog geen gebruikers :(</p>';
+        }
+    } else {
+        $html = "";
+        if($notifications) {
+            foreach ($array as $notification) {
+                $html .= "<a href='" . $notification['Link'] . "' class='list-group-item list-group-item-action'>" . $notification['Bericht'] . "</a>";
+            }
+        } else {
+            foreach ($array as $user) {
+                $html .= "<input type='submit' class='list-group-item list-group-item-action' name='user' value='$user'>";
+            }
+        }
+        return $html;
+    }
+}
+
 function deleteFile($file){
     if(file_exists($file)){
         unlink($file);
@@ -121,53 +143,14 @@ function storeImg($files, $id,$target_dir)
 function checkImageExists($fileName) {
     return file_exists("upload/items/$fileName");
 }
-/*
-function calculateDistance($point1, $point2, $unit = ''){
-    $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
-    //$apiKey = 'AIzaSyBA5t_6kDT86NEzXrXQSzcaZpKLbDRzBos';
-    $formattedAddrFrom = str_replace(' ', '+', $point1);
-    $formattedAddrTo = str_replace(' ', '+', $point2);
 
-    // Geocoding API request with start address
-    $geocodeFrom = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
-    $outputFrom = json_decode($geocodeFrom);
-    if(!empty($outputFrom->error_message)){
-        return $outputFrom->error_message;
-    }
-
-    // Geocoding API request with end address
-    $geocodeTo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false&key='.$apiKey);
-    $outputTo = json_decode($geocodeTo);
-    if(!empty($outputTo->error_message)){
-        return $outputTo->error_message;
-    }
-
-    // Get latitude and longitude from the geodata
-    $latitudeFrom    = $outputFrom->results[0]->geometry->location->lat;
-    $longitudeFrom    = $outputFrom->results[0]->geometry->location->lng;
-    echo $latitudeFrom;
-    echo $longitudeFrom;
-    $latitudeTo        = $outputTo->results[0]->geometry->location->lat;
-    $longitudeTo    = $outputTo->results[0]->geometry->location->lng;
-
-    // Calculate distance between latitude and longitude
-    $theta    = $longitudeFrom - $longitudeTo;
-    $dist    = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-    $dist    = acos($dist);
-    $dist    = rad2deg($dist);
-    $miles    = $dist * 60 * 1.1515;
-
-    // Convert unit and return distance
-    $unit = strtoupper($unit);
-    if($unit == "K"){
-        return round($miles * 1.609344, 2).' km';
-    }elseif($unit == "M"){
-        return round($miles * 1609.344, 2).' meters';
-    }else{
-        return round($miles, 2).' miles';
+function getProfileImage($user){
+    if(isset($user) && file_exists("upload/users/".$user.".png")){
+        return "upload/users/$user.png";
+    } else {
+        return "images/profilePicture.png";
     }
 }
-*/
 
 function calculateDistance($point1, $point2){
     // Calculate distance between latitude and longitude
@@ -201,6 +184,12 @@ function sendConfirmationEmail($mail, $username, $hash){
     $variables['hash'] = $hash;
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
+function notifyFollowers($item){
+    foreach(Items::getFollowers($item) as $follower) // get all item followers
+    {
+        User::notifyUser($follower, "Er is een item geupdate");
+    }
+}
 
 function notifySeller($seller, $id, $price){
     $user = User::getUser($seller);
@@ -210,6 +199,7 @@ function notifySeller($seller, $id, $price){
     $variables['id'] = $id;
     $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
+    User::notifyUser($seller,"Je veiling is afgelopen");
 }
 
 function notifyBuyer($buyer, $id, $offer){
@@ -220,6 +210,7 @@ function notifyBuyer($buyer, $id, $offer){
     $variables['id'] = $id;
     $variables['offer'] = $offer;
     sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
+    User::notifyUser($buyer, "Je hebt de veiling gewonnen");
 }
 
 function sendFormattedMail($receiver, $subject, $filename, $variables){
@@ -236,32 +227,31 @@ function sendFormattedMail($receiver, $subject, $filename, $variables){
 function generateImageLink($item, $thumbnail=true){
         if($thumbnail){
             $image = Items::getThumbnail($item);
-            if(file_exists("thumbnails/$image") || true){ // file exists doesn't work on the files in thumbnails
-                return "thumbnails/".$image;
-            } else {
+            if(strpos($image, 'cst')!==false){ // file exists doesn't work on the files in thumbnails
                 return "upload/items/".$image;
+            } else {
+                return "thumbnails/".$image;
             }
         } else {
             $images = Items::getFiles($item);
-            if(file_exists("pics/".$images[0]) || true) { // file exists doesn't work on the files in pics
-                return "pics/" . $images[0];
+            if(strpos($images[0], 'cst')!==false) { // file exists doesn't work on the files in pics
+                return preg_filter('/^/', 'upload/items/', $images);
             } else {
-                return "upload/items/".$images[0];
+                return preg_filter('/^/', 'pics/', $images);
             }
         }
 }
 
-function generateCatalog($items)
+function generateCatalog($items, $counter = 0, $new = false)
 {
-    $counter = 0;
     foreach ($items as $card):
         if ($counter % 4 == 0) {
             echo "<div class='row'>";
         }
         ?>
-        <div class='col-lg-3'>
+        <div class='col-xl-3 col-6'>
             <div class='card'>
-                <div class="itemImage">
+                <div class="itemImageCatalogusPage">
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
                         <img src='<?php echo generateImageLink($card['Voorwerpnummer'],true); ?>' class='card-img-top' alt='Productnaam'>
                         <!--<img src='upload/items/<?= $card["Voorwerpnummer"]?>.png' class='card-img-top' alt='Productnaam'>-->
@@ -276,6 +266,9 @@ function generateCatalog($items)
                 <div class='card-footer'>
                     <!-- Display the countdown timer in an element -->
                     <p id="timer-<?=$counter?>"></p>
+                    <?php if($new):?>
+                        <p><?=round((strtotime(date('Y-m-d H:i:s'))-strtotime($card['LooptijdBeginTijdstip']))/60,0);?> minuten geleden</p>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -285,6 +278,9 @@ function generateCatalog($items)
             echo "</div>";
         }
     endforeach;
+        if ($counter % 4 != 0){
+            echo "</div>";
+        }
 }
 
 function reOrganizeArray($file_posts){
@@ -319,4 +315,75 @@ function generateCategoryDropdown(){
         $html .= "</ul></li>";
     }
     return $html;
+}
+
+function evalSelectPOST(){
+    $select = array();
+    if (isset($_POST)) {
+        if (isset($_POST['search'])) {
+            $select[':search'] = "%" . $_POST['search'] . "%";
+        }
+        if(!empty($_POST['minimum'])&&$_POST['minimum']>1&&$_POST['minimum']<1000000){
+            $select[':val1'] = $_POST['minimum'];
+        }else{
+            $select[':val1'] =  1;
+        }
+        if(!empty($_POST['maximum'])&&$_POST['maximum']>1&&$_POST['maximum']<1000000) {
+            $select[':val2'] = $_POST['maximum'];
+        }else{
+            $select[':val2'] = 1000000;
+        }
+        if (isset($_POST['rubriek'])) {
+            $select[":rubriek"] = $_POST['rubriek'];
+        }
+        if (isset($_POST['order'])) {
+            switch ($_POST['order']) {
+                case "Low":
+                    $select[':order'] = "prijs ASC";
+                    break;
+                case "High":
+                    $select[':order'] = "prijs DESC";
+                    break;
+                case "New":
+                    $select[':order'] = "looptijdbegintijdstip DESC";
+                    break;
+                case "Old":
+                    $select[':order'] = "looptijdbegintijdstip ASC";
+                    break;
+                default:
+                    $select[':order'] = "n";
+                    break;
+            }
+        } else{ $select[':order'] = "n";}
+        if (isset($_POST['offset'])) {
+            $select[':offset'] = $_POST['offset'];
+        } else {
+            $select[':offset'] = " ";
+        }
+// evaluate number of items cannot be used in prepared statements so it is converted to one of the following values:
+        if (isset($_POST['numberOfItems']))
+            switch($_POST['numberOfItems']){
+                case "25":
+                    $select[':limit'] = "25";
+                    break;
+                case "50":
+                    $select[':limit'] = "50";
+                    break;
+                case "100":
+                    $select[':limit'] = "75";
+                    break;
+                case "10000":
+                    $select[':limit'] = "10000";
+                    break;
+                default:
+                    $select[':limit'] = "25";
+            }
+        else{
+            $select[':limit'] = "25";
+        }
+    }else{
+        $select[':val1'] =  1;
+        $select[':val2'] = 1000000;
+    }
+    return $select;
 }

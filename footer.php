@@ -3,7 +3,7 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 
-$action = array('FAQ, AVG, Privacyverklaring');
+$actions = array('FAQ', 'AVG', 'Privacyverklaring');
 
 $title = 'Footer pagina';
 

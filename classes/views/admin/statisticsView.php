@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="text-center col-lg-12">
-        <p class="gaTerugKnop"><a href="admin.php">Ga terug</a></p>
+    <div class="gaTerugKnopBox text-center">
+        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
 </main>

@@ -1,5 +1,6 @@
 <?php
 $maxPhotos = 5;
+$images = generateImageLink($item['Voorwerpnummer'], false);
 ?>
 
 <main class="veilingBekijkenPagina">
@@ -8,22 +9,40 @@ $maxPhotos = 5;
             <div class="itemInformatie col-xl-8 col-md-8">
                 <div class="card">
                     <div class='card-body'>
-                        <h4 class="card-header text-center"><?=$item['Titel']?></h4>
+                        <h4 class="card-header text-center"><?=$item['Titel']?>
+                            <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
+                            <div class="row">
+                                    <form class="voegFavorietToeForm col-6" method="post" action="">
+                                        <input type="hidden" name="token" value="<?= $token ?>">
+                                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
+                                        <div class="voegToeAanFavorietenButtonBox text-left">
+                                            <button type="submit" name="action" value="follow" class="voegToeAanFavorietenButton">Favorieten+</button>
+                                        </div>
+                                    </form>
+
+                                    <form method="post" action="" class="col-6">
+                                        <input type="hidden" name="token" value="<?= $token ?>">
+                                        <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
+                                        <div class="verwijderVeilingButtonBox text-right">
+                                            <button class="verwijderVeilingButton" type="submit" name="action" value="delete">Veiling verwijderen</button>
+                                        </div>
+                                    </form>
+                            </div>
+                            <?php endif; ?>
+                        </h4>
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <?php
-                                for($i=0; $i<$maxPhotos; $i++) {
-                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) {
-                                        $dataSlideTo = $i + 1; ?>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$dataSlideTo?>"></li>
+                                for($i=1; $i<count($images); $i++) { // pointer to next image ?>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>"></li>
                                     <?php
-                                    }
                                 }
                                 ?>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
+
                                     <div class="img-magnifier-container">
                                         <img id="image" class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']?>.png" alt="Thumbnail">
                                     </div>
@@ -33,17 +52,14 @@ $maxPhotos = 5;
                                 </div>
 
                                 <?php
-                                for($i=0; $i<$maxPhotos; $i++) {
-                                    if(checkImageExists("{$item['Voorwerpnummer']}_{$i}.png")) { ?>
+                                for($i=1; $i<count($images); $i++): ?>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="upload/items/<?=$item['Voorwerpnummer']._.$i?>.png" alt="Productfoto">
+                                        <img class="d-block w-100" src="<?=$images[$i];?>" alt="Productfoto">
                                     </div>
-                                <?php }
-                                } ?>
+                                <?php endfor; ?>
                             </div>
-
                             <?php
-                            if(checkImageExists("{$item['Voorwerpnummer']}_0.png")) { ?>
+                            if(count($images) > 1): ?>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -52,10 +68,10 @@ $maxPhotos = 5;
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
-                            <?php } ?>
+                            <?php endif; ?>
                         </div>
 
-                        <p class='card-text'><?php if(strlen($item['Beschrijving'])<200) $item['Beschrijving'] ?></p>
+                        <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
                         <small class='text-muted'></small>
@@ -68,7 +84,7 @@ $maxPhotos = 5;
             <div class="col-xl-4 col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-header text-center">Bieden</h4>
+                        <h4 class="bieden card-header text-center">Bieden</h4>
                         <p>Biedingen</p>
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
@@ -104,20 +120,6 @@ $maxPhotos = 5;
                         </form>
                     </div>
                 </div>
-                <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
-                <form action ='' method='post'>
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <button class="deleteButton" type="submit" name="deleteItem" value="delete"></button>
-                </form>
-                <?php endif; ?>
-                <form class="voegFavorietToeForm" method="POST" action="">
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <input type="hidden" name="item" value="<?= $_GET['id'] ?>">
-                    <div class="form-group col-xl-12">
-                        <label for="favoriet">Voeg dit item to aan uw favorieten</label>
-                    </div>
-                    <button type="submit" name="action" value="follow" class="favorietButton"><i class="far fa-star"></i></button>
-                </form>
             </div>
 
             <div class="col-xl-8 col-md-6">
@@ -127,13 +129,9 @@ $maxPhotos = 5;
                             <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>"><h4 class="card-header text-center">Verkoper</h4></a>
                             <div class="verkoperInformatieBox row">
                                 <div class="profielfoto col-xl-6">
-                                    <?php if(file_exists("upload/users/".$profile_data['Gebruikersnaam'].".png")):?>
                                     <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
-                                        <img src="upload/users/<?=$profile_data['Gebruikersnaam']?>.png" class="card-img" alt="profielfoto">
+                                        <img src="<?=getProfileImage($profile_data['Gebruikersnaam'])?>" class="card-img" alt="profielfoto">
                                     </a>
-                                    <?php else :?>
-                                        <img src="images/profilePicture.png" class="card-img" alt="profielfoto">
-                                    <?php endif; ?>
                                 </div>
                                 <div class="verkoperInformatie col-xl-6">
                                     <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
@@ -169,16 +167,8 @@ $maxPhotos = 5;
 
                     </div>
                     <script>
-                        <?php
-                        $datum = $item['LooptijdEindeDag'];
-                        $tijdstip = $item['LooptijdEindeTijdstip'];
-                        $time = explode(" ", $datum)[0] . " " . explode(" ", $tijdstip)[1];
-                        echo "var my_date= '" . explode( ".",$time)[0] . "';\n";
-                        ?>
-                        my_date = my_date.replace(/-/g, "/");
-                        var d = new Date(my_date);
-                        setupCountDown('timer', d);
-                    //var countDownDate = new Date(<?=explode(" ", $item['LooptijdEindeTijdstip'])[1]?>).getTime();
+                        <?php $tijdstip = $item['LooptijdEindeTijdstip']; //get the countdown date ?>
+                        setupCountDown('timer', new Date("<?=explode(".", $tijdstip)[0];?>")); // start the countdowntimer
                 </script>
             </div>
         </div>
