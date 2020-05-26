@@ -156,3 +156,35 @@
             });
         }
     }
+    function updateMessages(){
+        //alert("updating chat");
+        $.post("ajax.php",
+            {
+                request: "getMessages",
+                responder: responder
+            },
+            function(data,status){
+                $("#chatWindow").html(data);
+            });
+        return updateMessages;
+    }
+    function startChat(chatter){
+        responder = chatter;
+        $(document).ready(function(){
+            setInterval(updateMessages(), 2000);
+        });
+    }
+
+    function sendChatMessage(receiver){
+        var message = $("#chatMessage").val();
+        $.post("ajax.php",
+            {
+                request: "sendMessages",
+                message: message,
+                receiver: receiver
+            },
+            function(data, status){
+                updateMessages();
+            }
+            );
+    }
