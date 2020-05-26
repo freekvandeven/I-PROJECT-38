@@ -1,5 +1,5 @@
 <?php
-    $users = User::getUsersLimit(100);
+    $users = User::getUsersLimit(100, $_GET['search']);
     $displayedItems = array("Voornaam", "Achternaam", "Adresregel_1", "Postcode", "Land", "Mailbox");
 ?>
 
@@ -11,6 +11,11 @@
 
     <div class="container col-xl-10 col-lg-11 col-md-11 col-sm-11 col-11">
         <h2 class="text-center">Bekijk alle  gebruikers:</h2>
+        <form class="categorySearchForm" action="" method="get">
+            <input type="hidden" name="category" value="user">
+            <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op gebruikersnaam" value="<?=$_GET['search']?>"
+                   name="search" autocomplete="off">
+        </form>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>

@@ -1,5 +1,5 @@
 <?php
-$items = Items::getItemsLimit(100);
+$items = Items::getItemsLimit(100, $_GET['search']);
 $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Plaatsnaam", "Land", "Looptijd");
 ?>
 
@@ -35,7 +35,11 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                 </div>
             </div>
         </div>
-
+        <form class="categorySearchForm" action="" method="get">
+            <input type="hidden" name="category" value="auction">
+            <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op veilingtitel" value="<?=$_GET['search']?>"
+                   name="search" autocomplete="off">
+        </form>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>

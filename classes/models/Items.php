@@ -76,11 +76,11 @@ class Items
         return $result;
     }
 
-    static function getItemsLimit($limit)
+    static function getItemsLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT TOP '.$limit.' * FROM Voorwerp');
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
+        $data->execute([":search"=>'%' . $search. '%']);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

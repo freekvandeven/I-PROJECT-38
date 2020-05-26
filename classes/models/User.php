@@ -21,11 +21,11 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-    static function getUsersLimit($limit)
+    static function getUsersLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT TOP ".$limit." * FROM Gebruiker");
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Gebruiker WHERE Gebruikersnaam LIKE :search");
+        $data->execute([":search"=>'%' . $search . '%']);
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
