@@ -1597,6 +1597,34 @@ input[type=range]::-ms-thumb {
     background-color: rgb(235, 231, 231);
 }
 
+.email-template a , .email-template img{
+    margin: 0 auto;
+    display:block;
+    text-align: center;
+}
+
+
+.email-template #aankondiging{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-shadow: rgb(255, 255, 255);
+}
+
+.email-template #prijs {
+    font-weight: bold;
+    color: rgb(110, 65, 110);
+    display: inline;
+}
+
+/**********EMAIL-TEMPLATE*********/
+
+.email-template {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    background-color: rgb(235, 231, 231);
+}
+
 .email-template #aankondiging{
     font-size: xx-large;
     text-transform: capitalize;
