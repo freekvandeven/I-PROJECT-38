@@ -20,8 +20,6 @@ if(isset($_SESSION['loggedin'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg"/>
-    <script src="https://use.fontawesome.com/4e0570587d.js"></script>
-    <link href="https://use.fontawesome.com/4e0570587d.css" rel="stylesheet" media="all">
     <script src="js/script.js"></script>
     <script src="js/range.js"></script>
     <title><?=$title?></title>
