@@ -71,7 +71,16 @@
             <div class="footer-copyright text-center py-3">
                 &copy; <?=date("Y")?> Copyright: EenmaalAndermaal
             </div>
-
+            <?php
+            // Toast system
+            $toast = isset($_GET['toast']) ? $_GET['toast'] : $toast; // check if toast is set in get
+            $toast = isset($_POST['toast']) ? $_POST['toast'] : $toast; // check if toast is set in post
+            if(isset($toast)) {
+                $toastDuration = (isset($toastDuration)) ? $toastDuration : 5000;
+                echo "<div id='snackbar' class='show'>$toast</div>";
+                echo "<script type='text/javascript'>showToast($toastDuration);</script>";
+            }
+            ?>
         </footer>
     </body>
 </html>

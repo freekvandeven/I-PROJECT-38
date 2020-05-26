@@ -53,6 +53,13 @@
         }
     }
 
+    function showToast(duration) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+        // After x seconds, remove the show class from DIV
+        setTimeout(function(){x.className = ""}, duration);
+    }
+
     function showCategory(str){
         if(str.length == 0) {
             document.getElementById("searchResult").innerHTML = "";
