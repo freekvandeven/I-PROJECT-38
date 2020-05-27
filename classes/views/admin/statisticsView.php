@@ -19,7 +19,7 @@
                     var data = google.visualization.arrayToDataTable([
                         ['Page', 'Views'],
                         <?php
-                        foreach(getSiteVisits() as $visit){
+                        foreach(Admin::getSiteVisits() as $visit){
                             echo "['".$visit["PageName"]."', ".$visit["Visits"]."],";
                         } ?>
                     ]);
@@ -32,6 +32,13 @@
                     chart.draw(data, options);
                 }
             </script>
+        </div>
+
+        <div>
+        <?php
+        Debug::dump(Admin::getBidsPerDay());
+        Debug::dump(Admin::getAuctionsPerDay());
+        ?>
         </div>
     </div>
 

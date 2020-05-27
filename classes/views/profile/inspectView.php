@@ -63,14 +63,13 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                             data-toggle="dropdown">
                                         Toevoegen
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-right animate slideIn">
+                                    <div class="voegReviewToeDropdownMenu dropdown-menu dropdown-menu-right animate slideIn">
                                         <form class="voegReviewToeForm" method="POST" action="">
                                             <input type="hidden" name="token" value="<?= $token ?>">
                                             <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
                                             <div class="form-group col-xl-12">
                                                 <label for="review">Voeg een review toe</label>
-                                                <textarea class="form-control" name="review" id="review"
-                                                          rows="5"></textarea>
+                                                <textarea class="form-control" name="review" id="review" rows="5"></textarea>
                                             </div>
                                             <button type="submit" name="action" value="review" class="form-control">
                                                 Toevoegen

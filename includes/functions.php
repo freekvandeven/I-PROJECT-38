@@ -114,12 +114,11 @@ function checkImageExists($fileName)
     return file_exists("upload/items/$fileName");
 }
 
-function getProfileImage($user)
-{
-    if (isset($user) && file_exists("upload/users/" . $user . ".png")) {
-        return "upload/users/$user.png";
+function getProfileImage($user){
+    if(isset($user) && file_exists("upload/users/" . $user . ".png")){
+        return "upload/users/$user.png?".filemtime("upload/users/$user.png");
     } else {
-        return "images/profilePicture.png";
+        return "images/profilePicture.png?";
     }
 }
 

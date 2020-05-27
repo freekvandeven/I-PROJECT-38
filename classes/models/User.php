@@ -56,7 +56,7 @@ class User
     static function updateUser($user)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Gebruiker SET Gebruikersnaam=:gebruikersnaam, Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
+        $data = $dbh->prepare("UPDATE Gebruiker SET Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
                      Plaatsnaam=:place, Land=:country, Mailbox=:email, Vraag=:question, Antwoordtekst=:answer
                                     WHERE Gebruikersnaam = :username");
         $data->execute($user);
@@ -125,6 +125,13 @@ class User
         global $dbh;
         $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
         $data->execute([":Gebruikersnaam" => $user, ":Telefoon" => $phone]);
+    }
+
+    static function updatePhoneNumber($user, $phoneNr)
+    {
+        global $dbh;
+        $data = $dbh->prepare('UPDATE GebruikersTelefoon SET Telefoon=:phoneNr WHERE Gebruiker=:user');
+        $data->execute([":user" => $user, ":phoneNr" => $phoneNr]);
     }
 
     static function getPhoneNumber($user)
