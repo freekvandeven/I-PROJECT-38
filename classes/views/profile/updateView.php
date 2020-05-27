@@ -13,8 +13,12 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                 // PERSOONSGEGEVENS
                 if ($_GET["option"] == 'persoonsgegevens') { ?>
                 <h2 class="text-center">Persoonsgegevens wijzigen</h2>
-                <?php if (isset($err)) echo $err; ?>
                 <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
+                <?php if (isset($err)) { ?>
+                <div class="errorMessage">
+                    <span><?=$err?></span>
+                </div>
+                <?php } ?>
                 <div class="container">
                     <h5>Persoonsgegevens</h5>
                     <div class="form-row">
@@ -76,42 +80,50 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
 
                 // INLOGGEGEVENS
                 if ($_GET["option"] == 'inloggegevens') { ?>
-                    <h2 class="text-center">Inloggegevens wijzigen</h2>
-                    <?php if (isset($err)) echo $err; ?>
-                    <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
-                    <div class="container">
-                        <h5>Inloggegevens</h5>
-                        <div class="form-row">
-                            <!-- GEBRUIKERSNAAM -->
-                            <div class="form-group col-md-4">
-                                <label for="gebruikersnaam">Gebruikersnaam (niet aan te passen)</label>
-                                <input type="text" class="readonly form-control" name="username" id="gebruikersnaam"
-                                       value="<?= $profile_data['Gebruikersnaam'] ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <!-- WACHTWOORD 1 -->
-                            <div class="form-group col-md-4">
-                                <label for="password1">Nieuw Wachtwoord</label>
-                                <input type="password" class="form-control" name="password" id="password1"
-                                       placeholder="Uw nieuwe wachtwoord">
-                            </div>
-                            <!-- WACHTWOORD 2 -->
-                            <div class="form-group col-md-4">
-                                <label for="password2">Herhaal wachtwoord</label>
-                                <input type="password" class="form-control" name="confirmation" id="password2"
-                                       placeholder="Herhaal wachtwoord">
-                            </div>
+                <h2 class="text-center">Inloggegevens wijzigen</h2>
+                <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
+                <?php if (isset($err)) { ?>
+                    <div class="errorMessage">
+                        <span><?=$err?></span>
+                    </div>
+                <?php } ?>
+                <div class="container">
+                    <h5>Inloggegevens</h5>
+                    <div class="form-row">
+                        <!-- GEBRUIKERSNAAM -->
+                        <div class="form-group col-md-4">
+                            <label for="gebruikersnaam">Gebruikersnaam (niet aan te passen)</label>
+                            <input type="text" class="readonly form-control" name="username" id="gebruikersnaam"
+                                   value="<?= $profile_data['Gebruikersnaam'] ?>" readonly>
                         </div>
                     </div>
+
+                    <div class="form-row">
+                        <!-- WACHTWOORD 1 -->
+                        <div class="form-group col-md-4">
+                            <label for="password1">Nieuw Wachtwoord</label>
+                            <input type="password" class="form-control" name="password" id="password1"
+                                   placeholder="Uw nieuwe wachtwoord">
+                        </div>
+                        <!-- WACHTWOORD 2 -->
+                        <div class="form-group col-md-4">
+                            <label for="password2">Herhaal wachtwoord</label>
+                            <input type="password" class="form-control" name="confirmation" id="password2"
+                                   placeholder="Herhaal wachtwoord">
+                        </div>
+                    </div>
+                </div>
                 <?php }
 
                 // BEVEILIGINGSGEGEVENS UPDATEN
                 if ($_GET["option"] == 'beveiligingsgegevens') { ?>
                 <h2 class="text-center">Beveiligingsgegevens wijzigen</h2>
-                <?php if (isset($err)) echo $err; ?>
                 <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
+                <?php if (isset($err)) { ?>
+                    <div class="errorMessage">
+                        <span><?=$err?></span>
+                    </div>
+                <?php } ?>
                 <div class="container">
                     <h5>Inloggegevens</h5>
                     <div class="form-row">
@@ -144,8 +156,12 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                 // PROFIELFOTO UPDATEN
                 if ($_GET["option"] == 'profielfoto') { ?>
                 <h2 class="text-center">Profielfoto wijzigen</h2>
-                <?php if (isset($err)) echo $err; ?>
                 <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
+                <?php if (isset($err)) { ?>
+                    <div class="errorMessage">
+                        <span><?=$err?></span>
+                    </div>
+                <?php } ?>
                 <div class="container">
                     <h5>Profielfoto</h5>
                     <div class="form-row">
@@ -165,8 +181,12 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
             else { ?>
 
             <h2 class="text-center">Huidige gegevens</h2>
-            <?php if(isset($err))echo $err;?>
             <p class="text-center">Pas uw gegevens zodanig toe aan uw wensen.</p>
+            <?php if (isset($err)) { ?>
+                <div class="errorMessage">
+                    <span><?=$err?></span>
+                </div>
+            <?php } ?>
             <!-- ACCOUNTGEGEVENS-->
             <div class="container">
                 <h5>Accountgegevens en beveiliging</h5>

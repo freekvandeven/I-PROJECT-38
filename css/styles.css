@@ -5,6 +5,27 @@ footer onderste deel: rgb(135, 110, 189)
 algemene details (knoppen bijv.): rgb(165, 105, 189)
  */
 
+/****************** ERROR-MESSAGE ******************/
+main .errorMessage{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+main .errorMessage span{
+    background: rgb(255, 62, 36);
+    font-size: 20px;
+    padding: 10px 60px;
+    border: 3px solid rgb(255, 62, 36);
+    border-radius: 5px;
+    color: #000;
+}
+
+.darkmode--activated main .errorMessage span{
+    background: rgb(179, 21, 0);
+    border-color: rgb(92, 12, 1);
+    color: rgb(230, 230, 230);
+}
+
 /****************** NAV-BAR ******************/
 nav{
     background: rgb(135, 110, 189);
@@ -855,9 +876,8 @@ body{
     isolation: isolate;
 }
 
-.profielPagina .container .row div .card .card-body img{
+.profielPagina .container .row div .card .card-body .profielfoto{
     max-height: 410px;
-    margin-bottom: 20px;
 }
 
 .profielPagina .container .row div .card .card-body .btn,
@@ -873,7 +893,7 @@ body{
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.profielPagina .container .row div .card .card-body a:hover,
+.profielPagina .container .row div .card .card-body .btn:hover,
 .profielPagina .container .container .row div .card .card-body form button:hover{
     color: #fff;
     background: rgb(165, 105, 189);
@@ -926,27 +946,25 @@ body{
     text-decoration: underline;
 }
 
-.profielPagina .container .container .row div .card .card-body .wijzigFotoLink{
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLinkp{
+    margin-top: 20px;
+}
+
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLinkp .wijzigFotoLink{
     font-size: 16px;
     color: rgb(165, 105, 189);
-    border: none;
     text-decoration: underline;
     text-decoration-color: rgb(165, 105, 189);
-    box-shadow: none;
-    background: none;
     transition: 200ms;
 }
 
-.profielPagina .container .container .row div .card .card-body .wijzigFotoLink img{
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLinkp .wijzigFotoLink img{
     width: 20px;
-    margin-top: 15px;
+    margin-top: -5px;
 }
 
-.profielPagina .container .container .row div .card .card-body p .wijzigFotoLink:hover,
-.profielPagina .container .container .row div .card .card-body p .wijzigFotoLink:focus{
-    border: none;
-    background: none;
-    box-shadow: none;
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLinkp .wijzigFotoLink:hover,
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLinkp .wijzigFotoLink:focus{
     padding-left: 10px;
 }
 
