@@ -115,7 +115,6 @@ function selectFromCatalogsMSSQL($orders)
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-
 function setSqlDistance($sql){
     $sql = "DECLARE
                         @GEO1 GEOGRAPHY,
@@ -133,76 +132,4 @@ function setExecuteDistance($execute,$orders){
     $execute[":min"] = $orders[':minimumDistance'];
     $execute[":max"] = $orders[':maximumDistance'];
     return $execute;
-}
-function checkPage($currentPage)
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT * FROM Pages WHERE PageName=:page');
-    $data->execute([":page" => $currentPage]);
-    $result = $data->fetchAll();
-    return $result;
-}
-
-function searchIPVisits($visitor)
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT * FROM Visitors WHERE IP = :ip');
-    $data->execute([":ip" => $visitor]);
-    $result = $data->fetchColumn();
-    return $result;
-}
-
-function increaseIPVisits($visitor)
-{
-    global $dbh;
-    $data = $dbh->prepare('UPDATE Visitors SET TotalVisits = TotalVisits + 1 WHERE IP = :ip');
-    $data->execute([":ip" => $visitor]);
-}
-
-function increasePage($currentPage)
-{
-    global $dbh;
-    $data = $dbh->prepare('UPDATE Pages SET Visits = Visits + 1 WHERE PageName = :page');
-    $data->execute([":page" => $currentPage]);
-}
-
-function insertPage($currentPage)
-{
-    global $dbh;
-    $data = $dbh->prepare('INSERT INTO Pages (PageName, Visits) VALUES (:page, 1)');
-    $data->execute([":page" => $currentPage]);
-}
-
-function insertVisitorIP($visitorIP)
-{
-    global $dbh;
-    $data = $dbh->prepare('INSERT INTO Visitors (IP, TotalVisits) VALUES (:ip, 1)');
-    $data->execute([":ip" => $visitorIP]);
-}
-
-function checkBlacklist($visitorIP)
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT * FROM Blacklist WHERE IP=:ip');
-    $data->execute([":ip" => $visitorIP]);
-    $result = $data->fetchAll();
-    return $result;
-}
-
-function checkWhiteList($visitorIP)
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT * FROM Whitelist WHERE IP=:ip');
-    $data->execute([":ip" => $visitorIP]);
-    $result = $data->fetchColumn();
-    return $result;
-}
-
-function getSiteVisits()
-{
-    global $dbh;
-    $data = $dbh->prepare('SELECT PageName, Visits FROM Pages');
-    $data->execute();
-    $result = $data->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
 }
