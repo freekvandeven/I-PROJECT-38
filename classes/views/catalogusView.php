@@ -2,7 +2,8 @@
     <div class="row">
 
         <div class="categorieenButton">
-            <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Categorieën</button>
+            <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Categorieën
+            </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdownItem">
                     <p>Zoek op categorieën</p>
@@ -26,9 +27,19 @@
 
             </div>
         </div>
-
-
         <div class="linkerkant">
+            <div class="categorieen">
+                <h4 class="font-weight-normal text-center">Postcode</h4>
+                <ul class="list-unstyled">
+                    <li>
+                        <p>Zoek op afstand</p>
+                        <form class="catalogusForm" action="" method="post" onkeyup="regenerateCatalog()">
+                            <input class="form-control" id="postalCode" name="postalCode" type="text"
+                                   placeholder="Postcode">
+                        </form>
+                    </li>
+                </ul>
+            </div>
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Categorieën</h4>
                 <ul class="list-unstyled">
@@ -126,6 +137,9 @@
                                     Eerst
                                 </option>
                                 <option <?php if ($_POST['order'] == "Old") echo "selected " ?>value="Old">Oudste Eerst
+                                </option>
+                                <option <?php if ($_POST['order'] == "Dis") echo "selected" ?> value="Dis">
+                                    Dichtstbijzijnde Eerst
                                 </option>
                             </select>
                         </div>

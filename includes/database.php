@@ -55,24 +55,35 @@ function selectFromCatalogsMSSQL($orders)
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
             where VeilingGesloten = 0) as combinetable";
+    $distanceSet = false;
     $whereSet = false;
     $where = " WHERE ";
     foreach ($orders as $key => $order) {
         if (!empty($order)) {
-            if (strpos($key, ":search") !== false) {
+            if (strpos($key, ":lat") !== false) {
+                $distanceSet = true;
                 if ($whereSet) {
                     $where = " AND ";
                 }
-                $sql .= $where. " titel LIKE " . $key;
+                $whereSet = true;
+                $sql = setSqlDistance($sql);
+                $execute = setExecuteDistance($execute,$orders);
+                $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
+                $sql .= $where . " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 between :min and :max ";
+            } else if (strpos($key, ":search") !== false) {
+                if ($whereSet) {
+                    $where = " AND ";
+                }
+                $sql .= $where . " titel LIKE " . $key;
                 $whereSet = true;
                 $execute[":search"] = $order;
             } else if (strpos($key, ":val1") !== false) {
                 if ($whereSet) {
                     $where = " AND ";
                 }
-                $sql .= $where." ISNULL(hoogstebod ,Startprijs) BETWEEN :val1 AND :val2 ";
-                $execute[':val1']=$orders[':val1'];
-                $execute[':val2']=$orders[':val2'];
+                $sql .= $where . " ISNULL(hoogstebod ,Startprijs) BETWEEN :val1 AND :val2 ";
+                $execute[':val1'] = $orders[':val1'];
+                $execute[':val2'] = $orders[':val2'];
                 $whereSet = true;
             } else if (strpos($key, ":and") !== false) {
                 $sql .= " AND " . $key;
@@ -80,8 +91,13 @@ function selectFromCatalogsMSSQL($orders)
             } else if (strpos($key, ":order") !== false) {
                 if ($order == "n")
                     $sql .= " ORDER BY Voorwerpnummer ASC ";
-                else
+                else {
                     $sql .= " ORDER BY " . $order;
+                    if (!$distanceSet&&$key==' (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ASC ') {
+                        $sql = setSqlDistance($sql);
+                        $execute = setExecuteDistance($execute,$orders);
+                    }
+                }
             } else if (strpos($key, ":rubriek") !== false) {
                 $sql .= " AND Voorwerpnummer IN (select voorwerp from voorwerpinrubriek where RubriekOpLaagsteNiveau = :rubriek )";
                 $execute[":rubriek"] = $order;
@@ -98,4 +114,22 @@ function selectFromCatalogsMSSQL($orders)
     $data->execute($execute);
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+}
+function setSqlDistance($sql){
+    $sql = "DECLARE
+                        @GEO1 GEOGRAPHY,
+                        @LAT VARCHAR(10),
+                        @LONG VARCHAR(10)
+
+                        SET @LAT= :lat
+                        SET @LONG= :long
+                        SET @geo1= geography::Point(@LAT, @LONG, 4326)" . $sql;
+    return $sql;
+}
+function setExecuteDistance($execute,$orders){
+    $execute[":lat"] = $orders[':lat'];
+    $execute[":long"] = $orders[':long'];
+    $execute[":min"] = $orders[':minimumDistance'];
+    $execute[":max"] = $orders[':maximumDistance'];
+    return $execute;
 }
