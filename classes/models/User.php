@@ -89,6 +89,13 @@ class User
         $data->execute($user);
     }
 
+    static function insertGeo($user, $location)
+    {
+        global $dbh;
+        $data = $dbh->prepare("UPDATE Gebruiker SET Latitude=:lat, Longitude=:long WHERE Gebruikersnaam = :user");
+        $data->execute(array(":user"=>$user, ":lat"=>$location["latitude"], ":long"=>$location["longitude"]));
+    }
+
     static function updateSettings($updates, $user)
     {
         $execute = [];
