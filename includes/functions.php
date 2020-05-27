@@ -1,6 +1,7 @@
 <?php
 startAutoLoader();
 require_once('database.php');
+include_once('FCM.php');
 //include_once('socket.php');
 
 if (empty($_SESSION['token'])) {
@@ -73,8 +74,9 @@ function logPageVisitor(){
     }
 }
 
-function checkIP(){
-    if($_SERVER["REMOTE_ADDR"] != '::1') {
+function checkIP()
+{
+    if ($_SERVER["REMOTE_ADDR"] != '::1') {
         if (checkBlackList($_SERVER["REMOTE_ADDR"])) {
             header("Location: includes/denied.php");
         }
@@ -82,6 +84,20 @@ function checkIP(){
             header("Location: includes/denied.php");
         }
     }
+}
+
+function sendPushNotification(){
+    $regId = 'test';
+    $notification = array();
+    $arrNotification= array();
+    $arrData = array();
+    $arrNotification["body"] ="Test by Freek.";
+    $arrNotification["title"] = "PHP ADVICES";
+    $arrNotification["sound"] = "default";
+    $arrNotification["type"] = 1;
+
+    $fcm = new FCM();
+    $result = $fcm->send_notification($regId, $arrNotification,"Android");
 }
 
 function displayInformation($array, $notifications){
@@ -131,7 +147,7 @@ function createSession($user) // create session for user
 function setupDatabase() // setup the database
 {
     global $dbh;
-    $sql = file_get_contents('includes/Testscript.sql');
+    $sql = file_get_contents('includes/SQL/setupSqlsrv.sql');
     $data = $dbh->exec($sql);
 }
 
