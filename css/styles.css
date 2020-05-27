@@ -2023,6 +2023,25 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration: underline;
 }
 
+
+/**********Image-Zoom***********/
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+    position:relative;
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+}
+
 .veilingBekijkenPagina .itemInformatie .card-img-top{
     margin: 20px 5% 20px 5%;
     max-width: 90%;
