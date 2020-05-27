@@ -118,7 +118,7 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                         <!-- GEHEIME VRAAG -->
                         <div class="form-group col-md-6">
                             <label for="geheimeVraag">Geheime vraag</label>
-                            <select class="custom-select" name="secret-question" id="geheimeVraag">
+                            <select class="custom-select" name="question" id="geheimeVraag">
                                 <?php
                                 $selected = User::getUser($_SESSION['name'])['Vraag'];
                                 foreach (User::getQuestions() as $question) {
@@ -134,7 +134,7 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                         <!-- ANTWOORD GEHEIME VRAAG -->
                         <div class="form-group col-md-6">
                             <label for="antwGeheimeVraag">Antwoord</label>
-                            <input type="text" class="form-control" name="secret-answer" id="antwGeheimeVraag"
+                            <input type="text" class="form-control" name="answer" id="antwGeheimeVraag"
                                    placeholder="Antwoord" value="<?= $profile_data['Antwoordtekst'] ?>">
                         </div>
                     </div>
@@ -190,7 +190,7 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                     <!-- GEHEIME VRAAG -->
                     <div class="form-group col-md-4">
                         <label for="geheimeVraag">Geheime vraag</label>
-                        <select class="custom-select" name="secret-question" id="geheimeVraag">
+                        <select class="custom-select" name="question" id="geheimeVraag">
                             <?php
                             $selected = User::getUser($_SESSION['name'])['Vraag'];
                             foreach(User::getQuestions() as $question){
@@ -206,7 +206,7 @@ $profile_phone_nr = User::getPhoneNumber($_SESSION['name'])[0];
                     <!-- ANTWOORD GEHEIME VRAAG -->
                     <div class="form-group col-md-4">
                         <label for="antwGeheimeVraag">Antwoord</label>
-                        <input type="text" class="form-control" name="secret-answer" id="antwGeheimeVraag"
+                        <input type="text" class="form-control" name="answer" id="antwGeheimeVraag"
                                placeholder="Antwoord" value="<?=$profile_data['Antwoordtekst']?>">
                     </div>
 

@@ -61,13 +61,6 @@ class User
         $data->execute($user);
     }
 
-    static function updateUserPhoneNumber($userPhoneInformation)
-    {
-        global $dbh;
-        $data = $dbh->prepare("UPDATE Gebruikerstelefoon SET Telefoon=:phone_number WHERE Gebruiker = :username");
-        $data->execute($userPhoneInformation);
-    }
-
     static function updatePassword($username, $password)
     {
         global $dbh;
@@ -100,6 +93,13 @@ class User
         global $dbh;
         $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
         $data->execute([":Gebruikersnaam" => $user, ":Telefoon" => $phone]);
+    }
+
+    static function updatePhoneNumber($user, $phoneNr)
+    {
+        global $dbh;
+        $data = $dbh->prepare('UPDATE GebruikersTelefoon SET Telefoon=:phoneNr WHERE Gebruiker=:user');
+        $data->execute([":user" => $user, ":phoneNr" => $phoneNr]);
     }
 
     static function getPhoneNumber($user)
