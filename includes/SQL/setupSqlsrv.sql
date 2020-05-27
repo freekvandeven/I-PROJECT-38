@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS GebruikersInstellingen;
 DROP TABLE IF EXISTS Notificaties;
 DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
@@ -12,7 +13,6 @@ DROP TABLE IF EXISTS Verkoper;
 DROP TABLE IF EXISTS GebruikersTelefoon;
 DROP TABLE IF EXISTS Gebruiker;
 DROP TABLE IF EXISTS Vraag;
-
 
 
 CREATE TABLE Bod(
@@ -54,6 +54,16 @@ CREATE TABLE Gebruiker(
 	Action						BIT 		    NOT NULL,
 	Bevestiging                 BIT             NOT NULL,
 	CONSTRAINT PK_Gebruiker	PRIMARY KEY	(Gebruikersnaam)
+);
+
+CREATE TABLE GebruikersInstellingen(
+	Gebruiker	VARCHAR(20)		NOT NULL DEFAULT 0,
+	reccomendations BIT NOT NULL DEFAULT 0,
+	darkmode BIT NOT NULL DEFAULT 0,
+	notifications BIT NOT NULL DEFAULT 0,
+	superTracking BIT NOT NULL DEFAULT 0,
+	emails BIT NOT NULL DEFAULT 0,
+	constraint PK_GebruikersInstellingen_Gebruiker PRIMARY KEY (Gebruiker)
 );
 
 CREATE TABLE Beoordeling (
@@ -114,8 +124,6 @@ CREATE TABLE Verkoper(
 	CONSTRAINT PK_Verkoper PRIMARY KEY (gebruiker)
 );
 
-
-
 CREATE TABLE Voorwerp(
 	Voorwerpnummer				INTEGER 		NOT NULL IDENTITY,
 	Titel						VARCHAR(100)	NOT NULL,
@@ -145,9 +153,23 @@ CREATE TABLE Bestand(
 
 CREATE TABLE Notificaties(
     Bericht  VARCHAR(256) NOT NULL,
+    Link       VARCHAR(64) DEFAULT '#',
     Ontvanger VARCHAR(20) NOT NULL,
-    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Ontvanger)
+    CONSTRAINT PK_Notificatie PRIMARY KEY(Bericht, Link, Ontvanger)
 );
+
+CREATE TABLE Bericht(
+    Message   VARCHAR(256) NOT NULL,
+    Verzender VARCHAR(20)  NOT NULL,
+    Ontvanger VARCHAR(20)  NOT NULL,
+    Tijdstip    DATETIME   DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE Bericht
+ADD CONSTRAINT FK_Bericht_Verzender FOREIGN KEY (Verzender)
+        REFERENCES Gebruiker(Gebruikersnaam)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
 
 ALTER TABLE Notificaties
 ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
@@ -239,22 +261,18 @@ ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION;
 
+ALTER TABLE gebruikersinstellingen
+ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
+REFERENCES Gebruiker(Gebruikersnaam)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
 insert into Vraag (tekstvraag)
 values(
        'Wie kan het beste koken?'),(
        'Wat is je geboorteplaats?'
        );
 
-
 insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
 '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
-
-insert into Rubriek (RubriekNaam, Rubrieknummer)values(
-'Autos, boten en motoren',1),(
-'Baby',	2),(
-'Muziek en instrumenten',3),(
-'Elektronica',4),(
-'Mode',	5);
-
-

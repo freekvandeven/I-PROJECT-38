@@ -42,14 +42,23 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="<?=$images[0];?>" alt="Thumbnail">
+
+                                    <div class="img-magnifier-container">
+                                        <img id="image" class="d-block w-100" src="<?=$images[0]?>" alt="Thumbnail">
+                                    </div>
+                                    <script>
+                                        enableZoom("image", 1.4);
+                                    </script>
                                 </div>
 
                                 <?php
                                 for($i=1; $i<count($images); $i++): ?>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="<?=$images[$i];?>" alt="Productfoto">
+                                        <img class="d-block w-100" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
                                     </div>
+                                    <script>
+                                        enableZoom("image-<?=$i?>", 1.4);
+                                    </script>
                                 <?php endfor; ?>
                             </div>
                             <?php

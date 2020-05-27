@@ -296,6 +296,54 @@ footer div div div div a:hover{
     padding: 0;
 }
 
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Snackbar is used for sending a toast at the bottom of the page */
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
 /******************** HOMEPAGE *****************/
 /* De kleur paars: #A569BD of 165, 105, 189 */
 
@@ -325,7 +373,7 @@ body{
 
 .homePage .products{
     margin-top: 40px;
-    padding: 30px 17% 150px 17%;
+    padding: 30px 17% 50px 17%;
     background: rgb(245, 245, 245);
 }
 
@@ -753,6 +801,24 @@ body{
     margin-bottom: 20px;
 }
 
+.mijnFavorietenPagina .verwijderButton{
+    padding: 0;
+    width: 40px;
+    height: 48px;
+}
+
+.mijnFavorietenPagina .verwijderButton button{
+    height: 100%;
+    width: 40px;
+    border: none;
+    background: #fff;
+    color: #fff;
+}
+
+.mijnFavorietenPagina .verwijderButton button img{
+    width: 100%;
+}
+
 .mijnVeilingenPagina .legendaDropdownButton:hover,
 .mijnVeilingenPagina .legendaDropdownButton:focus,
 .mijnFavorietenPagina .legendaDropdownButton:hover,
@@ -1072,7 +1138,15 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     color: #fff;
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
-
+/*************** SETTINGS CSS ******************/
+.custom-control-input:checked~.custom-control-label::before {
+    background-color:rgb(165, 105, 189);
+    border-color:rgb(165, 105, 189);
+}
+.custom-control-input:checked~.custom-control-label:visited {
+    box-shadow:rgb(165, 105, 189);
+    border-color:rgb(165, 105, 189);
+}
 /*************** CONTACTPAGINA CSS *************/
 .contactPagina .jumbotron{
     padding-left: 20%;
@@ -1680,6 +1754,20 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     width: 100%;
 }
 
+.adminPaginaSub #loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /*************** CATALOGUSPAGINA CSS *************/
 .catalogusPagina .container{
     margin-top: 50px;
@@ -1995,6 +2083,25 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     text-decoration: underline;
 }
 
+
+/**********Image-Zoom***********/
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+    position:relative;
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+}
+
 .veilingBekijkenPagina .itemInformatie .card-img-top{
     margin: 20px 5% 20px 5%;
     max-width: 90%;
@@ -2183,6 +2290,82 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     border: 1px solid green;
     height: 18px;
     width: 18px;
+}
+
+/********EMAIL-TEMPLATE-IMPROVEMENT*********/
+
+.email-template {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    background-color: rgb(235, 231, 231);
+}
+
+.email-template a , .email-template img{
+    margin: 0 auto;
+    display:block;
+    text-align: center;
+}
+
+
+.email-template #aankondiging{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-shadow: rgb(255, 255, 255);
+}
+
+.email-template #prijs {
+    font-weight: bold;
+    color: rgb(110, 65, 110);
+    display: inline;
+}
+
+.email-template {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    background-color: rgb(235, 231, 231);
+}
+
+.email-template #aankondiging{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-shadow: rgb(255, 255, 255);
+}
+
+.email-template #prijs {
+    font-weight: bold;
+    color: rgb(110, 65, 110);
+    display: inline;
+}
+
+.email-template #nieuws {
+    text-decoration: underline;
+    text-shadow:rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: xx-large;
+    color: rgb(205, 114, 218);
+}
+
+
+.email-template a:link {
+    text-decoration: none;
+    color: rgb(205, 114, 218);
+    font-size: x-large;
+}
+
+.email-template a:visited {
+    text-decoration: none;
+}
+
+.email-template a:hover {
+    text-decoration: underline;
+    color: rgb(205, 114, 218);
+    font-size: xx-large;
+}
+
+.email-template a:active {
+    text-decoration: underline;
 }
 
 /******************* PRIVACY-POLICY ******************/

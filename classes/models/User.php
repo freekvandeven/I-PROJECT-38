@@ -21,20 +21,21 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-    static function getUsersLimit($limit)
+    static function getUsersLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT TOP ".$limit." * FROM Gebruiker");
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Gebruiker WHERE Gebruikersnaam LIKE :search");
+        $data->execute([":search"=>'%' . $search . '%']);
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+
     static function getNotifications($user)
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT Bericht FROM Notificaties WHERE Ontvanger = :user");
+        $data = $dbh->prepare("SELECT Bericht, Link FROM Notificaties WHERE Ontvanger = :user");
         $data->execute([":user"=>$user]);
-        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -42,14 +43,14 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("DELETE FROM Notificaties WHERE Ontvanger = :user");
-        $data->execute(["user"=>$user]);
+        $data->execute(["user" => $user]);
     }
 
-    static function notifyUser($user, $message)
+    static function notifyUser($user, $message, $link = '#')
     {
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Ontvanger) VALUES (:message, :user)");
-        $data->execute([":message"=>$message, ":user"=>$user]);
+        $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Link, Ontvanger) VALUES (:message, :link, :user)");
+        $data->execute([":message"=>$message, ":link"=>$link, ":user"=>$user]);
     }
 
     static function updateUser($user)
@@ -88,6 +89,37 @@ class User
         $data->execute($user);
     }
 
+    static function insertGeo($user, $location)
+    {
+        global $dbh;
+        $data = $dbh->prepare("UPDATE Gebruiker SET Latitude=:lat, Longitude=:long WHERE Gebruikersnaam = :user");
+        $data->execute(array(":user"=>$user, ":lat"=>$location["latitude"], ":long"=>$location["longitude"]));
+    }
+
+    static function updateSettings($updates, $user)
+    {
+        $execute = [];
+        $sql = "UPDATE GebruikersInstellingen SET ";
+        foreach ($updates as $update => $value) {
+            $sql .= $update . " = :" . $update . " , ";
+            $execute[":" . $update] = $value;
+        }
+        $execute[':gebruiker'] = $user;
+        $sql = substr($sql, 0, -2);
+        $sql .= " WHERE Gebruiker = :gebruiker";
+        global $dbh;
+        $data = $dbh->prepare($sql);
+        $data->execute($execute);
+    }
+
+    static function getSettings($user)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM GebruikersInstellingen WHERE Gebruiker = :gebruiker");
+        $data->execute(['gebruiker'=>$user]);
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     static function insertPhoneNumber($user, $phone)
     {
         global $dbh;
@@ -106,7 +138,7 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("SELECT Telefoon FROM GebruikersTelefoon WHERE Gebruiker = :user");
-        $data->execute([":user"=>$user]);
+        $data->execute([":user" => $user]);
         $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }
@@ -140,6 +172,8 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare('UPDATE Gebruiker SET Bevestiging=1 WHERE Gebruikersnaam =:username');
+        $data->execute([":username" => $username]);
+        $data = $dbh->prepare('INSERT INTO GebruikersInstellingen (Gebruiker) values( :username )');
         $data->execute([":username" => $username]);
     }
 
@@ -177,51 +211,53 @@ class User
         return $result[0];
     }
 
-    static function deleteUser($name){
+    static function deleteUser($name)
+    {
         global $dbh;
         $data = $dbh->prepare("ALTER TABLE Bod NOCHECK FK_Bod_gebruikersnaam");
         $data->execute();
         $data = $dbh->prepare("UPDATE Bod SET Gebruiker = NULL WHERE Gebruiker = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("ALTER TABLE Bod CHECK FK_Bod_gebruikersnaam");
         $data->execute();
         $data = $dbh->prepare("DELETE FROM Verkoper  WHERE Gebruiker = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Voorwerp SET Verkoper = NULL WHERE Verkoper = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Voorwerp SET Koper = NULL WHERE Koper = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Beoordeling SET Gebruikersnaam = NULL WHERE Gebruikersnaam = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Beoordeling SET GegevenDoor = NULL WHERE GegevenDoor = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Comments SET Gebruikersnaam = NULL WHERE Gebruikersnaam = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("UPDATE Comments SET FeedbackGever = NULL WHERE FeedbackGever = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
-        return $data->execute([":gebruiker"=>$name]);
+        return $data->execute([":gebruiker" => $name]);
     }
 
-    static function nukeUser($name){
+    static function nukeUser($name)
+    {
         global $dbh;
         $data = $dbh->prepare("DELETE FROM Bod WHERE Gebruiker = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Verkoper  WHERE Gebruiker = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Voorwerp WHERE Verkoper = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Voorwerp WHERE Koper = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Beoordeling WHERE Gebruikersnaam = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Beoordeling WHERE GegevenDoor = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Comments WHERE Gebruikersnaam = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Comments WHERE FeedbackGever = :gebruiker");
-        $data->execute([":gebruiker"=>$name]);
+        $data->execute([":gebruiker" => $name]);
         $data = $dbh->prepare("DELETE FROM Gebruiker WHERE Gebruikersnaam = :gebruiker");
-        return $data->execute([":gebruiker"=>$name]);
+        return $data->execute([":gebruiker" => $name]);
     }
 }

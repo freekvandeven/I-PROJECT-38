@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Denied;
 DROP TABLE IF EXISTS Pages;
 DROP TABLE IF EXISTS Whitelist;
 DROP TABLE IF EXISTS Blacklist;
@@ -5,7 +6,7 @@ DROP TABLE IF EXISTS Visitors;
 
 CREATE TABLE Pages(
     PageName            VARCHAR(20) NOT NULL,
-    Visits              INTEGER(5) NULL,
+    Visits              INTEGER(5)      NULL,
     CONSTRAINT PK_Pages     PRIMARY KEY (PageName)
 );
 
@@ -23,7 +24,10 @@ CREATE TABLE Blacklist(
 
 CREATE TABLE Visitors(
     IP                 VARCHAR(15) NOT NULL,
-    TotalVisits        INTEGER(5) NULL,
+    TotalVisits        INTEGER(5)      NULL,
+    Latitude           DECIMAL(10,8)   NULL,
+    Longitude          DECIMAL(11,8)   NULL,
+    FirstVisit         DATETIME        DEFAULT CURRENT_TIME(),
     CONSTRAINT PK_Visitors  PRIMARY KEY (IP)
 );
 
@@ -32,3 +36,6 @@ CREATE TABLE Denied(
 );
 
 INSERT INTO Whitelist (IP, Name) VALUES ('80.100.205.64', 'Freek'), ('86.92.74.42', 'Joons');
+
+
+#create constraints

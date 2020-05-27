@@ -33,8 +33,8 @@ class Items
     static function getBuyerItems($buyer)
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT DISTINCT Voorwerpnummer, Titel, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land,
-                Looptijd, Verkoper, Koper, VeilingGesloten FROM Voorwerp v RIGHT OUTER JOIN Bod b ON b.Voorwerp=v.Voorwerpnummer WHERE Koper=:buyer1 OR Gebruiker=:buyer');
+        $data = $dbh->prepare('SELECT DISTINCT Voorwerpnummer, Titel, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land, 
+                LooptijdEindeTijdstip, Verkoper, Koper, VeilingGesloten FROM Voorwerp v RIGHT OUTER JOIN Bod b ON b.Voorwerp=v.Voorwerpnummer WHERE Koper=:buyer1 OR Gebruiker=:buyer');
         $data->execute([":buyer" => $buyer, ":buyer1" => $buyer]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -76,11 +76,11 @@ class Items
         return $result;
     }
 
-    static function getItemsLimit($limit)
+    static function getItemsLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT TOP '.$limit.' * FROM Voorwerp');
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
+        $data->execute([":search"=>'%' . $search. '%']);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

@@ -1,10 +1,16 @@
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://iproject38.icasites.nl/css/styles.css">
+</head>
 <body>
-<h5>Hallo {{ username }}</h5>
-<p> Wat fijn dat u zich heeft geregistreerd!</p><br>
-<p>Geniet bij ons van de talloze keuzes die je hebt!</p><br>
-<p>U bent nog een knop verwijderd van een account bij EenmaalAndermaal!</p><br>
-<a href='https://iproject38.icasites.nl/login.php?name={{ username }}&hash={{ hash }}' target='_blank'>Activeer hier jouw account!</a><br>
-<p>Groeten van het EenmaalAndermaal Team</p>
+<div class="email-template">
+    <h3 id="aankondiging">Hallo {{ username }}</h3>
+    <p id="nieuws"> Wat fijn dat u zich heeft geregistreerd!</p>
+    <p>Geniet bij ons van de talloze keuzes die je hebt!</p>
+    <p>U bent nog een knop verwijderd van een account bij EenmaalAndermaal!</p>
+    <a href='https://iproject38.icasites.nl/login.php?name={{ username }}&hash={{ hash }}' target='_blank'>Activeer hier jouw account!</a>
+    <p>Groeten van het EenmaalAndermaal Team</p>
+    <img src="images/icon.svg" alt="Icon van EenmaalAndermaal">
+</div>
 </body>
 </html>

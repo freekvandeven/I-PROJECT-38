@@ -53,19 +53,31 @@
             <?php
             $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
             generateCatalog($items);
-            $timerDates = array_column($items, 'LooptijdEindeTijdstip');
-            for($i=0;$i<count($timerDates);$i++){
-                $timerDates[$i] = explode(".", $timerDates[$i])[0];
-            }
             ?>
-          
-            <script type="text/javascript">
-                var timerDates = <?php echo json_encode($timerDates); ?>;
-                initializeCountdownDates(timerDates);
-                if(!countdown) { // if countdown hasn't been started
-                    setupCountdownTimers();
-                }
-            </script>
         </div>
     </div>
+    <!-- De snelst aflopende producten -->
+    <div class="products">
+        <h3>Bekijk hier de nieuwste producten:</h3>
+        <div class="productsList">
+            <?php
+            $items2 = selectFromCatalog(array(":order" => "abs(datediff_BIG(second,looptijdbegintijdstip, getdate()))",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+            generateCatalog($items2,8,true);
+
+            ?>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        <?php $totalItems = array_merge($items,$items2);
+        $timerDates = array_column($totalItems, 'LooptijdEindeTijdstip');
+        for($i=0;$i<count($timerDates);$i++){
+            $timerDates[$i] = explode(".", $timerDates[$i])[0];
+        }?>
+        var timerDates = <?php echo json_encode($timerDates); ?>;
+        initializeCountdownDates(timerDates);
+        if(!countdown) { // if countdown hasn't been started
+            setupCountdownTimers();
+        }
+    </script>
 </main>

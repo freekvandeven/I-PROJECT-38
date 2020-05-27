@@ -53,6 +53,13 @@
         }
     }
 
+    function showToast(duration) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+        // After x seconds, remove the show class from DIV
+        setTimeout(function(){x.className = ""}, duration);
+    }
+
     function showCategory(str){
         if(str.length == 0) {
             document.getElementById("searchResult").innerHTML = "";
@@ -98,11 +105,13 @@
         if(!fillStarted) { // if the fill hasn't started yet
             if (confirm("Are you sure you want to fill the database?(This could take atleast 15 minutes)")) {
                 fillStarted = true;
+                document.getElementById("loader").style.display = 'block';
                 document.getElementById("databaseFillButton").innerText = "Abort!";
                 sendAjaxStep(0);
             }
         } else { // abort the filling
             xmlhttp.abort();
+            document.getElementById("loader").style.display = 'none';
             document.getElementById("databaseFillButton").innerText = "Start Filling!";
             fillStarted = false;
         }
@@ -155,4 +164,36 @@
                 }
             });
         }
+    }
+    function updateMessages(){
+        //alert("updating chat");
+        $.post("ajax.php",
+            {
+                request: "getMessages",
+                responder: responder
+            },
+            function(data,status){
+                $("#chatWindow").html(data);
+            });
+        return updateMessages;
+    }
+    function startChat(chatter){
+        responder = chatter;
+        $(document).ready(function(){
+            setInterval(updateMessages(), 2000);
+        });
+    }
+
+    function sendChatMessage(receiver){
+        var message = $("#chatMessage").val();
+        $.post("ajax.php",
+            {
+                request: "sendMessages",
+                message: message,
+                receiver: receiver
+            },
+            function(data, status){
+                updateMessages();
+            }
+            );
     }

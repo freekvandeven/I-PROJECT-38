@@ -143,7 +143,18 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                                 </button>
                             </form>
                         </div>
-
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Instellingen</h4>
+                            <p>Hier kunt u uw account instellingen veranderen.  </p>
+                            <a href="profile.php?action=settings" class="btn btn-primary">Instellingen</a>
+                        </div>
+                    </div>
+                </div>
+                <div> <!--temp-->
                     </div>
                 </div>
             </div>
