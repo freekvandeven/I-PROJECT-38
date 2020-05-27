@@ -30,6 +30,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             </div>
                             <?php endif; ?>
                         </h4>
+
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -39,28 +40,44 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                     <?php
                                 }
                                 ?>
+
+                            <!-- Tekent eerste afbeelding -->
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-
-                                    <div class="img-magnifier-container">
-                                        <img id="image" class="d-block w-100" src="<?=$images[0]?>" alt="Thumbnail">
-                                    </div>
-                                    <script>
-                                        enableZoom("image", 1.4);
-                                    </script>
+                                    <a href="#image0">
+                                        <img class="d-block w-100" src="<?=$images[0]?>" alt="Thumbnail">
+                                    </a>
                                 </div>
 
+                                <!-- Foto 1 vergroot -->
+                                <div class="lightbox-target" id="image0">
+                                    <img src="<?=$images[0]?>">
+                                    <a class="lightbox-close" href="#"></a>
+                                </div>
+
+                                <!-- Tekent de andere afbeeldingen -->
                                 <?php
                                 for($i=1; $i<count($images); $i++): ?>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
+                                        <a href="#image<?php echo $i ?>" >
+                                            <img class="d-block w-100" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
+                                        </a>
                                     </div>
-                                    <script>
-                                        enableZoom("image-<?=$i?>", 1.4);
-                                    </script>
                                 <?php endfor; ?>
+
+                                <!-- Vergroot de rest van de afbeeldingen -->
+                                <?php for($i=1; $i<count($images); $i++) : ?>
+                                    <div class="lightbox-target" id="image<?php echo $i ?>">
+                                        <img src="<?=$images[$i];?>">
+                                        <a class="lightbox-close" href="#"></a>
+                                    </div>
+                                <?php endfor; ?>
+
+
                             </div>
+
+                            <!-- Zijn er meer dan 1 afbeeldingen? -->
                             <?php
                             if(count($images) > 1): ?>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
