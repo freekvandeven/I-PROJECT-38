@@ -22,30 +22,32 @@ function checkVisitor(){
 
 function logPageVisitor(){
     $currentPage = basename($_SERVER['PHP_SELF']);
-    if(checkPage($currentPage)){
+    if(Admin::checkPage($currentPage)){
         #increase page count
-        increasePage($currentPage);
+        Admin::increasePage($currentPage);
     } else {
         #insert page
-        insertPage($currentPage);
+        Admin::insertPage($currentPage);
     }
     // insert IP
-    if(searchIPVisits($_SERVER["REMOTE_ADDR"])){
-        increaseIPVisits($_SERVER["REMOTE_ADDR"]);
+    if(Admin::searchIPVisits($_SERVER["REMOTE_ADDR"])){
+        Admin::increaseIPVisits($_SERVER["REMOTE_ADDR"]);
     } else {
-        insertVisitorIP($_SERVER["REMOTE_ADDR"]);
+        Admin::insertVisitorIP($_SERVER["REMOTE_ADDR"]);
     }
 }
 
 function checkIP()
 {
     if ($_SERVER["REMOTE_ADDR"] != '::1') {
-        if (checkBlackList($_SERVER["REMOTE_ADDR"])) {
+        if (Admin::checkBlackList($_SERVER["REMOTE_ADDR"])) {
             header("Location: includes/denied.php");
         }
-        if (!checkWhiteList($_SERVER["REMOTE_ADDR"])) {
+        /*
+        if (!Admin::checkWhiteList($_SERVER["REMOTE_ADDR"])) {
             header("Location: includes/denied.php");
         }
+        */
     }
 }
 
