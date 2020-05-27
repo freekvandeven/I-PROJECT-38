@@ -860,7 +860,7 @@ body{
     margin-bottom: 20px;
 }
 
-.profielPagina .container .row div .card .card-body a,
+.profielPagina .container .row div .card .card-body .btn,
 .profielPagina .container .container .row div .card .card-body form button{
     margin-top: 10px;
     font-size: 18px;
@@ -934,6 +934,7 @@ body{
     text-decoration-color: rgb(165, 105, 189);
     box-shadow: none;
     background: none;
+    transition: 200ms;
 }
 
 .profielPagina .container .container .row div .card .card-body .wijzigFotoLink img{

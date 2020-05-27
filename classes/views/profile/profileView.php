@@ -29,8 +29,7 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                             <h4 class="subTitel card-title">Persoonsgegevens</h4>
                             <div class="itemImageProfilePage">
                                 <a href="profile.php?action=update&option=profielfoto">
-                                    <img src="<?=getProfileImage($_SESSION['name'])?>" class="card-img"
-                                         alt="profielfoto">
+                                    <img src="<?=getProfileImage($_SESSION['name'])?>" class="card-img" alt="profielfoto">
                                 </a>
                             </div>
                             <p>
