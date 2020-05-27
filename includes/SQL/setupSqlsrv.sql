@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS GebruikersInstellingen
+DROP TABLE IF EXISTS GebruikersInstellingen;
 DROP TABLE IF EXISTS Notificaties;
 DROP TABLE IF EXISTS Favorieten;
 DROP TABLE IF EXISTS Comments;
@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS Verkoper;
 DROP TABLE IF EXISTS GebruikersTelefoon;
 DROP TABLE IF EXISTS Gebruiker;
 DROP TABLE IF EXISTS Vraag;
-
 
 
 CREATE TABLE Bod(
@@ -65,7 +64,7 @@ CREATE TABLE GebruikersInstellingen(
 	superTracking BIT NOT NULL DEFAULT 0,
 	emails BIT NOT NULL DEFAULT 0,
 	constraint PK_GebruikersInstellingen_Gebruiker PRIMARY KEY (Gebruiker)
-)
+);
 
 CREATE TABLE Beoordeling (
     BeoordelingsNr 				INTEGER      	NOT NULL IDENTITY,
@@ -124,8 +123,6 @@ CREATE TABLE Verkoper(
 	Creditcard					CHAR(19)        NULL,
 	CONSTRAINT PK_Verkoper PRIMARY KEY (gebruiker)
 );
-
-
 
 CREATE TABLE Voorwerp(
 	Voorwerpnummer				INTEGER 		NOT NULL IDENTITY,
@@ -268,7 +265,7 @@ ALTER TABLE gebruikersinstellingen
 ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
 REFERENCES Gebruiker(Gebruikersnaam)
 ON UPDATE CASCADE
-ON DELETE CASCADE
+ON DELETE CASCADE;
 
 insert into Vraag (tekstvraag)
 values(
@@ -276,16 +273,6 @@ values(
        'Wat is je geboorteplaats?'
        );
 
-
 insert into Gebruiker
 values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
 '$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);
-
-insert into Rubriek (RubriekNaam, Rubrieknummer)values(
-'Autos, boten en motoren',1),(
-'Baby',	2),(
-'Muziek en instrumenten',3),(
-'Elektronica',4),(
-'Mode',	5);
-
-
