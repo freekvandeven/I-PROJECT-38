@@ -11,7 +11,8 @@ if (empty($_SESSION['token'])) {
 }
 $token = $_SESSION['token'];
 
-function registerRequest(){
+function registerRequest()
+{
     checkVisitor();
     checkItemDate();
 }
@@ -22,54 +23,60 @@ function checkPost()
     return !empty($_POST) && !empty($_POST['token']) && hash_equals($_SESSION['token'], $_POST['token']);
 }
 
-function checkItemDate(){
+function checkItemDate()
+{
     $items = Items::getFinishedItems();
-    foreach($items as $item){
+    foreach ($items as $item) {
         $bid = Items::getHighestBid($item["Voorwerpnummer"]);
-        Items::finishItem($item["Voorwerpnummer"],$bid["Gebruiker"],$bid["Bodbedrag"]);
+        Items::finishItem($item["Voorwerpnummer"], $bid["Gebruiker"], $bid["Bodbedrag"]);
         notifySeller($item["Verkoper"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
         notifyBuyer($bid["Gebruiker"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
     }
 }
 
-function cleanupUploadFolder(){
-    for($i=10000;$i<40000;$i++){
-        if(file_exists("upload/items/".$i.".png")){
-            unlink("upload/items/".$i.".png");
+function cleanupUploadFolder()
+{
+    for ($i = 10000; $i < 40000; $i++) {
+        if (file_exists("upload/items/" . $i . ".png")) {
+            unlink("upload/items/" . $i . ".png");
         }
     }
 }
-function startAutoLoader(){
+
+function startAutoLoader()
+{
     #this function loads all classes in classes/models/ whenever they are called in our program.
     spl_autoload_register(function ($class_name) {
         include 'classes/models/' . $class_name . '.php';
     });
 }
 
-function sendPushNotification(){
+function sendPushNotification()
+{
     $regId = 'test';
     $notification = array();
-    $arrNotification= array();
+    $arrNotification = array();
     $arrData = array();
-    $arrNotification["body"] ="Test by Freek.";
+    $arrNotification["body"] = "Test by Freek.";
     $arrNotification["title"] = "PHP ADVICES";
     $arrNotification["sound"] = "default";
     $arrNotification["type"] = 1;
 
     $fcm = new FCM();
-    $result = $fcm->send_notification($regId, $arrNotification,"Android");
+    $result = $fcm->send_notification($regId, $arrNotification, "Android");
 }
 
-function displayInformation($array, $notifications){
+function displayInformation($array, $notifications)
+{
     $html = "";
-    if(sizeof($array) == 0) {
-        if($notifications) {
+    if (sizeof($array) == 0) {
+        if ($notifications) {
             echo '<p>Er zijn nog geen notificaties :(</p>';
         } else {
             echo '<p>Nog geen gebruikers :(</p>';
         }
     } else {
-        if($notifications) {
+        if ($notifications) {
             foreach ($array as $notification) {
                 $html .= "<a href='" . $notification['Link'] . "' class='list-group-item list-group-item-action'>" . $notification['Bericht'] . "</a>";
             }
@@ -82,8 +89,9 @@ function displayInformation($array, $notifications){
     return $html;
 }
 
-function deleteFile($file){
-    if(file_exists($file)){
+function deleteFile($file)
+{
+    if (file_exists($file)) {
         unlink($file);
     }
 }
@@ -96,24 +104,27 @@ function createSession($user) // create session for user
     $_SESSION['admin'] = $user['Action'];
 }
 
-function storeImg($files, $id,$target_dir)
+function storeImg($files, $id, $target_dir)
 {
-    move_uploaded_file($files, $target_dir . $id .'.png');
+    move_uploaded_file($files, $target_dir . $id . '.png');
 }
 
-function checkImageExists($fileName) {
+function checkImageExists($fileName)
+{
     return file_exists("upload/items/$fileName");
 }
 
-function getProfileImage($user){
-    if(isset($user) && file_exists("upload/users/".$user.".png")){
+function getProfileImage($user)
+{
+    if (isset($user) && file_exists("upload/users/" . $user . ".png")) {
         return "upload/users/$user.png";
     } else {
         return "images/profilePicture.png";
     }
 }
 
-function sendConfirmationEmail($mail, $username, $hash){
+function sendConfirmationEmail($mail, $username, $hash)
+{
     $subject = "Bevestig je account";
     $variables = [];
     $variables['username'] = $username;
@@ -121,14 +132,16 @@ function sendConfirmationEmail($mail, $username, $hash){
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
 
-function notifyFollowers($item){
-    foreach(Items::getFollowers($item) as $follower) // get all item followers
+function notifyFollowers($item)
+{
+    foreach (Items::getFollowers($item) as $follower) // get all item followers
     {
         User::notifyUser($follower, "Er is een item geupdate");
     }
 }
 
-function notifySeller($seller, $id, $price){
+function notifySeller($seller, $id, $price)
+{
     $user = User::getUser($seller);
     $subject = "Veiling afgelopen";
     $variables = [];
@@ -136,10 +149,11 @@ function notifySeller($seller, $id, $price){
     $variables['id'] = $id;
     $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
-    User::notifyUser($seller,"Je veiling is afgelopen");
+    User::notifyUser($seller, "Je veiling is afgelopen");
 }
 
-function notifyBuyer($buyer, $id, $offer){
+function notifyBuyer($buyer, $id, $offer)
+{
     $user = User::getUser($buyer);
     $subject = "Veiling afgelopen";
     $variables = [];
@@ -150,33 +164,34 @@ function notifyBuyer($buyer, $id, $offer){
     User::notifyUser($buyer, "Je hebt de veiling gewonnen");
 }
 
-function sendFormattedMail($receiver, $subject, $filename, $variables){
-    $template = file_get_contents("classes/views/email/".$filename);
-    foreach($variables as $key => $value)
-    {
-        $template = str_replace('{{ '.$key.' }}', $value, $template);
+function sendFormattedMail($receiver, $subject, $filename, $variables)
+{
+    $template = file_get_contents("classes/views/email/" . $filename);
+    foreach ($variables as $key => $value) {
+        $template = str_replace('{{ ' . $key . ' }}', $value, $template);
     }
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     return mail($receiver, $subject, $template, $headers);
 }
 
-function generateImageLink($item, $thumbnail=true){
-        if($thumbnail){
-            $image = Items::getThumbnail($item);
-            if(strpos($image, 'cst')!==false){ // file exists doesn't work on the files in thumbnails
-                return "upload/items/".$image;
-            } else {
-                return "thumbnails/".$image;
-            }
+function generateImageLink($item, $thumbnail = true)
+{
+    if ($thumbnail) {
+        $image = Items::getThumbnail($item);
+        if (strpos($image, 'cst') !== false) { // file exists doesn't work on the files in thumbnails
+            return "upload/items/" . $image;
         } else {
-            $images = Items::getFiles($item);
-            if(strpos($images[0], 'cst')!==false) { // file exists doesn't work on the files in pics
-                return preg_filter('/^/', 'upload/items/', $images);
-            } else {
-                return preg_filter('/^/', 'pics/', $images);
-            }
+            return "thumbnails/" . $image;
         }
+    } else {
+        $images = Items::getFiles($item);
+        if (strpos($images[0], 'cst') !== false) { // file exists doesn't work on the files in pics
+            return preg_filter('/^/', 'upload/items/', $images);
+        } else {
+            return preg_filter('/^/', 'pics/', $images);
+        }
+    }
 }
 
 function generateCatalog($items, $counter = 0, $new = false)
@@ -190,22 +205,24 @@ function generateCatalog($items, $counter = 0, $new = false)
             <div class='card'>
                 <div class="itemImageCatalogusPage">
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>'>
-                        <img src='<?php echo generateImageLink($card['Voorwerpnummer'],true); ?>' class='card-img-top' alt='Productnaam'>
-                        <!--<img src='upload/items/<?= $card["Voorwerpnummer"]?>.png' class='card-img-top' alt='Productnaam'>-->
+                        <img src='<?php echo generateImageLink($card['Voorwerpnummer'], true); ?>' class='card-img-top'
+                             alt='Productnaam'>
+                        <!--<img src='upload/items/<?= $card["Voorwerpnummer"] ?>.png' class='card-img-top' alt='Productnaam'>-->
                     </a>
                 </div>
                 <div class='card-body'>
                     <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                    <p class='card-text'><?php if(strlen($card['Beschrijving'])<200) $card['Beschrijving']?></p>
-                    <p class="card-text">	&euro; <?= number_format($card['prijs'],2, ',', '.')?></p>
+                    <p class='card-text'><?php if (strlen($card['Beschrijving']) < 200) $card['Beschrijving'] ?></p>
+                    <p class="card-text"> &euro; <?= number_format($card['prijs'], 2, ',', '.') ?></p>
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                 </div>
                 <div class='card-footer'>
                     <!-- Display the countdown timer in an element -->
-                    <p id="timer-<?=$counter?>"></p>
-                    <?php if($new):?>
-                        <p><?=round((strtotime(date('Y-m-d H:i:s'))-strtotime($card['LooptijdBeginTijdstip']))/60,0);?> minuten geleden</p>
-                    <?php endif;?>
+                    <p id="timer-<?= $counter ?>"></p>
+                    <?php if ($new): ?>
+                        <p><?= round((strtotime(date('Y-m-d H:i:s')) - strtotime($card['LooptijdBeginTijdstip'])) / 60, 0); ?>
+                            minuten geleden</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -215,35 +232,37 @@ function generateCatalog($items, $counter = 0, $new = false)
             echo "</div>";
         }
     endforeach;
-        if ($counter % 4 != 0){
-            echo "</div>";
-        }
+    if ($counter % 4 != 0) {
+        echo "</div>";
+    }
 }
 
-function reOrganizeArray($file_posts){
+function reOrganizeArray($file_posts)
+{
     $new_file_array = array();
     $file_count = count($file_posts['name']);
     $file_keys = array_keys($file_posts);
 
-    for($i=0; $i<$file_count; $i++) {
-        foreach($file_keys as $key){
+    for ($i = 0; $i < $file_count; $i++) {
+        foreach ($file_keys as $key) {
             $new_file_array[$i][$key] = $file_posts[$key][$i];
         }
     }
     return $new_file_array;
 }
 
-function generateCategoryDropdown(){
+function generateCategoryDropdown()
+{
     $categories = Items::getCategories();
     $html = '<ul>';
-    foreach($categories as $maincategory=>$subcategories){
+    foreach ($categories as $maincategory => $subcategories) {
         $html .= "<li>$maincategory<ul>";
-        foreach($subcategories as $subcategory=>$subsubcategories){
+        foreach ($subcategories as $subcategory => $subsubcategories) {
             $html .= "<li>$subcategory";
-            if(!empty($subsubcategories[0])) {
+            if (!empty($subsubcategories[0])) {
                 $html .= "<ul>";
-                foreach($subsubcategories as $subsubcategory){
-                $html .= "<li>$subsubcategory</li>";
+                foreach ($subsubcategories as $subsubcategory) {
+                    $html .= "<li>$subsubcategory</li>";
                 }
                 $html .= "</ul>";
             }
@@ -254,20 +273,28 @@ function generateCategoryDropdown(){
     return $html;
 }
 
-function evalSelectPOST(){
+function evalSelectPOST()
+{
     $select = array();
+    $distance = false;
     if (isset($_POST)) {
+        if (isset($_SESSION['name']) || isset($_POST['postalCode'])) {
+            $distance = true;
+            $select[':minimumDistance'] = isset($_POST['minimumDistance']) ? $_POST['minimumDistance'] : 0; // min distance 0 if post isn't set
+            $select[':maximumDistance'] = isset($_POST['maximumDistance']) ? $_POST['maximumDistance'] : 355;
+            $select = setLatLong($select);
+        }
         if (isset($_POST['search'])) {
             $select[':search'] = "%" . $_POST['search'] . "%";
         }
-        if(!empty($_POST['minimum'])&&$_POST['minimum']>1&&$_POST['minimum']<1000000){
+        if (!empty($_POST['minimum']) && $_POST['minimum'] > 1 && $_POST['minimum'] < 1000000) {
             $select[':val1'] = $_POST['minimum'];
-        }else{
-            $select[':val1'] =  1;
+        } else {
+            $select[':val1'] = 1;
         }
-        if(!empty($_POST['maximum'])&&$_POST['maximum']>1&&$_POST['maximum']<1000000) {
+        if (!empty($_POST['maximum']) && $_POST['maximum'] > 1 && $_POST['maximum'] < 1000000) {
             $select[':val2'] = $_POST['maximum'];
-        }else{
+        } else {
             $select[':val2'] = 1000000;
         }
         if (isset($_POST['rubriek'])) {
@@ -287,11 +314,19 @@ function evalSelectPOST(){
                 case "Old":
                     $select[':order'] = "looptijdbegintijdstip ASC";
                     break;
+                case "Dis":
+                    if (!$distance) {
+                        $select = setLatLong($select);
+                    }
+                    $select[':order'] = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ASC ";
+                    break;
                 default:
                     $select[':order'] = "n";
                     break;
             }
-        } else{ $select[':order'] = "n";}
+        } else {
+            $select[':order'] = "n";
+        }
         if (isset($_POST['offset'])) {
             $select[':offset'] = $_POST['offset'];
         } else {
@@ -299,7 +334,7 @@ function evalSelectPOST(){
         }
 // evaluate number of items cannot be used in prepared statements so it is converted to one of the following values:
         if (isset($_POST['numberOfItems']))
-            switch($_POST['numberOfItems']){
+            switch ($_POST['numberOfItems']) {
                 case "25":
                     $select[':limit'] = "25";
                     break;
@@ -315,12 +350,25 @@ function evalSelectPOST(){
                 default:
                     $select[':limit'] = "25";
             }
-        else{
+        else {
             $select[':limit'] = "25";
         }
-    }else{
-        $select[':val1'] =  1;
+    } else {
+        $select[':val1'] = 1;
         $select[':val2'] = 1000000;
     }
+    return $select;
+}
+
+function setLatLong($select){
+                if (!empty($_POST['postalCode'])) {
+                    $location = calculateLocation($_POST['postalCode']);
+                    $select[':lat'] = $location['latitude'];
+                    $select[':long'] = $location['longitude'];
+                } else {
+                    $user = User::getUser($_SESSION['name']);
+                    $select[':lat'] = $user['Latitude'];
+                    $select[':long'] = $user['Longitude'];
+                }
     return $select;
 }
