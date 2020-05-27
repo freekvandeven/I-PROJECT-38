@@ -360,15 +360,22 @@ function evalSelectPOST()
     return $select;
 }
 
-function setLatLong($select){
-                if (!empty($_POST['postalCode'])) {
-                    $location = calculateLocation($_POST['postalCode']);
-                    $select[':lat'] = $location['latitude'];
-                    $select[':long'] = $location['longitude'];
-                } else {
-                    $user = User::getUser($_SESSION['name']);
-                    $select[':lat'] = $user['Latitude'];
-                    $select[':long'] = $user['Longitude'];
-                }
+function setLatLong($select)
+{
+    if (!empty($_POST['postalCode']) && $_SESSION['postalCode'] != $_POST['postalCode']) {
+        $location = calculateLocation($_POST['postalCode']);
+        $select[':lat'] = $location['latitude'];
+        $select[':long'] = $location['longitude'];
+        $_SESSION['postalCode'] = $_POST['postalCode'];
+        $_SESSION['latitude'] = $location['latitude'];
+        $_SESSION['longitude'] = $location['longitude'];
+    }elseif($_SESSION['postalCode'] == $_POST['postalCode']){
+        $select[':lat'] =  $_SESSION['latitude'];
+        $select[':long'] =  $_SESSION['longitude'];
+    }elseif(!empty($_SESSION['name'])) {
+        $user = User::getUser($_SESSION['name']);
+        $select[':lat'] = $user['Latitude'];
+        $select[':long'] = $user['Longitude'];
+    }
     return $select;
 }
