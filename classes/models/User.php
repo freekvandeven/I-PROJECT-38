@@ -55,10 +55,17 @@ class User
     static function updateUser($user)
     {
         global $dbh;
-        $data = $dbh->prepare("UPDATE Gebruiker SET Gebruikersnaam=:gebruikersnaam, Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
+        $data = $dbh->prepare("UPDATE Gebruiker SET Adresregel_1=:adress, Adresregel_2=:adress2, Postcode=:postcode, 
                      Plaatsnaam=:place, Land=:country, Mailbox=:email, Vraag=:question, Antwoordtekst=:answer
                                     WHERE Gebruikersnaam = :username");
         $data->execute($user);
+    }
+
+    static function updateUserPhoneNumber($userPhoneInformation)
+    {
+        global $dbh;
+        $data = $dbh->prepare("UPDATE Gebruikerstelefoon SET Telefoon=:phone_number WHERE Gebruiker = :username");
+        $data->execute($userPhoneInformation);
     }
 
     static function updatePassword($username, $password)

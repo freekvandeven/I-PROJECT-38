@@ -4,6 +4,7 @@ require_once('includes/functions.php');
 registerRequest();
 checkLogin();
 $actions = array("update", "upgrade", "item", "favorite", "notifications");
+
 if(checkPost()){
     if (isset($_POST['action'])){
         if($_POST['action'] == 'update'){
@@ -23,6 +24,7 @@ if(checkPost()){
         }
     }
 }
+
 $title = "profile page";
 require_once('includes/header.php');
 

@@ -546,6 +546,12 @@ body{
     margin-bottom: 30px
 }
 
+.updateGegevensPagina .container .readonly:focus{
+    padding: 12px;
+    box-shadow: none;
+    border-color: rgb(210, 210, 210);
+}
+
 /* Als de gebruiker over de knop hovert met zijn muis */
 .loginForm .inlogButton:hover, .registerForm .registerButton:hover, .upgradeForm .upgradeButton:hover, .updateForm .updateButton:hover, .addProductForm .addProductButton:hover{
     background: rgb(165, 105, 189);
@@ -854,7 +860,8 @@ body{
     margin-bottom: 20px;
 }
 
-.profielPagina .container .row div .card .card-body a{
+.profielPagina .container .row div .card .card-body a,
+.profielPagina .container .container .row div .card .card-body form button{
     margin-top: 10px;
     font-size: 18px;
     width: 100%;
@@ -866,10 +873,20 @@ body{
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.profielPagina .container .row div .card .card-body a:hover{
+.profielPagina .container .row div .card .card-body a:hover,
+.profielPagina .container .container .row div .card .card-body form button:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
+}
+
+.profielPagina .container .container .row div .card .card-body form button{
+    color: red;
+    border-color: red;
+}
+
+.profielPagina .container .container .row div .card .card-body form button:hover{
+    background: red;
 }
 
 .profielPagina .container .row div .card .card-body h4{
@@ -907,6 +924,29 @@ body{
     margin: 5px 15px;
     transition: 200ms;
     text-decoration: underline;
+}
+
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLink{
+    font-size: 16px;
+    color: rgb(165, 105, 189);
+    border: none;
+    text-decoration: underline;
+    text-decoration-color: rgb(165, 105, 189);
+    box-shadow: none;
+    background: none;
+}
+
+.profielPagina .container .container .row div .card .card-body .wijzigFotoLink img{
+    width: 20px;
+    margin-top: 15px;
+}
+
+.profielPagina .container .container .row div .card .card-body p .wijzigFotoLink:hover,
+.profielPagina .container .container .row div .card .card-body p .wijzigFotoLink:focus{
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding-left: 10px;
 }
 
 @media (max-width: 575px) {
@@ -1335,7 +1375,8 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .itemImageProfilePage{
-    height: 260px;
+    height: 200px;
+    margin-bottom: -20px;
 }
 
 /*************** ADMIN-HOOFDPAGINA CSS *************/
@@ -2601,6 +2642,26 @@ footer{
     text-decoration-color: rgb(230, 230, 230);
 }
 
+.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button{
+    background: rgb(40, 40, 40);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button:hover,
+.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button:focus{
+    background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right .dropdown-menu,
+.darkmode--activated .profielPaginaVIemandAnders .container .container .voegReviewToeDropdownMenu{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right .dropdown-menu .errorReviewText,
+.darkmode--activated .profielPaginaVIemandAnders .container .container .voegReviewToeDropdownMenu .voegReviewToeForm .form-group label{
+    color: rgb(230, 230,230);
+}
+
 /********* PROFILEVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
@@ -2618,7 +2679,8 @@ footer{
     background: rgb(50, 50, 50);
 }
 
-.darkmode--activated .profielPagina .verkopersPaginaButton:hover{
+.darkmode--activated .profielPagina .verkopersPaginaButton:hover,
+.darkmode--activated .profielPagina .verkopersPaginaButton:focus{
     color: rgb(230, 230, 230);
 }
 
@@ -2626,13 +2688,26 @@ footer{
     border-bottom: 1px solid rgba(230, 230, 230, .2);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn{
+.darkmode--activated .profielPagina .row .card .card-body .btn,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body form button{
     background: rgb(60, 60, 60);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn:hover{
+.darkmode--activated .profielPagina .row .card .card-body .btn:hover,
+.darkmode--activated .profielPagina .row .card .card-body .btn:focus{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .profielPagina .container .container .row div .card .card-body form button:hover,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body form button:focus{
+    background: red;
+    color: rgb(40, 40, 40);
+    box-shadow: 0 0 20px red;
+}
+
+.darkmode--activated .profielPagina .container .container .row div .card .card-body p .wijzigFotoLink{
+    background: none;
 }
 
 /********* UPDATEVIEW.PHP *********/
@@ -2670,6 +2745,11 @@ footer{
 .darkmode--activated .updateGegevensPagina .container .updateForm div .updateButton:hover{
     background: rgb(165, 105, 189);
     color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .updateGegevensPagina .container .readonly{
+    background: rgb(150, 150, 150);
+    border-color: rgb(110, 110, 110);
 }
 
 /********* UPGRADEVIEW.PHP *********/
