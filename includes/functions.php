@@ -1,21 +1,15 @@
 <?php
 startAutoLoader();
-require_once('database.php');
-include_once('FCM.php');
-//include_once('socket.php');
+require_once('database.php'); // database connection
+require_once('more/logging.php'); // site logging
+require_once('more/admin.php'); // admin tasks
+include_once('more/FCM.php'); // push notifications
+//include_once('more/socket.php'); // websockets
 
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
 }
 $token = $_SESSION['token'];
-
-function checkLogin() // check if user is logged in
-{
-    if (!isset($_SESSION['loggedin'])) {
-        header('Location: login.php');
-        exit();
-    }
-}
 
 function registerRequest(){
     checkVisitor();
@@ -38,11 +32,6 @@ function checkItemDate(){
     }
 }
 
-function checkVisitor(){
-    logPageVisitor();
-    checkIP();
-}
-
 function cleanupUploadFolder(){
     for($i=10000;$i<40000;$i++){
         if(file_exists("upload/items/".$i.".png")){
@@ -55,35 +44,6 @@ function startAutoLoader(){
     spl_autoload_register(function ($class_name) {
         include 'classes/models/' . $class_name . '.php';
     });
-}
-
-function logPageVisitor(){
-    $currentPage = basename($_SERVER['PHP_SELF']);
-    if(checkPage($currentPage)){
-        #increase page count
-        increasePage($currentPage);
-    } else {
-        #insert page
-        insertPage($currentPage);
-    }
-    // insert IP
-    if(searchIPVisits($_SERVER["REMOTE_ADDR"])){
-        increaseIPVisits($_SERVER["REMOTE_ADDR"]);
-    } else {
-        insertVisitorIP($_SERVER["REMOTE_ADDR"]);
-    }
-}
-
-function checkIP()
-{
-    if ($_SERVER["REMOTE_ADDR"] != '::1') {
-        if (checkBlackList($_SERVER["REMOTE_ADDR"])) {
-            header("Location: includes/denied.php");
-        }
-        if (!checkWhiteList($_SERVER["REMOTE_ADDR"])) {
-            header("Location: includes/denied.php");
-        }
-    }
 }
 
 function sendPushNotification(){
@@ -101,6 +61,7 @@ function sendPushNotification(){
 }
 
 function displayInformation($array, $notifications){
+    $html = "";
     if(sizeof($array) == 0) {
         if($notifications) {
             echo '<p>Er zijn nog geen notificaties :(</p>';
@@ -108,7 +69,6 @@ function displayInformation($array, $notifications){
             echo '<p>Nog geen gebruikers :(</p>';
         }
     } else {
-        $html = "";
         if($notifications) {
             foreach ($array as $notification) {
                 $html .= "<a href='" . $notification['Link'] . "' class='list-group-item list-group-item-action'>" . $notification['Bericht'] . "</a>";
@@ -118,21 +78,13 @@ function displayInformation($array, $notifications){
                 $html .= "<input type='submit' class='list-group-item list-group-item-action' name='user' value='$user'>";
             }
         }
-        return $html;
     }
+    return $html;
 }
 
 function deleteFile($file){
     if(file_exists($file)){
         unlink($file);
-    }
-}
-
-function checkAdminLogin() //check if person is admin
-{
-    if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
-        header('Location: login.php');
-        exit();
     }
 }
 
@@ -142,13 +94,6 @@ function createSession($user) // create session for user
     $_SESSION['loggedin'] = TRUE;
     $_SESSION['name'] = $user['Gebruikersnaam'];
     $_SESSION['admin'] = $user['Action'];
-}
-
-function setupDatabase() // setup the database
-{
-    global $dbh;
-    $sql = file_get_contents('includes/SQL/setupSqlsrv.sql');
-    $data = $dbh->exec($sql);
 }
 
 function storeImg($files, $id,$target_dir)
@@ -168,31 +113,6 @@ function getProfileImage($user){
     }
 }
 
-function calculateDistance($point1, $point2){
-    // Calculate distance between latitude and longitude
-    print_r($point1);
-    $theta    = $point1["longitude"] - $point2["longitude"];
-    $dist    = sin(deg2rad($point1["latitude"])) * sin(deg2rad($point2["latitude"])) +  cos(deg2rad($point1["latitude"])) * cos(deg2rad($point2["latitude"])) * cos(deg2rad($theta));
-    $dist    = acos($dist);
-    $dist    = rad2deg($dist);
-    $miles    = $dist * 60 * 1.1515;
-
-    // Convert unit and return distance
-    return round($miles * 1.609344, 2).' km'; // return distance in kilometer
-}
-
-function calculateLocation($location){
-    $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
-    $formattedAddrFrom = str_replace(' ', '+', $location);
-
-    $geocodeLoc= file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
-    $outputLoc = json_decode($geocodeLoc);
-    if(!empty($outputLoc->error_message)){
-        return $outputLoc->error_message;
-    }
-    return array("latitude"=> $outputLoc->results[0]->geometry->location->lat,"longitude"=>$outputLoc->results[0]->geometry->location->lng);
-}
-
 function sendConfirmationEmail($mail, $username, $hash){
     $subject = "Bevestig je account";
     $variables = [];
@@ -200,6 +120,7 @@ function sendConfirmationEmail($mail, $username, $hash){
     $variables['hash'] = $hash;
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
+
 function notifyFollowers($item){
     foreach(Items::getFollowers($item) as $follower) // get all item followers
     {
