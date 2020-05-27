@@ -109,6 +109,12 @@ if (isset($_SESSION['loggedin'])) {
                            name="darkmodeSettingHeader" <?php if ($settings['darkmode']) echo "checked"; ?>>
                     <label class="custom-control-label" for="darkmodeSettingHeader">Darkmode</label>
                 </div>
+                <a class="item">
+                    <div class="ui slider checkbox">
+                        <input type="checkbox" name="darkmode" id="darkmode">
+                        <label for="darkmode">Darkmode</label>
+                    </div>
+                </a>
                 <a class="dropdown-item" href="logout.php">Log Out</a>
             <?php else: ?>
                 <a class="dropdown-item" href="login.php">Login</a>

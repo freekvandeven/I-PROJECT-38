@@ -1,20 +1,3 @@
-DROP TABLE IF EXISTS GebruikersInstellingen;
-DROP TABLE IF EXISTS Notificaties;
-DROP TABLE IF EXISTS Favorieten;
-DROP TABLE IF EXISTS Comments;
-DROP TABLE IF EXISTS Beoordeling;
-DROP TABLE IF EXISTS Bod;
-DROP TABLE IF EXISTS Feedback;
-DROP TABLE IF EXISTS Bestand;
-DROP TABLE IF EXISTS VoorwerpInRubriek;
-DROP TABLE IF EXISTS Rubriek;
-DROP TABLE IF EXISTS Voorwerp;
-DROP TABLE IF EXISTS Verkoper;
-DROP TABLE IF EXISTS GebruikersTelefoon;
-DROP TABLE IF EXISTS Gebruiker;
-DROP TABLE IF EXISTS Vraag;
-
-
 CREATE TABLE Bod(
 	Voorwerp					INTEGER      	NOT NULL,
 	Bodbedrag					NUMERIC(15,2)	NOT NULL,
@@ -22,7 +5,6 @@ CREATE TABLE Bod(
 	BodTijdstip					DATETIME		NOT NULL,
 	CONSTRAINT PK_Bod	PRIMARY KEY	(Voorwerp, Bodbedrag)
 );
-
 
 CREATE TABLE Feedback(
 	Voorwerp					INTEGER      	NOT NULL,
@@ -32,7 +14,6 @@ CREATE TABLE Feedback(
 	Commentaar					VARCHAR(128)		NULL,
 	CONSTRAINT PK_Feedback	PRIMARY KEY	(Voorwerp, SoortGebruiker)
 );
-
 
 CREATE TABLE Gebruiker(
 	Gebruikersnaam				VARCHAR(20)		NOT NULL,
@@ -164,115 +145,3 @@ CREATE TABLE Bericht(
     Ontvanger VARCHAR(20)  NOT NULL,
     Tijdstip    DATETIME   DEFAULT CURRENT_TIMESTAMP
 );
-
-ALTER TABLE Bericht
-ADD CONSTRAINT FK_Bericht_Verzender FOREIGN KEY (Verzender)
-        REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE;
-
-ALTER TABLE Notificaties
-ADD CONSTRAINT FK_Notificatie_ontvanger FOREIGN KEY (Ontvanger)
-        REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE;
-
-ALTER TABLE Feedback
-ADD CONSTRAINT FK_Feedback_voorwerpnummer FOREIGN KEY (Voorwerp)
-		REFERENCES Voorwerp(Voorwerpnummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE Comments
-ADD CONSTRAINT FK_Comments_gebruiker FOREIGN KEY (Gebruikersnaam)
-        REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-CONSTRAINT FK_Comments_gever FOREIGN KEY (Gebruikersnaam)
-        REFERENCES Gebruiker(Gebruikersnaam)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION;
-
-Alter TABLE Favorieten
-ADD CONSTRAINT FK_Favorieten_voorwerpnummer FOREIGN KEY (Voorwerp)
-		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION,
-
-ALTER TABLE Bod
-ADD CONSTRAINT FK_Bod_voorwerpnummer FOREIGN KEY (Voorwerp)
-		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE,
-CONSTRAINT FK_Bod_gebruikersnaam FOREIGN KEY (Gebruiker)
-		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE Gebruiker
-ADD CONSTRAINT FK_Gebruiker_vraagnummer FOREIGN KEY (Vraag)
-		REFERENCES Vraag (vraagnummer)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
-
-ALTER TABLE GebruikersTelefoon
-ADD CONSTRAINT FK_GebruikersTelefoon_Gebruikersnaam FOREIGN KEY (Gebruiker)
-		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE VoorwerpInRubriek
-ADD CONSTRAINT FK_VoorwerpInRubriek_voorwerpnummer FOREIGN KEY (Voorwerp)
-		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE VoorwerpInRubriek
-ADD	CONSTRAINT FK_VoorwerpInRubriek_rubrieknummer FOREIGN KEY (RubriekOpLaagsteNiveau)
-		REFERENCES Rubriek (Rubrieknummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE Verkoper
-ADD CONSTRAINT FK_Verkoper_gebruikersnaam FOREIGN KEY (Gebruiker)
-		REFERENCES Gebruiker (gebruikersnaam)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE Voorwerp
-ADD CONSTRAINT FK_Voorwerp_Gebruiker_Verkoper FOREIGN KEY (verkoper)
-		REFERENCES Verkoper(gebruiker)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION,
-CONSTRAINT FK_Voorwerp_Gebruiker_Koper FOREIGN KEY (koper)
-		REFERENCES Gebruiker(gebruikersnaam)
-		ON UPDATE NO ACTION
-		ON DELETE NO ACTION;
-
-ALTER TABLE Bestand
-ADD  CONSTRAINT FK_Bestand_voorwerpnummer FOREIGN KEY (Voorwerp)
-		REFERENCES Voorwerp (voorwerpnummer)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE;
-
-ALTER TABLE Rubriek
-ADD CONSTRAINT FK_ParentRubriek FOREIGN KEY (Rubriek)
-        REFERENCES Rubriek (Rubrieknummer)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION;
-
-ALTER TABLE gebruikersinstellingen
-ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
-REFERENCES Gebruiker(Gebruikersnaam)
-ON UPDATE CASCADE
-ON DELETE CASCADE;
-
-insert into Vraag (tekstvraag)
-values(
-       'Wie kan het beste koken?'),(
-       'Wat is je geboorteplaats?'
-       );
-
-insert into Gebruiker
-values('admin', 'Herman', 'Admin', 'Adminlaan', '', '2020 IP', 'Nijmegen', 'Nederland', '51.9238772', '5.7104402' '01/01/2000', 'admin@han.nl',
-'$2y$10$wPJCsxm9xEvJ5a2chNV2H.sRm37THtvFmZEgOkIpITdR6eKiv1LPC', 1, 'je moeder', 0, 1, 1);

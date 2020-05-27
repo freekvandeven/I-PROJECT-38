@@ -36,7 +36,7 @@ foreach($dirs as $dir){
 }
 var_dump($files);
 */
-
+/*
 $voorwerpInsert = $dbh->prepare("INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $voorwerpRubriek = $dbh->prepare("INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)");
 $imageInsert = $dbh->prepare("{CALL fileInsert(?, ?)}");
@@ -85,7 +85,7 @@ foreach ($splitFile as $item) {
 
     $voorwerpRubriek->execute(array($itemID, $category));
     echo print_r($voorwerpInsert->errorInfo());
-    /*
+
     //$imagelink = str_replace("img", "dt_1_", $output[10]);
     //store file with new autoincrementId as id.png
     //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
@@ -105,13 +105,13 @@ foreach ($splitFile as $item) {
         //$imageInsert->execute(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
         //Items::insertFile(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
     }
-    */
+
 }
 
+*/
 
 
-
-
+echo filemtime('upload/users/admin.png');
 
 
 
