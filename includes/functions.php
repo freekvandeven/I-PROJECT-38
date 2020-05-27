@@ -107,9 +107,9 @@ function checkImageExists($fileName) {
 
 function getProfileImage($user){
     if(isset($user) && file_exists("upload/users/".$user.".png")){
-        return "upload/users/$user.png";
+        return "upload/users/$user.png?".filemtime("upload/users/$user.png");
     } else {
-        return "images/profilePicture.png";
+        return "images/profilePicture.png?";
     }
 }
 
