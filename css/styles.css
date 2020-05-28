@@ -2963,7 +2963,8 @@ footer{
 }
 
 /*** CSS ***/
-.darkmode--activated .upgradePagina .container p{
+.darkmode--activated .upgradePagina .container p,
+.darkmode--activated .upgradePagina .container h2{
     color: rgb(230, 230, 230);
 }
 
@@ -2981,8 +2982,8 @@ footer{
 }
 
 .darkmode--activated .upgradePagina .container .upgradeForm div .upgradeButton{
-    background: rgb(80, 80, 80);
-    color: rgb(230, 230, 230);
+    background: rgb(40, 40, 40);
+    color: rgb(165, 105, 189);
     box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 

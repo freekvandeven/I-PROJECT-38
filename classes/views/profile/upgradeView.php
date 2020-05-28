@@ -33,7 +33,6 @@ $profile_data = User::getUser($_SESSION['name']);
                         <label for="creditcard">Creditcard</label>
                         <input type="text" class="form-control" name="creditcard" id="creditcard" placeholder="Uw creditcard">
                     </div>
-
                 </div>
             </div>
             <!-- GA-TERUG-KNOP -->

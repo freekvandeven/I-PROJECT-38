@@ -77,9 +77,16 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                     <div class="card">
                         <div class="card-body">
                             <h4 class="subTitel card-title">Verkoper</h4>
-                            <p><b>Verkoper: </b><?= $verkoper ?></p>
                             <?php if (!$profile_data['Verkoper']) : ?>
-                                <a href="profile.php?action=upgrade" class="btn btn-primary">Wijzig</a>
+                                <p><b>Verkoper: </b><?= $verkoper ?></p>
+                                <a href="profile.php?action=upgrade" class="btn btn-primary">Word verkoper</a>
+                            <?php endif;
+                            if($profile_data['Verkoper']) :
+                                $userSellerInformation = Seller::getSeller($_SESSION['name']) ?>
+                                <p><b>Bank: </b><?=$userSellerInformation['Bank']?></p>
+                                <p><b>Bankrekening: </b><?=$userSellerInformation['Bankrekening']?></p>
+                                <p><b>Creditcard: </b><?=$userSellerInformation['Creditcard']?></p>
+                                <a href="profile.php?action=update&option=verkopersgegevens" class="btn btn-primary">Wijzig</a>
                             <?php endif; ?>
                         </div>
                     </div>
