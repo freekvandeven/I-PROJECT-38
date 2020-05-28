@@ -50,38 +50,43 @@ function selectFromCatalogsMSSQL($orders)
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $execute = array();
     $sql = "SELECT  * FROM (SELECT *, ISNULL(hoogstebod ,Startprijs) as prijs
-            from voorwerp left join (select max(cast(bodbedrag as decimal(10,2))) as hoogstebod ,voorwerp 
-            FROM bod WHERE Bodbedrag NOT LIKE '%[^0-9]%' AND Gebruiker is not null
+            from voorwerp left join (select max(bodbedrag) as hoogstebod ,voorwerp 
+            FROM bod WHERE  Gebruiker is not null
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
             where VeilingGesloten = 0) as combinetable";
-    $distanceSet = false;
     $whereSet = false;
     $where = " WHERE ";
+    $distance = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ";
+    if (isset($orders[':order']) && $orders[':order'] == "Dis") {
+        $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
+        $sql = setSqlDistance($sql);
+        $execute = setExecuteDistance($execute, $orders, false  );
+    }
     foreach ($orders as $key => $order) {
         if (!empty($order)) {
-            if (strpos($key, ":lat") !== false) {
-                $distanceSet = true;
+            if (strpos($key, ":maximumDistance") !== false) {
                 if ($whereSet) {
                     $where = " AND ";
                 }
+                if (isset($orders[':order']) && $orders[':order'] != "Dis") {
+                    $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
+                    $sql = setSqlDistance($sql);
+                }
                 $whereSet = true;
-                $sql = setSqlDistance($sql);
-                $execute = setExecuteDistance($execute, $orders);
-                $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
-                $sql .= $where . " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 between :min and :max ";
+                $execute = setExecuteDistance($execute, $orders, true);
+                $sql .= $where . " $distance between :min and :max ";
             } else if (strpos($key, ":search") !== false) {
                 if ($whereSet) {
                     $where = " AND ";
                 }
-
                 $sql .= $where . " Voorwerpnummer in(Select VoorwerpNummer from KeywordsLink KL
 								 join Keywords K on K.KeyWordNummer=KL.KeyWordNummer
 								 WHERE ";
-                for ($i=0; $i<sizeof($order); $i++) {
-                    if(!$i==0) $sql .=" AND ";
-                    $sql = $sql . " Keyword = :where".$i;
-                    $execute[":where".$i] = $order[$i];
+                for ($i = 0; $i < sizeof($order); $i++) {
+                    if (!$i == 0) $sql .= " AND ";
+                    $sql = $sql . " Keyword = :where" . $i;
+                    $execute[":where" . $i] = $order[$i];
                 }
                 $sql .= " ) ";
                 $whereSet = true;
@@ -93,18 +98,13 @@ function selectFromCatalogsMSSQL($orders)
                 $execute[':val1'] = $orders[':val1'];
                 $execute[':val2'] = $orders[':val2'];
                 $whereSet = true;
-            } else if (strpos($key, ":and") !== false) {
-                $sql .= " AND " . $key;
-                $execute[":and"] = $order;
             } else if (strpos($key, ":order") !== false) {
                 if ($order == "n")
                     $sql .= " ORDER BY Voorwerpnummer ASC ";
-                else {
+                else if ($order != "Dis") {
                     $sql .= " ORDER BY " . $order;
-                    if (!$distanceSet && $key == ' (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ASC ') {
-                        $sql = setSqlDistance($sql);
-                        $execute = setExecuteDistance($execute, $orders);
-                    }
+                } else {
+                    $sql .= " ORDER BY $distance";
                 }
             } else if (strpos($key, ":rubriek") !== false) {
                 $sql .= " AND Voorwerpnummer IN (select voorwerp from voorwerpinrubriek where RubriekOpLaagsteNiveau = :rubriek )";
@@ -138,11 +138,13 @@ function setSqlDistance($sql)
     return $sql;
 }
 
-function setExecuteDistance($execute, $orders)
+function setExecuteDistance($execute, $orders, $limit)
 {
     $execute[":lat"] = $orders[':lat'];
     $execute[":long"] = $orders[':long'];
-    $execute[":min"] = $orders[':minimumDistance'];
-    $execute[":max"] = $orders[':maximumDistance'];
+    if ($limit) {
+        $execute[":min"] = $orders[':minimumDistance'];
+        $execute[":max"] = $orders[':maximumDistance'];
+    }
     return $execute;
 }

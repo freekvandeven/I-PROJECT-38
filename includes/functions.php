@@ -350,7 +350,7 @@ function evalSelectPOST()
                     if (!$distance) {
                         $select = setLatLong($select);
                     }
-                    $select[':order'] = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ASC ";
+                    $select[':order'] = $_POST['order'];
                     break;
                 default:
                     $select[':order'] = "n";
