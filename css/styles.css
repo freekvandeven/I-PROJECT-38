@@ -947,7 +947,7 @@ body{
 }
 
 .profielPagina .container .row div .card .card-body .btn,
-.profielPagina .container .container .row div .card .card-body form button{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     margin-top: 10px;
     font-size: 18px;
     width: 100%;
@@ -957,21 +957,22 @@ body{
     border-radius: 25px;
     transition: 200ms;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+    padding: 5px 20px;
 }
 
 .profielPagina .container .row div .card .card-body .btn:hover,
-.profielPagina .container .container .row div .card .card-body form button:hover{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.profielPagina .container .container .row div .card .card-body form button{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     color: red;
     border-color: red;
 }
 
-.profielPagina .container .container .row div .card .card-body form button:hover{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton:hover{
     background: red;
 }
 
@@ -2891,7 +2892,7 @@ footer{
 }
 
 .darkmode--activated .profielPagina .container .container .row div .card .card-body .btn,
-.darkmode--activated .profielPagina .container .container .row div .card .card-body form button{
+.darkmode--activated .profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     background: rgb(60, 60, 60);
 }
 
