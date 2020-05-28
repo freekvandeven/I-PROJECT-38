@@ -2890,15 +2890,16 @@ footer{
     border-bottom: 1px solid rgba(230, 230, 230, .2);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn,
 .darkmode--activated .profielPagina .container .container .row div .card .card-body form button{
     background: rgb(60, 60, 60);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn:hover,
-.darkmode--activated .profielPagina .row .card .card-body .btn:focus{
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn:hover,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn:focus{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     color: rgb(40, 40, 40);
+    background: rgb(165, 105, 189);
 }
 
 .darkmode--activated .profielPagina .container .container .row div .card .card-body form button:hover,

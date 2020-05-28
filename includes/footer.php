@@ -58,7 +58,7 @@
                         <h5>Contact</h5>
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><img src="images/footerimages/plaats.png" alt="Home image">42nd Street, New York, New York</p>
-                        <p><a href="mailto:anthonyvago2001@gmail.com"><img src="images/footerimages/mail.png" alt="Email image">info@EenmaalAndermaal.com</a></p>
+                        <p><a href="mailto:info@EenmaalAndermaal.com"><img src="images/footerimages/mail.png" alt="Email image">Mail ons</a></p>
                         <p><a href="tel:+31 6 123456"><img src="images/footerimages/telefoon.png" alt="Phone image">+31 6 123456</a></p>
                         <p><a href="tel:0612345678"><img src="images/footerimages/mobiel.png" alt="Phone image">06 12345678</a></p>
                     </div>

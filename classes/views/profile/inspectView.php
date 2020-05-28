@@ -21,7 +21,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
         <?php if($_SESSION['admin']):?>
         <form action ='' method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
             <input type="hidden" name="token" value="<?= $token ?>">
-            <button class="deleteButton" type="submit" name="deleteUser" value="delete"></button>
+            <button class="deleteButton" type="submit" name="deleteUser" value="delete">Verwijder gebruiker</button>
         </form>
         <?php endif; ?>
         <div class="container">
