@@ -107,6 +107,6 @@ ALTER TABLE gebruikersinstellingen
         ON DELETE CASCADE;
 
 ALTER TABLE KeyWordsLink
-    ADD CONSTRAINT FK_KeyEordNummer_Keyword FOREIGN KEY (KeyWordNummer) REFERENCES KeyWords(KeyWordNummer)
+    ADD CONSTRAINT FK_KeyWordNummer_Keyword FOREIGN KEY (KeyWordNummer) REFERENCES KeyWords(KeyWordNummer)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION

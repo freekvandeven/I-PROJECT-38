@@ -39,7 +39,7 @@ CREATE TABLE Gebruiker(
 
 CREATE TABLE GebruikersInstellingen(
 	Gebruiker	VARCHAR(20)		NOT NULL DEFAULT 0,
-	reccomendations BIT NOT NULL DEFAULT 0,
+	recommendations BIT NOT NULL DEFAULT 0,
 	darkmode BIT NOT NULL DEFAULT 0,
 	notifications BIT NOT NULL DEFAULT 0,
 	superTracking BIT NOT NULL DEFAULT 0,

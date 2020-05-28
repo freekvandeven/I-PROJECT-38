@@ -345,14 +345,14 @@ function evalSelectPOST()
         }                                                                                            ///////// limit /////////
         if (isset($_POST['numberOfItems']))
             switch ($_POST['numberOfItems']) {
-                case "25":
-                    $select[':limit'] = "25";
+                case "24":
+                    $select[':limit'] = "24";
                     break;
-                case "50":
-                    $select[':limit'] = "50";
+                case "48":
+                    $select[':limit'] = "48";
                     break;
-                case "100":
-                    $select[':limit'] = "75";
+                case "96":
+                    $select[':limit'] = "96";
                     break;
                 case "10000":
                     $select[':limit'] = "10000";
@@ -361,7 +361,7 @@ function evalSelectPOST()
                     $select[':limit'] = "25";
             }
         else {
-            $select[':limit'] = "25";
+            $select[':limit'] = "24";
         }
     } else {
         $select[':val1'] = 1;
@@ -379,7 +379,7 @@ function setLatLong($select)
         $_SESSION['postalCode'] = $_POST['postalCode'];
         $_SESSION['latitude'] = $location['latitude'];
         $_SESSION['longitude'] = $location['longitude'];
-    }elseif($_SESSION['postalCode'] == $_POST['postalCode']){
+    }elseif(isset($_SESSION['postalCode'])&&$_SESSION['postalCode'] == $_POST['postalCode']){
         $select[':lat'] =  $_SESSION['latitude'];
         $select[':long'] =  $_SESSION['longitude'];
     }elseif(!empty($_SESSION['name'])) {

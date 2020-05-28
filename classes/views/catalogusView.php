@@ -100,7 +100,7 @@
 
                     <div class="row">
                         <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                            <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek op keywords"
+                            <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek in Catalogus"
                                    name="search">
                         </div>
 
@@ -147,9 +147,9 @@
                         <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
                             <label for="numberOfItems">Aantal</label>
                             <select class="custom-select" id="numberOfItems" name="numberOfItems">
-                                <option <?php if ($_POST['numberOfItems'] == 25) echo "selected " ?>value=25>25</option>
-                                <option <?php if ($_POST['numberOfItems'] == 50) echo "selected " ?>value=50>50</option>
-                                <option <?php if ($_POST['numberOfItems'] == 100) echo "selected " ?>value=100>100
+                                <option <?php if ($_POST['numberOfItems'] == 24) echo "selected " ?>value=24>24</option>
+                                <option <?php if ($_POST['numberOfItems'] == 48) echo "selected " ?>value=48>48</option>
+                                <option <?php if ($_POST['numberOfItems'] == 96) echo "selected " ?>value=96>96
                                 </option>
                                 <option <?php if ($_POST['numberOfItems'] == 100) echo "selected " ?>value=10000>TEST
                                 </option>
