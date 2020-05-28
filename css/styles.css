@@ -345,31 +345,169 @@ footer div div div div a:hover{
 
 
 /******************** HOMEPAGE *****************/
-/* De kleur paars: #A569BD of 165, 105, 189 */
-
 body{
     background: rgb(255, 255, 255);
 }
 
-/* DE SLIDESHOW: */
-.slideshow{
-    margin: 40px 17% 0 17%;
+/* MOBILE VIEW */
+.homePage .phoneViewContainer{
+    display: none;
 }
 
-.carousel-item div a h3{
-    color: white;
+.homePage .phoneViewContainer h2{
+    margin-top: 40px;
+}
+
+.homePage .phoneViewContainer .phoneview{
+    margin-top: 50px;
+}
+
+.homePage .phoneViewContainer .phoneview .row{
+    margin-top: 30px;
+    padding: 10px;
+    background: rgb(245, 245, 245);
+    border-radius: 10px;
+}
+
+.homePage .phoneViewContainer .phoneview .row .image img{
+    width: 100%;
+    margin-left: -15px;
+    padding: 10px;
+}
+
+.homePage .phoneViewContainer .phoneview .row .text h3{
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+@media (max-width: 462px) {
+    .homePage .phoneViewContainer .phoneview .row .text h3{
+        font-size: 21px;
+        margin-left: -15px;
+    }
+
+    .homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a{
+        font-size: 13px;
+    }
+
+    .homePage .phoneViewContainer .phoneview .row .text p{
+        margin-left: -15px;
+    }
+}
+
+.homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView{
+    margin-top: 30px;
+}
+
+.homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a{
+    border: 2px solid rgb(165, 105, 189);
+    padding: 5px 15px;
+    border-radius: 3px;
+    color: rgb(165, 105, 189);
+    transition: 400ms ease;
+}
+
+.homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a:hover,
+.homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a:focus{
+    background: rgb(165, 105, 189);
+    color: #fff;
+}
+
+/* DE SLIDESHOW: DESKTOPVIEW */
+.homePage .slideshow{
+    margin: 40px 15% 0 15%;
+}
+
+.homePage .carousel-item img{
+    max-width: 50%;
+}
+
+.homePage .carousel-inner{
+    background: rgb(245, 245, 245);
+}
+
+.homePage .carousel-item{
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.homePage .carousel-item .carousel-caption{
+    width: 50%;
+    top: 30%;
+    left: 50%;
+    color: #000;
+}
+
+@media (max-width: 1180px) {
+    .homePage .slideshow{
+        display: none;
+    }
+
+    .homePage .container{
+        display: block;
+    }
+}
+
+.homePage .carousel-caption h5{
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 1514px) {
+    .homePage .carousel-item .carousel-caption{
+        top: 10%;
+    }
+
+    .homePage .carousel-caption h5{
+        font-size: 35px;
+    }
+}
+
+.homePage .carousel-caption p{
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.homePage .slideshowButton{
+    text-transform: uppercase;
+    margin-top: 40px;
+    display: inline-block;
+    padding: 10px 30px;
+    color: rgb(165, 105, 189);
+    border: 2px solid rgb(165, 105, 189);
+    transition: .3s;
+    border-radius: 3px;
+}
+
+.homePage .slideshowButton:hover,
+.homePage .slideshowButton:focus{
+    color: #fff;
+    background: rgb(165, 105, 189);
+}
+
+.homePage .carousel-control-next,
+.homePage .carousel-control-prev{
+    z-index: 10;
     transition: 200ms;
+    width: 120px;
 }
 
-.carousel-item div a h3:hover{
-    text-decoration: underline;
-    text-decoration-color: white;
-    padding-bottom: 5px;
+.homePage .carousel-control-next:hover,
+.homePage .carousel-control-prev:hover{
+    background: rgba(0, 0, 0, .1);
 }
 
-.sliderLinks:hover{
-    text-decoration: none;
+.homePage .carousel-control-next .carousel-control-next-icon,
+.homePage .carousel-control-prev .carousel-control-prev-icon{
+    padding: 20px;
+    border-radius: 20px;
 }
+/* EINDE SLIDESHOW CSS */
 
 .homePage .products{
     margin-top: 40px;
@@ -2628,6 +2766,45 @@ footer{
 }
 
 /*** CSS ***/
+    /* MOBILE VIEW */
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row{
+    background: rgb(70, 70, 70);
+}
+
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a{
+    background: rgb(40, 40, 40);
+}
+
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a:hover,
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .text .buttonPhoneView a:focus{
+    background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .text p,
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .text h3{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .homePage .phoneViewContainer .phoneview .row .image img{
+    opacity: .7;
+}
+
+    /* SLIDESHOW: DESKTOP VIEW */
+.darkmode--activated .homePage .carousel-inner{
+    background: rgb(70, 70, 70);
+}
+
+.darkmode--activated .homePage .slideshowButton{
+    background: rgb(40, 40, 40);
+}
+
+.darkmode--activated .homePage .slideshowButton:hover,
+.darkmode--activated .homePage .slideshowButton:focus {
+    background: rgb(165, 105, 189);
+    color: rgb(40, 40, 40);
+}
+
 .darkmode--activated .homePage .products{
     background: rgb(70, 70, 70);
 }
