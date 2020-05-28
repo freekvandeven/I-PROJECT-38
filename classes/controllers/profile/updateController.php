@@ -12,6 +12,7 @@ $filledFields = array(
     'persoonsgegevens' => array('email', 'adress', 'phone-number', 'country', 'place', 'postcode'),
     'inloggegevens' => array('password', 'confirmation'),
     'beveiligingsgegevens' => array('question', 'answer'),
+    'verkopersgegevens' => array('bank', 'bankrekening', 'controlenummer', 'creditcard'),
     'algemeen'=>array('question', 'answer', 'email', 'phone-number', 'adress', 'country', 'place', 'postcode')
 ); // alle verplichte velden per view/optie, de optionele worden hier later bij toegevoegd om ze te updaten.
 
@@ -42,9 +43,13 @@ if(isset($_GET['option'])) {
             deleteFile("upload/users/".$_SESSION['name'].".png");
             imagepng(imagecreatefromstring(file_get_contents($_FILES['img']['tmp_name'])), "upload/users/".$_SESSION['name'].".png");
             header("Location:profile.php?toast=Profielfoto succesvol gewijzigd");
-        } else {
-            $err = 'Kies een nieuwe profielfoto.';
-        }
+        } else $err = 'Kies een nieuwe profielfoto.';
+    } else if($_GET['option'] == 'verkopersgegevens') {
+        if(checkAllFieldsFilled($filledFields, $_GET['option'])) {
+            $newUserSellerInformation = array(":bank"=>$_POST['bank'], ":bankrekening"=>$_POST['bankrekening'], ":controlenummer"=>$_POST['controlenummer'], ":creditcard"=>$_POST['creditcard'], ":username"=>$_SESSION['name']);
+            Seller::updateUserSeller($newUserSellerInformation);
+            header("Location:profile.php?toast=Verkopersgegevens succesvol geüpdate");
+        } else $err = 'Vul alle verplichte velden in!';
     }
 } else {
     if(checkAllFieldsFilled($filledFields, 'algemeen')) {

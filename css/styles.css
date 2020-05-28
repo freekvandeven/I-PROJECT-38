@@ -947,7 +947,7 @@ body{
 }
 
 .profielPagina .container .row div .card .card-body .btn,
-.profielPagina .container .container .row div .card .card-body form button{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     margin-top: 10px;
     font-size: 18px;
     width: 100%;
@@ -957,21 +957,22 @@ body{
     border-radius: 25px;
     transition: 200ms;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+    padding: 5px 20px;
 }
 
 .profielPagina .container .row div .card .card-body .btn:hover,
-.profielPagina .container .container .row div .card .card-body form button:hover{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.profielPagina .container .container .row div .card .card-body form button{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     color: red;
     border-color: red;
 }
 
-.profielPagina .container .container .row div .card .card-body form button:hover{
+.profielPagina .container .container .row div .card .card-body form .deleteAccountButton:hover{
     background: red;
 }
 
@@ -1252,52 +1253,70 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /*************** PROFIELPAGINA VAN IEMAND ANDERS CSS *************/
-.profielPaginaVIemandAnders{
+.inspectUser{
     margin-bottom: 200px;
 }
 
-.profielPaginaVIemandAnders .jumbotron{
+.inspectUser .jumbotron{
     padding-left: 20%;
+    padding-bottom: 40px;
 }
 
-.profielPaginaVIemandAnders .jumbotron p{
+.inspectUser .jumbotron p{
     margin-bottom: 0;
     font-size: 17px;
 }
 
-.profielPaginaVIemandAnders .container{
+.inspectUser .jumbotron .deleteAccountForm .deleteAccountButton{
+    background: none;
+    border: none;
+    color: red;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-color: rgb(235, 235, 235);
+    transition: 300ms;
+    outline: none;
+}
+
+.inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:hover,
+.inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:focus{
+    text-decoration-color: red;
+    border: none;
+}
+
+.inspectUser .container{
     margin-bottom: 75px;
 }
 
-.profielPaginaVIemandAnders .container .row{
+.inspectUser .container .row{
     margin-bottom: 40px;
 }
 
-.profielPaginaVIemandAnders .card{
+.inspectUser .card{
     border-radius: 10px;
 }
 
-.profielPaginaVIemandAnders .titel{
+.inspectUser .titel{
     padding: 0;
 }
 
-.profielPaginaVIemandAnders .lijn{
+.inspectUser .lijn{
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding-top: 20px;
 }
 
-.profielPaginaVIemandAnders .subTitel{
+.inspectUser .subTitel{
     font-weight: normal;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.profielPaginaVIemandAnders .container .container .row div .card .card-body .card-img{
+.inspectUser .container .container .row div .card .card-body .card-img{
     margin: 20px 0;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div button{
+.inspectUser .container .row div .card .card-body div button{
     background: none;
     color: rgb(165, 105, 189);
     border: 2px solid rgb(165, 105, 189);
@@ -1306,21 +1325,21 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin-bottom: 10px;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div button:hover,
-.profielPaginaVIemandAnders .container .row div .card .card-body div button:focus{
+.inspectUser .container .row div .card .card-body div button:hover,
+.inspectUser .container .row div .card .card-body div button:focus{
     background: rgb(165, 105, 189);
     color: #fff;
     border-color: rgba(165, 105, 189, 0.8);
     box-shadow: 0 0 10px rgb(165, 105, 189);
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div{
+.inspectUser .container .row div .card .card-body div div{
     margin-top: 2px;
     border: 2px solid rgb(165, 105, 189);
     border-radius: 10px;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm div{
     border: none;
     margin: 0;
 }
@@ -1329,32 +1348,32 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     width: 89%;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm div textarea{
     margin-top: 10px;
     border-radius: 10px;
     transition: 200ms;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea:hover{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm div textarea:hover{
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm div textarea:focus{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm div textarea:focus{
     border-color: rgba(165, 105, 189, .6);
     box-shadow: 0 0 15px rgba(165, 105, 189, .6);
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm button{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm button{
     width: 60%;
     margin: 20px 0 0 20%;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body div div .voegReviewToeForm button:hover{
+.inspectUser .container .row div .card .card-body div div .voegReviewToeForm button:hover{
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.profielPaginaVIemandAnders .container .errorReviewText{
+.inspectUser .container .errorReviewText{
     font-size: 17px;
     padding: 10px 20px 0 20px;
 }
@@ -1364,18 +1383,18 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     font-size: 18px;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body a{
+.inspectUser .container .row div .card .card-body a{
     border: none;
     box-shadow: none;
 }
 
-.profielPaginaVIemandAnders .container .row div .card .card-body a:hover{
+.inspectUser .container .row div .card .card-body a:hover{
     background: none;
     box-shadow: none;
     color: rgb(165, 105, 189);
 }
 
-.profielPaginaVIemandAnders .ratingForm .ratingButton{
+.inspectUser .ratingForm .ratingButton{
     margin-top: 20px;
     padding: 2px 40px;
     background: #fff;
@@ -1386,17 +1405,17 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
-.profielPaginaVIemandAnders .ratingForm .ratingButton:hover{
+.inspectUser .ratingForm .ratingButton:hover{
     color: #fff;
     background: rgb(165, 105, 189);
     box-shadow: 0 0 30px rgba(0, 0, 0, .3);
 }
 
-.profielPaginaVIemandAnders .container .profielButtonBox{
+.inspectUser .container .profielButtonBox{
     margin-top: -40px;
 }
 
-.profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
+.inspectUser .container .profielButtonBox .profielButton{
     color: rgb(165, 105, 189);
     margin: 5px 15px;
     font-size: 18px;
@@ -1405,42 +1424,42 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 @media (max-width: 575px) {
-    .profielPaginaVIemandAnders .container .profielButtonBox{
+    .inspectUser .container .profielButtonBox{
         margin-top: 30px;
     }
 
-    .profielPaginaVIemandAnders .container .profielButtonBox .profielButton{
+    .inspectUser .container .profielButtonBox .profielButton{
         background: none;
         color: rgb(165, 105, 189);
         text-decoration: underline;
         text-decoration-color: rgb(165, 105, 189);
     }
 
-    .profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
+    .inspectUser .container .profielButtonBox .profielButton:hover{
         background: none;
         text-decoration: underline;
     }
 }
 
-.profielPaginaVIemandAnders .titelLink-a{
+.inspectUser .titelLink-a{
     color: #000;
     transition: 150ms;
     text-decoration: underline;
     text-decoration-color: #fff;
 }
 
-.profielPaginaVIemandAnders .titelLink-a:hover{
+.inspectUser .titelLink-a:hover{
     color: rgb(165, 105, 189);
     text-decoration-color: rgb(165, 105, 189);
 }
 
-.profielPaginaVIemandAnders .geenReviewMelding{
+.inspectUser .geenReviewMelding{
     padding: 20px 10px 0 10px;
     font-size: 17px;
 }
 
-.profielPaginaVIemandAnders .tussenLijn{
-    border-top: .8px solid rgba(0, 0, 0, .1);
+.inspectUser .tussenLijn{
+    border-top: 1px solid rgba(0, 0, 0, .1);
     padding-top: 10px;
 }
 
@@ -1463,7 +1482,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     height: 350px;
 }
 
-.profielPaginaVIemandAnders .itemImage{
+.inspectUser .itemImage{
     height: 350px;
 }
 
@@ -2814,54 +2833,64 @@ footer{
 /********* INSPECTVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
-.darkmode--activated .profielPaginaVIemandAnders{
+.darkmode--activated .inspectUser{
     isolation: isolate;
 }
 
 /*** CSS ***/
-.darkmode--activated .profielPaginaVIemandAnders .container h2,
-.darkmode--activated .profielPaginaVIemandAnders .jumbotron p{
+.darkmode--activated .inspectUser .container h2,
+.darkmode--activated .inspectUser .jumbotron p{
     color: rgb(230, 230, 230);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .jumbotron{
+.darkmode--activated .inspectUser .jumbotron{
     background: rgb(50, 50, 50);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .subTitel,
-.darkmode--activated .profielPaginaVIemandAnders .lijn{
+.darkmode--activated .inspectUser .subTitel,
+.darkmode--activated .inspectUser .lijn{
     border-color: rgba(230 ,230, 230, .2);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .geenAangebodenVeilingen,
-.darkmode--activated .profielPaginaVIemandAnders .geenGewonnenVeilingen,
-.darkmode--activated .profielPaginaVIemandAnders .titelLink-a{
+.darkmode--activated .inspectUser .geenAangebodenVeilingen,
+.darkmode--activated .inspectUser .geenGewonnenVeilingen,
+.darkmode--activated .inspectUser .titelLink-a{
     color: rgb(230, 230, 230);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .container .profielButtonBox .profielButton:hover{
+.darkmode--activated .inspectUser .container .profielButtonBox .profielButton:hover{
     color: rgb(230, 230, 230);
     text-decoration-color: rgb(230, 230, 230);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button{
+.darkmode--activated .inspectUser .container .container .row div .card .card-body .text-right button{
     background: rgb(40, 40, 40);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button:hover,
-.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right button:focus{
+.darkmode--activated .inspectUser .container .container .row div .card .card-body .text-right button:hover,
+.darkmode--activated .inspectUser .container .container .row div .card .card-body .text-right button:focus{
     background: rgb(165, 105, 189);
     color: rgb(40, 40, 40);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right .dropdown-menu,
-.darkmode--activated .profielPaginaVIemandAnders .container .container .voegReviewToeDropdownMenu{
+.darkmode--activated .inspectUser .container .container .row div .card .card-body .text-right .dropdown-menu,
+.darkmode--activated .inspectUser .container .container .voegReviewToeDropdownMenu{
     background: rgb(110, 110, 110);
 }
 
-.darkmode--activated .profielPaginaVIemandAnders .container .container .row div .card .card-body .text-right .dropdown-menu .errorReviewText,
-.darkmode--activated .profielPaginaVIemandAnders .container .container .voegReviewToeDropdownMenu .voegReviewToeForm .form-group label{
+.darkmode--activated .inspectUser .container .container .row div .card .card-body .text-right .dropdown-menu .errorReviewText,
+.darkmode--activated .inspectUser .container .container .voegReviewToeDropdownMenu .voegReviewToeForm .form-group label{
     color: rgb(230, 230,230);
+}
+
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton{
+    color: red;
+    text-decoration-color: rgb(50, 50, 50);
+}
+
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:hover,
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:focus{
+    text-decoration-color: red;
 }
 
 /********* PROFILEVIEW.PHP *********/
@@ -2890,15 +2919,16 @@ footer{
     border-bottom: 1px solid rgba(230, 230, 230, .2);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn,
-.darkmode--activated .profielPagina .container .container .row div .card .card-body form button{
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body form .deleteAccountButton{
     background: rgb(60, 60, 60);
 }
 
-.darkmode--activated .profielPagina .row .card .card-body .btn:hover,
-.darkmode--activated .profielPagina .row .card .card-body .btn:focus{
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn:hover,
+.darkmode--activated .profielPagina .container .container .row div .card .card-body .btn:focus{
     box-shadow: 0 0 10px rgb(165, 105, 189);
     color: rgb(40, 40, 40);
+    background: rgb(165, 105, 189);
 }
 
 .darkmode--activated .profielPagina .container .container .row div .card .card-body form button:hover,
@@ -2910,6 +2940,10 @@ footer{
 
 .darkmode--activated .profielPagina .container .container .row div .card .card-body p .wijzigFotoLink{
     background: none;
+}
+
+.darkmode--activated .profielPagina .tussenLijn{
+    border-color: rgba(255, 255, 255, .2);
 }
 
 /********* UPDATEVIEW.PHP *********/
@@ -2962,7 +2996,8 @@ footer{
 }
 
 /*** CSS ***/
-.darkmode--activated .upgradePagina .container p{
+.darkmode--activated .upgradePagina .container p,
+.darkmode--activated .upgradePagina .container h2{
     color: rgb(230, 230, 230);
 }
 
@@ -2980,8 +3015,8 @@ footer{
 }
 
 .darkmode--activated .upgradePagina .container .upgradeForm div .upgradeButton{
-    background: rgb(80, 80, 80);
-    color: rgb(230, 230, 230);
+    background: rgb(40, 40, 40);
+    color: rgb(165, 105, 189);
     box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 

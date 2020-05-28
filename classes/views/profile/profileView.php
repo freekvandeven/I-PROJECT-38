@@ -41,12 +41,6 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                             <p><b>Emailadres: </b><?= $profile_data['Mailbox'] ?></p>
                             <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                             <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
-                            <p><b>Geboortedatum: </b><?= $profile_data['Geboortedag'] ?></p>
-                            <p><b>Land: </b><?= $profile_data['Land'] ?></p>
-                            <p><b>Adres 1: </b><?= $profile_data['Adresregel_1'] ?></p>
-                            <p><b>Adres 2: </b><?= $profile_data['Adresregel_2'] ?></p>
-                            <p><b>Postcode: </b><?= $profile_data['Postcode'] ?></p>
-                            <p><b>Plaatsnaam: </b><?= $profile_data['Plaatsnaam'] ?></p>
                             <a href="profile.php?action=update&option=persoonsgegevens"
                                class="btn btn-primary">Wijzig</a>
                         </div>
@@ -77,17 +71,23 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                     <div class="card">
                         <div class="card-body">
                             <h4 class="subTitel card-title">Verkoper</h4>
-                            <p><b>Verkoper: </b><?= $verkoper ?></p>
                             <?php if (!$profile_data['Verkoper']) : ?>
-                                <a href="profile.php?action=upgrade" class="btn btn-primary">Wijzig</a>
+                                <p><b>Verkoper: </b><?= $verkoper ?></p>
+                                <a href="profile.php?action=upgrade" class="btn btn-primary">Word verkoper</a>
+                            <?php endif;
+                            if($profile_data['Verkoper']) :
+                                $userSellerInformation = Seller::getSeller($_SESSION['name']) ?>
+                                <p><b>Bank: </b><?=$userSellerInformation['Bank']?></p>
+                                <p><b>Bankrekening: </b><?=$userSellerInformation['Bankrekening']?></p>
+                                <p><b>Creditcard: </b><?=$userSellerInformation['Creditcard']?></p>
+                                <a href="profile.php?action=update&option=verkopersgegevens" class="btn btn-primary">Wijzig</a>
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div> <!-- Eind vd "ROW" -->
 
-
-            <h2 class="tussenLijn">Mijn veilingen</h2>
+            <h2 class="tussenLijn">Veilingen</h2>
             <div class="row">
                 <?php
                 if ($profile_data['Verkoper']) : ?>
@@ -120,28 +120,16 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                         </div>
                     </div>
                 </div><?php endif; ?>
+            </div>
+
+            <h2 class="tussenLijn">Mijn account</h2>
+            <div class="row">
                 <div class="<?= $bootstrapGrid2 ?>">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Notificaties Bekijken</h4>
                             <p>Hier kunt u notificaties zien en chatten met andere gebruikers. </p>
                             <a href="profile.php?action=notifications" class="btn btn-primary">Notificaties</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="<?= $bootstrapGrid2 ?>">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Account verwijderen</h4>
-                            <p>Als u uw account wilt verwijderen kan dat. Dit verwijdert ook alle geschiedenis waar u in
-                                voorkomt. </p>
-                            <form action="" method="post"
-                                  onsubmit="return confirm('Weet je zeker dat je jouw account wilt deleten? Je kan hierna niet meer terug.');">
-                                <input type="hidden" name="token" value="<?= $token ?>">
-                                <button class="btn btn-primary" type="submit" name="action" value="delete">Delete
-                                    account
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -154,7 +142,18 @@ $bootstrapGrid2 = "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6";
                         </div>
                     </div>
                 </div>
-                <div> <!--temp-->
+                <div class="<?= $bootstrapGrid2 ?>">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Account verwijderen</h4>
+                            <p>Als u uw account wilt verwijderen kan dat. Dit verwijdert ook alle geschiedenis waar u in
+                                voorkomt. </p>
+                            <form action="" method="post"
+                                  onsubmit="return confirm('Weet je zeker dat je jouw account wilt deleten? Je kan hierna niet meer terug.');">
+                                <input type="hidden" name="token" value="<?= $token ?>">
+                                <button class="deleteAccountButton btn-primary" type="submit" name="action" value="delete">Verwijder account</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
