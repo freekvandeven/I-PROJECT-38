@@ -1,5 +1,6 @@
 <?php
 startAutoLoader();
+require_once('vendor/autoload.php');
 require_once('database.php'); // database connection
 require_once('more/logging.php'); // site logging
 require_once('more/admin.php'); // admin tasks

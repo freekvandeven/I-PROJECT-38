@@ -3,5 +3,6 @@
 /includes/db-config.php
 /upload/items/*
 /upload/users/*
+/includes/secret/
 /vendor/
 /classes/models/Secrets.php

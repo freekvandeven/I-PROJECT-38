@@ -2,7 +2,9 @@
     "name": "groep38/iproject",
     "description": "Website voor iproject",
     "type": "project",
-    "require": {},
+    "require": {
+        "kreait/firebase-php": "^5.3"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9",
         "overtrue/phplint": "^2.0"
