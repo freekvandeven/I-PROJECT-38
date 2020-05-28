@@ -37,10 +37,14 @@ function checkItemDate()
 
 function cleanupUploadFolder()
 {
-    for ($i = 10000; $i < 40000; $i++) {
-        if (file_exists("upload/items/" . $i . ".png")) {
-            unlink("upload/items/" . $i . ".png");
-        }
+    $dir = "upload/items/";
+    foreach(scandir($dir,1) as $file){
+        unlink($dir . $file);
+    }
+
+    $dir = "upload/users/";
+    foreach(scandir($dir, 1) as $file){
+        unlink($dir . $file);
     }
 }
 

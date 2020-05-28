@@ -18,7 +18,7 @@ function setupDatabase() // setup the database
 
     $creation = file_get_contents('includes/SQL/defaultData.sql');
     $data = $dbh->exec($creation);
-
+    cleanupUploadFolder();
     $toast = 'database reset completed';
 }
 
