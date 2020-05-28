@@ -45,7 +45,7 @@ function displayVeilingAanbieden($phoneView) { // Om de tekst onder het kopje 'V
 
 
             <div class="carousel-inner">
-                <div class="carousel-item active" data-interval="1000000000">
+                <div class="carousel-item active" data-interval="5000">
                     <img src="images/homepage/foto1.jpg" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Het aanbod</h5>
@@ -53,18 +53,18 @@ function displayVeilingAanbieden($phoneView) { // Om de tekst onder het kopje 'V
                         <p><a href="catalogus.php" class="slideshowButton">Bekijk veilingen</a></p>
                     </div>
                 </div>
-                <div class="carousel-item" data-interval="1000000000">
+                <div class="carousel-item" data-interval="5000">
                     <img src="images/homepage/foto2.png" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Personaliseer</h5>
-                        <?=displayPersonaliseren(0)?>
+                        <?php displayPersonaliseren(0)?>
                     </div>
                 </div>
-                <div class="carousel-item" data-interval="1000000000">
+                <div class="carousel-item" data-interval="5000">
                     <img src="images/homepage/foto3.jpg" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Veiling aanbieden</h5>
-                        <?=displayVeilingAanbieden(0)?>
+                        <?php displayVeilingAanbieden(0)?>
                     </div>
                 </div>
 
