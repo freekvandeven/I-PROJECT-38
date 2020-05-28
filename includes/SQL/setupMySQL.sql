@@ -9,16 +9,16 @@ CREATE TABLE Bod
 
 CREATE TABLE KeyWords
 (
-KeyWordNummer INTEGER AUTO_INCREMENT UNIQUE NOT NULL,
-KeyWord VARCHAR(40) NOT NULL,
-CONSTRAINT PK_Keyword PRIMARY KEY (KeyWord)
+    KeyWordNummer INTEGER AUTO_INCREMENT UNIQUE NOT NULL,
+    KeyWord       VARCHAR(40)                   NOT NULL,
+    CONSTRAINT PK_Keyword PRIMARY KEY (KeyWord)
 );
 
 CREATE TABLE KeyWordsLink
 (
-KeywordNummer INTEGER NOT NULL,
-VoorwerpNummer INTEGER NOT NULL,
-CONSTRAINT PK_KeyWordsLink PRIMARY KEY (KeyWordNummer,VoorwerpNummer)
+    KeywordNummer  INTEGER NOT NULL,
+    VoorwerpNummer INTEGER NOT NULL,
+    CONSTRAINT PK_KeyWordsLink PRIMARY KEY (KeyWordNummer, VoorwerpNummer)
 );
 
 CREATE TABLE Feedback

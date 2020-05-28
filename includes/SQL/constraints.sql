@@ -100,13 +100,13 @@ ALTER TABLE Rubriek
         ON UPDATE NO ACTION
         ON DELETE NO ACTION;
 
-ALTER TABLE gebruikersinstellingen
+ALTER TABLE GebruikersInstellingen
     ADD CONSTRAINT FK_Gebruiker_GebruikersInstellingen FOREIGN KEY (Gebruiker)
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE;
 
 ALTER TABLE KeyWordsLink
-    ADD CONSTRAINT FK_KeyEordNummer_Keyword FOREIGN KEY (KeyWordNummer) REFERENCES KeyWords(KeyWordNummer)
+    ADD CONSTRAINT FK_KeyWordNummer_Keyword FOREIGN KEY (KeyWordNummer) REFERENCES KeyWords(KeyWordNummer)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
