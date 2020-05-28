@@ -85,7 +85,7 @@ if (isset($_SESSION['loggedin'])) {
         <form class="navbarForm form-inline ml-md-5" action="catalogus.php" method="post">
             <input type="hidden" name="token" value="<?= $token ?>">
             <div class="text-center">
-                <input class="zoekBalk form-control mr-md-2" type="search" placeholder="Zoeken" aria-label="Search"
+                <input class="zoekBalk form-control mr-md-2" type="search" placeholder="Zoeken op veilingen" aria-label="Search"
                        name="search">
             </div>
             <button class="btn btn-outline-success" type="submit">Zoeken</button>
@@ -105,17 +105,12 @@ if (isset($_SESSION['loggedin'])) {
                     (2)</a>
                 <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen</a>
                 <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten</a>
+                <a class="dropdown-item" href="addProduct.php">Verkoop product</a>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="darkmodeSettingHeader"
                            name="darkmodeSettingHeader" <?php if ($settings['darkmode']) echo "checked"; ?>>
                     <label class="custom-control-label" for="darkmodeSettingHeader">Darkmode</label>
                 </div>
-                <a class="item">
-                    <div class="ui slider checkbox">
-                        <input type="checkbox" name="darkmode" id="darkmode">
-                        <label for="darkmode">Darkmode</label>
-                    </div>
-                </a>
                 <a class="dropdown-item" href="logout.php">Log Out</a>
             <?php else: ?>
                 <a class="dropdown-item" href="login.php">Login</a>

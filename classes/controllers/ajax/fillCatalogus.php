@@ -88,7 +88,7 @@ switch ($_POST["step"]) {
                 $imageInsert = $dbh->prepare("exec fileInsert ?, ?");
                 $imageInsert->bindParam(1, $imageFile);
                 $imageInsert->bindParam(2, $itemID);
-
+                $itemID = Items::get_ItemId();
                 $fileText = file_get_contents($file);
                 # step 4.3 Split file into items
                 $splitFile = explode("INSERT Items", $fileText);
@@ -96,7 +96,6 @@ switch ($_POST["step"]) {
                 array_shift($splitFile);
                 foreach ($splitFile as $item) {
                     $splitParts = explode("INSERT", $item);
-                    //array_shift($splitParts);
 
                     # step 4.5 insert item
                     $itemInsertParts = explode(") VALUES (", $splitParts[0]);
@@ -116,7 +115,7 @@ switch ($_POST["step"]) {
                     $imageFile = $output[10];
 
                     $voorwerpInsert->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000', 5.00, 'testinstructie', $verkoper, '2020-06-30 12:00:00:000', FALSE));
-                    $itemID = Items::get_ItemId();
+                    $itemID++;
                     $voorwerpRubriek->execute(array($itemID, $category));
 
                     //store file with new autoincrementId as id.png
@@ -131,8 +130,8 @@ switch ($_POST["step"]) {
                         if($imageCounter<5) {
                             $imageFile = explode('\'', $image)[1];
                             $imageInsert->execute();
-                            $imageCounter++;
                         }
+                        $imageCounter++;
                     }
                 }
             }

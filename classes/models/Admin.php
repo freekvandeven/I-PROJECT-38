@@ -70,7 +70,7 @@ class Admin
     static function getSiteVisits()
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT PageName, Visits FROM Pages');
+        $data = $dbh->prepare("SELECT PageName, Visits FROM Pages");
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;

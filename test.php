@@ -111,16 +111,47 @@ foreach ($splitFile as $item) {
 */
 
 
-echo filemtime('upload/users/admin.png');
+//cleanupUploadFolder();
+
+$data = $dbh->prepare("SELECT TOP 10 Beschrijving FROM Voorwerp ORDER BY LEN(Beschrijving) DESC");
+$data->execute();
+$result = $data->fetchAll(PDO::FETCH_COLUMN);
+var_dump($result);
+//var_dump(array(htmlentities($result[0]),htmlentities($result[1]),htmlentities($result[2])));
+//var_dump(array(removeBadElements($result[0]),removeBadElements($result[1]),removeBadElements($result[2])));
 
 
-
-
+//setupProcedures();
+//var_dump(getRandomUserData());
 
 function removeBadElements($input)
 { // remove all bad characters
+    preg_replace('/(<script[^>]*>.+?<\/script>|<style[^>]*>.+?<\/style>)/s', '', $input);
+    $doc = new DOMDocument();
+    $doc->loadHTML($input);
+
+    //removeElementsByTagName('script', $doc);
+    $input = strip_tags($input, '<p><a><h1><h2><h3><h4><h5><br><b><i>');
     return $input;
 }
+
+function getRandomUserData(){
+    $firstnames = ["Piet", "Jan", "Winter", "Zwaluw", "Maan", "Ster", "Zomer"];
+    $surname = ["cohen", "frank", "Polak", "de Vries", "de Jong", "de Leeuw"];
+    $emails = ["test@hotmail.com", "hallo@gmail.com", "xtc@yahoo.com"];
+    $city = ['Ruinerwold', 'Barnevelt', 'Gent', 'Hatert'];
+    return [$firstnames[array_rand($firstnames)],$surname[array_rand($surname)],$emails[array_rand($emails)], $city[array_rand($city)]];
+}
+
+/*
+$doc->loadHTML($a);
+$list = $doc->getElementsByTagName("p");
+
+while ($list->length > 0) {
+    $p = $list->item(0);
+    $p->parentNode->removeChild($p);
+}
+*/
 
 function calculateCurrency($amount, $currency)
 {
