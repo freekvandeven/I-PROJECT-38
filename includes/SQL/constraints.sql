@@ -105,3 +105,8 @@ ALTER TABLE gebruikersinstellingen
         REFERENCES Gebruiker(Gebruikersnaam)
         ON UPDATE CASCADE
         ON DELETE CASCADE;
+
+ALTER TABLE KeyWordsLink
+    ADD CONSTRAINT FK_KeyEordNummer_Keyword FOREIGN KEY (KeyWordNummer) REFERENCES KeyWords(KeyWordNummer)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION

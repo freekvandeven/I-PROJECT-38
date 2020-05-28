@@ -12,7 +12,35 @@ class Items
                                       VALUES              (:Titel,:Beschrijving,:Startprijs,:Betalingswijze,:Betalingsinstructie,:Plaatsnaam,:Land,
                                       :LooptijdBeginTijdstip,:Verzendkosten,:Verzendinstructies,:Verkoper,
                                       :LooptijdEindeTijdstip,:VeilingGesloten,:Verkoopprijs)');
-         return $data->execute($item);
+        $success = $data->execute($item);
+        Items::addKeyWords($item[':Titel'], $item[':Beschrijving']);
+        return ($success);
+    }
+
+    static function addKeyWords($title, $description)
+    {
+        $keywords = explode(" ", $title);
+        $keywords = array_merge(explode(" ", $description), $keywords);
+        global $dbh;
+        foreach ($keywords as $keyword) {
+            $keyword = preg_replace('/\PL/u', '', $keyword);
+            $data = $dbh->prepare("INSERT INTO KeyWords(Keyword) VALUES(:KeyWord)");
+            $data->execute([':KeyWord' => $keyword]);
+            Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'],Items::get_ItemId());
+        }
+    }
+
+    static function addKeyWordLink($keywordId,$itemId){
+        global $dbh;
+        $data = $dbh->prepare("INSERT INTO KeyWordsLink(KeyWordNummer,VoorwerpNummer) VALUES(:KeyWordNummer,:VoorwerpNummer)");
+        $data->execute([':KeyWordNummer'=>$keywordId,':VoorwerpNummer'=>$itemId]);
+    }
+
+    static function getKeyWordId($keyword){
+        global $dbh;
+        $data = $dbh->prepare("SELECT KeyWordNummer From KeyWords WHERE KeyWord = :KeyWord");
+        $data->execute([":KeyWord"=>$keyword]);
+        return $data->fetch(PDO::FETCH_ASSOC);
     }
 
     static function insertFile($files)
@@ -80,7 +108,7 @@ class Items
     {
         global $dbh;
         $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
-        $data->execute([":search"=>'%' . $search. '%']);
+        $data->execute([":search" => '%' . $search . '%']);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -120,11 +148,11 @@ class Items
         return $result[0];
     }
 
-    static function placeBid($item, $price, $user,$date)
+    static function placeBid($item, $price, $user, $date)
     {
         global $dbh;
         $data = $dbh->prepare('INSERT INTO Bod (Voorwerp, Bodbedrag, Gebruiker, BodTijdstip) VALUES (:voorwerp, :bodbedrag, :user,  :date)');
-        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user,":date"=>$date));
+        $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":date" => $date));
     }
 
     static function getRubrieken()
@@ -161,7 +189,7 @@ class Items
         $data = $dbh->query($sql);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         $filtered = [];
-        foreach($result as $row){ // loop over all results
+        foreach ($result as $row) { // loop over all results
             $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
         }
         return $filtered;
@@ -171,29 +199,32 @@ class Items
     {
         global $dbh;
         $data = $dbh->prepare("DELETE FROM Voorwerp where Voorwerpnummer = :id");
-        return $data->execute([':id'=>$id]);
+        return $data->execute([':id' => $id]);
     }
 
-    static function getFiles($item){
+    static function getFiles($item)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND NOT Filenaam LIKE '%img%'");
-        $data->execute([":item"=>$item]);
+        $data->execute([":item" => $item]);
         $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }
 
-    static function getThumbnail($item){
+    static function getThumbnail($item)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT Filenaam FROM Bestand WHERE Voorwerp = :item AND Filenaam LIKE '%img%'");
-        $data->execute([":item"=>$item]);
+        $data->execute([":item" => $item]);
         $result = $data->fetchColumn();
         return $result;
     } //TODO FIX THIS
 
-    static function getFollowers($item){
+    static function getFollowers($item)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT Gebruiker FROM Favorieten WHERE Voorwerp = :item");
-        $data->execute([":item"=>$item]);
+        $data->execute([":item" => $item]);
         $result = $data->fetchAll(PDO::FETCH_COLUMN);
         return $result;
     }

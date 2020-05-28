@@ -282,15 +282,22 @@ function evalSelectPOST()
     $select = array();
     $distance = false;
     if (isset($_POST)) {
-        if (isset($_SESSION['name']) || isset($_POST['postalCode'])) {
+        if (isset($_SESSION['name']) || isset($_POST['postalCode'])) {                           /////////postal code input////////
             $distance = true;
             $select[':minimumDistance'] = isset($_POST['minimumDistance']) ? $_POST['minimumDistance'] : 0; // min distance 0 if post isn't set
             $select[':maximumDistance'] = isset($_POST['maximumDistance']) ? $_POST['maximumDistance'] : 355;
             $select = setLatLong($select);
         }
-        if (isset($_POST['search'])) {
-            $select[':search'] = "%" . $_POST['search'] . "%";
-        }
+        if (isset($_POST['search'])) {                                                           /////////search input//////////
+            $keywords = explode(" ", $_POST['search']);
+            $temp =[];
+            foreach($keywords as $keyword){
+                $keyword = preg_replace('/\PL/u', '', $keyword);
+                if($keyword!="") $temp[] = $keyword;
+            }
+            $keywords = $temp;
+            $select[':search'] = $keywords;
+        }                                                                                         ///////// price between////////
         if (!empty($_POST['minimum']) && $_POST['minimum'] > 1 && $_POST['minimum'] < 1000000) {
             $select[':val1'] = $_POST['minimum'];
         } else {
@@ -304,7 +311,7 @@ function evalSelectPOST()
         if (isset($_POST['rubriek'])) {
             $select[":rubriek"] = $_POST['rubriek'];
         }
-        if (isset($_POST['order'])) {
+        if (isset($_POST['order'])) {                                                             /////// order by ///////////
             switch ($_POST['order']) {
                 case "Low":
                     $select[':order'] = "prijs ASC";
@@ -335,8 +342,7 @@ function evalSelectPOST()
             $select[':offset'] = $_POST['offset'];
         } else {
             $select[':offset'] = " ";
-        }
-// evaluate number of items cannot be used in prepared statements so it is converted to one of the following values:
+        }                                                                                            ///////// limit /////////
         if (isset($_POST['numberOfItems']))
             switch ($_POST['numberOfItems']) {
                 case "25":
