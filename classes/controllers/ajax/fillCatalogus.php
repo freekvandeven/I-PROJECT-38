@@ -14,7 +14,7 @@ switch ($_POST["step"]) {
     case 0:
         # step 0 clear the database
         $dbh->exec("DELETE FROM Voorwerp WHERE Betalingswijze='niks'");
-        $dbh->exec("DELETE FROM Gebruiker WHERE Voornaam='Testvoornaam'");
+        $dbh->exec("DELETE FROM Gebruiker WHERE Wachtwoord='testwachtwoord'");
         $dbh->exec("ALTER TABLE Rubriek NOCHECK CONSTRAINT FK_ParentRubriek");
         $dbh->exec("DELETE FROM Rubriek");
         echo "Clear database\n";
@@ -63,9 +63,14 @@ switch ($_POST["step"]) {
 
                 # step 3.1 get the file
                 $userFile = file_get_contents($file);
-                #step 3.2 fix insert string
+                #step 3.2 get random data
+                $randomData = getRandomUserData();
+                $voornaam = $randomData[0];
+                $achternaam = $randomData[1];
+                $email = $randomData[2];
+                $plaatsnaam = $randomData[3];
                 $refactorFile = str_replace("INSERT Users (Username,Postalcode,Location,Country,Rating) VALUES (",
-                    "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Latitude, Longitude, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('Testvoornaam', 'Testachternaam','Zetten', 'Adminlaan','2000-01-01','test@hotmail.com','testwachtwoord',52.718239,6.267012,1,1, 1, 1,", $userFile);
+                    "INSERT INTO Gebruiker (Voornaam, Achternaam, Plaatsnaam, Adresregel_1, Geboortedag, Mailbox, Wachtwoord, Latitude, Longitude, Vraag, Verkoper, Action, Bevestiging, Gebruikersnaam,Postcode,Land,Antwoordtekst) VALUES ('$voornaam', '$achternaam', '$plaatsnaam', 'Adminlaan','2000-01-01', '$email','testwachtwoord',52.718239,6.267012,1,1, 1, 1,", $userFile);
                 # step 3.3 split file in inserts
                 $inserts = explode("\n", $refactorFile);
 
@@ -114,22 +119,20 @@ switch ($_POST["step"]) {
                     $itemID = Items::get_ItemId();
                     $voorwerpRubriek->execute(array($itemID, $category));
 
-                    //$imagelink = str_replace("img", "dt_1_", $output[10]);
                     //store file with new autoincrementId as id.png
-                    //imagepng(imagecreatefromstring(file_get_contents('https://iproject38.icasites.nl/thumbnails/' . $output )), 'upload/items/' . $itemID . '.png');
                     $imageInsert->execute();
-                    //Items::insertFile(array(":Filenaam"=>$output[10],":Voorwerp"=>$itemID));
 
                     # step 4.6 insert images in bestanden
                     array_shift($splitParts); // remove first insert for item
 
-
+                    $imageCounter = 0;
                     foreach ($splitParts as $image) {
                         # put image into database
-                        $imageFile = explode('\'', $image)[1];
-                        $imageInsert->execute();
-                        //$imageInsert->execute(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
-                        //Items::insertFile(array(":Filenaam"=>$imageName,":Voorwerp"=>$itemID));
+                        if($imageCounter<5) {
+                            $imageFile = explode('\'', $image)[1];
+                            $imageInsert->execute();
+                            $imageCounter++;
+                        }
                     }
                 }
             }
@@ -137,13 +140,13 @@ switch ($_POST["step"]) {
         }
         break;
 }
-    //echo $_POST["step"] . "-" . count($files);
-    echo round($_POST["step"]*100/(count($files)+3));
+echo round($_POST["step"]*100/(count($files)+3));
 
 
 function removeBadElements($input)
 { // remove all bad characters
-    //return "<iframe>" . $input . "</iframe>";
+    preg_replace('/(<script[^>]*>.+?<\/script>|<style[^>]*>.+?<\/style>)/s', '', $input);
+    $input = strip_tags($input, '<p><a><h1><h2><h3><h4><h5><br><b><i>');
     return $input;
 }
 
@@ -158,4 +161,11 @@ function calculateCurrency($amount, $currency)
     return $amount * $multiplier;
 }
 
+function getRandomUserData(){
+    $firstnames = ["Piet", "Jan", "Winter", "Zwaluw", "Maan", "Ster", "Zomer"];
+    $surname = ["cohen", "frank", "Polak", "de Vries", "de Jong", "de Leeuw"];
+    $emails = ["test@hotmail.com", "hallo@gmail.com", "xtc@yahoo.com"];
+    $city = ['Ruinerwold', 'Barnevelt', 'Gent', 'Hatert'];
+    return [$firstnames[array_rand($firstnames)],$surname[array_rand($surname)],$emails[array_rand($emails)], $city[array_rand($city)]];
+}
 ?>

@@ -1,0 +1,3 @@
+DROP PROCEDURE IF EXISTS voorwerpRubriekInsert;
+DROP PROCEDURE IF EXISTS fileInsert;
+DROP PROCEDURE IF EXISTS rubriekInsert;
