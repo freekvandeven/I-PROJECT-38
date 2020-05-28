@@ -6,6 +6,6 @@ class Debug{
     }
 
     static function diePrint($input){
-        die(print_r($input));
+        die(Debug::dump($input));
     }
 }
