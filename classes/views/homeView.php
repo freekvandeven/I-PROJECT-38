@@ -1,40 +1,76 @@
+<?php
+
+function displayPersonaliseren($phoneView) { // Om de tekst onder het kopje 'Personaliseren' te printen. Komt 2x voor, dus vandaar de functie.
+    if (isset($_SESSION['loggedin'])) {
+        $link = 'profile.php';
+        $tekst = 'Laat iedereen weten wie u bent en waar u voor staat.';
+    } else {
+        $link = 'register.php';
+        $tekst = 'Maak een account aan of log in.';
+    }
+    echo '<p>'.$tekst.'</p>';
+    if(!$phoneView): echo '<a href="'.$link.'" class="slideshowButton">Aan de slag!</a>'; endif;
+    if($phoneView): echo '<p class="buttonPhoneView"><a href="'.$link.'">Aan de slag!</a></p>'; endif;
+}
+
+function displayVeilingAanbieden($phoneView) { // Om de tekst onder het kopje 'Veiling aanbieden' te printen. Komt 2x voor, dus vandaar de functie.
+    if (isset($_SESSION['loggedin'])) {
+        $profile_data = User::getUser($_SESSION['name']);
+        if ($profile_data['Verkoper']) {
+            $tekst = 'Bied een veiling aan.';
+            $link = 'addProduct.php';
+        } else {
+            $tekst = 'Om veilingen aan te kunnen bieden, is het noodzakelijk dat u een verkoper bent.';
+            $link = 'profile.php?action=upgrade';
+        }
+    } else {
+        $tekst = 'Om een veiling aan te bieden, is het noodzakelijk dat u bent ingelogd en een verkoper bent.';
+        $link = 'register.php';
+    }
+    echo '<p>'.$tekst.'</p>';
+    if(!$phoneView): echo '<a href="'.$link.'" class="slideshowButton">Aan de slag!</a>'; endif;
+    if($phoneView): echo '<p class="buttonPhoneView"><a href="'.$link.'">Aan de slag!</a></p>'; endif;
+} ?>
+
 <main class="homePage">
-    <!-- Slideshow: -->
+     <!-- Slideshow: -->
     <div class="slideshow">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <!-- De navigatie onderaan: -->
+            <!-- Indicatoren onderaan -->
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
             </ol>
 
-            <!-- De items in de slideshow zelf: -->
+
             <div class="carousel-inner">
                 <div class="carousel-item active" data-interval="5000">
-                    <img src="images/foto2.jpg" class="d-block w-100" alt="...">
+                    <img src="images/homepage/foto1.jpg" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
-                        <a class="sliderLinks" href="#"><h3>Bekijk het aanbod</h3></a>
-                        <p>Bied op gebruikte producten en verkoop uw gebruikte producten</p>
+                        <h5>Het aanbod</h5>
+                        <p>Bekijk ons grootschalig aanbod.</p>
+                        <p><a href="catalogus.php" class="slideshowButton">Bekijk veilingen</a></p>
                     </div>
                 </div>
                 <div class="carousel-item" data-interval="5000">
-                    <img src="images/foto3.jpg" class="d-block w-100" alt="...">
+                    <img src="images/homepage/foto2.png" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
-                        <a class="sliderLinks" href="#"><h3>Personaliseer</h3></a>
-                        <p>Maak een account aan of log in.</p>
+                        <h5>Personaliseer</h5>
+                        <?php displayPersonaliseren(0)?>
                     </div>
                 </div>
                 <div class="carousel-item" data-interval="5000">
-                    <img src="images/foto1.jpg" class="d-block w-100" alt="Veiling">
+                    <img src="images/homepage/foto3.jpg" class="d-block w-100" alt="Slideshow foto">
                     <div class="carousel-caption d-none d-md-block">
-                        <a class="sliderLinks" href="#"><h3>Over ons</h3></a>
-                        <p>EenmaalAndermaal wil het beste voor haar gebruikers.</p>
+                        <h5>Veiling aanbieden</h5>
+                        <?php displayVeilingAanbieden(0)?>
                     </div>
                 </div>
+
             </div>
 
-            <!-- De navigatiepijltjes: -->
+            <!-- Pijltjes aan de zijkanten -->
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -44,7 +80,40 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div> <!-- Einde slideshow -->
+    </div>
+
+    <div class="phoneViewContainer container">
+        <div class="phoneview row">
+            <div class="row col-10 offset-1">
+                <div class="image col-6">
+                    <img src="images/homepage/foto1.jpg" alt="Foto hoofdpagina 1">
+                </div>
+                <div class="text col-6">
+                    <h3>Het aanbod</h3>
+                    <p>Bekijk ons grootschalig aanbod.</p>
+                    <p class="buttonPhoneView"><a href="catalogus.php">Aan de slag!</a></p>
+                </div>
+            </div>
+            <div class="row col-10 offset-1">
+                <div class="image col-6">
+                    <img src="images/homepage/foto2.png" alt="Foto hoofdpagina 2">
+                </div>
+                <div class="text col-6">
+                    <h3>Personaliseer</h3>
+                    <?=displayPersonaliseren(1)?>
+                </div>
+            </div>
+            <div class="row col-10 offset-1">
+                <div class="image col-6">
+                    <img src="images/homepage/foto3.jpg" alt="Foto hoofdpagina 3">
+                </div>
+                <div class="text col-6">
+                    <h3>Veiling aanbieden</h3>
+                    <?=displayVeilingAanbieden(1)?>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- De snelst aflopende producten -->
     <div class="products">
