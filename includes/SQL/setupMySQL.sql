@@ -57,7 +57,7 @@ CREATE TABLE Gebruiker
 CREATE TABLE GebruikersInstellingen
 (
     Gebruiker       VARCHAR(20) NOT NULL DEFAULT false,
-    reccomendations BIT         NOT NULL DEFAULT false,
+    recommendations BIT         NOT NULL DEFAULT false,
     darkmode        BIT         NOT NULL DEFAULT false,
     notifications   BIT         NOT NULL DEFAULT false,
     superTracking   BIT         NOT NULL DEFAULT false,
