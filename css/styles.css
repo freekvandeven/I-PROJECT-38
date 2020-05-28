@@ -2883,6 +2883,16 @@ footer{
     color: rgb(230, 230,230);
 }
 
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton{
+    color: red;
+    text-decoration-color: rgb(50, 50, 50);
+}
+
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:hover,
+.darkmode--activated .inspectUser .jumbotron .deleteAccountForm .deleteAccountButton:focus{
+    text-decoration-color: red;
+}
+
 /********* PROFILEVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
