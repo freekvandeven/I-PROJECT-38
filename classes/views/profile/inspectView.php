@@ -10,22 +10,22 @@ $boughtItems = Items::getBuyerItems($profile_data_inspect_user['Gebruikersnaam']
 $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam']);
 ?>
 
-<main class="profielPaginaVIemandAnders">
+<main class="inspectUser">
     <div class="jumbotron">
         <h2 class="display-5">Profielpagina van <?= $profile_data_inspect_user['Gebruikersnaam'] ?></h2>
         <p>Op deze pagina kunt u de gegevens inzien van <?=$profile_data_inspect_user['Gebruikersnaam']?>. Ook kunt u de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
+        <?php if($_SESSION['admin']):?>
+            <form action ='' class="deleteAccountForm" method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
+                <input type="hidden" name="token" value="<?=$token?>">
+                <button class="deleteAccountButton" type="submit" name="deleteUser" value="delete">Verwijder gebruiker</button>
+            </form>
+        <?php endif; ?>
     </div>
 
     <div class="container">
         <h2 class="titel col-xl-3 col-md-6 col-sm-6">Profielgegevens</h2>
-        <?php if($_SESSION['admin']):?>
-        <form action ='' method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
-            <input type="hidden" name="token" value="<?= $token ?>">
-            <button class="deleteButton" type="submit" name="deleteUser" value="delete">Verwijder gebruiker</button>
-        </form>
-        <?php endif; ?>
-        <div class="container">
 
+        <div class="container">
             <?php if($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
                 <div class="profielButtonBox text-right">
                     <a class="profielButton" href="profile.php">Bekijk uw profielgegevens</a>
