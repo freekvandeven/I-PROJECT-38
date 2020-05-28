@@ -1,6 +1,5 @@
 <?php
 $profile_data = User::getUser($_SESSION['name']);
-$profile_phone_nr = User::getPhoneNumber($_SESSION['name']);
 $showButton = false;
 ?>
 
@@ -31,10 +30,11 @@ $showButton = false;
                                    placeholder="Uw nieuwe emailadres" value="<?= $profile_data['Mailbox'] ?>">
                         </div>
                         <!-- TELEFOONNUMMER 1 -->
+                        <?php $profile_phone_nr = User::getPhoneNumber($_SESSION['name']); ?>
                         <div class="form-group col-md-4">
                             <label for="telnr1">Telefoonnummer</label>
                             <input type="tel" class="form-control" name="phone-number" id="telnr1"
-                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr[0]?>">
+                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr?>">
                         </div>
                         <!-- TELEFOONNUMMER 2 -->
                         <div class="form-group col-md-4">

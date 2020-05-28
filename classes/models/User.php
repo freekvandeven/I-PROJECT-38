@@ -139,7 +139,7 @@ class User
         global $dbh;
         $data = $dbh->prepare("SELECT Telefoon FROM GebruikersTelefoon WHERE Gebruiker = :user");
         $data->execute([":user" => $user]);
-        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        $result = $data->fetch(PDO::FETCH_COLUMN);
         return $result;
     }
 
