@@ -172,11 +172,11 @@
                         <script>testJava(".price-slider")</script>
                         <div class="distance-slider">
                             <span>Van
-                                <input type="number" value="10" min="0" max="355" name="minimumDistance"/>km tot
-                                <input type="number" value="100" min="0" max="355" name="maximumDistance"/>km
+                                <input type="number" value="0" min="0" max="800" name="minimumDistance"/>km tot
+                                <input type="number" value="800" min="0" max="800" name="maximumDistance"/>km
                             </span>
-                            <input value="10" min="0" max="355" step="1" type="range"/>
-                            <input value="80" min="0" max="355" step="1" type="range"/>
+                            <input value="0" min="0" max="800" step="1" type="range"/>
+                            <input value="800" min="0" max="800" step="1" type="range"/>
                             <svg width="100%" height="24">
                                 <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
                                       stroke-dasharray="1 28"></line>

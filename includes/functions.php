@@ -38,12 +38,12 @@ function checkItemDate()
 function cleanupUploadFolder()
 {
     $dir = "upload/items/";
-    foreach(scandir($dir,1) as $file){
+    foreach (scandir($dir, 1) as $file) {
         unlink($dir . $file);
     }
 
     $dir = "upload/users/";
-    foreach(scandir($dir, 1) as $file){
+    foreach (scandir($dir, 1) as $file) {
         unlink($dir . $file);
     }
 }
@@ -119,9 +119,10 @@ function checkImageExists($fileName)
     return file_exists("upload/items/$fileName");
 }
 
-function getProfileImage($user){
-    if(isset($user) && file_exists("upload/users/" . $user . ".png")){
-        return "upload/users/$user.png?".filemtime("upload/users/$user.png");
+function getProfileImage($user)
+{
+    if (isset($user) && file_exists("upload/users/" . $user . ".png")) {
+        return "upload/users/$user.png?" . filemtime("upload/users/$user.png");
     } else {
         return "images/profilePicture.png?";
     }
@@ -224,8 +225,7 @@ function generateCatalog($items, $counter = 0, $new = false)
                     <!-- Display the countdown timer in an element -->
                     <p id="timer-<?= $counter ?>"></p>
                     <?php if ($new): ?>
-                        <p><?= round((strtotime(date('Y-m-d H:i:s')) - strtotime($card['LooptijdBeginTijdstip'])) / 60, 0); ?>
-                            minuten geleden</p>
+                        <p><?= timeRemaining($card['LooptijdBeginTijdstip']); ?></p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -239,6 +239,27 @@ function generateCatalog($items, $counter = 0, $new = false)
     if ($counter % 4 != 0) {
         echo "</div>";
     }
+}
+
+function timeRemaining($startTime)
+{
+    $timeRemaining = round((strtotime(date('Y-m-d H:i:s')) - strtotime($startTime)) / 60, 0);
+    $negative = ($timeRemaining>0)?0:1;
+    $timeRemaining = abs($timeRemaining);
+    if ($timeRemaining>=60) {
+        $hours = floor($timeRemaining / 60);
+        $timeRemaining = $hours." uur";
+        if ($hours>=24  ) {
+            $days = floor($hours / 24);
+            $timeRemaining = $days." dagen";
+        }
+    }else{
+       return "$timeRemaining minuten geleden!";
+    }
+    if($negative){
+        return "Veiling opent over $timeRemaining";
+    }
+    return $timeRemaining." geleden";
 }
 
 function reOrganizeArray($file_posts)
@@ -282,18 +303,18 @@ function evalSelectPOST()
     $select = array();
     $distance = false;
     if (isset($_POST)) {
-        if (isset($_SESSION['name']) || isset($_POST['postalCode'])) {                           /////////postal code input////////
+        if ((isset($_SESSION['name'])&&(isset($_POST['maximumDistance'])&&$_POST['maximumDistance']!=800)) || !empty($_POST['postalCode'])) {                           /////////postal code input////////
             $distance = true;
             $select[':minimumDistance'] = isset($_POST['minimumDistance']) ? $_POST['minimumDistance'] : 0; // min distance 0 if post isn't set
-            $select[':maximumDistance'] = isset($_POST['maximumDistance']) ? $_POST['maximumDistance'] : 355;
+            $select[':maximumDistance'] = $_POST['maximumDistance'];
             $select = setLatLong($select);
         }
         if (isset($_POST['search'])) {                                                           /////////search input//////////
             $keywords = explode(" ", $_POST['search']);
-            $temp =[];
-            foreach($keywords as $keyword){
+            $temp = [];
+            foreach ($keywords as $keyword) {
                 $keyword = preg_replace('/\PL/u', '', $keyword);
-                if($keyword!="") $temp[] = $keyword;
+                if ($keyword != "") $temp[] = $keyword;
             }
             $keywords = $temp;
             $select[':search'] = $keywords;
@@ -320,16 +341,16 @@ function evalSelectPOST()
                     $select[':order'] = "prijs DESC";
                     break;
                 case "New":
-                    $select[':order'] = "looptijdbegintijdstip DESC";
+                    $select[':order'] = "abs(datediff_BIG(second,looptijdbegintijdstip, getdate())) ASC";
                     break;
                 case "Old":
-                    $select[':order'] = "looptijdbegintijdstip ASC";
+                    $select[':order'] = "abs(datediff_BIG(second,looptijdbegintijdstip, getdate())) DESC";
                     break;
                 case "Dis":
                     if (!$distance) {
                         $select = setLatLong($select);
                     }
-                    $select[':order'] = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ASC ";
+                    $select[':order'] = $_POST['order'];
                     break;
                 default:
                     $select[':order'] = "n";
@@ -379,10 +400,10 @@ function setLatLong($select)
         $_SESSION['postalCode'] = $_POST['postalCode'];
         $_SESSION['latitude'] = $location['latitude'];
         $_SESSION['longitude'] = $location['longitude'];
-    }elseif(isset($_SESSION['postalCode'])&&$_SESSION['postalCode'] == $_POST['postalCode']){
-        $select[':lat'] =  $_SESSION['latitude'];
-        $select[':long'] =  $_SESSION['longitude'];
-    }elseif(!empty($_SESSION['name'])) {
+    } elseif (isset($_SESSION['postalCode']) && $_SESSION['postalCode'] == $_POST['postalCode']) {
+        $select[':lat'] = $_SESSION['latitude'];
+        $select[':long'] = $_SESSION['longitude'];
+    } elseif (!empty($_SESSION['name'])) {
         $user = User::getUser($_SESSION['name']);
         $select[':lat'] = $user['Latitude'];
         $select[':long'] = $user['Longitude'];

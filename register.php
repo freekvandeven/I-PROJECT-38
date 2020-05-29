@@ -25,7 +25,7 @@ function checkInformation(){
         return "passwords did not match";
     if (checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX') && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) # check if domain has a mailserver running
         return "email is invalid";
-    if(!(User::getUser($_POST["username"]))) #check if user already exists
+    if(User::getUser($_POST["username"])) #check if user already exists
         return "user already exists";
 
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
