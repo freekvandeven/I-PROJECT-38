@@ -40,6 +40,15 @@ function getRubriek()
         if (is_null($selected)):
             ?>
             <h2 class="text-center">Selecteer een rubriek</h2>
+        <form method="post" action="">
+            <input type="hidden" name="token" value="<?= $token ?>">
+            <input type="hidden" name="category" value="addRubriek">
+            <input type="hidden" name="rubriek" value="-1">
+            <input type="text" name="rubriekNieuw" value="" placeholder="hoofdrubriek">
+            <button type="submit" name="action" value="add">
+                Voeg een hoofd rubriek toe
+            </button>
+        </form>
         <?php else: ?>
             <h2 class="text-center">Pas de geselecteerde rubriek aan</h2>
             <form method="post" action="">
@@ -127,19 +136,6 @@ function getRubriek()
             ?>
         </div>
     </div>
-    <h2 class="text-center">Voeg een nieuwe Rubriek toe</h2>
-    <form method="post" action="">
-        <input type="hidden" name="token" value="<?= $token ?>">
-        <input type="hidden" name="category" value="addRubriek">
-
-        <label class="offset-xl-3" for="addRubriekField">Nieuwe Rubriek:</label>
-        <input class="form-control col-xl-6 offset-xl-3" type="text" name="newRubriek" id="addRubriekField"
-               value="" placeholder="Nieuwe rubriek">
-        <div class="text-center">
-            <input class="voegRubriekToeButton form-control col-xl-2 offset-xl-5" type="submit"
-                   value="Voeg toe">
-        </div>
-    </form>
     <div class="gaTerugKnopBox text-center">
         <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
