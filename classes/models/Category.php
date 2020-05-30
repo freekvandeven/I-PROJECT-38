@@ -6,16 +6,12 @@ class Category
     static function getCategories()
     {
         global $dbh;
-        $sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam 
-        FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
-";
+        $sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam, z.Rubrieknummer as subsubsubnummer, z.Rubrieknaam as subsubsubnaam 
+                FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer left join Rubriek z on z.Rubriek = y.Rubrieknummer WHERE r.Rubriek = -1 
+                ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer, z.Rubrieknummer";
         $data = $dbh->query($sql);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
-        $filtered = [];
-        foreach ($result as $row) { // loop over all results
-            $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
-        }
-        return $filtered;
+        return $result;
     }
 
     static function getRubrieken()
@@ -27,8 +23,18 @@ class Category
         return $result;
     }
 
+    static function getCategoryUsage($category)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT COUNT(*) FROM VoorwerpInRubriek WHERE RubriekOpLaagsteNiveau = :category");
+        $data->execute([":category"=>$category]);
+        $result = $data->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
     static function getUnusedCategoryNumber()
     {
+        // source https://www.eidias.com/blog/2012/1/16/finding-gaps-in-a-sequence-of-identifier-values-of
         global $dbh;
         $data = $dbh->prepare("SELECT TOP 1 RN from
             (SELECT Rubrieknummer, row_number() over (order by Rubrieknummer) as RN 
@@ -51,7 +57,6 @@ class Category
         global $dbh;
         $data = $dbh->prepare('DELETE FROM Rubriek WHERE Rubrieknummer = :category');
         $data->execute([":category" => $category]);
-        die(print_r($data->errorInfo()));
     }
 
     static function addCategory($category, $parent)
