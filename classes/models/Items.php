@@ -26,20 +26,22 @@ class Items
             $keyword = preg_replace('/\PL/u', '', $keyword);
             $data = $dbh->prepare("INSERT INTO KeyWords(Keyword) VALUES(:KeyWord)");
             $data->execute([':KeyWord' => $keyword]);
-            Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'],Items::get_ItemId());
+            Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
         }
     }
 
-    static function addKeyWordLink($keywordId,$itemId){
+    static function addKeyWordLink($keywordId, $itemId)
+    {
         global $dbh;
         $data = $dbh->prepare("INSERT INTO KeyWordsLink(KeyWordNummer,VoorwerpNummer) VALUES(:KeyWordNummer,:VoorwerpNummer)");
-        $data->execute([':KeyWordNummer'=>$keywordId,':VoorwerpNummer'=>$itemId]);
+        $data->execute([':KeyWordNummer' => $keywordId, ':VoorwerpNummer' => $itemId]);
     }
 
-    static function getKeyWordId($keyword){
+    static function getKeyWordId($keyword)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT KeyWordNummer From KeyWords WHERE KeyWord = :KeyWord");
-        $data->execute([":KeyWord"=>$keyword]);
+        $data->execute([":KeyWord" => $keyword]);
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -49,13 +51,6 @@ class Items
         $data = $dbh->prepare('INSERT INTO Bestand (Filenaam, Voorwerp) 
                                         VALUES (:Filenaam, :Voorwerp)');
         return $data->execute($files);
-    }
-
-    static function insertIntoRubriek($itemId, $rubriekNummer)
-    {
-        global $dbh;
-        $data = $dbh->prepare('INSERT INTO VoorwerpInRubriek (Voorwerp,RubriekOpLaagsteNiveau) VALUES(:Voorwerp,:RubriekOpLaagsteNiveau)');
-        return $data->execute([":Voorwerp" => $itemId, ":RubriekOpLaagsteNiveau" => $rubriekNummer]);
     }
 
     static function getBuyerItems($buyer)
@@ -155,15 +150,6 @@ class Items
         $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":date" => $date));
     }
 
-    static function getRubrieken()
-    {
-        global $dbh;
-        $data = $dbh->prepare('SELECT Rubrieknaam, Rubrieknummer FROM Rubriek');
-        $data->execute();
-        $result = $data->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
     static function soldToUser($koper, $verkoper)
     {
         global $dbh;
@@ -178,21 +164,6 @@ class Items
         global $dbh;
         $data = $dbh->prepare('UPDATE Voorwerp set Views = Views + 1 where voorwerpnummer = :id');
         $data->execute(["id" => $id]);
-    }
-
-    static function getCategories()
-    {
-        global $dbh;
-        $sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam 
-        FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
-";
-        $data = $dbh->query($sql);
-        $result = $data->fetchAll(PDO::FETCH_ASSOC);
-        $filtered = [];
-        foreach ($result as $row) { // loop over all results
-            $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
-        }
-        return $filtered;
     }
 
     static function deleteItem($id)

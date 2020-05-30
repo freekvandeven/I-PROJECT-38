@@ -115,7 +115,7 @@
                             <select class="custom-select" id="Rubriek" name="rubriek">
                                 <option value="">Kies Rubriek</option>
                                 <?php
-                                foreach (Items::getRubrieken() as $rubriek) {
+                                foreach (Category::getRubrieken() as $rubriek) {
                                     echo "<option ";
                                     if ($rubriek['Rubrieknummer'] == $_POST['rubriek']) echo "selected";
                                     echo " value='" . $rubriek['Rubrieknummer'] . "'>" . $rubriek['Rubrieknaam'] . "</option>";

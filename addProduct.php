@@ -26,7 +26,7 @@ function createProduct()
         ":LooptijdEindeTijdstip" => date('Y-m-d H:i:s', strTotime(' + ' . $posts["Looptijd"] . ' days')), ":VeilingGesloten" => 0, ":Verkoopprijs" => $posts["Startprijs"]);
     if (!Items::insertItem($item)) return "Er ging iets mis met de database.";
     $itemId = Items::get_ItemId();
-    Items::insertIntoRubriek($itemId, $_POST['Rubriek']);
+    Category::insertIntoRubriek($itemId, $_POST['Rubriek']);
 
     if ($_FILES['thumbnail']['type'] != 'image/png') {
         //convert to png

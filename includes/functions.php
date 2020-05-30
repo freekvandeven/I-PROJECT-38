@@ -278,7 +278,7 @@ function reOrganizeArray($file_posts)
 
 function generateCategoryDropdown()
 {
-    $categories = Items::getCategories();
+    $categories = Category::getCategories();
     $html = '<ul>';
     foreach ($categories as $maincategory => $subcategories) {
         $html .= "<li>$maincategory<ul>";
