@@ -1,17 +1,8 @@
 <?php
-$result = Category::getCategories();
-$filtered = [];
-$mapping = [];
-foreach ($result as $row) {
-    $filtered[$row['hoofdnummer']][$row['subnummer']][$row['subsubnummer']][] = $row['subsubsubnummer'];
-    $mapping[$row['hoofdnummer']] = $row['hoofdnaam'];
-    $mapping[$row['subnummer']] = $row['subnaam'];
-    $mapping[$row['subsubnummer']] = $row['subsubnaam'];
-    $mapping[$row['subsubsubnummer']] = $row['subsubsubnaam'];
-}
-//echo '<pre>' , var_dump($filtered) , '</pre>';
-//Debug::dump($filtered);
-//Debug::dump($mapping);
+$result = generateCategoryArray();
+$filtered = $result[0];
+$mapping = $result[1];
+
 function getRubriek()
 {
     if (isset($_GET['subsubsubRubriek'])) return array($_GET['subsubsubRubriek'], 'subsubsubrubriek');

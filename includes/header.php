@@ -8,6 +8,10 @@ if (isset($_SESSION['loggedin'])) {
     $loggedin = false;
     $loginlink = 'login.php';
 }
+
+$categories = generateCategoryArray();
+$categoryNumbers = $categories[0];
+$categoryNames = $categories[1];
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -50,6 +54,21 @@ if (isset($_SESSION['loggedin'])) {
             });
         });
     </script>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("dropdown-item");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -64,7 +83,49 @@ if (isset($_SESSION['loggedin'])) {
                 <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="catalogus.php">Veilingen</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorie test
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <?php foreach($categoryNumbers as $key=>$value):?>
+                        <a class="dropdown-item" href="#"><?=$categoryNames[$key]?></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <!-- Example split danger button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger" href="catalogus.php">Catalogus</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="tab">
+                            <a class="dropdown-item" href="#" onmouseover="openCity(event, 'London')">London</a>
+                            <a class="dropdown-item" href="#" onmouseover="openCity(event, 'Paris')">Paris</a>
+                            <a class="dropdown-item" href="#" onmouseover="openCity(event, 'Tokyo')">Tokyo</a>
+                        </div>
+
+                        <div id="London" class="tabcontent">
+                            <h3>London</h3>
+                            <p>London is the capital city of England.</p>
+                        </div>
+
+                        <div id="Paris" class="tabcontent">
+                            <h3>Paris</h3>
+                            <p>Paris is the capital of France.</p>
+                        </div>
+
+                        <div id="Tokyo" class="tabcontent">
+                            <h3>Tokyo</h3>
+                            <p>Tokyo is the capital of Japan.</p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href=<?= $loginlink ?>>
@@ -101,8 +162,7 @@ if (isset($_SESSION['loggedin'])) {
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <?php if ($loggedin): ?>
                 <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
-                <a class="dropdown-item" id="notificationsDropdown" href="profile.php?action=notifications">Notificaties
-                    (2)</a>
+                <a class="dropdown-item" href="profile.php?action=notifications">Notificaties <span id="notificationsDropdown" class="badge badge-light">4</span></a>
                 <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen</a>
                 <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten</a>
                 <a class="dropdown-item" href="addProduct.php">Verkoop product</a>

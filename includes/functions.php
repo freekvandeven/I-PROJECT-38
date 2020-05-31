@@ -275,7 +275,20 @@ function reOrganizeArray($file_posts)
     }
     return $new_file_array;
 }
-
+function generateCategoryArray()
+{
+    $result = Category::getCategories();
+    $filtered = [];
+    $mapping = [];
+    foreach ($result as $row) {
+        $filtered[$row['hoofdnummer']][$row['subnummer']][$row['subsubnummer']][] = $row['subsubsubnummer'];
+        $mapping[$row['hoofdnummer']] = $row['hoofdnaam'];
+        $mapping[$row['subnummer']] = $row['subnaam'];
+        $mapping[$row['subsubnummer']] = $row['subsubnaam'];
+        $mapping[$row['subsubsubnummer']] = $row['subsubsubnaam'];
+    }
+    return array($filtered, $mapping);
+}
 function generateCategoryDropdown()
 {
     $categories = Category::getCategories();

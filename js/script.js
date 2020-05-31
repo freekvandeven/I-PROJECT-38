@@ -126,10 +126,10 @@
                 },
                 function(data,status){
                     if (!$.trim(data)){
-                        $("#notificationsDropdown").text('Notificaties (0)');
+                        $("#notificationsDropdown").text('0');
                         updateIcon(false); // you don't have notifications
                     } else {
-                        $("#notificationsDropdown").text('Notificaties ('+$.trim(data)+')');
+                        $("#notificationsDropdown").text($.trim(data));
                         updateIcon(true); // you have notifications
                         sendPushNotification("Je hebt" + data + " notificaties");
                     }

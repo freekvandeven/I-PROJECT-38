@@ -7,7 +7,6 @@ $title = 'test page';
 
 require_once('includes/header.php');
 
-//phpinfo();
 
 $file = 'SQL/9800-Auto\'s, motoren en boten/9884-Autoaccessoires en onderdelen.sql';
 $nummer = 11968;
@@ -122,14 +121,6 @@ function removeBadElements($input)
     //removeElementsByTagName('script', $doc);
     $input = strip_tags($input, '<p><a><h1><h2><h3><h4><h5><br><b><i>');
     return $input;
-}
-
-function getRandomUserData(){
-    $firstnames = ["Piet", "Jan", "Winter", "Zwaluw", "Maan", "Ster", "Zomer"];
-    $surname = ["cohen", "frank", "Polak", "de Vries", "de Jong", "de Leeuw"];
-    $emails = ["test@hotmail.com", "hallo@gmail.com", "xtc@yahoo.com"];
-    $city = ['Ruinerwold', 'Barnevelt', 'Gent', 'Hatert'];
-    return [$firstnames[array_rand($firstnames)],$surname[array_rand($surname)],$emails[array_rand($emails)], $city[array_rand($city)]];
 }
 
 /*
