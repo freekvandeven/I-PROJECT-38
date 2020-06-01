@@ -3,15 +3,6 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 
-//Bepaalt de vraag van de user:
-/*$profile_data = User::getUser($_SESSION['name']);
-foreach(User::getQuestion() as $question) {
-    if($question['Vraagnummer'] == $profile_data['Vraag']) {
-        $secretQuestion = $question['TekstVraag'];
-    }
-}*/
-
-
 $title = "Forgot password";
 
 if(isset($_POST['email'])){
@@ -21,13 +12,14 @@ if(isset($_POST['email'])){
         $vars['hash'] = hash("md5",$user['Wachtwoord']);
         $vars['username'] = $user['Voornaam'];
         sendFormattedMail($_POST['email'],"Password Reset","forgotPassword.html", $vars);
+        $toast = "email is verzonden";
     }
 }
 if(isset($_GET['email'])&&isset($_GET['hash'])){
     $user = User::getUserWithEmail($_GET['email']);
     if($_GET['hash']==hash("md5",$user['Wachtwoord'])){
         createSession($user);
-        header("Location: profile.php?action=update");
+        header("Location: profile.php?action=update&toast=update je wachtwoord");
     }
 }
 require_once('includes/header.php');

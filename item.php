@@ -57,14 +57,19 @@ if(checkPost()) {
                     Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
                     notifyFollowers($ref, "Er is geboden op de veiling");
                     User::notifyUser($highestBid['Gebruiker'],"Je bent overboden", "item.php?id=$ref");
+                    $toast = "succesvol geboden";
+                } else {
+                    $toast = "bod moet minimaal " . $minimumIncrease . " hoger zijn";
                 }
+            } else {
+                $toast = "bod is te laag";
             }
 
         } else {
-            $err = "bid is to low";
+            $toast = "";
         }
     }
-    header("Location: item.php?id=$ref");
+    header("Location: item.php?id=$ref&toast=$toast");
 }
 if(!empty($_GET) && isset($_GET['id'])) {
     $item = Items::getItem($_GET['id']);
@@ -75,7 +80,7 @@ if(!empty($_GET) && isset($_GET['id'])) {
         Items::addView($_GET['id']);
     }
 } else {
-    header('Location: catalogus.php'); // item doesn't exist
+    header('Location: catalogus.php?toast=veiling bestaat niet'); // item doesn't exist
 }
 
 $title = "Item Page";

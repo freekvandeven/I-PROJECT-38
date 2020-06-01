@@ -10,7 +10,7 @@ if (!empty($_GET) && isset($_GET['name']) && isset($_GET['hash'])) {
         if (hash("md5", $user['Wachtwoord']) == $_GET['hash']) {
             User::makeUser($_GET['name']);
             createSession(User::getUser($_GET['name']));
-            header('Location: profile.php');
+            header('Location: profile.php?toast=je bent al ingelogd');
         }
     }
 }
@@ -22,7 +22,7 @@ if (checkPost()) {
         if (password_verify($_POST["password"], $user['Wachtwoord'])) {
             if ($user['Bevestiging']) {
                 createSession($user);
-                header("Location: profile.php");
+                header("Location: profile.php?toast=ingelogd");
             } else $err = "please confirm your email";
         } else $err = "Incorrect password";
     } else $err = "please fill in all the data!";

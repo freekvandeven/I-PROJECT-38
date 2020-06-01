@@ -10,6 +10,7 @@ foreach ($updates as $update => $value) {
     $settings[$update]= $value;
 }
 User::updateSettings($settings, $_SESSION['name']);
+$toast = "instellingen gewijzigd";
 
 
 
