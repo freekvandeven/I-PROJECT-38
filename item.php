@@ -55,8 +55,8 @@ if(checkPost()) {
             if ($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs) {
                 if (($_POST["bid"] - $highestBid['Bodbedrag']) > $minimumIncrease) {
                     Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
-                    notifyFollowers($ref);
-                    User::notifyUser($highestBid['Gebruiker'],"Je bent overboden");
+                    notifyFollowers($ref, "Er is geboden op de veiling");
+                    User::notifyUser($highestBid['Gebruiker'],"Je bent overboden", "item.php?id=$ref");
                 }
             }
 
