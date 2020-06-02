@@ -86,7 +86,7 @@ $categoryNames = $categories[1];
             <li class="nav-item">
                 <!-- Example split danger button -->
                 <div class="btn-group">
-                    <a type="button" class="catalogus catalogusButton" href="catalogus.php">Catalogus</a>
+                    <a class="catalogus catalogusButton" href="catalogus.php" role="button">Catalogus</a>
                     <button type="button" class="catalogus pijltje dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
@@ -98,7 +98,7 @@ $categoryNames = $categories[1];
                                    onmouseover="openMainCategory(event, '<?= $key ?>')"><?= $categoryNames[$key] ?></a>
                             <?php endforeach; ?>
                         </div>
-                        <div class="clearfix"><?=count($categoryNumbers)?></div>
+                        <div class="clearfix"></div>
                     </div>
                     <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
                     <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
@@ -110,20 +110,22 @@ $categoryNames = $categories[1];
                             <div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6"> <?php
                                 else:?>
                                 <div class="subtabcontent col-xl-2 col-lg-6"> <?php endif; ?>
-                                    <h5><?= $categoryNames[$subCategory] ?></h5>
+                                    <a href="catalogus.php?rubriek=<?=$subCategory?>"><h5><?= $categoryNames[$subCategory] ?></h5></a>
                                     <ul>
                                         <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
-                                            <li class="subsubcategories"><?= $categoryNames[$subsubCategory] ?></li>
+                                            <li class="subsubcategories"><a href="catalogus.php?rubriek=<?=$subsubCategory?>"><?= $categoryNames[$subsubCategory] ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
-                        <?php
-                        $index++;
-                        if ($index >= 4) {
-                            echo '</div>';
-                            $index = 0;
-                        }
-                        endforeach; ?>
+                                <?php
+                                $index++;
+                                if ($index >= 4) {
+                                    echo '</div>';
+                                    $index = 0;
+                                }
+                                endforeach;
+                                if($index != 0) echo '</div>';
+                                ?>
                     </div>
                     <?php endforeach;?>
                 </div>

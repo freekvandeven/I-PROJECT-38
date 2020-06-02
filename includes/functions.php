@@ -346,6 +346,9 @@ function evalSelectPOST()
         if (isset($_POST['rubriek'])) {
             $select[":rubriek"] = $_POST['rubriek'];
         }
+        if (isset($_GET['rubriek'])) {
+            $select[":rubriek"] = $_GET['rubriek'];
+        }
         if (isset($_POST['order'])) {                                                             /////// order by ///////////
             switch ($_POST['order']) {
                 case "Low":
