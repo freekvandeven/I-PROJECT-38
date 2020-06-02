@@ -17,23 +17,29 @@ class Items
         return ($success);
     }
 
-    static function addKeyWords($title, $description)
+    static function addKeyWords($title, $description = null)
     {
-        $keywords = explode(" ", $title);
-        $keywords = array_merge(explode(" ", $description), $keywords);
+        $keywords = explode(" ", strtolower($title));
+        if($description!= null)
+        $keywords = array_merge(explode(" ", strtolower($description)), $keywords);
         global $dbh;
         foreach ($keywords as $keyword) {
-            $keyword = preg_replace('/\PL/u', '', $keyword);
-            $data = $dbh->prepare("INSERT INTO KeyWords(Keyword) VALUES(:KeyWord)");
-            $data->execute([':KeyWord' => $keyword]);
-            Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'],Items::get_ItemId());
+            if(strlen($keyword)>3) {
+                $keyword = preg_replace('/\PL/u', '', $keyword);
+                $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
+                $keywordInsert->bindParam(1, $keyword);
+                $keywordInsert->execute();
+                Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
+            }
         }
     }
 
     static function addKeyWordLink($keywordId,$itemId){
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO KeyWordsLink(KeyWordNummer,VoorwerpNummer) VALUES(:KeyWordNummer,:VoorwerpNummer)");
-        $data->execute([':KeyWordNummer'=>$keywordId,':VoorwerpNummer'=>$itemId]);
+        $keywordLinkInsert = $dbh->prepare("exec KeyWordLinkInsert ?, ?");
+        $keywordLinkInsert->bindParam(1, $keywordId);
+        $keywordLinkInsert->bindParam(2, $itemId);
+        $keywordLinkInsert->execute();
     }
 
     static function getKeyWordId($keyword){
@@ -49,13 +55,6 @@ class Items
         $data = $dbh->prepare('INSERT INTO Bestand (Filenaam, Voorwerp) 
                                         VALUES (:Filenaam, :Voorwerp)');
         return $data->execute($files);
-    }
-
-    static function insertIntoRubriek($itemId, $rubriekNummer)
-    {
-        global $dbh;
-        $data = $dbh->prepare('INSERT INTO VoorwerpInRubriek (Voorwerp,RubriekOpLaagsteNiveau) VALUES(:Voorwerp,:RubriekOpLaagsteNiveau)');
-        return $data->execute([":Voorwerp" => $itemId, ":RubriekOpLaagsteNiveau" => $rubriekNummer]);
     }
 
     static function getBuyerItems($buyer)
@@ -155,15 +154,6 @@ class Items
         $data->execute(array(":voorwerp" => $item, ":bodbedrag" => $price, ":user" => $user, ":date" => $date));
     }
 
-    static function getRubrieken()
-    {
-        global $dbh;
-        $data = $dbh->prepare('SELECT Rubrieknaam, Rubrieknummer FROM Rubriek');
-        $data->execute();
-        $result = $data->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
     static function soldToUser($koper, $verkoper)
     {
         global $dbh;
@@ -178,21 +168,6 @@ class Items
         global $dbh;
         $data = $dbh->prepare('UPDATE Voorwerp set Views = Views + 1 where voorwerpnummer = :id');
         $data->execute(["id" => $id]);
-    }
-
-    static function getCategories()
-    {
-        global $dbh;
-        $sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam 
-        FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
-";
-        $data = $dbh->query($sql);
-        $result = $data->fetchAll(PDO::FETCH_ASSOC);
-        $filtered = [];
-        foreach ($result as $row) { // loop over all results
-            $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
-        }
-        return $filtered;
     }
 
     static function deleteItem($id)
