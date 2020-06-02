@@ -35,7 +35,7 @@ $maxAmountOptionalPhotos = 5;
                             <select class="custom-select" id="Rubriek" name="Rubriek"
                                     required <?php echo isset($_POST['Rubriek']) ? htmlspecialchars($_POST['Rubriek'], ENT_QUOTES) : ''; ?>>
                                 <?php
-                                foreach (Items::getRubrieken() as $rubriek) {
+                                foreach (Category::getRubrieken() as $rubriek) {
                                     echo "<option value='" . $rubriek['Rubrieknummer'] . "'>" . $rubriek['Rubrieknaam'] . "</option>";
                                 } ?>
                             </select>

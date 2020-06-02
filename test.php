@@ -6,19 +6,7 @@ require_once('includes/functions.php');
 $title = 'test page';
 
 require_once('includes/header.php');
-/*
-$sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
-";
-$data = $dbh->query($sql);
-$result = $data->fetchAll(PDO::FETCH_ASSOC);
-$filtered = [];
-foreach($result as $row){
-    //$filtered[$row[0]] = $row[1];
-    $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
-}
-echo '<pre>' , var_dump($filtered) , '</pre>';
-*/
-//phpinfo();
+
 
 $file = 'SQL/9800-Auto\'s, motoren en boten/9884-Autoaccessoires en onderdelen.sql';
 $nummer = 11968;
@@ -133,14 +121,6 @@ function removeBadElements($input)
     //removeElementsByTagName('script', $doc);
     $input = strip_tags($input, '<p><a><h1><h2><h3><h4><h5><br><b><i>');
     return $input;
-}
-
-function getRandomUserData(){
-    $firstnames = ["Piet", "Jan", "Winter", "Zwaluw", "Maan", "Ster", "Zomer"];
-    $surname = ["cohen", "frank", "Polak", "de Vries", "de Jong", "de Leeuw"];
-    $emails = ["test@hotmail.com", "hallo@gmail.com", "xtc@yahoo.com"];
-    $city = ['Ruinerwold', 'Barnevelt', 'Gent', 'Hatert'];
-    return [$firstnames[array_rand($firstnames)],$surname[array_rand($surname)],$emails[array_rand($emails)], $city[array_rand($city)]];
 }
 
 /*
