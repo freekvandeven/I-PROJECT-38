@@ -132,7 +132,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                     <span class="input-group-text">€</span>
                                 </div>
                                 <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
-                                <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" required>
+                                <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" step="any" required>
                             </div>
                             <div class="buttonBox text-center col-xl-10 offset-xl-1">
                                 <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
