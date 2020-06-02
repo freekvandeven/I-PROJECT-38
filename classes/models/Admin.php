@@ -106,4 +106,20 @@ class Admin
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    static function giveWebsiteFeedback($firstname, $surname, $email, $message)
+    {
+        global $dbh;
+        $data = $dbh->prepare("INSERT INTO Feedback (Voornaam, Achternaam, Mailbox,Commentaar) VALUES (:firstname, :surname, :email, :message)");
+        $data->execute(array(":firstname" => $firstname, ":surname" => $surname, ":email" => $email, ":message" => $message));
+    }
+
+    static function getWebsiteFeedback()
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Feedback ORDER BY Datum DESC");
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
