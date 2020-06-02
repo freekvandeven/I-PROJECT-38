@@ -44,7 +44,7 @@ main .errorMessage span{
     position: absolute;
     left: 247px;
     top: 35px;
-    min-width: 750px;
+    min-width: 1200px;
     background: #fff;
     border: 3px solid rgb(230, 230, 230);
     border-radius: 5px;

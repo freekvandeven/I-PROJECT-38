@@ -94,32 +94,38 @@ $categoryNames = $categories[1];
                     <div class="categorieenlijst dropdown-menu">
                         <div class="tab">
                             <?php foreach ($categoryNumbers as $key => $value): ?>
-                                <a class="categoryLink dropdown-item" href="#"
+                                <a class="categoryLink dropdown-item" href="catalogus.php?rubriek=<?= $key ?>"
                                    onmouseover="openMainCategory(event, '<?= $key ?>')"><?= $categoryNames[$key] ?></a>
                             <?php endforeach; ?>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"><?=count($categoryNumbers)?></div>
                     </div>
                     <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
-                        <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
-                            <?php $index = 0;
-                            foreach ($subCategories as $subCategory => $subsubCategories):
-                                if($index==0) echo'<div class="subtabcontentRow row">';
-                                    if($index == 3) echo'<div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6">';
-                                    else echo'<div class="subtabcontent col-xl-3 col-lg-6">';?>
-                                        <h5><?= $categoryNames[$subCategory] ?></h5>
-                                        <ul>
-                                            <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
-                                                <li class="subsubcategories"><?= $categoryNames[$subsubCategory] ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </div>
-                                <?php
-                                $index++;
-                                if($index >= 4) { echo '</div>'; $index=0; }
-                            endforeach; ?>
-                        </div>
-                    <?php endforeach; ?>
+                    <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
+                        <?php $index = 0;
+                        foreach ($subCategories as $subCategory => $subsubCategories):
+                        if ($index == 0):?>
+                        <div class="subtabcontentRow row"> <?php endif;
+                            if ($index == 3):?>
+                            <div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6"> <?php
+                                else:?>
+                                <div class="subtabcontent col-xl-2 col-lg-6"> <?php endif; ?>
+                                    <h5><?= $categoryNames[$subCategory] ?></h5>
+                                    <ul>
+                                        <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
+                                            <li class="subsubcategories"><?= $categoryNames[$subsubCategory] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                        <?php
+                        $index++;
+                        if ($index >= 4) {
+                            echo '</div>';
+                            $index = 0;
+                        }
+                        endforeach; ?>
+                    </div>
+                    <?php endforeach;?>
                 </div>
             </li>
             <li class="nav-item ">
