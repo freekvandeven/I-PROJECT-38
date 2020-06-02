@@ -47,7 +47,7 @@ function createProduct()
             storeImg($optionalPhotosArray[$i]['tmp_name'], "cst" . $itemId . "_" . $i, "upload/items/");
         } else return "Er ging iets mis met de database.";
     }
-    header("Location: item.php?id=$itemId");
+    header("Location: item.php?id=$itemId&toast=veiling toegevoegd");
 }
 
 $title = "AddProduct Page";
