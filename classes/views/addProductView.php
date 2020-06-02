@@ -1,5 +1,4 @@
 <?php
-$user = User::getUser($_SESSION["name"]);
 $maxAmountOptionalPhotos = 5;
 ?>
 
@@ -16,7 +15,7 @@ $maxAmountOptionalPhotos = 5;
                     <div class="form-row">
                         <!-- TITEL -->
                         <div class="form-group col-md-12">
-                            <label for="Titel">Titel</label>
+                            <label for="Titel">Titel *</label>
                             <input type="text" class="form-control input1" name="Titel" id="Titel" maxlength="100"
                                    placeholder="Titel van uw product" autofocus required
                                    value="<?php echo isset($_POST['Titel']) ? htmlspecialchars($_POST['Titel'], ENT_QUOTES) : ''; ?>">
@@ -24,7 +23,7 @@ $maxAmountOptionalPhotos = 5;
 
                         <!-- BESCHRIJVING -->
                         <div class="form-group col-md-12">
-                            <label for="Beschrijving">Beschrijving</label>
+                            <label for="Beschrijving">Beschrijving *</label>
                             <textarea class="form-control input3" name="Beschrijving" id="Beschrijving"
                                       placeholder="Beschrijving" maxlength="4000" rows="4"
                                       required <?php echo isset($_POST['Beschrijving']) ? htmlspecialchars($_POST['Beschrijving'], ENT_QUOTES) : ''; ?>></textarea>
@@ -36,7 +35,7 @@ $maxAmountOptionalPhotos = 5;
                             <select class="custom-select" id="Rubriek" name="Rubriek"
                                     required <?php echo isset($_POST['Rubriek']) ? htmlspecialchars($_POST['Rubriek'], ENT_QUOTES) : ''; ?>>
                                 <?php
-                                foreach (Items::getRubrieken() as $rubriek) {
+                                foreach (Category::getRubrieken() as $rubriek) {
                                     echo "<option value='" . $rubriek['Rubrieknummer'] . "'>" . $rubriek['Rubrieknaam'] . "</option>";
                                 } ?>
                             </select>
@@ -44,13 +43,13 @@ $maxAmountOptionalPhotos = 5;
 
                         <!-- STARTPRIJS -->
                         <div class="form-group col-md-6">
-                            <label for="Startprijs">Startprijs</label>
+                            <label for="Startprijs">Startprijs *</label>
                             <div class="input-group col-mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">€</span>
                                 </div>
                                 <input type="number" class="form-control input2" id="Startprijs" name="Startprijs"
-                                       min="0" max="9999999999999" placeholder="Startprijs"
+                                       min="0" max="9999999999999" step="any" placeholder="Startprijs"
                                        required <?php echo isset($_POST['Startprijs']) ? htmlspecialchars($_POST['Startprijs'], ENT_QUOTES) : ''; ?>>
                             </div>
                         </div>
@@ -76,7 +75,7 @@ $maxAmountOptionalPhotos = 5;
 
                         <!-- THUMBNAIL UPLOADEN -->
                         <div class="form-group col-md-12">
-                            <label for="img">Thumbnail</label>
+                            <label for="img">Thumbnail *</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail"
                                        accept="image/*"
@@ -89,7 +88,7 @@ $maxAmountOptionalPhotos = 5;
                         </div>
                         <!-- FOTO UPLOADEN -->
                         <div class="form-group col-md-12">
-                            <label for="img">Optionele foto's</label>
+                            <label for="img">Veiling foto's (min. 1)</label>
                             <div class="custom-file">
                                 <input type="file" class="multipleImages custom-file-input" id="img" name="img[]"
                                        accept="image/*" required
@@ -134,6 +133,18 @@ $maxAmountOptionalPhotos = 5;
                         <option value="Bank">Bank</option>
                         <option value="Anders">Anders</option>
                     </select>
+                </div>
+                <!-- Verzendkosten -->
+                <div class="form-group col-md-6">
+                    <label for="Betalingswijze">Verzendkosten *</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">€</span>
+                        </div>
+                        <input type="number" class="form-control input2" id="Verzendkosten" name="Verzendkosten"
+                               min="0" max="9999999999999" step="any" placeholder="Verzendkosten"
+                               required <?php echo isset($_POST['Verzendkosten']) ? htmlspecialchars($_POST['Verzendkosten'], ENT_QUOTES) : ''; ?>>
+                    </div>
                 </div>
             </div>
 

@@ -46,6 +46,9 @@
         <canvas id="myChart"></canvas>
     </div>
 
+    <?php
+    $info = Admin::getSiteVisits();?>
+
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
 
@@ -57,23 +60,12 @@
         let massPopChart = new Chart(myChart, {
             type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
             data:{
-                labels:['404', 'addProduct', 'admin', 'catalogus', 'contact', 'footer', 'forgotPassword', 'getCatalogus', 'index', 'item', 'loging', 'profile'],
+                labels:<?=json_encode(array_column($info, "PageName"));?>,
                 datasets:[{
                     label:'Site Activity',
-                    data:[
-                        117594,
-                        181045,
-                        153060,
-                        106519,
-                        105162,
-                        95072,
-                        117594,
-                        181045,
-                        253060,
-                        106519,
-                        105162,
-                        95072
-                    ],
+                    data:
+                        <?=json_encode(array_map('intval',array_column($info,"Visits"))); ?>
+                    ,
                     //backgroundColor:'green',
                     backgroundColor:[
                         'rgba(255, 99, 132, 0.6)',

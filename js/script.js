@@ -20,6 +20,9 @@
 
             // If the count down is finished, write some text
             if (distance < 0) {
+                if(distance > -1000) {
+                    location.reload();
+                }
                 clearInterval(x);
                 el.innerHTML = "EXPIRED";
             }
@@ -40,6 +43,9 @@
                 el.innerHTML = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
                 if (distance < 0) {
+                    if(distance > -1000) {
+                        location.reload();
+                    }
                     el.innerHTML = "EXPIRED";
                 }
             }
@@ -126,10 +132,10 @@
                 },
                 function(data,status){
                     if (!$.trim(data)){
-                        $("#notificationsDropdown").text('Notificaties (0)');
+                        $("#notificationsDropdown").text('0');
                         updateIcon(false); // you don't have notifications
                     } else {
-                        $("#notificationsDropdown").text('Notificaties ('+$.trim(data)+')');
+                        $("#notificationsDropdown").text($.trim(data));
                         updateIcon(true); // you have notifications
                         sendPushNotification("Je hebt" + data + " notificaties");
                     }

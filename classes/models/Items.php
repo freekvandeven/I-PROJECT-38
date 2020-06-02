@@ -23,18 +23,20 @@ class Items
         if($description!= null)
         $keywords = array_merge(explode(" ", strtolower($description)), $keywords);
         global $dbh;
+        $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
+        $keywordInsert->bindParam(1, $keyword);
         foreach ($keywords as $keyword) {
-            if(strlen($keyword)>3) {
                 $keyword = preg_replace('/\PL/u', '', $keyword);
-                $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
-                $keywordInsert->bindParam(1, $keyword);
+                $keyword = strtolower($keyword);
+            if(strlen($keyword)>2) {
                 $keywordInsert->execute();
                 Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
             }
         }
     }
 
-    static function addKeyWordLink($keywordId,$itemId){
+    static function addKeyWordLink($keywordId, $itemId)
+    {
         global $dbh;
         $keywordLinkInsert = $dbh->prepare("exec KeyWordLinkInsert ?, ?");
         $keywordLinkInsert->bindParam(1, $keywordId);
@@ -42,10 +44,11 @@ class Items
         $keywordLinkInsert->execute();
     }
 
-    static function getKeyWordId($keyword){
+    static function getKeyWordId($keyword)
+    {
         global $dbh;
         $data = $dbh->prepare("SELECT KeyWordNummer From KeyWords WHERE KeyWord = :KeyWord");
-        $data->execute([":KeyWord"=>$keyword]);
+        $data->execute([":KeyWord" => $keyword]);
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 

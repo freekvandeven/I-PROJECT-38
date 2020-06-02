@@ -9,26 +9,26 @@ CREATE TABLE Bod
 
 CREATE TABLE KeyWords
 (
-KeyWordNummer INTEGER AUTO_INCREMENT UNIQUE NOT NULL,
-KeyWord VARCHAR(40) NOT NULL,
-CONSTRAINT PK_Keyword PRIMARY KEY (KeyWord)
+    KeyWordNummer INTEGER AUTO_INCREMENT UNIQUE NOT NULL,
+    KeyWord       VARCHAR(40)                   NOT NULL,
+    CONSTRAINT PK_Keyword PRIMARY KEY (KeyWord)
 );
 
 CREATE TABLE KeyWordsLink
 (
-KeywordNummer INTEGER NOT NULL,
-VoorwerpNummer INTEGER NOT NULL,
-CONSTRAINT PK_KeyWordsLink PRIMARY KEY (KeyWordNummer,VoorwerpNummer)
+    KeywordNummer  INTEGER NOT NULL,
+    VoorwerpNummer INTEGER NOT NULL,
+    CONSTRAINT PK_KeyWordsLink PRIMARY KEY (KeyWordNummer, VoorwerpNummer)
 );
 
 CREATE TABLE Feedback
 (
-    Voorwerp       INTEGER      NOT NULL,
-    SoortGebruiker VARCHAR(20)  NOT NULL,
-    Feedbacksoort  VARCHAR(20)  NOT NULL,
-    Datum          DATETIME     NOT NULL,
-    Commentaar     VARCHAR(128) NULL,
-    CONSTRAINT PK_Feedback PRIMARY KEY (Voorwerp, SoortGebruiker)
+    Voornaam   VARCHAR(40)  NOT NULL,
+    Achternaam VARCHAR(40)  NOT NULL,
+    Mailbox    VARCHAR(128) NOT NULL,
+    Commentaar VARCHAR(256) NOT NULL,
+    Datum      DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PK_Feedback PRIMARY KEY (Mailbox, Commentaar)
 );
 
 CREATE TABLE Gebruiker

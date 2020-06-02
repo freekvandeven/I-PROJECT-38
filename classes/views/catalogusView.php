@@ -1,33 +1,25 @@
 <main class="catalogusPagina">
     <div class="row">
-
-        <div class="categorieenButton">
-            <button type="button" class="legendaDropdownButton dropdown-toggle" data-toggle="dropdown">Categorieën
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdownItem">
-                    <p>Zoek op categorieën</p>
-                    <form class="categorySearchForm" action="" method="post">
-                        <input type="hidden" name="token" value="<?= $token ?>">
-                        <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
-                               name="search" autocomplete="off" onkeyup="showCategory(this.value)">
-                    </form>
-
-                    <ul id="searchResult">
-                    </ul>
-
-                    <script type="text/javascript">
-                        $("#searchResult").bind("click", function (e) {
-                            $(e.target).closest("li").toggleClass("highlight");
-                            $("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
-                            showCategory($("#zoekcategory").val());
-                        })
-                    </script>
-                </div>
-
-            </div>
-        </div>
         <div class="linkerkant">
+            <div class="categorieen">
+                <h4 class="font-weight-normal text-center">Prijs</h4>
+                <div class="price-slider">
+
+                            <span>
+                                <label for=""></label>
+                                &euro;<input type="number" value="1" min="1" max="1000000" name="minimum"/> to
+                                &euro;<input type="number" value="1000000" min="1" max="1000000" name="maximum"/>
+                            </span>
+                    <input value="1" min="1" max="1000000" step="10" type="range"/>
+                    <input value="1000000" min="1" max="1000000" step="10" type="range"/>
+                    <svg width="100%" height="24">
+                        <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
+                              stroke-dasharray="1 28"></line>
+                    </svg>
+                </div>
+                <script>testJava(".price-slider")</script>
+            </div>
+
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Postcode</h4>
                 <ul class="list-unstyled">
@@ -39,15 +31,31 @@
                         </form>
                     </li>
                 </ul>
+                <div class="distance-slider">
+                            <span>Van
+                                <input type="number" value="0" min="0" max="800" name="minimumDistance"/>km tot
+                                <input type="number" value="800" min="0" max="800" name="maximumDistance"/>km
+                            </span>
+                    <input value="0" min="0" max="800" step="1" type="range"/>
+                    <input value="800" min="0" max="800" step="1" type="range"/>
+                    <svg width="100%" height="24">
+                        <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
+                              stroke-dasharray="1 28"></line>
+                    </svg>
+                </div>
+                <script>testJava(".distance-slider")</script>
             </div>
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Categorieën</h4>
                 <ul class="list-unstyled">
                     <li>
-                        <p>Geselecteerde Categories</p>
-                        <ul id="selectedCategories">
-
-                        </ul>
+                        <p>Geselecteerde Categorie:</p>
+                        <form class="catalogusForm" action="" method="post">
+                            <label>Categorie</label>
+                            <p id="categoryFilterName"></p>
+                            <input class="form-control" id="categoryFilter" type="hidden" name="rubriek"
+                                   value="" readonly>
+                        </form>
                     </li>
                     <li>
                         <p>Zoek op categorieen</p>
@@ -64,8 +72,10 @@
 
                     <script type="text/javascript">
                         $("#searchResult").bind("click", function (e) {
-                            $(e.target).closest("li").toggleClass("highlight");
-                            $("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
+                            //$(e.target).closest("li").toggleClass("highlight");
+                            $("#categoryFilterName").text($(e.target).text());
+                            $("#categoryFilter").val($(e.target).attr('class'));
+                            //$("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
                             showCategory($("#zoekcategory").val());
                         })
                     </script>
@@ -110,18 +120,6 @@
                     </div> <!-- einde row -->
 
                     <div class="row">
-                        <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
-                            <label for="Rubriek">Rubriek</label>
-                            <select class="custom-select" id="Rubriek" name="rubriek">
-                                <option value="">Kies Rubriek</option>
-                                <?php
-                                foreach (Items::getRubrieken() as $rubriek) {
-                                    echo "<option ";
-                                    if ($rubriek['Rubrieknummer'] == $_POST['rubriek']) echo "selected";
-                                    echo " value='" . $rubriek['Rubrieknummer'] . "'>" . $rubriek['Rubrieknaam'] . "</option>";
-                                } ?>
-                            </select>
-                        </div>
 
                         <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
                             <label for="price">Volgorde</label>
@@ -155,34 +153,6 @@
                                 </option>
                             </select>
                         </div>
-
-                        <div class="price-slider">
-                            <span>
-                                <label for=""></label>
-                                &euro;<input type="number" value="1" min="1" max="1000000" name="minimum"/> to
-                                &euro;<input type="number" value="1000000" min="1" max="1000000" name="maximum"/>
-                            </span>
-                            <input value="1" min="1" max="1000000" step="10" type="range"/>
-                            <input value="1000000" min="1" max="1000000" step="10" type="range"/>
-                            <svg width="100%" height="24">
-                                <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
-                                      stroke-dasharray="1 28"></line>
-                            </svg>
-                        </div>
-                        <script>testJava(".price-slider")</script>
-                        <div class="distance-slider">
-                            <span>Van
-                                <input type="number" value="0" min="0" max="800" name="minimumDistance"/>km tot
-                                <input type="number" value="800" min="0" max="800" name="maximumDistance"/>km
-                            </span>
-                            <input value="0" min="0" max="800" step="1" type="range"/>
-                            <input value="800" min="0" max="800" step="1" type="range"/>
-                            <svg width="100%" height="24">
-                                <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
-                                      stroke-dasharray="1 28"></line>
-                            </svg>
-                        </div>
-                        <script>testJava(".distance-slider")</script>
                     </div> <!-- einde row -->
                 </form>
             </div>

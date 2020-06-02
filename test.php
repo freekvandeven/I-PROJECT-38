@@ -6,19 +6,7 @@ require_once('includes/functions.php');
 $title = 'test page';
 
 require_once('includes/header.php');
-/*
-$sql = "SELECT r.Rubrieknummer as hoofdnummer, r.Rubrieknaam as hoofdnaam, t.Rubrieknummer as subnummer, t.Rubrieknaam as subnaam, y.Rubrieknummer as subsubnummer, y.Rubrieknaam as subsubnaam FROM Rubriek r left join Rubriek t on t.Rubriek = r.Rubrieknummer left join Rubriek y on y.Rubriek = t.Rubrieknummer WHERE r.Rubriek = -1 ORDER BY r.Rubrieknummer, t.Rubrieknummer, y.Rubrieknummer
-";
-$data = $dbh->query($sql);
-$result = $data->fetchAll(PDO::FETCH_ASSOC);
-$filtered = [];
-foreach($result as $row){
-    //$filtered[$row[0]] = $row[1];
-    $filtered[$row['hoofdnaam']][$row['subnaam']][] = $row['subsubnaam'];
-}
-echo '<pre>' , var_dump($filtered) , '</pre>';
-*/
-//phpinfo();
+
 
 $file = 'SQL/9800-Auto\'s, motoren en boten/9884-Autoaccessoires en onderdelen.sql';
 $nummer = 11968;
@@ -111,16 +99,39 @@ foreach ($splitFile as $item) {
 */
 
 
-echo filemtime('upload/users/admin.png');
+//cleanupUploadFolder();
+
+$data = $dbh->prepare("SELECT TOP 10 Beschrijving FROM Voorwerp ORDER BY LEN(Beschrijving) DESC");
+$data->execute();
+$result = $data->fetchAll(PDO::FETCH_COLUMN);
+var_dump($result);
+//var_dump(array(htmlentities($result[0]),htmlentities($result[1]),htmlentities($result[2])));
+//var_dump(array(removeBadElements($result[0]),removeBadElements($result[1]),removeBadElements($result[2])));
 
 
-
-
+//setupProcedures();
+//var_dump(getRandomUserData());
 
 function removeBadElements($input)
 { // remove all bad characters
+    preg_replace('/(<script[^>]*>.+?<\/script>|<style[^>]*>.+?<\/style>)/s', '', $input);
+    $doc = new DOMDocument();
+    $doc->loadHTML($input);
+
+    //removeElementsByTagName('script', $doc);
+    $input = strip_tags($input, '<p><a><h1><h2><h3><h4><h5><br><b><i>');
     return $input;
 }
+
+/*
+$doc->loadHTML($a);
+$list = $doc->getElementsByTagName("p");
+
+while ($list->length > 0) {
+    $p = $list->item(0);
+    $p->parentNode->removeChild($p);
+}
+*/
 
 function calculateCurrency($amount, $currency)
 {

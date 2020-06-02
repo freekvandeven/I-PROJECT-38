@@ -32,6 +32,7 @@ function checkItemDate()
         Items::finishItem($item["Voorwerpnummer"], $bid["Gebruiker"], $bid["Bodbedrag"]);
         notifySeller($item["Verkoper"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
         notifyBuyer($bid["Gebruiker"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
+        notifyFollowers($item["Voorwerpnummer"], "De veiling is afgelopen", "item.php?id=".$item["Voorwerpnummer"]);
     }
 }
 
@@ -137,11 +138,11 @@ function sendConfirmationEmail($mail, $username, $hash)
     return sendFormattedMail($mail, $subject, "confirm.html", $variables);
 }
 
-function notifyFollowers($item)
+function notifyFollowers($item, $message)
 {
     foreach (Items::getFollowers($item) as $follower) // get all item followers
     {
-        User::notifyUser($follower, "Er is een item geupdate");
+        User::notifyUser($follower, $message, "item.php?id=$item");
     }
 }
 
@@ -154,7 +155,7 @@ function notifySeller($seller, $id, $price)
     $variables['id'] = $id;
     $variables['price'] = $price;
     sendFormattedMail($user['Mailbox'], $subject, "sold.html", $variables);
-    User::notifyUser($seller, "Je veiling is afgelopen");
+    User::notifyUser($seller, "Je veiling is afgelopen", "item.php?id=$id");
 }
 
 function notifyBuyer($buyer, $id, $offer)
@@ -166,7 +167,7 @@ function notifyBuyer($buyer, $id, $offer)
     $variables['id'] = $id;
     $variables['offer'] = $offer;
     sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
-    User::notifyUser($buyer, "Je hebt de veiling gewonnen");
+    User::notifyUser($buyer, "Je hebt de veiling gewonnen", "item.php?id=$id");
 }
 
 function sendFormattedMail($receiver, $subject, $filename, $variables)
@@ -275,10 +276,23 @@ function reOrganizeArray($file_posts)
     }
     return $new_file_array;
 }
-
+function generateCategoryArray()
+{
+    $result = Category::getCategories();
+    $filtered = [];
+    $mapping = [];
+    foreach ($result as $row) {
+        $filtered[$row['hoofdnummer']][$row['subnummer']][$row['subsubnummer']][] = $row['subsubsubnummer'];
+        $mapping[$row['hoofdnummer']] = $row['hoofdnaam'];
+        $mapping[$row['subnummer']] = $row['subnaam'];
+        $mapping[$row['subsubnummer']] = $row['subsubnaam'];
+        $mapping[$row['subsubsubnummer']] = $row['subsubsubnaam'];
+    }
+    return array($filtered, $mapping);
+}
 function generateCategoryDropdown()
 {
-    $categories = Items::getCategories();
+    $categories = Category::getCategories();
     $html = '<ul>';
     foreach ($categories as $maincategory => $subcategories) {
         $html .= "<li>$maincategory<ul>";

@@ -2,18 +2,20 @@
 
 $bootstrapGrid = 'col-xl-4 col-md-6 col-sm-6 col-6';
 
-$categories = ['auction', 'user', 'seller', 'statistics', 'activity', 'addRubriek', 'settings', 'reset', 'fill', 'query'];
+$categories = ["auction", "user", "seller", "statistics", "activity", "addRubriek", "feedback", "footerpages", "settings", "reset", "fill", "query"];
 $titles = ['Website', 'Database'];
-$websiteCategoriesAmount = 6;
+$websiteCategoriesAmount = 8;
 $databaseCategoriesAmount = 4;
 $cardTitles = ['Bekijk alle veilingen', 'Bekijk alle gebruikers', 'Bekijk alle verkopers', 'Bekijk website statistieken', 'Bekijk gebruikers statistieken',
-    'Voeg een rubriek toe', 'Server Settings', 'Reset uw database', 'Vul uw database', 'MS SQL Server Query Editor'];
+    'Voeg een rubriek toe', "Bekijk alle feedback", "Footer pagina's", 'Server Settings', 'Reset uw database', 'Vul uw database', 'MS SQL Server Query Editor'];
 $cardText = ['Hier is een overzicht te vinden van alle veilingen die ooit hebben bestaan.',
             'Hier is een overzicht te vinden van alle gebruikers.',
             'Hier is een overzicht te vinden van alle verkopers.',
             'Hier zijn de statistieken van uw website te vinden.',
             'Hier zijn de statistieken van uw gebruikers te vinden.',
             'Op deze pagina is het mogelijk om een rubriek toe te voegen.',
+            'Hier is een overzicht te vinden van alle feedback',
+            "Op deze pagina kan je alle footer pagina's aanpassen",
             'Op deze pagina is het mogelijk om de server instellingen te wijzigen',
             'Op deze pagina is het mogelijk om de database te resetten.',
             'Op deze pagina kan je de database vullen met data.',

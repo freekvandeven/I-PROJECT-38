@@ -24,19 +24,6 @@ class Database{
         }
     }
 
-    static function getFeedback ($firstname, $surname, $phoneNumber, $message) {
-        $fb  =  'Hallo ' . $firstname . '! <br>';
-        $fb .= "Hartstikke bedankt voor insturen van uw formulier! <br>";
-        $fb .= "U heeft de volgende gegevens achtergelaten: <br> ";
-
-        $fb .= 'Voornaam: ' . $firstname . '<br>';
-        $fb .= 'Achternaam: ' . $surname . '<br>';
-        $fb .= 'Telefoonnummer: ' . $phoneNumber . '<br>';
-        $fb .= 'Bericht: ' . $message . '<br>';
-
-        echo $fb;
-    }
-
     static function rateSeller($seller,$giver, $rating)
     {
         global $dbh;
@@ -59,6 +46,19 @@ class Database{
         $data->execute([":Gebruikersnaam" => $username]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result[0];// untested function
+    }
+
+    static function getFeedback ($firstname, $surname, $phoneNumber, $message) {
+        $fb  =  'Hallo ' . $firstname . '! <br>';
+        $fb .= "Hartstikke bedankt voor insturen van uw formulier! <br>";
+        $fb .= "U heeft de volgende gegevens achtergelaten: <br> ";
+
+        $fb .= 'Voornaam: ' . $firstname . '<br>';
+        $fb .= 'Achternaam: ' . $surname . '<br>';
+        $fb .= 'Telefoonnummer: ' . $phoneNumber . '<br>';
+        $fb .= 'Bericht: ' . $message . '<br>';
+
+        echo $fb;
     }
 
 }

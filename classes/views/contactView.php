@@ -9,7 +9,7 @@
         <h4 class="contactpaginaWelkom text-center font-weight-normal">Heeft u vragen en/of feedback? Vul hieronder het formulier in.</h4>
         <h5 class="text-center font-weight-normal">Wij proberen zo snel mogelijk te antwoorden.</h5>
 
-        <form class="contactpaginaFormulier text-center" method="POST" action="">
+        <form class="contactpaginaFormulier text-center" method="post" action="">
             <input type="hidden" name="token" value="<?=$token?>">
             <div class="form-row text-left">
                 <div class="form-group col-lg-3 col-md-6 ">
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <button type="button" name="submit" value="submit" class="contactpaginaButton">Verzenden</button>
+            <button type="submit" class="contactpaginaButton">Verzenden</button>
         </form>
     </div>
 </main>

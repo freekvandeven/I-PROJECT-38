@@ -106,17 +106,6 @@ switch ($_POST["step"]) {
                 $imageInsert = $dbh->prepare("exec fileInsert ?, ?");
                 $imageInsert->bindParam(1, $imageFile);
                 $imageInsert->bindParam(2, $itemID);
-
-//                $getKeyWordId = $dbh->prepare("exec getKeyWordId ?");
-//                $getKeyWordId->bindParam(1, $keyword);
-
-//                $keywordLinkInsert = $dbh->prepare("exec KeyWordLinkInsert ?, ?");
-//                $keywordLinkInsert->bindParam(1, $keywordId);
-//                $keywordLinkInsert->bindParam(2, $itemID);
-//
-//                $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
-//                $keywordInsert->bindParam(1, $keyword);
-
                 $itemID = Items::get_ItemId();
                 $fileText = file_get_contents($file);
                 # step 4.3 Split file into items

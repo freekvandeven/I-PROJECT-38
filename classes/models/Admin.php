@@ -70,7 +70,7 @@ class Admin
     static function getSiteVisits()
     {
         global $dbh;
-        $data = $dbh->prepare('SELECT PageName, Visits FROM Pages');
+        $data = $dbh->prepare("SELECT PageName, Visits FROM Pages");
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -105,5 +105,38 @@ class Admin
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    static function giveWebsiteFeedback($firstname, $surname, $email, $message)
+    {
+        global $dbh;
+        $data = $dbh->prepare("INSERT INTO Feedback (Voornaam, Achternaam, Mailbox,Commentaar) VALUES (:firstname, :surname, :email, :message)");
+        $data->execute(array(":firstname" => $firstname, ":surname" => $surname, ":email" => $email, ":message" => $message));
+    }
+
+    static function getItemsLimit($limit, $search = '')
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
+        $data->execute([":search" => '%' . $search . '%']);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    static function getWebsiteFeedback($search = '')
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Feedback WHERE Commentaar LIKE :search ORDER BY Datum DESC");
+        $data->execute([":search" => '%' . $search . '%']);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function deleteWebsiteFeedback($message, $email)
+    {
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM Feedback WHERE Commentaar = :message AND Mailbox = :email");
+        $data->execute([":message" => $message, ":email" => $email]);
     }
 }

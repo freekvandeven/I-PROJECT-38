@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['loggedin'])) {
-    $loginstatus = 'Profile';
+    $loginstatus = 'Profiel';
     $loggedin = true;
     $loginlink = 'profile.php';
 } else {
@@ -8,6 +8,10 @@ if (isset($_SESSION['loggedin'])) {
     $loggedin = false;
     $loginlink = 'login.php';
 }
+
+$categories = generateCategoryArray();
+$categoryNumbers = $categories[0];
+$categoryNames = $categories[1];
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -28,7 +32,6 @@ if (isset($_SESSION['loggedin'])) {
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,7 +44,7 @@ if (isset($_SESSION['loggedin'])) {
     <script src="js/range.js"></script>
     <script src="js/zoomImage.js"></script>
     <script src="js/darkMode.js"></script>
-    <title><?=$title?></title>
+    <title><?= $title ?></title>
 
     <!-- jquerry to make bootstrap dropdown a clickable link-->
     <script>
@@ -50,6 +53,21 @@ if (isset($_SESSION['loggedin'])) {
                 location.href = this.href;
             });
         });
+    </script>
+    <script>
+        function openMainCategory(evt, categoryName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("dropdown-item");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+            document.getElementById(categoryName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </head>
 <body>
@@ -64,8 +82,51 @@ if (isset($_SESSION['loggedin'])) {
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="catalogus.php">Veilingen</a>
+                <!-- Example split danger button -->
+                <div class="btn-group">
+                    <a type="button" class="catalogus catalogusButton" href="catalogus.php">Catalogus</a>
+                    <button type="button" class="catalogus pijltje dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="categorieenlijst dropdown-menu">
+                        <div class="tab">
+                            <?php foreach ($categoryNumbers as $key => $value): ?>
+                                <a class="categoryLink dropdown-item" href="catalogus.php?rubriek=<?= $key ?>"
+                                   onmouseover="openMainCategory(event, '<?= $key ?>')"><?= $categoryNames[$key] ?></a>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="clearfix"><?=count($categoryNumbers)?></div>
+                    </div>
+                    <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
+                    <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
+                        <?php $index = 0;
+                        foreach ($subCategories as $subCategory => $subsubCategories):
+                        if ($index == 0):?>
+                        <div class="subtabcontentRow row"> <?php endif;
+                            if ($index == 3):?>
+                            <div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6"> <?php
+                                else:?>
+                                <div class="subtabcontent col-xl-2 col-lg-6"> <?php endif; ?>
+                                    <h5><?= $categoryNames[$subCategory] ?></h5>
+                                    <ul>
+                                        <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
+                                            <li class="subsubcategories"><?= $categoryNames[$subsubCategory] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                        <?php
+                        $index++;
+                        if ($index >= 4) {
+                            echo '</div>';
+                            $index = 0;
+                        }
+                        endforeach; ?>
+                    </div>
+                    <?php endforeach;?>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href=<?= $loginlink ?>>
@@ -86,7 +147,8 @@ if (isset($_SESSION['loggedin'])) {
         <form class="navbarForm form-inline ml-md-5" action="catalogus.php" method="post">
             <input type="hidden" name="token" value="<?= $token ?>">
             <div class="text-center">
-                <input class="zoekBalk form-control mr-md-2" type="search" placeholder="Zoeken" aria-label="Search"
+                <input class="zoekBalk form-control mr-md-2" type="search" placeholder="Zoeken op veilingen"
+                       aria-label="Search"
                        name="search">
             </div>
             <button class="btn btn-outline-success" type="submit">Zoeken</button>
@@ -102,21 +164,16 @@ if (isset($_SESSION['loggedin'])) {
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <?php if ($loggedin): ?>
                 <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
-                <a class="dropdown-item" id="notificationsDropdown" href="profile.php?action=notifications">Notificaties
-                    (2)</a>
+                <a class="dropdown-item" href="profile.php?action=notifications">Notificaties <span
+                            id="notificationsDropdown" class="badge badge-light">4</span></a>
                 <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen</a>
                 <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten</a>
+                <a class="dropdown-item" href="addProduct.php">Verkoop product</a>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="darkmodeSettingHeader"
                            name="darkmodeSettingHeader" <?php if ($settings['darkmode']) echo "checked"; ?>>
                     <label class="custom-control-label" for="darkmodeSettingHeader">Darkmode</label>
                 </div>
-                <a class="item">
-                    <div class="ui slider checkbox">
-                        <input type="checkbox" name="darkmode" id="darkmode">
-                        <label for="darkmode">Darkmode</label>
-                    </div>
-                </a>
                 <a class="dropdown-item" href="logout.php">Log Out</a>
             <?php else: ?>
                 <a class="dropdown-item" href="login.php">Login</a>
