@@ -53,7 +53,7 @@
                         <form class="catalogusForm" action="" method="post">
                             <label>Categorie</label>
                             <p id="categoryFilterName"></p>
-                            <input class="form-control" id="categoryFilter" type="hidden" name="Rubriek"
+                            <input class="form-control" id="categoryFilter" type="hidden" name="rubriek"
                                    value="" readonly>
                         </form>
                     </li>

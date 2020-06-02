@@ -2,7 +2,7 @@
 $search = '%' . $_POST["search"] . '%';
 $hint = "";
 // get the corresponding categories
-$sql = "SELECT TOP 50 Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Rubrieknaam LIKE :search";
+$sql = "SELECT TOP 50 DISTINCT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Rubrieknaam LIKE :search";
 $data = $dbh->prepare($sql);
 $data->bindValue(':search', $search, PDO::PARAM_STR);
 $data->execute();
