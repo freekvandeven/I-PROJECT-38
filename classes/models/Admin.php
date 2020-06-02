@@ -114,12 +114,29 @@ class Admin
         $data->execute(array(":firstname" => $firstname, ":surname" => $surname, ":email" => $email, ":message" => $message));
     }
 
-    static function getWebsiteFeedback()
+    static function getItemsLimit($limit, $search = '')
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT * FROM Feedback ORDER BY Datum DESC");
-        $data->execute();
+        $data = $dbh->prepare("SELECT TOP $limit * FROM Voorwerp WHERE Titel LIKE :search");
+        $data->execute([":search" => '%' . $search . '%']);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+
+    static function getWebsiteFeedback($search = '')
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT * FROM Feedback WHERE Commentaar LIKE :search ORDER BY Datum DESC");
+        $data->execute([":search" => '%' . $search . '%']);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function deleteWebsiteFeedback($message, $email)
+    {
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM Feedback WHERE Commentaar = :message AND Mailbox = :email");
+        $data->execute([":message" => $message, ":email" => $email]);
     }
 }

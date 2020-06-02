@@ -3,7 +3,7 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 checkAdminLogin();
-$possible_categories = array("auction", "user", "seller", "statistics", "activity", "addRubriek", "settings", "reset", "fill", "query"); # all possible actions
+$possible_categories = array("auction", "user", "seller", "statistics", "activity", "addRubriek", "feedback", "footer", "settings", "reset", "fill", "query"); # all possible actions
 
 # handle the login post request
 if(checkPost()) { # this login handling needs to be in some seperate file combined with the login.php
