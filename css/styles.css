@@ -26,6 +26,124 @@ main .errorMessage span{
     color: rgb(230, 230, 230);
 }
 
+/****************** CATEGORIEEN-LIJST ******************/
+.categorieenlijst{
+    min-width: 250px;
+}
+
+.categorieenlijst .tab .categoryLink:hover,
+.categorieenlijst .tab .categoryLink:visited,
+.categorieenlijst .tab .categoryLink:active,
+.categorieenlijst .tab .categoryLink.active{
+    background: rgb(165, 105, 189);
+}
+
+.tabcontent{
+    padding-top: 5px;
+    z-index: 100;
+    position: absolute;
+    left: 247px;
+    top: 35px;
+    min-width: 750px;
+    background: #fff;
+    border: 3px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}
+
+@media (max-width: 1199px) {
+    .tabcontent{
+        min-width: 450px;
+    }
+
+    .subtabcontent{
+        padding: 0 5px;
+    }
+}
+
+.subtabcontentRow{
+    margin-bottom: 20px;
+    width: 100%;
+    margin-left: 0px;
+}
+
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.subtabcontent{
+    border-right: 1px solid rgb(230, 230, 230);
+}
+
+.subtabcontentNoBorder{
+    border: none;
+}
+
+.subtabcontent ul{
+    list-style-type: none;
+}
+
+.subtabcontent ul li{
+    margin-left: -30px;
+}
+
+.catalogusButton{
+    border: none;
+    text-align: center;
+    margin-top: 8px;
+    background: none;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.pijltje{
+    padding: 0 0 0 3px;
+    background: none;
+    border: none;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.catalogusButton:hover,
+.catalogusButton:active,
+.pijltje:hover,
+.pijltje:active,
+.pijltje:focus{
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.catalogus{
+    transition: 200ms;
+}
+
+.catalogus:hover,
+.catalogus:active{
+    color: #ac00ff;
+}
+
+.darkmode--activated .categorieenlijst{
+    background: rgb(110, 110, 110);
+}
+
+.darkmode--activated .categorieenlijst .tab a{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .tabcontent{
+    background: rgb(100, 100, 100);
+    border-color: rgb(110, 110, 110);
+}
+
+.darkmode--activated .tabcontent .subsubcategories{
+    color: rgb(230, 230, 230);
+}
+
+
 /****************** NAV-BAR ******************/
 nav{
     background: rgb(135, 110, 189);

@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['loggedin'])) {
-    $loginstatus = 'Profile';
+    $loginstatus = 'Profiel';
     $loggedin = true;
     $loginlink = 'profile.php';
 } else {
@@ -82,49 +82,44 @@ $categoryNames = $categories[1];
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categorie test
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <?php foreach ($categoryNumbers as $key => $value): ?>
-                            <a class="dropdown-item" href="#"><?= $categoryNames[$key] ?></a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </li>
+
             <li class="nav-item">
                 <!-- Example split danger button -->
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger" href="catalogus.php">Catalogus</button>
-                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                    <a type="button" class="catalogus catalogusButton" href="catalogus.php">Catalogus</a>
+                    <button type="button" class="catalogus pijltje dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="categorieenlijst dropdown-menu">
                         <div class="tab">
                             <?php foreach ($categoryNumbers as $key => $value): ?>
-                                <a class="dropdown-item" href="#"
+                                <a class="categoryLink dropdown-item" href="#"
                                    onmouseover="openMainCategory(event, '<?= $key ?>')"><?= $categoryNames[$key] ?></a>
                             <?php endforeach; ?>
                         </div>
-                        <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
-                            <div id="<?= $mainCategory ?>" class="tabcontent" style="display: none;">
-                                <?php foreach ($subCategories as $subCategory => $subsubCategories): ?>
-                                    <h5><?= $categoryNames[$subCategory] ?></h5>
-                                    <ul>
-                                        <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
-                                            <li><?= $categoryNames[$subsubCategory] ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endforeach; ?>
-
                         <div class="clearfix"></div>
                     </div>
+                    <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
+                        <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
+                            <?php $index = 0;
+                            foreach ($subCategories as $subCategory => $subsubCategories):
+                                if($index==0) echo'<div class="subtabcontentRow row">';
+                                    if($index == 3) echo'<div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6">';
+                                    else echo'<div class="subtabcontent col-xl-3 col-lg-6">';?>
+                                        <h5><?= $categoryNames[$subCategory] ?></h5>
+                                        <ul>
+                                            <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
+                                                <li class="subsubcategories"><?= $categoryNames[$subsubCategory] ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                <?php
+                                $index++;
+                                if($index >= 4) { echo '</div>'; $index=0; }
+                            endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </li>
             <li class="nav-item ">
