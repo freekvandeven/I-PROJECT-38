@@ -217,13 +217,17 @@ function updateMessages() {
             responder: responder
         },
         function (data, status) {
-            $("#chatWindow").html(data);
+            if(data != lastmessage) {
+                $("#chatWindow").html(data);
+            }
+            lastmessage = data;
         });
     return updateMessages;
 }
 
 function startChat(chatter) {
     responder = chatter;
+    lastmessage = '';
     $(document).ready(function () {
         setInterval(updateMessages(), 2000);
     });

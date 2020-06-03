@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-md-4 col-sm-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title text-center">Alle notifications</div>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-md-4 col-sm-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title text-center">Selecteer gebruiker</div>
@@ -44,13 +44,13 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="col-xl-6 col-md-8 col-sm-8">
                 <div class="card">
                     <div class="card-body">
                         <?php if(isset($_GET['user'])):?>
                             <div class="card-title text-center">Chat met <?=$_GET['user']?></div>
                             <div class="card-text" id="chatWindow"></div>
-                            <form onsubmit="sendChatMessage('<?=$_GET['user']?>');return false" action="">
+                            <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" action="">
                             <input type="text" name="chat" id="chatMessage" value="" placeholder="Type your message">
                             <input type="submit" value="send">
                             </form>

@@ -1,18 +1,36 @@
 <?php
 if(isset($_SESSION['name']) && isset($_POST['responder'])) {
     $html = "";
+    $previousTime = "00:00:00";
+    $previousDate = "2019-06-03";
     foreach(getConversation() as $message){
         $date = explode( ".",$message['Tijdstip'])[0];
         $time = explode( " ", $date)[1];
         $datum = explode( " ", $date)[0];
-        if($message['Ontvanger'] == $_SESSION['name']){
-            $html .= "<div class='container-left d-flex justify-content-start mb-12'>";
-        } else {
-            $html .= "<div class='container-right d-flex justify-content-end' style='width:100%;'>";
+        if($datum != $previousDate){
+            $html .= "<p style='text-align: center;'>$datum</p>";
         }
-        $html .= "<p>". $message['Message'] . "</p>
-            <span class='timeMessage'>" . $time . "</span></div>";
+        if($message['Ontvanger'] == $previousReceiver) {
+
+        } else {
+            $html .= "</div>";
+            if ($message['Ontvanger'] == $_SESSION['name']) {
+                $html .= "<div class='container-left' style='width:100%;text-align: left;'>";
+            } else {
+                $html .= "<div class='container-right' style='width:100%;text-align: right;'>";
+            }
+        }
+        $html .= "<p>". $message['Message'] . "</p>";
+        $date1 = new DateTime($previousTime);
+        $date2 = $date1->diff(new DateTime($time));
+        if($date2->i > 2){
+            $html .= "<span class='timeMessage'>" . $time . "</span>";
+        }
+        $previousDate = $datum;
+        $previousTime = $time;
+        $previousReceiver = $message['Ontvanger'];
     }
+    $html .= '</div>';
     echo $html;
 
 }
