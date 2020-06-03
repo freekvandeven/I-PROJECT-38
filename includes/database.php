@@ -54,12 +54,12 @@ function selectFromCatalogsMSSQL($orders)
             FROM bod WHERE  Gebruiker is not null
             group by voorwerp) t2
             on voorwerpnummer = voorwerp
-            where VeilingGesloten = 0) as combinetable";
+            where VeilingGesloten = 0) as combinetable"; // base select
     $where = " WHERE ";
-    $distance = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 ";
+    $distance = " (@geo1.STDistance(geography::Point(ISNULL(Latitude,0),ISNULL(Longitude,0), 4326)))/1000 "; // returns distance in km
     if (isset($orders[':order']) && $orders[':order'] == "Dis") {
         $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
-        $sql = setSqlDistance($sql);
+        $sql = setSqlDistance($sql);                                            // prepare sql for ordering by distance
         $execute = setExecuteDistance($execute, $orders, false  );
     }
     if(!empty($orders[':rubriek'])){
@@ -68,7 +68,7 @@ function selectFromCatalogsMSSQL($orders)
     foreach ($orders as $key => $order) {
         if (!empty($order)) {
             if (strpos($key, ":maximumDistance") !== false) {
-                if (isset($orders[':order']) && $orders[':order'] != "Dis") {
+                if (isset($orders[':order']) && $orders[':order'] != "Dis") { // only prepare sql if distance isn't set already
                     $sql .= " join Gebruiker on combinetable.Verkoper = Gebruikersnaam";
                     $sql = setSqlDistance($sql);
                 }
@@ -76,14 +76,14 @@ function selectFromCatalogsMSSQL($orders)
                 $sql .= $where . " $distance between :min and :max ";
                     $where = " AND ";
             } else if (strpos($key, ":search") !== false) {
-                $preselect = $dbh->prepare("Select VoorwerpNummer from KeywordsLink KL
+                $preselect = $dbh->prepare("Select VoorwerpNummer from KeywordsLink KL  
 								 join Keywords K on K.KeyWordNummer=KL.KeyWordNummer
 								 WHERE keyword =  :where");
                 $sql .= $where . " Voorwerpnummer in(Select VoorwerpNummer from KeywordsLink KL
 								 join Keywords K on K.KeyWordNummer=KL.KeyWordNummer
 								 WHERE ";
                 $foundKeywords =0;
-                for ($i = 0; $i < sizeof($order); $i++) {
+                for ($i = 0; $i < sizeof($order); $i++) { // handle all keywords in the search order
                     if (!$i == 0) $sql .= " OR ";
                     $sql .= " Keyword = :where" . $i;
                     $execute[":where" . $i] = $order[$i];
@@ -109,7 +109,7 @@ function selectFromCatalogsMSSQL($orders)
                     $sql .= " ORDER BY $distance";
                 }
             } else if (strpos($key, ":rubriek") !== false) {
-                $sql .= $where . "voorwerpnummer in (SELECT voorwerp from tree t join VoorwerpInRubriek on RubriekOpLaagsteNiveau = rubrieknummer)";
+                $sql .= $where . "voorwerpnummer in (SELECT voorwerp from tree t join VoorwerpInRubriek on RubriekOpLaagsteNiveau = rubrieknummer)"; //checks if in column tree
                 $where = " AND ";
                 $execute[":rubriek"] = $order;
             } else if (strpos($key, ":offset") !== false) {
