@@ -107,19 +107,34 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                         <p class="sublabel">Biedingen</p>
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
-                            <?php foreach($bids as $bid){
-                              $user = User::getUser($bid['Gebruiker']);
-                              if(!empty($user)){
-                                $user = $user['Voornaam'];
-                                $price = number_format($bid['Bodbedrag'], 2, ',','.');
-                              }
-                              else{
-                                $user = "Deleted User";
-                                $price = "<del>".number_format($bid['Bodbedrag'], 2, ',','.')."</del>";
-                              }
-                              echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
-                              } ?>
-                            <li class="list-group-item"><strong>Startprijs: </strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
+                            <?php
+                            $index=0;
+                            $alreadyFirst=false;
+                            foreach($bids as $bid){
+                                  $user = User::getUser($bid['Gebruiker']);
+                                  if(!empty($user)){
+                                    $user = $user['Gebruikersnaam'];
+                                    $price = number_format($bid['Bodbedrag'], 2, ',','.');
+                                  }
+                                  else{
+                                    $user = "Deleted User";
+                                    $price = "<del>".number_format($bid['Bodbedrag'], 2, ',','.')."</del>";
+                                  }
+                                  if($user == $_SESSION['name']) {
+                                      if($index==0) {
+                                        echo "<li class='jezelfTop list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                        $alreadyFirst=true;
+                                      }
+                                      else {
+                                          if(!$alreadyFirst) echo "<li class='jezelfBottom list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                          else echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                      }
+                                  } else {
+                                      echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                  }
+                                  $index++;
+                            } ?>
+                            <li class="startprijs list-group-item"><strong>Startprijs: </strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
                         </ul>
 
                         <form method="post" action="">

@@ -34,7 +34,8 @@ if(checkPost()) {
             $minimumIncrease = $startPrijs * $percentage;
 
             // het bieden
-            if ($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs) {
+            $maxBid = 100000000;
+            if ($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs && $_POST['bid'] < $maxBid) {
                 if (($_POST["bid"] - $highestBid['Bodbedrag']) > $minimumIncrease) {
                     Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
                     notifyFollowers($ref, "Er is geboden op de veiling");
@@ -42,12 +43,12 @@ if(checkPost()) {
                     $toast = "U heeft succesvol geboden";
                     $succes = "U heeft succesvol geboden";
                 } else {
-                    $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod";
+                    $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn.";
                     $err = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod";
                 }
             } else {
-                $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod";
-                $err = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod";
+                $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn.";
+                $err = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod en moet onder €100.000.000 zijn";
             }
 
         } else {

@@ -2327,11 +2327,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin-top: -36px;
 }
 
-.veilingBekijkenPagina .verkoper .card a{
-    color: #000;
-    text-decoration: none;
-}
-
 .veilingBekijkenPagina .bieden{
     margin-bottom: 10px;
 }
@@ -2339,6 +2334,18 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .veilingBekijkenPagina .biedingen li{
     padding: 7px 0 7px 0;
     border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.veilingBekijkenPagina .biedingen .startprijs{
+    background: rgba(0, 0, 0, .1);
+}
+
+.veilingBekijkenPagina .biedingen .jezelfTop{
+    background: rgba(50, 191, 87, .5);
+}
+
+.veilingBekijkenPagina .biedingen .jezelfBottom{
+    background: rgba(255, 65, 28, .8);
 }
 
 .veilingBekijkenPagina .sublabel{
@@ -2369,6 +2376,11 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 .veilingBekijkenPagina .buttonBox button:hover{
     background: rgb(165, 105, 189);
     color: #fff;
+}
+
+.veilingBekijkenPagina .verkoper .card a{
+    color: #000;
+    text-decoration: none;
 }
 
 .veilingBekijkenPagina .verwijderVeilingButton,
