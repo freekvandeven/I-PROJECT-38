@@ -33,40 +33,4 @@
     <div class="gaTerugKnopBox text-center">
         <a href="admin.php" class="gaTerugKnop">Ga terug</a>
     </div>
-    <script type="text/javascript">
-        indexStarted = false;
-
-        function startDatabaseIndex() {
-            if (!indexStarted) { // if the fill hasn't started yet
-                if (confirm("Are you sure you want to index the database?(This could take atleast 15 minutes)")) {
-                    indexStarted = true;
-                    document.getElementById("databaseIndexButton").innerText = "Abort!";
-                    sendAjaxIndex();
-                }
-            } else { // abort the filling
-                indexAjax.abort();
-                document.getElementById("databaseIndexButton").innerText = "Start Indexing!";
-                indexStarted = false;
-            }
-        }
-
-        function sendAjaxIndex() {
-            indexAjax = new XMLHttpRequest();
-            indexAjax.onreadystatechange = function () {
-                if (this.status == 500) {
-                    sendAjaxIndex();
-                } else if (this.status == 200) {
-                    if (this.responseText.includes("finished")) {
-                        document.getElementById("outputField2").innerHTML = "Finished!";
-                        indexAjax.abort();
-                    }else{
-                        sendAjaxIndex();
-                    }
-                }
-            };
-            indexAjax.open("POST", "ajax.php", true);
-            indexAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            indexAjax.send('request=indexCatalogus');
-        }
-    </script>
 </main>
