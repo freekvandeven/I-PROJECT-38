@@ -10,7 +10,6 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                 <div class="card">
                     <div class='card-body'>
                         <h4 class="card-header text-center"><?=$item['Titel']?>
-                            <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
                             <div class="row">
                                     <form class="voegFavorietToeForm col-6" method="post" action="">
                                         <input type="hidden" name="token" value="<?= $token ?>">
@@ -19,7 +18,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                             <button type="submit" name="action" value="follow" class="voegToeAanFavorietenButton">Favorieten+</button>
                                         </div>
                                     </form>
-
+                                <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
                                     <form method="post" action="" class="col-6">
                                         <input type="hidden" name="token" value="<?= $token ?>">
                                         <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">

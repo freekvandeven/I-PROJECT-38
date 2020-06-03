@@ -333,15 +333,15 @@ function evalSelectPOST()
             $keywords = $temp;
             $select[':search'] = $keywords;
         }                                                                                         ///////// price between////////
-        if (!empty($_POST['minimum']) && $_POST['minimum'] > 1 && $_POST['minimum'] < 1000000) {
+        if (!empty($_POST['minimum']) && $_POST['minimum'] > 1 && $_POST['minimum'] < 100000000) {
             $select[':val1'] = $_POST['minimum'];
         } else {
             $select[':val1'] = 1;
         }
-        if (!empty($_POST['maximum']) && $_POST['maximum'] > 1 && $_POST['maximum'] < 1000000) {
+        if (!empty($_POST['maximum']) && $_POST['maximum'] > 1 && $_POST['maximum'] < 100000000) {
             $select[':val2'] = $_POST['maximum'];
         } else {
-            $select[':val2'] = 1000000;
+            $select[':val2'] = 100000000;
         }
         if (isset($_POST['rubriek'])) {
             $select[":rubriek"] = $_POST['rubriek'];
