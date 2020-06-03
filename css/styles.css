@@ -6,18 +6,26 @@ algemene details (knoppen bijv.): rgb(165, 105, 189)
  */
 
 /****************** ERROR-MESSAGE ******************/
-main .errorMessage{
+main .errorMessage,
+main .succesMessage{
     text-align: center;
     margin-bottom: 30px;
 }
 
-main .errorMessage span{
-    background: rgb(255, 62, 36);
+main .errorMessage span,
+main .succesMessage span{
+    background: rgba(255, 62, 36, .8);
     font-size: 20px;
-    padding: 10px 60px;
-    border: 3px solid rgb(255, 62, 36);
+    padding: 5px 60px;
+    border: 3px solid rgba(255, 62, 36, .7);
     border-radius: 5px;
     color: #000;
+    line-height: 2.2;
+}
+
+main .succesMessage span{
+    background: rgba(55, 204, 95, .7);
+    border-color: rgba(36, 135, 63, .6);
 }
 
 .darkmode--activated main .errorMessage span{
@@ -975,7 +983,7 @@ body{
     font-size: 21px;
 }
 
-/*************** Mijn Veilingen & Favoriete veilingen CSS *************/
+/*************** Mijn Veilingen & Favoriete en CSS *************/
 .mijnVeilingenPagina h2,
 .mijnFavorietenPagina h2{
     font-weight: normal;
@@ -1719,14 +1727,13 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     padding-top: 10px;
 }
 
+/*************** FOTO'S / IMAGES CSS *************/
 .itemImage, .itemImageProfilePage{
     display: block;
-    height: 250px;
+    height: 350px;
     overflow: hidden;
     margin-bottom: 20px;
 }
-
-/*************** FOTO'S / IMAGES CSS *************/
 
 .itemImage img, .itemImageProfilePage img{
     margin: 0 auto;
@@ -2285,6 +2292,37 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     border-radius: 10px;
 }
 
+.veilingBekijkenPagina .itemInformatie .card .carousel{
+    margin: 20px 0 0 0;
+}
+
+.veilingBekijkenPagina .itemInformatie .card .card-body .carousel .carousel-inner div a .itemImage{
+    margin: 0 auto;
+    display: block;
+}
+
+.veilingBekijkenPagina .verkoperInformatieBox{
+    margin: 30px 2% 10px 2%;
+}
+
+.veilingBekijkenPagina .verkoperInformatie{
+    margin-top: 20px;
+}
+
+.veilingBekijkenPagina .itemInformatie .card .font-weight-bold{
+    font-size: 17px;
+    margin: 20px 0 0 0;
+}
+
+.veilingBekijkenPagina .itemInformatie .card .card-text{
+    margin: 15px 5% 0 5%;
+}
+
+.veilingBekijkenPagina .itemInformatie .card .card-body .carousel .carousel-control-prev,
+.veilingBekijkenPagina .itemInformatie .card .card-body .carousel .carousel-control-next{
+    background: rgba(0, 0, 0, .1);
+}
+
 .veilingBekijkenPagina .aantalKeerBekeken{
     margin-top: -36px;
 }
@@ -2303,8 +2341,9 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     border: 1px solid rgba(0, 0, 0, .2);
 }
 
-.veilingBekijkenPagina form .plaatsUwBod{
-    margin-top: 10px;
+.veilingBekijkenPagina .sublabel{
+    margin: 0 0 10px 25px;
+    font-size: 17px;
 }
 
 .veilingBekijkenPagina form .inputBod{
@@ -2375,23 +2414,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     /*Set the size of the magnifier glass:*/
     width: 100px;
     height: 100px;
-}
-
-.veilingBekijkenPagina .itemInformatie .card-img-top{
-    margin: 20px 5% 20px 5%;
-    max-width: 90%;
-}
-
-.veilingBekijkenPagina .verkoperInformatieBox{
-    margin: 30px 2% 10px 2%;
-}
-
-.veilingBekijkenPagina .verkoperInformatie{
-    margin-top: 20px;
-}
-
-.veilingBekijkenPagina .itemInformatie .card .card-text{
-    margin: 0 5%;
 }
 
 @media (max-width: 1200px){

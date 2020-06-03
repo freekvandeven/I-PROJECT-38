@@ -5,6 +5,19 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
 <main class="veilingBekijkenPagina">
     <div class="container">
+        <?php
+        if (!empty($_GET['err'])) { ?>
+            <div class="errorMessage">
+                <span><?=$_GET['err']?></span>
+            </div>
+        <?php } ?>
+        <?php
+        if(!empty($_GET['succes'])) { ?>
+            <div class="succesMessage">
+                <span><?=$_GET['succes']?></span>
+            </div>
+        <?php } ?>
+
         <div class="row">
             <div class="itemInformatie col-xl-8 col-md-8">
                 <div class="card">
@@ -33,48 +46,34 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <?php
-                                for($i=1; $i<count($images); $i++) { // pointer to next image ?>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>"></li>
-                                    <?php
-                                }
-                                ?>
+                            <?php
+                            if(count($images) > 1) {
+                                for($i=0; $i<count($images); $i++) { // pointer to next image ?>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>" <?php if($i==0) echo'class="active"'; ?>></li>
+                                <?php }
+                            }
+                            ?>
+                            </ol>
 
                             <!-- Tekent eerste afbeelding -->
-                            </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <a href="#image0">
-                                        <img class="d-block w-100" src="<?=$images[0]?>" alt="Thumbnail">
-                                    </a>
-                                </div>
-
-                                <!-- Foto 1 vergroot -->
-                                <div class="lightbox-target" id="image0">
-                                    <img src="<?=$images[0]?>">
-                                    <a class="lightbox-close" href="#"></a>
-                                </div>
-
-                                <!-- Tekent de andere afbeeldingen -->
+                                <!-- Afbeeldingen -->
                                 <?php
-                                for($i=1; $i<count($images); $i++): ?>
-                                    <div class="carousel-item">
+                                for($i=0; $i<count($images); $i++): ?>
+                                    <div class="carousel-item <?php if($i==0) echo' active';?>">
                                         <a href="#image<?php echo $i ?>" >
-                                            <img class="d-block w-100" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
+                                            <img class="itemImage" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
                                         </a>
                                     </div>
                                 <?php endfor; ?>
 
-                                <!-- Vergroot de rest van de afbeeldingen -->
-                                <?php for($i=1; $i<count($images); $i++) : ?>
+                                <!-- Vergroot de afbeeldingen -->
+                                <?php for($i=0; $i<count($images); $i++): ?>
                                     <div class="lightbox-target" id="image<?php echo $i ?>">
                                         <img src="<?=$images[$i];?>">
                                         <a class="lightbox-close" href="#"></a>
                                     </div>
                                 <?php endfor; ?>
-
-
                             </div>
 
                             <!-- Zijn er meer dan 1 afbeeldingen? -->
@@ -90,7 +89,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             </a>
                             <?php endif; ?>
                         </div>
-
+                        <p class="font-weight-bold">Beschrijving</p>
                         <p class='card-text'><?= $item['Beschrijving'] ?></p>
                     </div>
                     <div class='card-footer'>
@@ -105,7 +104,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                 <div class="card">
                     <div class="card-body">
                         <h4 class="bieden card-header text-center">Bieden</h4>
-                        <p>Biedingen</p>
+                        <p class="sublabel">Biedingen</p>
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
                             <?php foreach($bids as $bid){
@@ -125,8 +124,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
                         <form method="post" action="">
                             <input type="hidden" name="token" value="<?= $token ?>">
-
-                            <label for="inputBod" class="plaatsUwBod">Plaats uw bod</label>
+                            <label for="inputBod" class="sublabel">Plaats uw bod</label>
                             <div class="invullenBod input-group col-xl-10 offset-xl-1">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">€</span>
@@ -135,7 +133,8 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                 <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" step="any" required>
                             </div>
                             <div class="buttonBox text-center col-xl-10 offset-xl-1">
-                                <button type="submit" class="btn btn-outline-secondary">Plaats bod</button>
+                                <?php if($item['VeilingGesloten']): ?> <button type="submit" class="btn btn-outline-secondary" disabled>Plaats bod</button>
+                                <?php else: ?> <button type="submit" class="btn btn-outline-secondary">Plaats bod</button> <?php endif; ?>
                             </div>
                         </form>
                     </div>
