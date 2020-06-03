@@ -34,6 +34,114 @@ main .succesMessage span{
     color: rgb(230, 230, 230);
 }
 
+/****************** CHAT-FUNCTIONALITEIT ******************/
+.container-right, .container-left{
+    border: 2px solid rgb(220, 220, 220);
+    background: rgb(248, 248, 248);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-right{
+    border-color: rgb(200, 200, 200);
+    background: rgb(235, 235, 235);
+}
+
+.container-right .messageBox, .container-left .messageBox{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+}
+
+.container-right .messageBox{
+    justify-content: flex-end;
+}
+
+.container-left p, .container-right p{
+    font-size: 18px;
+    max-width: 85%;
+}
+
+.container-right p{
+    margin-left: 10px;
+    text-align: right;
+}
+
+.container-left p{
+    margin-right: 10px;
+}
+
+.timeMessage {
+    color: rgb(100, 100, 100);
+    font-size: 13px;
+    display: block;
+}
+
+.berichtForm{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.berichtForm textarea{
+    padding: 4px 10px;
+    border-radius: 5px;
+    outline: none;
+    transition: 200ms;
+    width: 80%;
+    margin-right: 2%;
+}
+
+.berichtForm textarea:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
+
+.berichtForm textarea:focus{
+    padding-left: 5px;
+    box-shadow: 0 0 20px rgba(165, 105, 189, .8);
+}
+
+.berichtForm input[type="submit"]{
+    width: 18%;
+    height: 45px;
+    margin-top: 6px;
+    outline: none;
+    transition: 200ms;
+    border-radius: 5px;
+}
+
+.berichtForm input[type="submit"]:hover,
+.berichtForm input[type="submit"]:focus{
+    height: 57px;
+    margin-top: 0;
+    background: rgba(165, 105, 189, .8);
+    border-color: rgb(80, 80, 80);
+    border-width: 2px;
+    color: #000;
+    border-radius: 10px;
+}
+
+.darkmode--activated .container-left{
+    background: rgb(95, 95, 95);
+    border-color: rgb(95, 95, 95);
+}
+
+.darkmode--activated .container-right{
+    background: rgb(80, 80, 80);
+    border-color: rgb(80, 80, 80);
+}
+
+.darkmode--activated .container-right .messageBox .timeMessage,
+.darkmode--activated .container-left .messageBox .timeMessage,
+.darkmode--activated .container-right .messageBox p,
+.darkmode--activated .container-left .messageBox p{
+    color: rgb(230, 230, 230);
+}
+
 /****************** CATEGORIEEN-LIJST ******************/
 .categorieenlijst{
     min-width: 250px;
