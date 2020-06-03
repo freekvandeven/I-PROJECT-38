@@ -12,6 +12,14 @@ if (isset($_SESSION['loggedin'])) {
 $categories = generateCategoryArray();
 $categoryNumbers = $categories[0];
 $categoryNames = $categories[1];
+
+function compareArrays($a, $b)
+{
+    if(count($a) == count($b)){
+        return 0;
+    }
+    return (count($a) > count($b)) ? -1 : 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -55,19 +63,7 @@ $categoryNames = $categories[1];
         });
     </script>
     <script>
-        function openMainCategory(evt, categoryName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("dropdown-item");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace("active", "");
-            }
-            document.getElementById(categoryName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
+
     </script>
 </head>
 <body>
@@ -85,7 +81,7 @@ $categoryNames = $categories[1];
 
             <li class="nav-item">
                 <!-- Example split danger button -->
-                <div class="btn-group">
+                <div class="btn-group" onmouseleave="openMainCategory(event, 'leeg')">
                     <a class="catalogus catalogusButton" href="catalogus.php" role="button">Catalogus</a>
                     <button type="button" class="catalogus pijltje dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,16 +96,23 @@ $categoryNames = $categories[1];
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <?php foreach ($categoryNumbers as $mainCategory => $subCategories): ?>
+                    <?php
+                    foreach ($categoryNumbers as $mainCategory => $subCategories):
+                    //uksort($subCategories, function ($a, $b){ return count($b) - count($a);});
+                    //usort($subCategories, build_sorter($mainCategory));
+                    uasort($subCategories, "compareArrays");
+                    //var_dump($subCategories)
+                    //array_multisort(array_map('count', $subCategories), SORT_DESC, $subCategories);
+                    ?>
                     <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
                         <?php $index = 0;
                         foreach ($subCategories as $subCategory => $subsubCategories):
                         if ($index == 0):?>
                         <div class="subtabcontentRow row"> <?php endif;
-                            if ($index == 3):?>
-                            <div class="subtabcontent subtabcontentNoBorder col-xl-3 col-lg-6"> <?php
+                            if ($index == 5):?>
+                            <div class="subtabcontent subtabcontentNoBorder col-xl-2 col-lg-4"> <?php
                                 else:?>
-                                <div class="subtabcontent col-xl-2 col-lg-6"> <?php endif; ?>
+                                <div class="subtabcontent col-xl-2 col-lg-4"> <?php endif; ?>
                                     <a href="catalogus.php?rubriek=<?=$subCategory?>"><h5><?= $categoryNames[$subCategory] ?></h5></a>
                                     <ul>
                                         <?php foreach ($subsubCategories as $subsubCategory => $subsubsubCategories): ?>
@@ -119,7 +122,7 @@ $categoryNames = $categories[1];
                                 </div>
                                 <?php
                                 $index++;
-                                if ($index >= 4) {
+                                if ($index >= 6) {
                                     echo '</div>';
                                     $index = 0;
                                 }
@@ -167,9 +170,9 @@ $categoryNames = $categories[1];
             <?php if ($loggedin): ?>
                 <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
                 <a class="dropdown-item" href="profile.php?action=notifications">Notificaties <span
-                            id="notificationsDropdown" class="badge badge-light">4</span></a>
-                <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen</a>
-                <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten</a>
+                            id="notificationsDropdown" class="badge badge-danger">4</span></a>
+                <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen <span id="veilingenDropdown" class="badge badge-info">6</span></a>
+                <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten <span id="favoriteDropdown" class="badge badge-info">5</span></a>
                 <a class="dropdown-item" href="addProduct.php">Verkoop product</a>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="darkmodeSettingHeader"

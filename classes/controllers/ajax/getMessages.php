@@ -23,6 +23,7 @@ if(isset($_SESSION['name']) && isset($_POST['responder'])) {
             }
         }
     }
+    $html .= '</div>';
     echo $html;
 
 }

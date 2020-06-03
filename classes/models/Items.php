@@ -150,6 +150,14 @@ class Items
         return $result[0];
     }
 
+    static function userHasBid($item, $user){
+        global $dbh;
+        $data = $dbh->prepare('SELECT Voorwerp FROM Bod WHERE Voorwerp = :voorwerpID AND Gebruiker = :user');
+        $data->execute([":voorwerpID" => $item,":user"=>$user]);
+        $result = $data->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
     static function placeBid($item, $price, $user, $date)
     {
         global $dbh;
