@@ -7,7 +7,7 @@ $file = (isset($_POST["file"])) ? $_POST["file"] : 0;
 $dirs = array_filter(glob('SQL/*'), 'is_dir');
 $files = [];
 foreach ($dirs as $dir) {
-    $files = array_merge($files, preg_filter('/^/', $dir . "/",array_diff(scandir($dir,1), array('.', '..'))));
+    $files = array_merge($files, preg_filter('/^/', $dir . "/", array_diff(scandir($dir, 1), array('.', '..'))));
 }
 
 switch ($_POST["step"]) {
@@ -17,6 +17,8 @@ switch ($_POST["step"]) {
         $dbh->exec("DELETE FROM Gebruiker WHERE Wachtwoord='testwachtwoord'");
         $dbh->exec("ALTER TABLE Rubriek NOCHECK CONSTRAINT FK_ParentRubriek");
         $dbh->exec("DELETE FROM Rubriek");
+        $dbh->exec("DELETE FROM KeyWordsLink");
+        $dbh->exec("DELETE FROM KeyWords");
         echo "Clear database\n";
         echo "busy\n";
         break;
@@ -58,7 +60,7 @@ switch ($_POST["step"]) {
             echo "finished\n";
         } else {
             $file = $files[$_POST["step"] - 3];
-            if (strpos($file,"CREATE Users.sql") !== false) {
+            if (strpos($file, "CREATE Users.sql") !== false) {
                 # step 3 insert the new users
 
                 # step 3.1 get the file
@@ -80,11 +82,27 @@ switch ($_POST["step"]) {
 
                     $dbh->query(substr($insert, 0, strrpos($insert, ",")) . ')');
                 }
-            }
-            else {
+            } else {
                 // setup procedures
-                $voorwerpInsert = $dbh->prepare("INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $voorwerpRubriek = $dbh->prepare("INSERT INTO VoorwerpInRubriek (Voorwerp, RubriekOpLaagsteNiveau) VALUES (?, ?)");
+                $voorwerpInsert = $dbh->prepare("exec voorwerpInsert ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?");
+                //INSERT INTO Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, LooptijdBeginTijdstip, Verzendkosten,Verzendinstructies, Verkoper, LooptijdEindeTijdstip, VeilingGesloten) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                $voorwerpInsert->bindParam(1, $titel);
+                $voorwerpInsert->bindParam(2, $beschrijving);
+                $voorwerpInsert->bindParam(3, $prijs);
+                $voorwerpInsert->bindValue(4, "niks");
+                $voorwerpInsert->bindParam(5, $locatie);
+                $voorwerpInsert->bindParam(6, $land);
+                $voorwerpInsert->bindValue(7, '2020-06-20 12:00:00:000');
+                $voorwerpInsert->bindValue(8, 5.00);
+                $voorwerpInsert->bindValue(9, 'testinstructie');
+                $voorwerpInsert->bindParam(10, $verkoper);
+                $voorwerpInsert->bindValue(11, '2020-06-30 12:00:00:000');
+                $voorwerpInsert->bindValue(12, FALSE);
+
+                $voorwerpRubriek = $dbh->prepare("exec voorwerpRubriekInsert ?, ?");
+                $voorwerpRubriek->bindParam(1, $itemID);
+                $voorwerpRubriek->bindParam(2, $category);
+
                 $imageInsert = $dbh->prepare("exec fileInsert ?, ?");
                 $imageInsert->bindParam(1, $imageFile);
                 $imageInsert->bindParam(2, $itemID);
@@ -103,21 +121,19 @@ switch ($_POST["step"]) {
 
 
                     $voorwerpNummer = $output[0];
-                    $titel = $output[1];
+                    $titel = substr($output[1], 0, 100);
                     $category = $output[2];
                     $postcode = $output[3];
-                    $locatie = $output[4];
-                    $land = $output[5];
+                    $locatie = substr($output[4], 0, 60);
+                    $land = substr($output[5], 0, 50);
                     $verkoper = $output[6];
                     $prijs = calculateCurrency($output[7], $output[8]);
-                    $beschrijving = $output[11];
-                    $currencies[] = $output[8];
+                    $beschrijving = substr(removeBadElements($output[11]), 0, 4000);
                     $imageFile = $output[10];
-
-                    $voorwerpInsert->execute(array($titel, substr(removeBadElements($beschrijving), 0, 4000), $prijs, "niks", $locatie, $land, '2020-06-20 12:00:00:000', 5.00, 'testinstructie', $verkoper, '2020-06-30 12:00:00:000', FALSE));
+                    $keywords = explode(" ", strtolower($titel));
+                    $voorwerpInsert->execute();
                     $itemID++;
-                    $voorwerpRubriek->execute(array($itemID, $category));
-
+                    $voorwerpRubriek->execute();
                     //store file with new autoincrementId as id.png
                     $imageInsert->execute();
 
@@ -127,7 +143,7 @@ switch ($_POST["step"]) {
                     $imageCounter = 0;
                     foreach ($splitParts as $image) {
                         # put image into database
-                        if($imageCounter<5) {
+                        if ($imageCounter < 5) {
                             $imageFile = explode('\'', $image)[1];
                             $imageInsert->execute();
                         }
@@ -139,7 +155,7 @@ switch ($_POST["step"]) {
         }
         break;
 }
-echo round($_POST["step"]*100/(count($files)+3));
+echo round($_POST["step"] * 100 / (count($files) + 3));
 
 
 function removeBadElements($input)
@@ -160,11 +176,13 @@ function calculateCurrency($amount, $currency)
     return $amount * $multiplier;
 }
 
-function getRandomUserData(){
+function getRandomUserData()
+{
     $firstnames = ["Piet", "Jan", "Winter", "Zwaluw", "Maan", "Ster", "Zomer"];
     $surname = ["cohen", "frank", "Polak", "de Vries", "de Jong", "de Leeuw"];
     $emails = ["test@hotmail.com", "hallo@gmail.com", "xtc@yahoo.com"];
     $city = ['Ruinerwold', 'Barnevelt', 'Gent', 'Hatert'];
-    return [$firstnames[array_rand($firstnames)],$surname[array_rand($surname)],$emails[array_rand($emails)], $city[array_rand($city)]];
+    return [$firstnames[array_rand($firstnames)], $surname[array_rand($surname)], $emails[array_rand($emails)], $city[array_rand($city)]];
 }
+
 ?>
