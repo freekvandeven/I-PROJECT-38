@@ -17,24 +17,31 @@ class Items
         return ($success);
     }
 
-    static function addKeyWords($title, $description)
+    static function addKeyWords($title, $description = null)
     {
-        $keywords = explode(" ", $title);
-        $keywords = array_merge(explode(" ", $description), $keywords);
+        $keywords = explode(" ", strtolower($title));
+        if($description!= null)
+        $keywords = array_merge(explode(" ", strtolower($description)), $keywords);
         global $dbh;
+        $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
+        $keywordInsert->bindParam(1, $keyword);
         foreach ($keywords as $keyword) {
-            $keyword = preg_replace('/\PL/u', '', $keyword);
-            $data = $dbh->prepare("INSERT INTO KeyWords(Keyword) VALUES(:KeyWord)");
-            $data->execute([':KeyWord' => $keyword]);
-            Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
+                $keyword = preg_replace('/\PL/u', '', $keyword);
+                $keyword = strtolower($keyword);
+            if(strlen($keyword)>2) {
+                $keywordInsert->execute();
+                Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
+            }
         }
     }
 
     static function addKeyWordLink($keywordId, $itemId)
     {
         global $dbh;
-        $data = $dbh->prepare("INSERT INTO KeyWordsLink(KeyWordNummer,VoorwerpNummer) VALUES(:KeyWordNummer,:VoorwerpNummer)");
-        $data->execute([':KeyWordNummer' => $keywordId, ':VoorwerpNummer' => $itemId]);
+        $keywordLinkInsert = $dbh->prepare("exec KeyWordLinkInsert ?, ?");
+        $keywordLinkInsert->bindParam(1, $keywordId);
+        $keywordLinkInsert->bindParam(2, $itemId);
+        $keywordLinkInsert->execute();
     }
 
     static function getKeyWordId($keyword)

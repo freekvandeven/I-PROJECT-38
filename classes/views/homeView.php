@@ -115,17 +115,17 @@ function displayVeilingAanbieden($phoneView) { // Om de tekst onder het kopje 'V
         </div>
     </div>
 
-    <!-- De snelst aflopende producten -->
+    <!-- De trending producten -->
     <div class="products">
         <h3>Bekijk hier de de meest trending producten:</h3>
         <div class="productsList">
-            <?php
-            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8")); // orders by hotness score (10 - days left) * page views  = score,
+            <?php       // orders by hotness score (10 - days left) * page views  = score,
+            $items = selectFromCatalog(array(":order" => "(10-DATEDIFF_BIG(second,getdate(),LooptijdEindeTijdstip)/86400.0)*Views DESC",":offset"=>" ", ":limit" => "8"));
             generateCatalog($items);
             ?>
         </div>
     </div>
-    <!-- De snelst aflopende producten -->
+    <!-- De nieuwste producten      -->
     <div class="products">
         <h3>Bekijk hier de nieuwste producten:</h3>
         <div class="productsList">

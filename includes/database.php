@@ -77,18 +77,27 @@ function selectFromCatalogsMSSQL($orders)
                 $execute = setExecuteDistance($execute, $orders, true);
                 $sql .= $where . " $distance between :min and :max ";
             } else if (strpos($key, ":search") !== false) {
+                $preselect = $dbh->prepare("Select VoorwerpNummer from KeywordsLink KL
+								 join Keywords K on K.KeyWordNummer=KL.KeyWordNummer
+								 WHERE keyword =  :where");
                 if ($whereSet) {
                     $where = " AND ";
                 }
                 $sql .= $where . " Voorwerpnummer in(Select VoorwerpNummer from KeywordsLink KL
 								 join Keywords K on K.KeyWordNummer=KL.KeyWordNummer
 								 WHERE ";
+                $foundKeywords =0;
                 for ($i = 0; $i < sizeof($order); $i++) {
-                    if (!$i == 0) $sql .= " AND ";
-                    $sql = $sql . " Keyword = :where" . $i;
+                    if (!$i == 0) $sql .= " OR ";
+                    $sql .= " Keyword = :where" . $i;
                     $execute[":where" . $i] = $order[$i];
+                    $preselect->execute([":where"=>$order[$i]]);
+                    if($preselect->fetch(PDO::FETCH_COLUMN))
+                        $foundKeywords++;
                 }
-                $sql .= " ) ";
+                $sql .= " group by voorwerpnummer
+								 having count(voorwerpnummer)>$foundKeywords-1    
+								 ) ";
                 $whereSet = true;
             } else if (strpos($key, ":val1") !== false) {
                 if ($whereSet) {
