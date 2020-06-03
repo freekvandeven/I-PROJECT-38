@@ -3,7 +3,7 @@ session_start();
 require_once('includes/functions.php');
 registerRequest();
 
-$actions = array('FAQ', 'AVG', 'Privacyverklaring');
+$actions = array('FAQ', 'AVG', 'profit', 'advertise', 'vacancies');
 
 $title = 'Footer pagina';
 
@@ -14,5 +14,7 @@ if(isset($_GET['action']) && in_array($_GET['action'], $actions)){
 } else {
     require_once('classes/views/footer/FAQView.php');
 }
+
+
 
 require_once('includes/footer.php');
