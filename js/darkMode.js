@@ -11,5 +11,3 @@ var options = {
     label: '🌓', // default: ''
     autoMatchOsTheme: true // default: true
 }
-
-$(document).ready(function() {new Darkmode(options).showWidget();});

@@ -14,7 +14,7 @@
                             <!-- Facebook -->
                             <a href="https://facebook.com/share/" target="_blank"><img src="images/footerimages/facebook.png" alt="Facebook logo"></a>
                             <!-- Twitter -->
-                            <a href="https://twitter.com/share?text=Bekijk nu de beste veilingssite van Nederland!&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']?>"><img src="images/footerimages/twitter.png" alt="Twitter logo"></a>
+                            <a href="https://twitter.com/share?text=Bekijk%20nu%20de%20beste%20veilingssite%20van%20Nederland!&url=https://<?= $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']?>"><img src="images/footerimages/twitter.png" alt="Twitter logo"></a>
                             <!-- Instagram -->
                             <a href="https://instagram.com/han.nl" target="_blank"><img src="images/footerimages/instagram.png" alt="Instagram logo"></a>
                         </div>
@@ -59,7 +59,7 @@
                         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><img src="images/footerimages/plaats.png" alt="Home image">42nd Street, New York, New York</p>
                         <p><a href="mailto:info@EenmaalAndermaal.com"><img src="images/footerimages/mail.png" alt="Email image">Mail ons</a></p>
-                        <p><a href="tel:+31 6 123456"><img src="images/footerimages/telefoon.png" alt="Phone image">+31 6 123456</a></p>
+                        <p><a href="tel:+316123456"><img src="images/footerimages/telefoon.png" alt="Phone image">+31 6 123456</a></p>
                         <p><a href="tel:0612345678"><img src="images/footerimages/mobiel.png" alt="Phone image">06 12345678</a></p>
                     </div>
 
