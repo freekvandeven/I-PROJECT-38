@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS SearchTrigger;
 DROP TABLE IF EXISTS GebruikersInstellingen;
 DROP TABLE IF EXISTS KeyWordsLink;
 DROP TABLE IF EXISTS KeyWords;

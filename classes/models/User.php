@@ -21,11 +21,12 @@ class User
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+
     static function getUsersLimit($limit, $search = '')
     {
         global $dbh;
         $data = $dbh->prepare("SELECT TOP $limit * FROM Gebruiker WHERE Gebruikersnaam LIKE :search");
-        $data->execute([":search"=>'%' . $search . '%']);
+        $data->execute([":search" => '%' . $search . '%']);
         $users = $data->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
@@ -34,7 +35,7 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("SELECT Bericht, Link FROM Notificaties WHERE Ontvanger = :user");
-        $data->execute([":user"=>$user]);
+        $data->execute([":user" => $user]);
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -50,7 +51,7 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("INSERT INTO Notificaties (Bericht, Link, Ontvanger) VALUES (:message, :link, :user)");
-        $data->execute([":message"=>$message, ":link"=>$link, ":user"=>$user]);
+        $data->execute([":message" => $message, ":link" => $link, ":user" => $user]);
     }
 
     static function updateUser($user)
@@ -93,7 +94,7 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("UPDATE Gebruiker SET Latitude=:lat, Longitude=:long WHERE Gebruikersnaam = :user");
-        $data->execute(array(":user"=>$user, ":lat"=>$location["latitude"], ":long"=>$location["longitude"]));
+        $data->execute(array(":user" => $user, ":lat" => $location["latitude"], ":long" => $location["longitude"]));
     }
 
     static function updateSettings($updates, $user)
@@ -116,7 +117,7 @@ class User
     {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM GebruikersInstellingen WHERE Gebruiker = :gebruiker");
-        $data->execute(['gebruiker'=>$user]);
+        $data->execute(['gebruiker' => $user]);
         return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 

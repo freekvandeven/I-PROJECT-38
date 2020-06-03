@@ -1,3 +1,10 @@
+CREATE TABLE SearchTrigger
+(
+    Zoekwoord               VARCHAR(100)        NOT NULL,
+    Gebruiker               VARCHAR(20)         NOT NULL,
+    CONSTRAINT PK_CreationTrigger   PRIMARY KEY (Zoekwoord, Gebruiker)
+);
+
 CREATE TABLE Bod
 (
     Voorwerp    INTEGER        NOT NULL,

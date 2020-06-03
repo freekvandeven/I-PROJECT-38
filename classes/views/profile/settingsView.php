@@ -49,6 +49,23 @@ $settings = User::getSettings($_SESSION['name'])[0];
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <h5>Veiling trigger</h5>
+                <p>Voeg woorden toe voor automatische veilingupdates</p>
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Zoekwoorden
+                    </button>
+                    <div class="dropdown-menu">
+                        <?php foreach(Buyer::getSearchTriggers($_SESSION['name']) as $searchTrigger):?>
+                            <a class="dropdown-item" href="#"><?=$searchTrigger?></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <input type="text" name="zoekwoord" value="">
+                    <button type="submit" name="action" value="settings">Voeg toe</button>
+            </div>
             <!-- GA-TERUG-KNOP -->
             <div class="gaTerugKnopBox text-center">
                 <a href="profile.php">Ga terug</a>
@@ -59,11 +76,4 @@ $settings = User::getSettings($_SESSION['name'])[0];
             </div>
         </form>
     </div>
-
-    <script>
-        $(".custom-file-input").on("change", function () {
-            var thumbnail = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(thumbnail);
-        });
-    </script>
 </main>
