@@ -54,10 +54,9 @@
                     <li>
                         <p>Geselecteerde Categorie:</p>
                         <form class="catalogusForm" action="" method="post">
-                            <label>Categorie</label>
-                            <p id="categoryFilterName"></p>
+                            <p id="categoryFilterName"><?= $categoryNames[$_GET['rubriek']]?></p>
                             <input class="form-control" id="categoryFilter" type="hidden" name="rubriek"
-                                   value="" readonly>
+                                   value="<?= $_GET['rubriek']?>" readonly>
                         </form>
                     </li>
                     <li>
@@ -81,7 +80,12 @@
                             //$("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
                             showCategory("");
                             regenerateCatalog();
-                        })
+                        });
+                        $("#categoryFilterName").bind("click", function (e) {
+                           $("#categoryFilter").val('');
+                           $("#categoryFilterName").text("");
+                           regenerateCatalog();
+                        });
                     </script>
                 </ul>
             </div>
