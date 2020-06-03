@@ -88,17 +88,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="table-green">
-                            <td>Je hebt de veiling gewonnen.</td>
-                        </tr>
                         <tr class="table-red">
-                            <td>Je hebt de veiling verloren.</td>
+                            <td>Veiling is afgelopen.</td>
                         </tr>
-                        <tr class="table-orange">
-                            <td>Je bent overboden op een actieve veiling.</td>
-                        </tr>
-                        <tr class="table-blue">
-                            <td>Je bent de hoogste bieder op een actieve veiling.</td>
+                        <tr class="table-green">
+                            <td>Veiling is nog actief.</td>
                         </tr>
                         </tbody>
                     </table>

@@ -96,6 +96,25 @@ main .succesMessage span{
     margin-left: -30px;
 }
 
+.subtabcontent a{
+    color: #000;
+}
+
+.subtabcontent a{
+    transition: margin-left 200ms, text-decoration-color 500ms;
+    display: block;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+.subtabcontent a:hover{
+    text-decoration-color: #000;
+}
+
+.subtabcontent ul li a:hover{
+    margin-left: 5px;
+}
+
 .catalogusButton{
     border: none;
     text-align: center;
@@ -147,8 +166,18 @@ main .succesMessage span{
     border-color: rgb(110, 110, 110);
 }
 
-.darkmode--activated .tabcontent .subsubcategories{
+.darkmode--activated .tabcontent .subtabcontent a{
     color: rgb(230, 230, 230);
+    text-decoration: underline;
+    text-decoration-color: rgb(100, 100, 100);
+}
+
+.darkmode--activated .subtabcontent a:hover{
+    text-decoration-color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .subtabcontent ul li a:hover{
+    margin-left: 5px;
 }
 
 
