@@ -1,20 +1,17 @@
 <main class="catalogusPagina">
-    <div class="row">
-        <div class="linkerkant">
+    <h2 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h2>
+    <div class="geheleCatalogusPagina row">
+        <div class="linkerkant col-2">
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Prijs</h4>
                 <div class="price-slider">
                     <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
-                            <span>
-                                <label for=""></label>
-                                &euro;<input type="number" value="1" min="1" max="100000000" name="minimum"/> to
-                                &euro;<input type="number" value="100000000" min="1" max="100000000" name="maximum"/>
-                            </span>
+                        &euro;<input type="number" value="1" min="1" max="100000000" name="minimum" class="filter"/>
+                        tot &euro;<input type="number" value="100000000" min="1" max="100000000" name="maximum" class="filter"/>
                         <input value="1" min="1" max="100000000" step="10" type="range"/>
                         <input value="100000000" min="1" max="100000000" step="10" type="range"/>
-                        <svg width="100%" height="24">
-                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
-                                  stroke-dasharray="1 28"></line>
+                        <svg width="100%" height="12">
+                            <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12" stroke-dasharray="1 28"></line>
                         </svg>
                     </form>
                 </div>
@@ -23,47 +20,44 @@
 
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Postcode</h4>
-                <ul class="list-unstyled">
-                    <li>
-                        <p>Zoek op afstand</p>
-                        <form class="catalogusForm" action="" method="post" onkeyup="regenerateCatalog()">
-                            <input class="form-control" id="postalCode" name="postalCode" type="text"
-                                   placeholder="Postcode">
-                        </form>
-                    </li>
-                </ul>
+                <label for="postalCode">Zoek op afstand</label>
+                <form class="catalogusForm" action="" method="post" onkeyup="regenerateCatalog()">
+                    <input class="form-control normalInput" id="postalCode" name="postalCode" type="text"
+                           placeholder="Postcode">
+                </form>
                 <div class="distance-slider">
                     <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
                             <span>Van
-                                <input type="number" value="0" min="0" max="800" name="minimumDistance"/>km tot
-                                <input type="number" value="800" min="0" max="800" name="maximumDistance"/>km
+                                <input type="number" value="0" min="0" max="800" name="minimumDistance" class="filter"/>km tot
+                                <input type="number" value="800" min="0" max="800" name="maximumDistance" class="filter"/>km
                             </span>
                         <input value="0" min="0" max="800" step="1" type="range"/>
                         <input value="800" min="0" max="800" step="1" type="range"/>
                     </form>
-                    <svg width="100%" height="24">
+                    <svg width="100%" height="12">
                         <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
                               stroke-dasharray="1 28"></line>
                     </svg>
                 </div>
                 <script>testJava(".distance-slider")</script>
             </div>
+
             <div class="categorieen">
                 <h4 class="font-weight-normal text-center">Categorieën</h4>
                 <ul class="list-unstyled">
                     <li>
                         <p>Geselecteerde Categorie:</p>
                         <form class="catalogusForm" action="" method="post">
-                            <p id="categoryFilterName"><?= $categoryNames[$_GET['rubriek']]?></p>
+                            <p id="categoryFilterName"><?= $categoryNames[$_GET['rubriek']] ?></p>
                             <input class="form-control" id="categoryFilter" type="hidden" name="rubriek"
-                                   value="<?= $_GET['rubriek']?>" readonly>
+                                   value="<?= $_GET['rubriek'] ?>" readonly>
                         </form>
                     </li>
                     <li>
                         <p>Zoek op categorieen</p>
                         <form class="categorySearchForm" action="" method="post">
                             <input type="hidden" name="token" value="<?= $token ?>">
-                            <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
+                            <input class="form-control normalInput" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
                                    name="search" autocomplete="off" onkeyup="showCategory(this.value)">
                         </form>
                     </li>
@@ -82,88 +76,95 @@
                             regenerateCatalog();
                         });
                         $("#categoryFilterName").bind("click", function (e) {
-                           $("#categoryFilter").val('');
-                           $("#categoryFilterName").text("");
-                           regenerateCatalog();
+                            $("#categoryFilter").val('');
+                            $("#categoryFilterName").text("");
+                            regenerateCatalog();
                         });
                     </script>
                 </ul>
             </div>
         </div>
 
-        <div class="container">
-            <h3 class="text-center col-xl-12 col-md-12 col-12">Aangeboden veilingen</h3>
-            <div class="filtermenu">
-                <form class="catalogusForm" action="catalogus.php" method="post" onkeyup="regenerateCatalog()"
-                      onchange="regenerateCatalog()">
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <div class="row">
-                        <div class="form-group col-xl-12 text-center">
-                            <label for="zoekbalk">Zoeken</label>
-                        </div>
+        <div class="container col-md-8 offset-md-0 col-10 offset-1">
+            <form class="catalogusForm" action="catalogus.php" method="post" onkeyup="regenerateCatalog()"
+                  onchange="regenerateCatalog()">
+                <input type="hidden" name="token" value="<?= $token ?>">
+                <div class="form-group text-center">
+                    <label for="zoekbalk">Zoeken</label>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek in Catalogus" name="search">
+                    </div>
+                </div> <!-- einde row -->
+
+                <div class="row">
+                    <div class="form-group col-lg-3 col-md-3 col-4">
+                        <label for="price">Volgorde</label>
+                        <select class="custom-select" id="price" name="order">
+                            <option value="">Kies Volgorde</option>
+                            <option <?php if ($_POST['order'] == "High") echo "selected " ?>value="High">Duurste
+                                Eerst
+                            </option>
+                            <option <?php if ($_POST['order'] == "Low") echo "selected " ?>value="Low">Goedkoopste
+                                Eerst
+                            </option>
+                            <option <?php if ($_POST['order'] == "New") echo "selected " ?>value="New">Nieuwste
+                                Eerst
+                            </option>
+                            <option <?php if ($_POST['order'] == "Old") echo "selected " ?>value="Old">Oudste Eerst
+                            </option>
+                            <option <?php if ($_POST['order'] == "Dis") echo "selected" ?> value="Dis">
+                                Dichtstbijzijnde Eerst
+                            </option>
+                        </select>
                     </div>
 
-                    <div class="row">
-                        <?php
-                        if (isset($_SESSION['loggedin'])) {
-                            ?>
-                            <div class="productAanbiedenDiv offset-lg-9 offset-md-0">
-                                <a href="addProduct.php" class="productAanbiedenButton col-lg-12 col-sm-12 col-12">Product
-                                    aanbieden</a>
-                            </div>
-                            <?php
-                        }
-                        ?>
+                    <div class="form-group col-lg-3 col-md-3 col-4">
+                        <label for="numberOfItems">Aantal</label>
+                        <select class="custom-select" id="numberOfItems" name="numberOfItems">
+                            <option <?php if ($_POST['numberOfItems'] == 24) echo "selected " ?>value=24>24</option>
+                            <option <?php if ($_POST['numberOfItems'] == 48) echo "selected " ?>value=48>48</option>
+                            <option <?php if ($_POST['numberOfItems'] == 96) echo "selected " ?>value=96>96
+                            </option>
+                            <option <?php if ($_POST['numberOfItems'] == 100) echo "selected " ?>value=10000>TEST
+                            </option>
+                        </select>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                            <input class="form-control" id="zoekbalk" type="text" placeholder="Zoek in Catalogus"
-                                   name="search">
-                        </div>
+                    <div class="form-group col-lg-2 col-md-3 col-3 displayOnPhone">
+                        <label for="minimum">Prijs</label>
+                        <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
+                            <span>
+                                <div class="row">
+                                    <div><label for="minimum">Van &euro;</label><input type="number" value="1" min="1" max="100000000" name="minimum" id="minimum" class="filter"></div>
+                                    <div><label for="maximum">tot &euro;</label><input type="number" value="100000000" min="1" max="100000000" name="maximum" id="maximum" class="filter"></div>
+                                </div>
+                            </span>
+                        </form>
+                    </div>
 
-                        <div class="form-group col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-                            <button id="zoekButton" class="zoekButton" type="submit">Zoeken</button>
-                        </div>
-                    </div> <!-- einde row -->
+                    <div class="form-group col-lg-2 col-md-3 col-3 displayOnPhone">
+                        <label for="postalCode2">Zoek op afstand</label>
+                        <form class="catalogusForm" action="" method="post" onkeyup="regenerateCatalog()">
+                            <input class="form-control" id="postalCode2" name="postalCode" type="text"
+                                   placeholder="Postcode">
+                        </form>
+                    </div>
 
-                    <div class="row">
-
-                        <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
-                            <label for="price">Volgorde</label>
-                            <select class="custom-select" id="price" name="order">
-                                <option value="">Kies Volgorde</option>
-                                <option <?php if ($_POST['order'] == "High") echo "selected " ?>value="High">Duurste
-                                    Eerst
-                                </option>
-                                <option <?php if ($_POST['order'] == "Low") echo "selected " ?>value="Low">Goedkoopste
-                                    Eerst
-                                </option>
-                                <option <?php if ($_POST['order'] == "New") echo "selected " ?>value="New">Nieuwste
-                                    Eerst
-                                </option>
-                                <option <?php if ($_POST['order'] == "Old") echo "selected " ?>value="Old">Oudste Eerst
-                                </option>
-                                <option <?php if ($_POST['order'] == "Dis") echo "selected" ?> value="Dis">
-                                    Dichtstbijzijnde Eerst
-                                </option>
-                            </select>
+                    <div class="form-group col-lg-2 col-md-2 col-3 displayOnPhone">
+                        <div class="distance-slider">
+                            <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
+                                <span>Van
+                                    <input type="number" value="0" min="0" max="800" name="minimumDistance" class="filter"> km <br>tot
+                                    <input type="number" value="800" min="0" max="800" name="maximumDistance" class="filter"> km
+                                </span>
+                            </form>
                         </div>
-
-                        <div class="form-group col-xl-2 col-lg-2 col-md-3 col-sm-4 col-4">
-                            <label for="numberOfItems">Aantal</label>
-                            <select class="custom-select" id="numberOfItems" name="numberOfItems">
-                                <option <?php if ($_POST['numberOfItems'] == 24) echo "selected " ?>value=24>24</option>
-                                <option <?php if ($_POST['numberOfItems'] == 48) echo "selected " ?>value=48>48</option>
-                                <option <?php if ($_POST['numberOfItems'] == 96) echo "selected " ?>value=96>96
-                                </option>
-                                <option <?php if ($_POST['numberOfItems'] == 100) echo "selected " ?>value=10000>TEST
-                                </option>
-                            </select>
-                        </div>
-                    </div> <!-- einde row -->
-                </form>
-            </div>
+                    </div>
+                </div> <!-- einde row -->
+            </form>
 
 
             <?php
