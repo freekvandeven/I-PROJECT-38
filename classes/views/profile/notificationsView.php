@@ -47,12 +47,14 @@
             <div class="col-xl-6 col-md-8 col-sm-8">
                 <div class="card">
                     <div class="card-body">
-                        <?php if(isset($_GET['user'])):?>
-                            <div class="card-title text-center">Chat met <?=$_GET['user']?></div>
+                        <?php if(isset($_GET['user'])):
+                            $user = User::getUser($_GET['user']);
+                            $phone = User::getPhoneNumber($user['Gebruikersnaam']);?>
+                            <div class="card-title text-center">Chat met <?=$user['Gebruikersnaam']?></div>
                             <div class="chaticons row">
-                                <a href="#"><img src="images/chat-images/mail.png" alt="Mail"></a>
-                                <a href="#"><img src="images/chat-images/whatsapp.png" alt="Whatsapp"></a>
-                                <a href="#"><img src="images/chat-images/phone.png" alt="Phone"></a>
+                                <a href="mailto:<?=$user['Mailbox']?>"><img src="images/chat-images/mail.png" alt="Mail"></a>
+                                <a href="https://wa.me/31<?=$phone?>"><img src="images/chat-images/whatsapp.png" alt="Whatsapp"></a>
+                                <a href="tel:<?=$phone?>"><img src="images/chat-images/phone.png" alt="Phone"></a>
                             </div>
                             <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" class="berichtForm">
                                 <textarea type="text" name="chat" id="chatMessage" placeholder="Schrijf uw bericht..."></textarea>

@@ -84,6 +84,6 @@
         });
     </script>
     <div class="gaTerugKnopBox text-center">
-        <button class="gaTerugKnop" href="admin.php">Ga terug</button>
+        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
     </div>
 </main>
