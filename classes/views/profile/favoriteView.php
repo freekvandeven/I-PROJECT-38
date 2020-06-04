@@ -96,6 +96,12 @@ $displayedItems = array("Titel", "Startprijs", "Betalingswijze", "Betalingsinstr
                         <tr class="table-green">
                             <td>Veiling is nog actief.</td>
                         </tr>
+                        <tr class="table-orange">
+                            <td>Je bent overboden op een actieve veiling.</td>
+                        </tr>
+                        <tr class="table-blue">
+                            <td>Je bent de hoogste bieder op een actieve veiling.</td>
+                        </tr>
                         <tr class="table-grey">
                             <td>Je volgt deze veiling en hebt nog niet geboden.</td>
                         </tr>

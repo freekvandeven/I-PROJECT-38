@@ -179,8 +179,8 @@ function compareArrays($a, $b)
                 <a class="dropdown-item" href="profile.php?action=update">Edit Profiel</a>
                 <a class="dropdown-item" href="profile.php?action=notifications">Notificaties <span
                             id="notificationsDropdown" class="badge badge-danger">4</span></a>
-                <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen <span id="veilingenDropdown" class="badge badge-info">6</span></a>
-                <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten <span id="favoriteDropdown" class="badge badge-info">5</span></a>
+                <a class="dropdown-item" href="profile.php?action=item">Mijn Veilingen <span id="veilingenDropdown" class="badge badge-info"><?=User::getAuctions($_SESSION['name'])?></span></a>
+                <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten <span id="favoriteDropdown" class="badge badge-info"><?=User::getFavorites($_SESSION['name'])?></span></a>
                 <a class="dropdown-item" href="addProduct.php">Verkoop product</a>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="darkmodeValue" onchange="toggleDarkmodeSetting()"

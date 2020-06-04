@@ -189,7 +189,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                 <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a"><?= $item['Titel'] ?></a></h5>
 
                                 <p class="card-text"><?php if(strlen($item['Beschrijving'])<200) echo $item['Beschrijving']; ?></p>
-                                <p class="card-text">€ <?= number_format($item['Startprijs'],2, ',', '.') ?></p>
+                                <p class="card-text">€ <?= number_format($item['Verkoopprijs'],2, ',', '.') ?></p>
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                             </div>
                         </div>
