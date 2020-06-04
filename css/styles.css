@@ -2288,7 +2288,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusPagina .linkerkant .categorieen .list-unstyled li #searchResult li:hover{
-    color: blue;
+    color: rgb(165, 105, 189);
 }
 
 .catalogusPagina .linkerkant .normalInput{
