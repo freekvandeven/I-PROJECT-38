@@ -59,12 +59,13 @@ main .succesMessage span{
 
 .container-right .messageBox, .container-left .messageBox{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     padding-top: 10px;
+    justify-content: flex-end;
 }
 
 .container-right .messageBox{
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .container-left .messageBox p, .container-right .messageBox p{
@@ -73,12 +74,12 @@ main .succesMessage span{
 }
 
 .container-right .messageBox p{
-    margin: 0 20px 0 10px;
+    margin: 0 10px 0 10px;
     text-align: right;
 }
 
 .container-left .messageBox p{
-    margin-right: 10px;
+    margin: 0 10px 0 10px;
 }
 
 .timeMessage {
@@ -136,11 +137,14 @@ main .succesMessage span{
     border-color: rgb(80, 80, 80);
 }
 
-.darkmode--activated .container-right .timeMessage,
-.darkmode--activated .container-left .timeMessage,
 .darkmode--activated .container-right p,
 .darkmode--activated .container-left p{
     color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .container-right .timeMessage,
+.darkmode--activated .container-left .timeMessage{
+    color: rgba(230, 230, 230, .6);
 }
 
 /****************** CATEGORIEEN-LIJST ******************/

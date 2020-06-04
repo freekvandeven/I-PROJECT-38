@@ -7,9 +7,6 @@ if(isset($_SESSION['name']) && isset($_POST['responder'])) {
         $date = explode( ".",$message['Tijdstip'])[0];
         $time = explode( " ", $date)[1];
         $datum = explode( " ", $date)[0];
-        if($datum != $previousDate){
-            $html .= "<p style='text-align: center;'>$datum</p>";
-        }
         if($message['Ontvanger'] == $previousReceiver) {
 
         } else {
@@ -19,6 +16,9 @@ if(isset($_SESSION['name']) && isset($_POST['responder'])) {
             } else {
                 $html .= "<div class='container-right'>";
             }
+        }
+        if($datum != $previousDate){
+            $html .= "<p style='text-align: center;'>$datum</p>";
         }
         $html .= "<div class='messageBox'><p>". $message['Message'] . "</p>";
         $date1 = new DateTime($previousTime);
