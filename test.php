@@ -8,8 +8,6 @@ $title = 'test page';
 require_once('includes/header.php');
 
 
-$file = 'SQL/9800-Auto\'s, motoren en boten/9884-Autoaccessoires en onderdelen.sql';
-$nummer = 11968;
 /*
 $test = $dbh->prepare("{CALL fileInsert(?, ?)}");
 $test->bindParam(1, $file, PDO::PARAM_STR);
@@ -100,11 +98,22 @@ foreach ($splitFile as $item) {
 
 
 //cleanupUploadFolder();
-
+/*
 $data = $dbh->prepare("SELECT TOP 10 Beschrijving FROM Voorwerp ORDER BY LEN(Beschrijving) DESC");
 $data->execute();
 $result = $data->fetchAll(PDO::FETCH_COLUMN);
 var_dump($result);
+*/
+
+foreach(Admin::getUniqueVisitors() as $visitor){
+    $ip = $visitor['IP'];
+    $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+    $latitude = explode(",", $details->loc)[0];
+    $longitude = explode(",", $details->loc)[1];
+    Admin::updateVisitorLocation($visitor['IP'], $latitude, $longitude);
+}
+
+
 //var_dump(array(htmlentities($result[0]),htmlentities($result[1]),htmlentities($result[2])));
 //var_dump(array(removeBadElements($result[0]),removeBadElements($result[1]),removeBadElements($result[2])));
 

@@ -32,14 +32,26 @@ $maxAmountOptionalPhotos = 5;
                         <!-- RUBRIEK -->
                         <div class="form-group col-md-12">
                             <label for="Rubriek">Rubriek</label>
-                            <select class="custom-select" id="Rubriek" name="Rubriek"
-                                    required <?php echo isset($_POST['Rubriek']) ? htmlspecialchars($_POST['Rubriek'], ENT_QUOTES) : ''; ?>>
-                                <?php
-                                foreach (Category::getRubrieken() as $rubriek) {
-                                    echo "<option value='" . $rubriek['Rubrieknummer'] . "'>" . $rubriek['Rubrieknaam'] . "</option>";
-                                } ?>
-                            </select>
+                            <input class="form-control" type="hidden" id="categoryFilter" name="Rubriek" value="">
+                            <p id="categoryFilterName"></p>
+                            <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
+                                   name="search" autocomplete="off" onkeyup="showCategory(this.value)">
+                            <ul id="searchResult">
+
+                            </ul>
                         </div>
+                        <script>
+                            $("#searchResult").bind("click", function (e) {
+                                $("#categoryFilterName").text($(e.target).text());
+                                $("#categoryFilter").val($(e.target).attr('class'));
+                                showCategory("");
+                            });
+                            $("#categoryFilterName").bind("click", function (e) {
+                                $("#categoryFilter").val('');
+                                $("#categoryFilterName").text("");
+                            });
+                        </script>
+
 
                         <!-- STARTPRIJS -->
                         <div class="form-group col-md-6">

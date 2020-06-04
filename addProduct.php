@@ -6,13 +6,15 @@ registerRequest();
 
 if (checkPost()) {
     $err = createProduct();
+    $toast = $err;
 }
 
 function createProduct()
 {
     $user = User::getUser($_SESSION["name"]);
     if (!$user["Verkoper"]) header("Location:profile.php?action=upgrade&toast=je moet eerst verkoper worden");
-    if (!isset($_POST["Titel"], $_POST["Beschrijving"], $_POST["Startprijs"], $_FILES["img"], $_POST["Verzendkosten"])) return "please fill in all the data!";
+    if (!isset($_POST["Titel"], $_POST["Beschrijving"], $_POST["Startprijs"], $_FILES["img"], $_POST["Verzendkosten"])) return "vul alle verplichte gegevens in!";
+    if (empty($_POST['Rubriek'])) return "Selecteer een rubriek";
     if (!isset($_FILES['thumbnail'])) return "Een thumbnail is verplicht!";
     $maxOptionalPhotos = 5;
     $parameterList = array("Titel", "Beschrijving", "Rubriek", "img", "Startprijs", "Betalingswijze", "Betalingsinstructie", "Looptijd", "Verzendkosten", "Verzendinstructies");
