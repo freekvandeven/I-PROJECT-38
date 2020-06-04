@@ -112,7 +112,7 @@ function compareArrays($a, $b)
                     //var_dump($subCategories)
                     //array_multisort(array_map('count', $subCategories), SORT_DESC, $subCategories);
                     ?>
-                    <div class="tabcontent" id="<?= $mainCategory ?>" style="display: none;">
+                    <div class="tabcontent" id="<?= $mainCategory ?>">
                         <?php $index = 0;
                         foreach ($subCategories as $subCategory => $subsubCategories):
                         if ($index == 0):?>

@@ -49,11 +49,11 @@
                     <div class="card-body">
                         <?php if(isset($_GET['user'])):?>
                             <div class="card-title text-center">Chat met <?=$_GET['user']?></div>
-                            <div class="card-text" id="chatWindow"></div>
-                            <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" action="">
-                            <input type="text" name="chat" id="chatMessage" value="" placeholder="Type your message">
-                            <input type="submit" value="send">
+                            <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" class="berichtForm">
+                                <textarea type="text" name="chat" id="chatMessage" placeholder="Schrijf uw bericht..."></textarea>
+                                <input type="submit" value="Verstuur">
                             </form>
+                            <div class="card-text" id="chatWindow"></div>
                             <script>startChat('<?=$_GET['user']?>');</script>
                         <?php else: ?>
                             <div class="card-title text-center">Chat met gebruiker</div>
@@ -61,38 +61,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </main>
-
-<style>
-    .container-left {
-        border: 2px solid #dedede;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-    }
-
-    .container-right {
-        border: 2px solid #ccc;
-        background-color: #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-        float: right;
-    }
-    .timeMessage {
-        color: #999;
-        font-size: 10px;
-        float: right;
-        display: block;
-    }
-    .msg_time{
-        color: rgba(255,255,255,0.5);
-        font-size: 10px;
-        display: block;
-    }
-</style>
