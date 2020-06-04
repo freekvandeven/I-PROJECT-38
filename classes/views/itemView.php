@@ -59,19 +59,12 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                 <!-- Afbeeldingen -->
                                 <?php
                                 for($i=0; $i<count($images); $i++): ?>
-                                    <div class="carousel-item <?php if($i==0) echo' active';?>">
-                                        <a href="#image<?php echo $i ?>" >
+                                    <input type="checkbox" id="zoomCheck">
+                                    <label for="zoomCheck">
+                                        <div class="carousel-item <?php if($i==0) echo' active';?>">
                                             <img class="itemImage" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
-                                        </a>
-                                    </div>
-                                <?php endfor; ?>
-
-                                <!-- Vergroot de afbeeldingen -->
-                                <?php for($i=0; $i<count($images); $i++): ?>
-                                    <div class="lightbox-target" id="image<?php echo $i ?>">
-                                        <img src="<?=$images[$i];?>">
-                                        <a class="lightbox-close" href="#"></a>
-                                    </div>
+                                        </div>
+                                    </label>
                                 <?php endfor; ?>
                             </div>
 

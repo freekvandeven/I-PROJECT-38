@@ -3862,3 +3862,22 @@ a.lightbox-close:after {
     top: 0px;
 }
 
+/**********IMAGE-ZOOM-IMPROVEMENT-ONCLICK**************/
+
+
+.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox] {
+    display: none;
+}
+
+.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner label img{
+    margin: 100px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
+    background-position: center;
+}
+
+.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox]:checked ~ label > img {
+    transform: scale(1.3);
+    cursor: zoom-out;
+}
+
