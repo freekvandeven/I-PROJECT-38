@@ -63,9 +63,12 @@ function compareArrays($a, $b)
                 location.href = this.href;
             });
         });
-    </script>
-    <script>
-
+        $(document).ready(function() {
+             darkmode = new Darkmode(options);
+            if(darkmode.isActivated()!=<?=json_encode(User::getSettings($_SESSION['name'])['darkmode'])?>){
+                darkmode.toggle();
+            }
+        });
     </script>
 </head>
 <body>
@@ -177,9 +180,9 @@ function compareArrays($a, $b)
                 <a class="dropdown-item" href="profile.php?action=favorite">Mijn Favorieten <span id="favoriteDropdown" class="badge badge-info">5</span></a>
                 <a class="dropdown-item" href="addProduct.php">Verkoop product</a>
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="darkmodeSettingHeader"
-                           name="darkmodeSettingHeader" <?php if ($settings['darkmode']) echo "checked"; ?>>
-                    <label class="custom-control-label" for="darkmodeSettingHeader">Darkmode</label>
+                    <input type="checkbox" class="custom-control-input" id="darkmodeValue" onchange="toggleDarkmodeSetting()"
+                           name="darkmodeValue" <?php if (User::getSettings($_SESSION['name'])['darkmode']) echo "checked"; ?>>
+                    <label class="custom-control-label" for="darkmodeValue">Darkmode</label>
                 </div>
                 <a class="dropdown-item" href="logout.php">Log Out</a>
             <?php else: ?>

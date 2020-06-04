@@ -113,12 +113,21 @@ class User
         $data->execute($execute);
     }
 
+    static function toggleDarkmode($darkmode, $user)
+    {
+        $darkmode = !$darkmode;
+        global $dbh;
+        $data = $dbh->prepare("UPDATE GebruikersInstellingen SET Darkmode = :darkmode WHERE Gebruiker = :user");
+        $data->execute([':darkmode' => $darkmode, ':user' => $user]);
+    }
+
     static function getSettings($user)
     {
         global $dbh;
         $data = $dbh->prepare("SELECT * FROM GebruikersInstellingen WHERE Gebruiker = :gebruiker");
         $data->execute(['gebruiker' => $user]);
-        return $data->fetchAll(PDO::FETCH_ASSOC);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];
     }
 
     static function insertPhoneNumber($user, $phone)
