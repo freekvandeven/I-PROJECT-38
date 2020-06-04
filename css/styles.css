@@ -35,6 +35,12 @@ main .succesMessage span{
 }
 
 /****************** CHAT-FUNCTIONALITEIT ******************/
+.berichtForm{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
 .container-right, .container-left{
     border: 2px solid rgb(220, 220, 220);
     background: rgb(248, 248, 248);
@@ -55,24 +61,23 @@ main .succesMessage span{
     display: flex;
     flex-direction: row;
     padding-top: 10px;
-    width: 100%;
 }
 
 .container-right .messageBox{
     justify-content: flex-end;
 }
 
-.container-left p, .container-right p{
+.container-left .messageBox p, .container-right .messageBox p{
     font-size: 18px;
     max-width: 85%;
 }
 
-.container-right p{
-    margin-left: 10px;
+.container-right .messageBox p{
+    margin: 0 20px 0 10px;
     text-align: right;
 }
 
-.container-left p{
+.container-left .messageBox p{
     margin-right: 10px;
 }
 
@@ -80,12 +85,6 @@ main .succesMessage span{
     color: rgb(100, 100, 100);
     font-size: 13px;
     display: block;
-}
-
-.berichtForm{
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
 }
 
 .berichtForm textarea{
@@ -104,6 +103,7 @@ main .succesMessage span{
 .berichtForm textarea:focus{
     padding-left: 5px;
     box-shadow: 0 0 20px rgba(165, 105, 189, .8);
+    border-color: rgba(165, 105, 189, .8);
 }
 
 .berichtForm input[type="submit"]{

@@ -1,27 +1,36 @@
 <?php
 if(isset($_SESSION['name']) && isset($_POST['responder'])) {
     $html = "";
-    $oldMyTurn = 2;
+    $previousTime = "00:00:00";
+    $previousDate = "2019-06-03";
     foreach(getConversation() as $message){
-        if(!empty($message['Message'])) {
-            $date = explode(".", $message['Tijdstip'])[0];
-            $time = explode(" ", $date)[1];
-            $datum = explode(" ", $date)[0];
+        $date = explode( ".",$message['Tijdstip'])[0];
+        $time = explode( " ", $date)[1];
+        $datum = explode( " ", $date)[0];
+        if($datum != $previousDate){
+            $html .= "<p style='text-align: center;'>$datum</p>";
+        }
+        if($message['Ontvanger'] == $previousReceiver) {
 
+        } else {
+            $html .= "</div>";
             if ($message['Ontvanger'] == $_SESSION['name']) {
-                if ($oldMyTurn == 1) $html .= "</div><div class='container-left d-flex'>";
-                else if ($oldMyTurn == 2) $html .= "<div class='container-left d-flex'>";
-                $html .= "<div class='messageBox'><p>" . $message['Message'] . "</p>
-                <span class='timeMessage'>" . $time . "</span></div>";
-                $oldMyTurn = 0;
+                $html .= "<div class='container-left'>";
             } else {
-                if ($oldMyTurn == 0) $html .= "</div><div class='container-right d-flex'>";
-                else if ($oldMyTurn == 2) $html .= "<div class='container-right d-flex'>";
-                $html .= "<div class='messageBox'><span class='timeMessage'>" . $time . "</span>
-                    <p>" . $message['Message'] . "</p></div>";
-                $oldMyTurn = 1;
+                $html .= "<div class='container-right'>";
             }
         }
+        $html .= "<div class='messageBox'><p>". $message['Message'] . "</p>";
+        $date1 = new DateTime($previousTime);
+        $date2 = $date1->diff(new DateTime($time));
+        if($date2->i > 2){
+            $html .= "<span class='timeMessage'>" . $time . "</span></div>";
+        } else {
+            $html .= "</div>";
+        }
+        $previousDate = $datum;
+        $previousTime = $time;
+        $previousReceiver = $message['Ontvanger'];
     }
     $html .= '</div>';
     echo $html;
