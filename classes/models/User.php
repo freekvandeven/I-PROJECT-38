@@ -40,6 +40,24 @@ class User
         return $result;
     }
 
+    static function getAuctions($user)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT count(*) FROM Voorwerp WHERE Verkoper = :user AND VeilingGesloten = 0");
+        $data->execute([":user"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        return $result[0];
+    }
+
+    static function getFavorites($user)
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT count(*) FROM Voorwerp join Favorieten on Voorwerp = Voorwerpnummer WHERE VeilingGesloten = 0 AND Gebruiker = :user");
+        $data->execute([":user"=>$user]);
+        $result = $data->fetchAll(PDO::FETCH_COLUMN);
+        return $result[0];
+    }
+
     static function clearNotifications($user)
     {
         global $dbh;
