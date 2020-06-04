@@ -172,12 +172,6 @@ main .succesMessage span{
     display: none;
 }
 
-@media (max-width: 1722px) {
-    .tabcontent {
-        display: none;
-    }
-}
-
 @media (max-width: 1199px) {
     .tabcontent{
         min-width: 450px;

@@ -248,8 +248,7 @@ function sendChatMessage(receiver) {
 }
 
 function openMainCategory(evt, categoryName) {
-    var width = window.innerWidth;
-    if(width > 1722) {
+    if(window.innerWidth > 1722) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
