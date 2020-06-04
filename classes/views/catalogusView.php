@@ -7,11 +7,11 @@
                     <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
                             <span>
                                 <label for=""></label>
-                                &euro;<input type="number" value="1" min="1" max="1000000" name="minimum"/> to
-                                &euro;<input type="number" value="1000000" min="1" max="1000000" name="maximum"/>
+                                &euro;<input type="number" value="1" min="1" max="100000000" name="minimum"/> to
+                                &euro;<input type="number" value="100000000" min="1" max="100000000" name="maximum"/>
                             </span>
-                        <input value="1" min="1" max="1000000" step="10" type="range"/>
-                        <input value="1000000" min="1" max="1000000" step="10" type="range"/>
+                        <input value="1" min="1" max="100000000" step="10" type="range"/>
+                        <input value="100000000" min="1" max="100000000" step="10" type="range"/>
                         <svg width="100%" height="24">
                             <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12"
                                   stroke-dasharray="1 28"></line>
@@ -54,10 +54,9 @@
                     <li>
                         <p>Geselecteerde Categorie:</p>
                         <form class="catalogusForm" action="" method="post">
-                            <label>Categorie</label>
-                            <p id="categoryFilterName"></p>
+                            <p id="categoryFilterName"><?= $categoryNames[$_GET['rubriek']]?></p>
                             <input class="form-control" id="categoryFilter" type="hidden" name="rubriek"
-                                   value="" readonly>
+                                   value="<?= $_GET['rubriek']?>" readonly>
                         </form>
                     </li>
                     <li>
@@ -81,7 +80,12 @@
                             //$("#selectedCategories").append("<li>" + $(event.target).text() + "<li/>");
                             showCategory("");
                             regenerateCatalog();
-                        })
+                        });
+                        $("#categoryFilterName").bind("click", function (e) {
+                           $("#categoryFilter").val('');
+                           $("#categoryFilterName").text("");
+                           regenerateCatalog();
+                        });
                     </script>
                 </ul>
             </div>

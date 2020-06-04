@@ -1294,6 +1294,26 @@ body{
     background: rgba(61, 158, 255, 1);
 }
 
+.mijnVeilingenPagina .table-blue:hover,
+.mijnFavorietenPagina .table-blue:hover{
+    background: rgba(61, 158, 255, 1);
+}
+.mijnVeilingenPagina .table-grey,
+.mijnFavorietenPagina .table-grey{
+    background: rgba(206, 206, 206, .6);
+}
+
+.mijnVeilingenPagina .table-grey:hover,
+.mijnFavorietenPagina .table-grey:hover{
+    background: rgba(206, 206, 206, 1);
+}
+
+.mijnVeilingenPagina .table-grey:hover,
+.mijnFavorietenPagina .table-grey:hover{
+    background: rgba(206, 206, 206, 1);
+}
+
+
 .mijnVeilingenPagina .table-responsive .table tbody tr td,
 .mijnFavorietenPagina .table-responsive .table tbody tr td{
     border: none;
