@@ -60,11 +60,11 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                 <?php
                                 for($i=0; $i<count($images); $i++): ?>
                                     <input type="checkbox" id="zoomCheck">
-                                    <label for="zoomCheck">
-                                        <div class="carousel-item <?php if($i==0) echo' active';?>">
+                                    <div class="carousel-item <?php if($i==0) echo' active';?>">
+                                        <label for="zoomCheck">
                                             <img class="itemImage" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
-                                        </div>
-                                    </label>
+                                        </label>
+                                    </div>
                                 <?php endfor; ?>
                             </div>
 
