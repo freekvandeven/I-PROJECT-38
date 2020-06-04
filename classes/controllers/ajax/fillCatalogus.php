@@ -77,7 +77,6 @@ switch ($_POST["step"]) {
                 $inserts = explode("\n", $refactorFile);
 
                 # step 3.4 loop over inserts
-
                 foreach ($inserts as $insert) {
 
                     $dbh->query(substr($insert, 0, strrpos($insert, ",")) . ')');
