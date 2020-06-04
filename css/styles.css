@@ -2955,6 +2955,10 @@ footer{
     background: rgb(60, 60, 60);
 }
 
+.darkmode--activated .catalogusPagina .container .productsList div .card .card-body .card-title{
+    color: rgb(230, 230, 230);
+}
+
 /********* CONTACTVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
