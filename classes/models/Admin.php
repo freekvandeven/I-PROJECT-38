@@ -99,7 +99,7 @@ class Admin
         global $dbh;
         $data = $dbh->prepare("SELECT DATEPART(YEAR, BodTijdstip) AS 'Year',
           DATEPART(MONTH, BodTijdstip) AS 'Month',
-          DATEPART(DAY, BodTijdstip) AS 'Day', COUNT (*) FROM Bod GROUP BY DATEPART(DAY, BodTijdstip), DATEPART(MONTH, BodTijdstip), DATEPART(YEAR, BodTijdstip) ORDER BY 1,2,3");
+          DATEPART(DAY, BodTijdstip) AS 'Day', COUNT (*) AS aantal FROM Bod GROUP BY DATEPART(DAY, BodTijdstip), DATEPART(MONTH, BodTijdstip), DATEPART(YEAR, BodTijdstip) ORDER BY 1,2,3");
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;

@@ -3,10 +3,12 @@
         <h2 class="display-5">Welkom op de footer beheerpagina</h2>
         <p>Op deze pagina kunt u de content op de footer pagina aanpassen.</p>
     </div>
-    <div id="nederland-map" style="width: 600px; height: 400px"></div>
-    <div id="europa-map" style="width: 600px; height: 400px"></div>
-    <div id="world-map" style="width: 600px; height: 400px"></div>
-    <!-- https://jvectormap.com/tutorials/getting-started/ used resource -->
+    <div class="row">
+        <div class="col-4" id="nederland-map" style="width: 600px; height: 400px"></div>
+        <div class="col-4" id="europa-map" style="width: 600px; height: 400px"></div>
+        <div class="col-4" id="world-map" style="width: 600px; height: 400px"></div>
+        <!-- https://jvectormap.com/tutorials/getting-started/ used resource -->
+    </div>
     <script>
         $(function(){
             $('#nederland-map').vectorMap({
@@ -82,6 +84,6 @@
         });
     </script>
     <div class="gaTerugKnopBox text-center">
-        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
+        <button class="gaTerugKnop" href="admin.php">Ga terug</button>
     </div>
 </main>

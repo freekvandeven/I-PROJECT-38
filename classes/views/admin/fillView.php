@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="gaTerugKnopBox text-center">
-        <a href="admin.php" class="gaTerugKnop">Ga terug</a>
+        <button class="gaTerugKnop" href="admin.php">Ga terug</button>
     </div>
     <script type="text/javascript">
         indexStarted = false;

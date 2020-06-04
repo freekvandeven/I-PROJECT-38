@@ -156,8 +156,69 @@
             }
         });
     </script>
+    <script>
+        let bidsChart = document.getElementById('bidsChart').getContext('2d');
+
+
+        let massPopChart3 = new Chart(bidsChart, {
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+                labels:<?=json_encode(array_column($bids, "Day"));?>,
+                datasets:[{
+                    label:'Site Activity',
+                    data:
+                    <?=json_encode(array_map('intval',array_column($auctions,"aantal"))); ?>
+                    ,
+                    //backgroundColor:'green',
+                    backgroundColor:[
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(150, 99, 132, 0.6)',
+                        'rgba(255, 33, 90, 0.6)',
+                        'rgba(200, 196, 86, 0.6)',
+                        'rgba(75, 192, 170, 11)',
+                        'rgba(255, 200, 30, 200)',
+                        'rgba(20, 250, 86, 131)',
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                }]
+            },
+            options:{
+                title:{
+                    display:true,
+                    text:'Biedingen',
+                    fontSize:25
+                },
+                legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }
+                },
+                layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                tooltips:{
+                    enabled:true
+                }
+            }
+        });
+    </script>
 
     <div class="gaTerugKnopBox text-center">
-        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
+        <button class="gaTerugKnop" href="admin.php">Ga terug</button>
     </div>
 </main>

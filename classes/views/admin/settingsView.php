@@ -16,6 +16,6 @@
     </div>
 
     <div class="gaTerugKnopBox text-center">
-        <a class="gaTerugKnop" href="admin.php">Ga terug</a>
+        <button class="gaTerugKnop" href="admin.php">Ga terug</button>
     </div>
 </main>

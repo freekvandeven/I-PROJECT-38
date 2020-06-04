@@ -68,9 +68,11 @@ function compareArrays($a, $b)
         });
         $(document).ready(function() {
              darkmode = new Darkmode(options);
+             <?php if(isset($_SESSION['name'])): ?>
             if(darkmode.isActivated()!=<?=json_encode(User::getSettings($_SESSION['name'])['darkmode'])?>){
                 darkmode.toggle();
             }
+            <?php endif; ?>
         });
     </script>
 </head>

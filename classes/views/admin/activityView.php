@@ -10,8 +10,8 @@
         $uniqueVisitors = Admin::getUniqueVisitors();
         $users = User::getUsers();
         ?>
-        <p>We hebben <?=count($uniqueVisitors)?> unieke bezoekers op de website</p>
-        <p>We hebben <?=count($users)?> geregistreerde gebruikers op de website</p>
+        <p style="text-align: center;">We hebben <?=count($users)?> geregistreerde gebruikers op de website</p>
+        <p style="text-align: center;">We hebben <?=count($uniqueVisitors)?> unieke bezoekers op de website</p>
     </div>
 
     <div class="gaTerugKnopBox text-center">
