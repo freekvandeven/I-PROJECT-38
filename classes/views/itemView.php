@@ -145,10 +145,11 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                     <span class="input-group-text">€</span>
                                 </div>
                                 <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
-                                <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" step="any" required>
+                                <?php if($item['VeilingGesloten']): ?> <input type="text" class="inputBod form-control" value="Veiling gesloten" disabled>
+                                <?php else: ?> <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" step="any" required> <?php endif; ?>
                             </div>
-                            <div class="buttonBox text-center col-xl-10 offset-xl-1">
-                                <?php if($item['VeilingGesloten']): ?> <button type="submit" class="btn btn-outline-secondary" disabled>Plaats bod</button>
+                            <div class="inputButtonBox text-center col-xl-10 offset-xl-1">
+                                <?php if($item['VeilingGesloten']): ?> <button type="submit" class="btn btn-outline-secondary" disabled>Veiling afgelopen</button>
                                 <?php else: ?> <button type="submit" class="btn btn-outline-secondary">Plaats bod</button> <?php endif; ?>
                             </div>
                         </form>

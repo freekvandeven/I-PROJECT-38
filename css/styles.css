@@ -169,6 +169,13 @@ main .succesMessage span{
     background: #fff;
     border: 3px solid rgb(230, 230, 230);
     border-radius: 5px;
+    display: none;
+}
+
+@media (max-width: 1722px) {
+    .tabcontent {
+        display: none;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -2526,7 +2533,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     border-color: rgb(165, 105, 189);
 }
 
-.veilingBekijkenPagina .buttonBox button{
+.veilingBekijkenPagina .inputButtonBox button{
     margin-top: 30px;
     background: none;
     border: 2px solid rgb(165, 105, 189);
@@ -2537,9 +2544,35 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     transition: 200ms;
 }
 
-.veilingBekijkenPagina .buttonBox button:hover{
+.veilingBekijkenPagina .inputButtonBox button:hover{
     background: rgb(165, 105, 189);
     color: #fff;
+}
+
+/* input type='number' */
+.veilingBekijkenPagina .invullenBod input:disabled{
+    background: rgb(250, 250, 250);
+}
+
+.darkmode--activated .veilingBekijkenPagina .invullenBod input:disabled{
+    background: rgb(80, 80, 80);
+    color: rgb(150, 150, 150);
+}
+
+/* input type='submit' */
+.veilingBekijkenPagina .inputButtonBox button:disabled{
+    background: rgb(240, 240, 240);
+    border-color: rgb(220, 220, 220);
+    color: #000;
+    cursor: text;
+}
+
+.darkmode--activated .veilingBekijkenPagina .inputButtonBox button:disabled{
+    background: rgb(80, 80, 80);
+    color: rgb(230, 230, 230);
+    box-shadow: none;
+    border-color: rgb(40, 40, 40);
+    cursor: text;
 }
 
 .veilingBekijkenPagina .verkoper .card a{

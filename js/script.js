@@ -248,17 +248,20 @@ function sendChatMessage(receiver) {
 }
 
 function openMainCategory(evt, categoryName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("dropdown-item");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace("active", "");
-    }
-    if (categoryName !== 'leeg') {
-        document.getElementById(categoryName).style.display = "block";
-        evt.currentTarget.className += " active";
+    var width = window.innerWidth;
+    if(width > 1722) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("dropdown-item");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace("active", "");
+        }
+        if (categoryName !== 'leeg') {
+            document.getElementById(categoryName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     }
 }
