@@ -40,7 +40,7 @@ class Admin
     static function getAllVisitorIPLocations()
     {
         global $dbh;
-        $data = $dbh->prepare("SELECT DISTINCT Latitude, Longitude FROM Visitors");
+        $data = $dbh->prepare("SELECT DISTINCT Latitude, Longitude, TotalVisits FROM Visitors");
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -123,6 +123,13 @@ class Admin
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    static function updateVisitorLocation($visitor, $lat, $long)
+    {
+        global $dbh;
+        $data = $dbh->prepare("UPDATE Visitors SET Latitude = :lat, Longitude = :long WHERE IP = :visitor");
+        $data->execute([":visitor"=>$visitor, ":lat"=>$lat, ":long"=>$long]);
     }
 
     static function giveWebsiteFeedback($firstname, $surname, $email, $message)

@@ -54,6 +54,9 @@ function compareArrays($a, $b)
     <script src="js/darkMode.js"></script>
     <script src="js/jquery-jvectormap-2.0.5.min.js"></script>
     <script src="js/jquery-jvectormap-nl-mill.js"></script>
+    <script src="js/jquery-jvectormap-europe-mill.js"></script>
+    <script src="js/jquery-jvectormap-world-mill.js"></script>
+
     <title><?= $title ?></title>
 
     <!-- jquerry to make bootstrap dropdown a clickable link-->

@@ -34,6 +34,10 @@ function logPageVisitor(){
         Admin::increaseIPVisits($_SERVER["REMOTE_ADDR"]);
     } else {
         Admin::insertVisitorIP($_SERVER["REMOTE_ADDR"]);
+        $details = json_decode(file_get_contents("http://ipinfo.io/" . $_SERVER["REMOTE_ADDR"] . "/json"));
+        $latitude = explode(",", $details->loc)[0];
+        $longitude = explode(",", $details->loc)[1];
+        Admin::updateVisitorLocation($_SERVER["REMOTE_ADDR"], $latitude, $longitude);
     }
 }
 
@@ -55,7 +59,7 @@ function calculateLocation($location){
     $apiKey = 'AIzaSyBt6UzzpaNgxMJPT62WvvWp5Q7DKuR9GL8';
     $formattedAddrFrom = str_replace(' ', '+', $location);
 
-    $geocodeLoc= file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
+    $geocodeLoc = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
     $outputLoc = json_decode($geocodeLoc);
     if(!empty($outputLoc->error_message)){
         return $outputLoc->error_message;
