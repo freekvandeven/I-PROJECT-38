@@ -179,7 +179,40 @@ $showButton = false;
                             </div>
                         </div>
                     </div>
+
+                    <?php require_once('image-crop.php'); ?>
+
+                    <h5>Aanpassen huidige profielfoto</h5>
+
+                    <!-- Huidige profielfoto -->
+                    <h1>Crop Image</h1>
+                    <img src="<?=getProfileImage($_SESSION['name'])?>" id="cropbox" class="img" /><br/>
+                    <input type='button' id="crop" value='CROP'><br>
+
+                    <!-- Cropped Image -->
+                    <img src="#" id="cropped_img" style="display: none;">
+
                 </div>
+
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        var size;
+                        $('#cropbox').Jcrop({
+                            aspectRatio: 1,
+                            onSelect: function(c){
+                                size = {x:c.x,y:c.y,w:c.w,h:c.h};
+                                $("#crop").css("visibility", "visible");
+                            }
+                        });
+
+                        $("#crop").click(function(){
+                            var img = $("#cropbox").attr('src');
+                            $("#cropped_img").show();
+                            $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
+                        });
+                    });
+                </script>
+
                 <?php }
 
                 // VERKOPERSGEGEVENS

@@ -56,6 +56,8 @@ function compareArrays($a, $b)
     <script src="js/jquery-jvectormap-nl-mill.js"></script>
     <script src="js/jquery-jvectormap-europe-mill.js"></script>
     <script src="js/jquery-jvectormap-world-mill.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.Jcrop.min.js"></script>
 
     <title><?= $title ?></title>
 
