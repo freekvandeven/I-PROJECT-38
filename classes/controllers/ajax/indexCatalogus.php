@@ -29,14 +29,18 @@ foreach ($titles as $title) {
     foreach ($keywords as $keyword) {
         $keyword = strtolower(preg_replace('/\PL/u', '', $keyword));
         $keyword = trim($keyword);
+        $keyword = mb_convert_encoding($keyword, "UTF-16", auto);
         if (strlen($keyword) > 2) {
-            # step 5 execute
-            $keywordInsert->execute();
+            #step 5 check if keyword exists
             $getKeyWordId->execute();
             $keywordId = $getKeyWordId->fetch(PDO::FETCH_COLUMN);
-            if($keywordId!=0) {
-                $keywordLinkInsert->execute();
+            if (!$keywordId) {
+                # step 6 execute
+                $keywordInsert->execute();
+                $getKeyWordId->execute();
+                $keywordId = $getKeyWordId->fetch(PDO::FETCH_COLUMN);
             }
+            $keywordLinkInsert->execute();
         }
     }
 }

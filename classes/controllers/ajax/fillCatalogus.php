@@ -89,14 +89,14 @@ switch ($_POST["step"]) {
                 $voorwerpInsert->bindParam(1, $titel);
                 $voorwerpInsert->bindParam(2, $beschrijving);
                 $voorwerpInsert->bindParam(3, $prijs);
-                $voorwerpInsert->bindValue(4, "niks");
+                $voorwerpInsert->bindValue(4, "testBetalingswijze");
                 $voorwerpInsert->bindParam(5, $locatie);
                 $voorwerpInsert->bindParam(6, $land);
-                $voorwerpInsert->bindValue(7, '2020-06-20 12:00:00:000');
+                $voorwerpInsert->bindValue(7, '2020-0'.rand(5,6).'-'.rand(0,1).rand(1,4).' '.rand(0,1).rand(0,9).':'.rand(0,5).''.rand(0,9).':00:000'); //'2020-05-20 12:00:00:000');
                 $voorwerpInsert->bindValue(8, 5.00);
                 $voorwerpInsert->bindValue(9, 'testinstructie');
                 $voorwerpInsert->bindParam(10, $verkoper);
-                $voorwerpInsert->bindValue(11, '2020-06-30 12:00:00:000');
+                $voorwerpInsert->bindValue(11, '2020-06-'.rand(1,2).''.rand(5,9).' '.rand(0,1).rand(0,9).':'.rand(0,5).rand(0,9).':00:000');
                 $voorwerpInsert->bindValue(12, FALSE);
 
                 $voorwerpRubriek = $dbh->prepare("exec voorwerpRubriekInsert ?, ?");
