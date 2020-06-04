@@ -46,11 +46,14 @@ function compareArrays($a, $b)
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
     <!-- custom stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-jvectormap-2.0.5.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/icon.svg" id="favicon"/>
     <script src="js/script.js"></script>
     <script src="js/range.js"></script>
     <script src="js/zoomImage.js"></script>
     <script src="js/darkMode.js"></script>
+    <script src="js/jquery-jvectormap-2.0.5.min.js"></script>
+    <script src="js/jquery-jvectormap-nl-mill.js"></script>
     <title><?= $title ?></title>
 
     <!-- jquerry to make bootstrap dropdown a clickable link-->

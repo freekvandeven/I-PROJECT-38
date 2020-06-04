@@ -28,6 +28,24 @@ class Admin
         $data->execute([":ip" => $visitor]);
     }
 
+    static function getAllUserLocations()
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT DISTINCT Latitude, Longitude FROM Gebruiker');
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function getAllVisitorIPLocations()
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT DISTINCT Latitude, Longitude FROM Visitors");
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function increasePage($currentPage)
     {
         global $dbh;

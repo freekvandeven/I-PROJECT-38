@@ -31,7 +31,7 @@ CREATE TABLE Visitors
     TotalVisits INTEGER        NULL,
     Latitude    DECIMAL(10, 8) NULL,
     Longitude   DECIMAL(11, 8) NULL,
-    FirstVisit  DATETIME DEFAULT CURRENT_TIME(),
+    FirstVisit  DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PK_Visitors PRIMARY KEY (IP)
 );
 
