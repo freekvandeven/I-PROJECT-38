@@ -49,6 +49,11 @@
                     <div class="card-body">
                         <?php if(isset($_GET['user'])):?>
                             <div class="card-title text-center">Chat met <?=$_GET['user']?></div>
+                            <div class="chaticons row">
+                                <a href="#"><img src="images/chat-images/mail.png" alt="Mail"></a>
+                                <a href="#"><img src="images/chat-images/whatsapp.png" alt="Whatsapp"></a>
+                                <a href="#"><img src="images/chat-images/phone.png" alt="Phone"></a>
+                            </div>
                             <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" class="berichtForm">
                                 <textarea type="text" name="chat" id="chatMessage" placeholder="Schrijf uw bericht..."></textarea>
                                 <input type="submit" value="Verstuur">

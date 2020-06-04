@@ -13,21 +13,32 @@ if(isset($_SESSION['name']) && isset($_POST['responder'])) {
             $html .= "</div>";
             if ($message['Ontvanger'] == $_SESSION['name']) {
                 $html .= "<div class='container-left'>";
+                $myTurn = true;
             } else {
                 $html .= "<div class='container-right'>";
+                $myTurn = false;
             }
         }
         if($datum != $previousDate){
             $html .= "<p style='text-align: center;'>$datum</p>";
         }
-        $html .= "<div class='messageBox'><p>". $message['Message'] . "</p>";
+        $html .= "<div class='messageBox'>";
+        if(!$myTurn) {
+            $html .= "<p>".$message['Message']."</p>";
+        }
         $date1 = new DateTime($previousTime);
         $date2 = $date1->diff(new DateTime($time));
         if($date2->i > 2){
-            $html .= "<span class='timeMessage'>" . $time . "</span></div>";
+            if($myTurn){
+                $html .= "<p>".$message['Message']."</p>";
+            }
+            $html .= "<span class='timeMessage'>" . $time . "</span>";
         } else {
-            $html .= "</div>";
+            if($myTurn){
+                $html .= "<p>".$message['Message']."</p>";
+            }
         }
+        $html .= "</div>";
         $previousDate = $datum;
         $previousTime = $time;
         $previousReceiver = $message['Ontvanger'];

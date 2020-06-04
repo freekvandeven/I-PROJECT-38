@@ -35,13 +35,13 @@ main .succesMessage span{
 }
 
 /****************** CHAT-FUNCTIONALITEIT ******************/
-.berichtForm{
+.notificatiesPagina .berichtForm{
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
 }
 
-.container-right, .container-left{
+.notificatiesPagina .container-right, .notificatiesPagina .container-left{
     border: 2px solid rgb(220, 220, 220);
     background: rgb(248, 248, 248);
     border-radius: 5px;
@@ -52,43 +52,49 @@ main .succesMessage span{
     flex-direction: column;
 }
 
-.container-right{
+.notificatiesPagina .container-right{
     border-color: rgb(200, 200, 200);
     background: rgb(235, 235, 235);
 }
 
-.container-right .messageBox, .container-left .messageBox{
+.notificatiesPagina .container-right .messageBox,
+.notificatiesPagina .container-left .messageBox{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     padding-top: 10px;
-    justify-content: flex-end;
 }
 
-.container-right .messageBox{
+.notificatiesPagina .container-left .messageBox{
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+
+.notificatiesPagina .container-right .messageBox{
     justify-content: flex-start;
 }
 
-.container-left .messageBox p, .container-right .messageBox p{
+.notificatiesPagina .container-left .messageBox p,
+.notificatiesPagina .container-right .messageBox p{
     font-size: 18px;
     max-width: 85%;
 }
 
-.container-right .messageBox p{
+.notificatiesPagina .container-right .messageBox p{
     margin: 0 10px 0 10px;
     text-align: right;
 }
 
-.container-left .messageBox p{
+.notificatiesPagina .container-left .messageBox p{
     margin: 0 10px 0 10px;
 }
 
-.timeMessage {
+.notificatiesPagina .timeMessage {
     color: rgb(100, 100, 100);
     font-size: 13px;
     display: block;
 }
 
-.berichtForm textarea{
+.notificatiesPagina .berichtForm textarea{
     padding: 4px 10px;
     border-radius: 5px;
     outline: none;
@@ -97,17 +103,17 @@ main .succesMessage span{
     margin-right: 2%;
 }
 
-.berichtForm textarea:hover{
+.notificatiesPagina .berichtForm textarea:hover{
     box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }
 
-.berichtForm textarea:focus{
+.notificatiesPagina .berichtForm textarea:focus{
     padding-left: 5px;
     box-shadow: 0 0 20px rgba(165, 105, 189, .8);
     border-color: rgba(165, 105, 189, .8);
 }
 
-.berichtForm input[type="submit"]{
+.notificatiesPagina .berichtForm input[type="submit"]{
     width: 18%;
     height: 45px;
     margin-top: 6px;
@@ -116,8 +122,8 @@ main .succesMessage span{
     border-radius: 5px;
 }
 
-.berichtForm input[type="submit"]:hover,
-.berichtForm input[type="submit"]:focus{
+.notificatiesPagina .berichtForm input[type="submit"]:hover,
+.notificatiesPagina .berichtForm input[type="submit"]:focus{
     height: 57px;
     margin-top: 0;
     background: rgba(165, 105, 189, .8);
@@ -127,27 +133,21 @@ main .succesMessage span{
     border-radius: 10px;
 }
 
-.darkmode--activated .container-left{
-    background: rgb(95, 95, 95);
-    border-color: rgb(95, 95, 95);
+.notificatiesPagina .chaticons{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0 20px 0;
 }
 
-.darkmode--activated .container-right{
-    background: rgb(80, 80, 80);
-    border-color: rgb(80, 80, 80);
+.notificatiesPagina .chaticons a{
+    margin-left: 5px;
 }
 
-.darkmode--activated .container-right p,
-.darkmode--activated .container-left p{
-    color: rgb(230, 230, 230);
+.notificatiesPagina .chaticons a img{
+    height: 40px;
 }
 
-.darkmode--activated .container-right .timeMessage,
-.darkmode--activated .container-left .timeMessage{
-    color: rgba(230, 230, 230, .6);
-}
-
-/****************** CATEGORIEEN-LIJST ******************/
+    /****************** CATEGORIEEN-LIJST ******************/
 .categorieenlijst{
     min-width: 250px;
 }
@@ -2922,6 +2922,27 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 
 footer{
     isolation: isolate;
+}
+
+/****************** CHAT-FUNCTIONALITEIT ******************/
+.darkmode--activated .notificatiesPagina .container-left{
+    background: rgb(95, 95, 95);
+    border-color: rgb(95, 95, 95);
+}
+
+.darkmode--activated .notificatiesPagina .container-right{
+    background: rgb(80, 80, 80);
+    border-color: rgb(80, 80, 80);
+}
+
+.darkmode--activated .notificatiesPagina .container-right p,
+.darkmode--activated .notificatiesPagina .container-left p{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .notificatiesPagina .container-right .timeMessage,
+.darkmode--activated .notificatiesPagina .container-left .timeMessage{
+    color: rgba(230, 230, 230, .6);
 }
 
 /********* ADDPRODUCTVIEW.PHP *********/
