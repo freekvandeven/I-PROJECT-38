@@ -1,6 +1,6 @@
 <?php
 $allFeedback = Admin::getWebsiteFeedback($_GET['search']);
-$displayedItems = array("Voornaam", "Achternaam", "Mailbox", "Commentaar", "Datum");
+$displayedItems = array("Voornaam", "Achternaam", "Commentaar", "Datum");
 ?>
 <main class="adminPaginaSub">
     <div class="jumbotron">
@@ -21,6 +21,7 @@ $displayedItems = array("Voornaam", "Achternaam", "Mailbox", "Commentaar", "Datu
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th>Email</th>
                     <?php foreach ($displayedItems as $key) echo "<th>$key</th>"; ?>
                 </tr>
                 </thead>
@@ -29,6 +30,7 @@ $displayedItems = array("Voornaam", "Achternaam", "Mailbox", "Commentaar", "Datu
                     <tr class="greenBackground">
                         <?php
                         $feedback["Datum"] = explode(".", $feedback["Datum"])[0];
+                        echo "<td><a href='mailto:" . $feedback['Mailbox'] . "'>" . $feedback['Mailbox'] . "</a></td>";
                         foreach ($displayedItems as $itemDetail):
                             echo (isset($feedback[$itemDetail])) ? "<td>" . $feedback[$itemDetail] . "</td>" : "<td>-</td>";
                         endforeach;

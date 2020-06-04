@@ -30,46 +30,34 @@ if(checkPost()) {
             $startPrijs = Items::getItem($ref)["Startprijs"];
 
             // bepalen van startprijs
-            if ($startPrijs < 10) {
-                $percentage = 0.03;
-            } else if ($startPrijs >= 10 && $startPrijs <= 25) {
-                $percentage = 0.028;
-            } else if ($startPrijs > 25 && $startPrijs <= 50) {
-                $percentage = 0.026;
-            } else if ($startPrijs > 50 && $startPrijs <= 75) {
-                $percentage = 0.025;
-            } else if ($startPrijs > 75 && $startPrijs <= 100) {
-                $percentage = 0.021;
-            } else if ($startPrijs > 100 && $startPrijs < 250) {
-                $percentage = 0.018;
-            } else if ($startPrijs > 250 && $startPrijs < 500) {
-                $percentage = 0.013;
-            } else if ($startPrijs > 500 && $startPrijs <= 750) {
-                $percentage = 0.01;
-            } else if ($startPrijs > 750) {
-                $percentage = 0.005;
-            }
+            $percentage = 0.01;
+            $minimumIncrease = $startPrijs * $percentage;
 
-            $minimumIncrease = startPrijs * $percentage;
-
-            if ($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs) {
+            // het bieden
+            $maxBid = 100000000;
+            if ($_POST["bid"] > $highestBid['Bodbedrag'] && $_POST["bid"] > $startPrijs && $_POST['bid'] < $maxBid) {
                 if (($_POST["bid"] - $highestBid['Bodbedrag']) > $minimumIncrease) {
                     Items::placeBid($ref, $_POST["bid"], $_SESSION['name'], date('Y-m-d H:i:s'));
                     notifyFollowers($ref, "Er is geboden op de veiling");
                     User::notifyUser($highestBid['Gebruiker'],"Je bent overboden", "item.php?id=$ref");
-                    $toast = "succesvol geboden";
+                    $toast = "U heeft succesvol geboden";
+                    $succes = "U heeft succesvol geboden";
                 } else {
-                    $toast = "bod moet minimaal " . $minimumIncrease . " hoger zijn";
+                    $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn.";
+                    $err = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod";
                 }
             } else {
-                $toast = "bod is te laag";
+                $toast = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn.";
+                $err = "Bod moet minimaal €".number_format($minimumIncrease, 2)." hoger zijn dan de startprijs/hoogste bod en moet onder €100.000.000 zijn";
             }
 
         } else {
-            $toast = "";
+            $toast = "U kunt niet bieden op uw eigen veiling";
+            $err = "Het is niet toegestaan om op uw eigen veiling te bieden";
         }
     }
-    header("Location: item.php?id=$ref&toast=$toast");
+    if(isset($succes)) header("Location: item.php?id=$ref&toast=$toast&succes=$succes");
+    else header("Location: item.php?id=$ref&toast=$toast&err=$err");
 }
 if(!empty($_GET) && isset($_GET['id'])) {
     $item = Items::getItem($_GET['id']);

@@ -11,4 +11,3 @@ var options = {
     label: '🌓', // default: ''
     autoMatchOsTheme: true // default: true
 }
-

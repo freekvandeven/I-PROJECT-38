@@ -27,7 +27,7 @@ function createProduct()
     if (!Items::insertItem($item)) return "Er ging iets mis met de database.";
     $itemId = Items::get_ItemId();
     Category::insertIntoRubriek($itemId, $_POST['Rubriek']);
-
+    Buyer::triggerFollowers($posts["Titel"], "Zoekwoord voorgekomen in titel", "item.php?id=$itemId");
     if ($_FILES['thumbnail']['type'] != 'image/png') {
         //convert to png
         imagepng(imagecreatefromstring(file_get_contents($_FILES['thumbnail']['tmp_name'])), 'upload/items/tempItem.png');

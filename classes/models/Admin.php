@@ -28,6 +28,24 @@ class Admin
         $data->execute([":ip" => $visitor]);
     }
 
+    static function getAllUserLocations()
+    {
+        global $dbh;
+        $data = $dbh->prepare('SELECT DISTINCT Latitude, Longitude FROM Gebruiker');
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    static function getAllVisitorIPLocations()
+    {
+        global $dbh;
+        $data = $dbh->prepare("SELECT DISTINCT Latitude, Longitude FROM Visitors");
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function increasePage($currentPage)
     {
         global $dbh;
@@ -92,7 +110,7 @@ class Admin
         global $dbh;
         $data = $dbh->prepare("SELECT DATEPART(YEAR, LooptijdEindeTijdstip) AS 'Year',
           DATEPART(MONTH, LooptijdEindeTijdstip) AS 'Month',
-          DATEPART(DAY, LooptijdEindeTijdstip) AS 'Day', COUNT (*) FROM Voorwerp GROUP BY DATEPART(DAY, LooptijdEindeTijdstip), DATEPART(MONTH, LooptijdEindeTijdstip), DATEPART(YEAR, LooptijdEindeTijdstip) ORDER BY 1,2,3");
+          DATEPART(DAY, LooptijdEindeTijdstip) AS 'Day', COUNT (*) AS aantal FROM Voorwerp GROUP BY DATEPART(DAY, LooptijdEindeTijdstip), DATEPART(MONTH, LooptijdEindeTijdstip), DATEPART(YEAR, LooptijdEindeTijdstip) ORDER BY 1,2,3");
         $data->execute();
         $result = $data->fetchAll(PDO::FETCH_ASSOC);
         return $result;
