@@ -44,6 +44,13 @@ class Buyer
         $data->execute([":user" => $user, ":search" => $search]);
     }
 
+    static function deleteSearchTrigger($user, $trigger)
+    {
+        global $dbh;
+        $data = $dbh->prepare("DELETE FROM SearchTrigger WHERE Gebruiker = :user AND Zoekwoord = :trigger");
+        $data->execute([":user"=>$user, ":trigger"=>$trigger]);
+    }
+
     static function triggerFollowers($title, $message, $link)
     {
         global $dbh;

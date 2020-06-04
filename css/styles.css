@@ -2650,6 +2650,17 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     width: 18px;
 }
 
+.updateGegevensPagina .verwijderButton{
+    height: 100%;
+    width: 40px;
+    border: none;
+    background: #fff;
+    color: #fff;
+}
+
+.updateGegevensPagina .verwijderButton img{
+    width: 100%;
+}
 /********EMAIL-TEMPLATE-IMPROVEMENT*********/
 
 .email-template {
