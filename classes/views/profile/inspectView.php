@@ -2,22 +2,25 @@
 $profile_data = User::getUser($_SESSION['name']);
 $profile_data_inspect_user = User::getUser($_GET['id']);
 
-if(empty($profile_data_inspect_user)){
+if (empty($profile_data_inspect_user)) {
     header("location: profile.php");
 }
 
-$boughtItems = Items::getBuyerItems($profile_data_inspect_user['Gebruikersnaam']);
+$boughtItems = Items::getBoughtItems($profile_data_inspect_user['Gebruikersnaam']);
 $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam']);
 ?>
 
 <main class="inspectUser">
     <div class="jumbotron">
         <h2 class="display-5">Profielpagina van <?= $profile_data_inspect_user['Gebruikersnaam'] ?></h2>
-        <p>Op deze pagina kunt u de gegevens inzien van <?=$profile_data_inspect_user['Gebruikersnaam']?>. Ook kunt u de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
-        <?php if($_SESSION['admin']):?>
-            <form action ='' class="deleteAccountForm" method='post' onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
-                <input type="hidden" name="token" value="<?=$token?>">
-                <button class="deleteAccountButton" type="submit" name="deleteUser" value="delete">Verwijder gebruiker</button>
+        <p>Op deze pagina kunt u de gegevens inzien van <?= $profile_data_inspect_user['Gebruikersnaam'] ?>. Ook kunt u
+            de gewonnen veilingen bekijken en alle aangeboden veilingen.</p>
+        <?php if ($_SESSION['admin']): ?>
+            <form action='' class="deleteAccountForm" method='post'
+                  onsubmit="return confirm('Wil je echt deze gebruiker en alle records waar hij in voorkomt verwijderen?');">
+                <input type="hidden" name="token" value="<?= $token ?>">
+                <button class="deleteAccountButton" type="submit" name="deleteUser" value="delete">Verwijder gebruiker
+                </button>
             </form>
         <?php endif; ?>
     </div>
@@ -26,7 +29,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
         <h2 class="titel col-xl-3 col-md-6 col-sm-6">Profielgegevens</h2>
 
         <div class="container">
-            <?php if($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
+            <?php if ($profile_data['Gebruikersnaam'] == $profile_data_inspect_user['Gebruikersnaam']) { ?>
                 <div class="profielButtonBox text-right">
                     <a class="profielButton" href="profile.php">Bekijk uw profielgegevens</a>
                 </div>
@@ -39,12 +42,13 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         <div class="card-body">
                             <h4 class="subTitel card-title text-center">Persoonsgegevens</h4>
                             <div class="itemImage">
-                              <img src="<?=getProfileImage($profile_data_inspect_user['Gebruikersnaam'])?>" class="card-img" alt="profielfoto">
+                                <img src="<?= getProfileImage($profile_data_inspect_user['Gebruikersnaam']) ?>"
+                                     class="card-img" alt="profielfoto">
                             </div>
-                            <p><b>Voornaam: </b><?=$profile_data_inspect_user['Voornaam']?></p>
-                            <p><b>Achternaam: </b><?=$profile_data_inspect_user['Achternaam']?></p>
-                            <p><b>Emailadres: </b><?=$profile_data_inspect_user['Mailbox']?></p>
-                            <p><b>Plaatsnaam: </b><?=$profile_data_inspect_user['Plaatsnaam']?></p>
+                            <p><b>Voornaam: </b><?= $profile_data_inspect_user['Voornaam'] ?></p>
+                            <p><b>Achternaam: </b><?= $profile_data_inspect_user['Achternaam'] ?></p>
+                            <p><b>Emailadres: </b><?= $profile_data_inspect_user['Mailbox'] ?></p>
+                            <p><b>Plaatsnaam: </b><?= $profile_data_inspect_user['Plaatsnaam'] ?></p>
                         </div>
                     </div>
                 </div>
@@ -56,7 +60,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                             <h4 class="subTitel card-title text-center">Reviews</h4>
                             <?php
                             if (!empty(Items::soldToUser($_SESSION['name'], $_GET['id'])) &&
-                                empty(Seller::commentedOnUser($_SESSION['name'], $_GET['id']))&& $_SESSION['name']!=$_GET['id']):
+                                empty(Seller::commentedOnUser($_SESSION['name'], $_GET['id'])) && $_SESSION['name'] != $_GET['id']):
                                 ?>
                                 <div class="text-right">
                                     <button type="button" class="btn btn-primary dropdown-toggle"
@@ -69,7 +73,8 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                             <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
                                             <div class="form-group col-xl-12">
                                                 <label for="review">Voeg een review toe</label>
-                                                <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                                                <textarea class="form-control" name="review" id="review"
+                                                          rows="5"></textarea>
                                             </div>
                                             <button type="submit" name="action" value="review" class="form-control">
                                                 Toevoegen
@@ -78,7 +83,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                     </div>
                                 </div>
                             <?php
-                            elseif($_SESSION['name']!=$_GET['id']&&!Seller::commentedOnUser($_SESSION['name'], $_GET['id'])):
+                            elseif ($_SESSION['name'] != $_GET['id'] && !Seller::commentedOnUser($_SESSION['name'], $_GET['id'])):
                                 ?>
                                 <div class="text-right">
                                     <button type="button" class="btn btn-primary dropdown-toggle"
@@ -86,16 +91,19 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                         Toevoegen
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                                        <p class="errorReviewText">Je kan pas een review en een rating achterlaten wanneer je een bod hebt gewonnen van deze verkoper. </p>
+                                        <p class="errorReviewText">Je kan pas een review en een rating achterlaten
+                                            wanneer je een bod hebt gewonnen van deze verkoper. </p>
                                     </div>
                                 </div>
                             <?php endif;
                             $geenReview = 0;
-                            foreach(User::getAllComments($profile_data_inspect_user['Gebruikersnaam']) as $comment):?>
+                            foreach (User::getAllComments($profile_data_inspect_user['Gebruikersnaam']) as $comment):?>
                                 <?php $geenReview++; ?>
-                                <p <?php if($geenReview > 1) { ?> class="tussenLijn" <?php }?>><b class="boldText"><?=$comment['FeedbackGever']?></b><br><?=$comment['Feedback']?></p>
+                                <p <?php if ($geenReview > 1) { ?> class="tussenLijn" <?php } ?>><b
+                                            class="boldText"><?= $comment['FeedbackGever'] ?></b><br><?= $comment['Feedback'] ?>
+                                </p>
                             <?php endforeach;
-                            if($geenReview == 0) { ?>
+                            if ($geenReview == 0) { ?>
                                 <p class="geenReviewMelding">Er zijn nog geen reviews achtergelaten.</p>
                             <?php } ?>
                         </div>
@@ -109,7 +117,7 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                             <h4 class="subTitel card-title text-center">
                                 Rating: <?= round(Database::getAvgRating($profile_data_inspect_user['Gebruikersnaam'])[""], 2) ?></h4>
                             <?php
-                            if(empty(Seller::ratedUser($_SESSION['name'],$_GET['id']))&&!empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
+                            if (empty(Seller::ratedUser($_SESSION['name'], $_GET['id'])) && !empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
                                 <form class="ratingForm" action="" method="post">
                                     <input type="hidden" name="token" value="<?= $token ?>">
                                     <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
@@ -127,7 +135,8 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="ratingButton" type="submit" name="action" value="review">Verzenden
+                                        <button class="ratingButton" type="submit" name="action" value="review">
+                                            Verzenden
                                         </button>
                                     </div>
                                 </form>
@@ -149,13 +158,13 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         <div class="col-xl-4 col-md-6 col-sm-6">
                             <div class="card">
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>'>
-                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>' class='card-img-top' alt='Productafbeelding'>
+                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>'
+                                         class='card-img-top' alt='Productafbeelding'>
                                 </a>
                                 <div class="card-body">
-                                    <a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a">
-                                        <h5 class="titelLink card-title"><?= $item['Titel'] ?></h5>
-                                    </a>
-                                    <p class="card-text">€ <?= $item['prijs'] ?></p>
+                                    <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>"
+                                                                        class="titelLink-a"><?= $item['Titel'] ?></a></h5>
+                                    <p class="card-text">€ <?= $item['Verkoopprijs'] ?></p>
                                     <p class="card-text"><?= $item['Beschrijving'] ?></p>
                                     <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer
                                         informatie</a>
@@ -182,15 +191,18 @@ $offeredItems = Items::getSellerItems($profile_data_inspect_user['Gebruikersnaam
                         <div class="card">
                             <div class="itemImage">
                                 <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>'>
-                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>' class='card-img-top' alt='Productafbeelding'>
+                                    <img src='<?= generateImageLink($item['Voorwerpnummer'], true); ?>'
+                                         class='card-img-top' alt='Productafbeelding'>
                                 </a>
                             </div>
                             <div class="card-body">
-                                <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>" class="titelLink-a"><?= $item['Titel'] ?></a></h5>
+                                <h5 class="titelLink card-title"><a href="item.php?id=<?= $item['Voorwerpnummer'] ?>"
+                                                                    class="titelLink-a"><?= $item['Titel'] ?></a></h5>
 
-                                <p class="card-text"><?php if(strlen($item['Beschrijving'])<200) echo $item['Beschrijving']; ?></p>
-                                <p class="card-text">€ <?= number_format($item['Verkoopprijs'],2, ',', '.') ?></p>
-                                <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
+                                <p class="card-text"><?php if (strlen($item['Beschrijving']) < 200) echo $item['Beschrijving']; ?></p>
+                                <p class="card-text">€ <?= number_format($item['Verkoopprijs'], 2, ',', '.') ?></p>
+                                <a href='item.php?id=<?= $item['Voorwerpnummer'] ?>' class='card-link'>Meer
+                                    informatie</a>
                             </div>
                         </div>
                     </div>

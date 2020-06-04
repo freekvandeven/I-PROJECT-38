@@ -70,6 +70,15 @@ class Items
         return $result;
     }
 
+    static function getBoughtItems($buyer)
+    {
+        global $dbh;
+        $data = $dbh->prepare('select * from voorwerp where koper = :buyer');
+        $data->execute([":buyer" => $buyer]);
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     static function getSellerItems($seller)
     {
         global $dbh;
