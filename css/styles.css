@@ -3869,7 +3869,7 @@ a.lightbox-close:after {
     display: none;
 }
 
-.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner label img{
+.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner label .carousel-item img{
     margin: 100px;
     transition: transform 0.25s ease;
     cursor: zoom-in;
