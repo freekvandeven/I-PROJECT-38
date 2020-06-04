@@ -5,11 +5,6 @@
     </div>
 
     <div class="container">
-        <?php if (isset($err)) { ?>
-            <div class="errorMessage">
-                <span><?=$err?></span>
-            </div>
-        <?php } ?>
         <div class="row">
             <div class="col-xl-3 col-md-4 col-sm-4">
                 <div class="card">
@@ -55,7 +50,7 @@
                         <?php if(isset($_GET['user'])):?>
                             <div class="card-title text-center">Chat met <?=$_GET['user']?></div>
                             <form onsubmit="sendChatMessage('<?=$_GET['user']?>');this.reset();return false" class="berichtForm">
-                                <textarea type="text" name="chat" id="chatMessage" placeholder="Type your message"></textarea>
+                                <textarea type="text" name="chat" id="chatMessage" placeholder="Schrijf uw bericht..."></textarea>
                                 <input type="submit" value="Verstuur">
                             </form>
                             <div class="card-text" id="chatWindow"></div>

@@ -55,6 +55,7 @@ main .succesMessage span{
     display: flex;
     flex-direction: row;
     padding-top: 10px;
+    width: 100%;
 }
 
 .container-right .messageBox{
@@ -135,10 +136,10 @@ main .succesMessage span{
     border-color: rgb(80, 80, 80);
 }
 
-.darkmode--activated .container-right .messageBox .timeMessage,
-.darkmode--activated .container-left .messageBox .timeMessage,
-.darkmode--activated .container-right .messageBox p,
-.darkmode--activated .container-left .messageBox p{
+.darkmode--activated .container-right .timeMessage,
+.darkmode--activated .container-left .timeMessage,
+.darkmode--activated .container-right p,
+.darkmode--activated .container-left p{
     color: rgb(230, 230, 230);
 }
 
@@ -2477,11 +2478,13 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     background: rgba(0, 0, 0, .1);
 }
 
-.veilingBekijkenPagina .biedingen .jezelfTop{
+.veilingBekijkenPagina .biedingen .jezelfTop,
+.darkmode--activated .veilingBekijkenPagina .biedingen .jezelfTop{
     background: rgba(50, 191, 87, .5);
 }
 
-.veilingBekijkenPagina .biedingen .jezelfBottom{
+.veilingBekijkenPagina .biedingen .jezelfBottom,
+.darkmode--activated .veilingBekijkenPagina .biedingen .jezelfBottom{
     background: rgba(255, 65, 28, .8);
 }
 

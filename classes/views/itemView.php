@@ -110,6 +110,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             <?php
                             $index=0;
                             $alreadyFirst=false;
+                            $alreadyOverbiden=false;
                             foreach($bids as $bid){
                                   $user = User::getUser($bid['Gebruiker']);
                                   if(!empty($user)){
@@ -126,8 +127,8 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                         $alreadyFirst=true;
                                       }
                                       else {
-                                          if(!$alreadyFirst) echo "<li class='jezelfBottom list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
-                                          else echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                          if(!$alreadyFirst && !$alreadyOverbiden): echo "<li class='jezelfBottom list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>"; $alreadyOverbiden=true;
+                                          else: echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>"; endif;
                                       }
                                   } else {
                                       echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
