@@ -222,6 +222,14 @@ function updateMessages() {
     return updateMessages;
 }
 
+function toggleDarkmodeSetting() {
+    $.post("ajax.php",
+        {
+            request: "switchDarkmode",
+        });
+    darkmode.toggle();
+}
+
 function startChat(chatter) {
     responder = chatter;
     $(document).ready(function () {

@@ -12,4 +12,3 @@ var options = {
     autoMatchOsTheme: true // default: true
 }
 
-$(document).ready(function() {new Darkmode(options).showWidget();});
