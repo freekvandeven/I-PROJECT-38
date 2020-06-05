@@ -8,13 +8,13 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
         <?php
         if (!empty($_GET['err'])) { ?>
             <div class="errorMessage">
-                <span><?= $_GET['err'] ?></span>
+                <span><?=$_GET['err']?></span>
             </div>
         <?php } ?>
         <?php
-        if (!empty($_GET['succes'])) { ?>
+        if(!empty($_GET['succes'])) { ?>
             <div class="succesMessage">
-                <span><?= $_GET['succes'] ?></span>
+                <span><?=$_GET['succes']?></span>
             </div>
         <?php } ?>
 
@@ -22,25 +22,21 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
             <div class="itemInformatie col-xl-8 col-md-8">
                 <div class="card">
                     <div class='card-body'>
-                        <h4 class="card-header text-center"><?= $item['Titel'] ?>
+                        <h4 class="card-header text-center"><?=$item['Titel']?>
                             <div class="row">
                                 <form class="voegFavorietToeForm col-6" method="post" action="">
                                     <input type="hidden" name="token" value="<?= $token ?>">
                                     <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
                                     <div class="voegToeAanFavorietenButtonBox text-left">
-                                        <button type="submit" name="action" value="follow"
-                                                class="voegToeAanFavorietenButton">Favorieten+
-                                        </button>
+                                        <button type="submit" name="action" value="follow" class="voegToeAanFavorietenButton">Favorieten+</button>
                                     </div>
                                 </form>
-                                <?php if (!empty($_SESSION) && $_SESSION['admin'] == true): ?>
+                                <?php if(!empty($_SESSION)&&$_SESSION['admin']==true): ?>
                                 <form method="post" action="" class="col-6">
                                     <input type="hidden" name="token" value="<?= $token ?>">
                                     <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
                                     <div class="verwijderVeilingButtonBox text-right">
-                                        <button class="verwijderVeilingButton" type="submit" name="action"
-                                                value="delete">Veiling verwijderen
-                                        </button>
+                                        <button class="verwijderVeilingButton" type="submit" name="action" value="delete">Veiling verwijderen</button>
                                     </div>
                                 </form>
                             </div>
@@ -50,6 +46,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
                                 <?php
+
                                 if (count($images) > 1) {
                                     for ($i = 0; $i < count($images); $i++) { // pointer to next image ?>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="<?= $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
@@ -72,14 +69,12 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
                             <!-- Zijn er meer dan 1 afbeeldingen? -->
                             <?php
-                            if (count($images) > 1): ?>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                   data-slide="prev">
+                            if(count($images) > 1): ?>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                   data-slide="next">
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -91,7 +86,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                     <div class='card-footer'>
                         <small class='text-muted'></small>
                         <p id="timer">N/A</p>
-                        <p class="aantalKeerBekeken text-right"><?= $item['Views'] ?> keer bekeken</p>
+                        <p class="aantalKeerBekeken text-right"><?=$item['Views'] ?> keer bekeken</p>
                     </div>
                 </div>
             </div>
@@ -104,34 +99,34 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
 
                         <ul class="biedingen text-center col-xl-10 offset-xl-1">
                             <?php
-                            $index = 0;
-                            $alreadyFirst = false;
-                            $alreadyOverbiden = false;
-                            foreach ($bids as $bid) {
+                            $index=0;
+                            $alreadyFirst=false;
+                            $alreadyOverbiden=false;
+                            foreach($bids as $bid){
                                 $user = User::getUser($bid['Gebruiker']);
-                                if (!empty($user)) {
+                                if(!empty($user)){
                                     $user = $user['Gebruikersnaam'];
-                                    $price = number_format($bid['Bodbedrag'], 2, ',', '.');
-                                } else {
-                                    $user = "Deleted User";
-                                    $price = "<del>" . number_format($bid['Bodbedrag'], 2, ',', '.') . "</del>";
+                                    $price = number_format($bid['Bodbedrag'], 2, ',','.');
                                 }
-                                if ($user == $_SESSION['name']) {
-                                    if ($index == 0) {
-                                        echo "<li class='jezelfTop list-group-item'><strong>" . $user . "</strong> &euro;" . $price . "</li>";
-                                        $alreadyFirst = true;
-                                    } else {
-                                        if (!$alreadyFirst && !$alreadyOverbiden): echo "<li class='jezelfBottom list-group-item'><strong>" . $user . "</strong> &euro;" . $price . "</li>";
-                                            $alreadyOverbiden = true;
-                                        else: echo "<li class='list-group-item'><strong>" . $user . "</strong> &euro;" . $price . "</li>"; endif;
+                                else{
+                                    $user = "Deleted User";
+                                    $price = "<del>".number_format($bid['Bodbedrag'], 2, ',','.')."</del>";
+                                }
+                                if($user == $_SESSION['name']) {
+                                    if($index==0) {
+                                        echo "<li class='jezelfTop list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
+                                        $alreadyFirst=true;
+                                    }
+                                    else {
+                                        if(!$alreadyFirst && !$alreadyOverbiden): echo "<li class='jezelfBottom list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>"; $alreadyOverbiden=true;
+                                        else: echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>"; endif;
                                     }
                                 } else {
-                                    echo "<li class='list-group-item'><strong>" . $user . "</strong> &euro;" . $price . "</li>";
+                                    echo "<li class='list-group-item'><strong>" .$user. "</strong> &euro;" . $price ."</li>";
                                 }
                                 $index++;
                             } ?>
-                            <li class="startprijs list-group-item"><strong>Startprijs: </strong>
-                                &euro;<?= number_format($item['Startprijs'], 2, ',', '.') ?></li>
+                            <li class="startprijs list-group-item"><strong>Startprijs: </strong> &euro;<?=number_format($item['Startprijs'], 2, ',','.')?></li>
                         </ul>
 
                         <form method="post" action="">
@@ -142,18 +137,12 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                     <span class="input-group-text">€</span>
                                 </div>
                                 <input type="hidden" name="voorwerp" value="<?= $item['Voorwerpnummer'] ?>">
-                                <?php if ($item['VeilingGesloten']): ?> <input type="text" class="inputBod form-control"
-                                                                               value="Veiling gesloten" disabled>
-                                <?php else: ?> <input type="number" class="inputBod form-control" id="inputBod"
-                                                      name="bid" min="0" step="any" required> <?php endif; ?>
+                                <?php if($item['VeilingGesloten']): ?> <input type="text" class="inputBod form-control" value="Veiling gesloten" disabled>
+                                <?php else: ?> <input type="number" class="inputBod form-control" id="inputBod" name="bid" min="0" step="any" required> <?php endif; ?>
                             </div>
                             <div class="inputButtonBox text-center col-xl-10 offset-xl-1">
-                                <?php if ($item['VeilingGesloten']): ?>
-                                    <button type="submit" class="btn btn-outline-secondary" disabled>Veiling afgelopen
-                                    </button>
-                                <?php else: ?>
-                                    <button type="submit" class="btn btn-outline-secondary">Plaats bod
-                                    </button> <?php endif; ?>
+                                <?php if($item['VeilingGesloten']): ?> <button type="submit" class="btn btn-outline-secondary" disabled>Veiling afgelopen</button>
+                                <?php else: ?> <button type="submit" class="btn btn-outline-secondary">Plaats bod</button> <?php endif; ?>
                             </div>
                         </form>
                     </div>
@@ -164,23 +153,19 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                 <div class="verkoper">
                     <div class="card">
                         <div class="card-body">
-                            <a href="profile.php?id=<?= $profile_data['Gebruikersnaam'] ?>"><h4
-                                        class="card-header text-center">Verkoper</h4></a>
+                            <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>"><h4 class="card-header text-center">Verkoper</h4></a>
                             <div class="verkoperInformatieBox row">
                                 <div class="profielfoto col-xl-6">
-                                    <a href="profile.php?id=<?= $profile_data['Gebruikersnaam'] ?>">
-                                        <img src="<?= getProfileImage($profile_data['Gebruikersnaam']) ?>"
-                                             class="card-img" alt="profielfoto">
+                                    <a href="profile.php?id=<?= $profile_data['Gebruikersnaam']?>">
+                                        <img src="<?=getProfileImage($profile_data['Gebruikersnaam'])?>" class="card-img" alt="profielfoto">
                                     </a>
                                 </div>
                                 <div class="verkoperInformatie col-xl-6">
                                     <p><b>Voornaam: </b><?= $profile_data['Voornaam'] ?></p>
                                     <p><b>Achternaam: </b><?= $profile_data['Achternaam'] ?></p>
-                                    <p>
-                                        <b>Rating: </b><?= round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""], 2) ?>
-                                    </p>
+                                    <p><b>Rating: </b><?= round(Database::getAvgRating($profile_data['Gebruikersnaam'])[""], 2) ?></p>
                                     <?php
-                                    if (empty(Seller::ratedUser($_SESSION['name'], $_GET['id'])) && !empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
+                                    if(empty(Seller::ratedUser($_SESSION['name'],$_GET['id']))&&!empty(Items::soldToUser($_SESSION['name'], $_GET['id']))): ?>
                                         <form class="ratingForm" action="" method="post">
                                             <input type="hidden" name="token" value="<?= $token ?>">
                                             <input type="hidden" name="user" value="<?= $_GET['id'] ?>">
@@ -198,8 +183,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                             </div>
 
                                             <div class="text-center">
-                                                <button class="ratingButton" type="submit" name="action" value="review">
-                                                    Verzenden
+                                                <button class="ratingButton" type="submit" name="action" value="review">Verzenden
                                                 </button>
                                             </div>
                                         </form>
@@ -218,4 +202,3 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
         </div>
 
 </main>
-
