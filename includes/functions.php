@@ -31,7 +31,7 @@ function checkItemDate()
         $bid = Items::getHighestBid($item["Voorwerpnummer"]);
         Items::finishItem($item["Voorwerpnummer"], $bid["Gebruiker"], $bid["Bodbedrag"]);
         notifySeller($item["Verkoper"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
-        notifyBuyer($bid["Gebruiker"], $item['Voorwerpnummer'], $bid['Bodbedrag']);
+        notifyBuyer($bid["Gebruiker"], $item['Voorwerpnummer'], $bid['Bodbedrag'], $item["Verkoper"]);
         notifyFollowers($item["Voorwerpnummer"], "De veiling is afgelopen", "item.php?id=".$item["Voorwerpnummer"]);
     }
 }
@@ -158,13 +158,14 @@ function notifySeller($seller, $id, $price)
     User::notifyUser($seller, "Je veiling is afgelopen", "item.php?id=$id");
 }
 
-function notifyBuyer($buyer, $id, $offer)
+function notifyBuyer($buyer, $id, $offer, $seller)
 {
     $user = User::getUser($buyer);
     $subject = "Veiling afgelopen";
     $variables = [];
     $variables["username"] = $user['Voornaam'];
     $variables['id'] = $id;
+    $variables['seller'] = $seller;
     $variables['offer'] = $offer;
     sendFormattedMail($user['Mailbox'], $subject, "bought.html", $variables);
     User::notifyUser($buyer, "Je hebt de veiling gewonnen", "item.php?id=$id");
