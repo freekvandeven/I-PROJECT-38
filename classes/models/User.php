@@ -151,8 +151,8 @@ class User
     static function insertPhoneNumber($user, $phone)
     {
         global $dbh;
-        $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruikersnaam, :Telefoon)');
-        $data->execute([":Gebruikersnaam" => $user, ":Telefoon" => $phone]);
+        $data = $dbh->prepare('INSERT INTO GebruikersTelefoon (Gebruiker, Telefoon) VALUES (:Gebruiker, :Telefoon)');
+        $data->execute([":Gebruiker" => $user, ":Telefoon" => $phone]);
     }
 
     static function updatePhoneNumber($user, $phoneNr)

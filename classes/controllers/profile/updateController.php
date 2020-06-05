@@ -21,7 +21,8 @@ if(isset($_GET['option'])) {
         if(checkAllFieldsFilled($filledFields, $_GET['option'])) { // Als alle verplichte velden zijn ingevuld
             $filledFields[$_GET['option']] = ['email', 'adress', 'adress2', 'phone-number', 'country', 'place', 'postcode']; // Voegt adres2 er ook aan toe, want deze moet ook worden geupdate, of die nou empty is of niet
             $changes = setUserNewInformation($filledFields[$_GET['option']], $userInformation); // Maakt een array met alle ingevulde values
-            if(!empty($_POST['phone-number'])) User::updatePhoneNumber($_SESSION['name'], $_POST['phone-number']);
+            if(!empty(User::getPhoneNumber($_SESSION['name']))) User::updatePhoneNumber($_SESSION['name'], $_POST['phone-number']);
+            else User::insertPhoneNumber($_SESSION['name'], $_POST['phone-number']);
             User::updateUser($changes);
             header("Location:profile.php?toast=Gegevens succesvol opgeslagen");
         } else $err = 'Vul alle verplichte velden in!';
@@ -59,7 +60,9 @@ if(isset($_GET['option'])) {
         }
         $filledFields['algemeen'] = ['question', 'answer', 'email', 'phone-number', 'adress', 'adress2', 'country', 'place', 'postcode']; // Voegt adres2 eraan toe, want deze moet ook worden geupdate, of die nou empty is of niet
         $changes = setUserNewInformation($filledFields['algemeen'], $userInformation);
-        if(!empty($_POST['phone-number'])) User::updatePhoneNumber($_SESSION['name'], $_POST['phone-number']);
+        if(!empty(User::getPhoneNumber($_SESSION['name']))) User::updatePhoneNumber($_SESSION['name'], $_POST['phone-number']);
+        else User::insertPhoneNumber($_SESSION['name'], $_POST['phone-number']);
+
         User::updateUser($changes);
         if(isset($_POST['password']) && isset($_POST['confirmation'])) { // Als de 2 passwordvelden ingevuld zijn
             if($_POST['password'] == $_POST['confirmation']) {
@@ -67,7 +70,7 @@ if(isset($_GET['option'])) {
                 header("Location:profile.php?toast=Profiel succesvol bijgewerkt!");
             } else $err = 'Wachtwoorden komen niet overeen!';
         } else header("Location:profile.php?toast=Profiel succesvol bijgewerkt!");
-    }
+    } else $err = 'Vul alle verplichte velden in!';
 }
 
 function checkAllFieldsFilled($filledFields, $categorie) {

@@ -52,8 +52,7 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                 <?php
                                 if (count($images) > 1) {
                                     for ($i = 0; $i < count($images); $i++) { // pointer to next image ?>
-                                        <li data-target="#carouselExampleIndicators"
-                                            data-slide-to="<?= $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?= $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
                                     <?php }
                                 }
                                 ?>
@@ -64,13 +63,10 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                                 <!-- Afbeeldingen -->
                                 <?php
                                 for ($i = 0; $i < count($images); $i++): ?>
-                                    <input type="checkbox" id="zoomCheck">
-                                    <label for="zoomCheck">
-                                        <div class="carousel-item <?php if ($i == 0) echo ' active'; ?>">
-                                            <img class="itemImage" id="image-<?= $i ?>" src="<?= $images[$i]; ?>"
-                                                 alt="Productfoto">
-                                        </div>
-                                    </label>
+                                    <div class="carousel-item <?php if ($i == 0) echo ' active'; ?>">
+                                        <img class="itemImage" id="image-<?= $i ?>" src="<?= $images[$i]; ?>"
+                                             alt="Productfoto">
+                                    </div>
                                 <?php endfor; ?>
                             </div>
 
