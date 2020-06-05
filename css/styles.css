@@ -985,6 +985,7 @@ body{
     transition: 200ms;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
     isolation: isolate;
+    outline: none;
 }
 
 .addProductForm .addProductButton{
@@ -1002,6 +1003,12 @@ body{
 
 .updateGegevensPagina .container .updateForm p{
     margin-bottom: 40px;
+}
+
+.updateGegevensPagina .container .updateForm .verplichtmessage{
+    margin: -10px 0 10px 0;
+    color: rgb(150, 150, 150);
+    font-size: 16px;
 }
 
 .updateGegevensPagina .container .updateForm .container h5{
@@ -2288,7 +2295,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 .catalogusPagina .linkerkant .categorieen .list-unstyled li #searchResult li:hover{
-    color: blue;
+    color: rgb(165, 105, 189);
 }
 
 .catalogusPagina .linkerkant .normalInput{
@@ -2381,7 +2388,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin: 20px 0 0 0;
 }
 
-.veilingBekijkenPagina .itemInformatie .card .card-body .carousel .carousel-inner div a .itemImage{
+.veilingBekijkenPagina .itemInformatie .card .card-body .carousel .carousel-inner .carousel-item .itemImage{
     margin: 0 auto;
     display: block;
 }
@@ -2713,18 +2720,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     height: 18px;
     width: 18px;
 }
-
-.updateGegevensPagina .verwijderButton{
-    height: 100%;
-    width: 40px;
-    border: none;
-    background: #fff;
-    color: #fff;
-}
-
-.updateGegevensPagina .verwijderButton img{
-    width: 100%;
-}
 /********EMAIL-TEMPLATE-IMPROVEMENT*********/
 
 .email-template {
@@ -2953,6 +2948,10 @@ footer{
 .darkmode--activated .catalogusPagina .linkerkant .filter,
 .darkmode--activated .catalogusPagina .linkerkant .normalInput{
     background: rgb(60, 60, 60);
+}
+
+.darkmode--activated .catalogusPagina .container .productsList div .card .card-body .card-title{
+    color: rgb(230, 230, 230);
 }
 
 /********* CONTACTVIEW.PHP *********/
@@ -3432,6 +3431,10 @@ footer{
     border-color: rgb(110, 110, 110);
 }
 
+.darkmode--activated .updateGegevensPagina .container .updateForm .verplichtmessage{
+     color: rgb(200, 200, 200);
+}
+
 /********* UPGRADEVIEW.PHP *********/
 
 /*** ISOLATIONS ***/
@@ -3778,19 +3781,19 @@ a.lightbox-close:after {
 /**********IMAGE-ZOOM-IMPROVEMENT-ONCLICK**************/
 
 
-.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox] {
-    display: none;
-}
+/*.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox] {*/
+/*    display: none;*/
+/*}*/
 
-.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner label .carousel-item img{
-    margin: 100px;
-    transition: transform 0.25s ease;
-    cursor: zoom-in;
-    background-position: center;
-}
+/*.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner label .carousel-item img{*/
+/*    margin: 100px;*/
+/*    transition: transform 0.25s ease;*/
+/*    cursor: zoom-in;*/
+/*    background-position: center;*/
+/*}*/
 
-.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox]:checked ~ label > img {
-    transform: scale(1.3);
-    cursor: zoom-out;
-}
+/*.veilingBekijkenPagina .container .row .itemInformatie .card .card-body #carouselExampleIndicators .carousel-inner input[type=checkbox]:checked ~ label > img {*/
+/*    transform: scale(1.3);*/
+/*    cursor: zoom-out;*/
+/*}*/
 

@@ -46,9 +46,10 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                         <div id="carouselExampleIndicators" class="carousel slide">
                             <ol class="carousel-indicators">
                                 <?php
-                                if(count($images) > 1) {
-                                    for($i=0; $i<count($images); $i++) { // pointer to next image ?>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>" <?php if($i==0) echo'class="active"'; ?>></li>
+
+                                if (count($images) > 1) {
+                                    for ($i = 0; $i < count($images); $i++) { // pointer to next image ?>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?= $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
                                     <?php }
                                 }
                                 ?>
@@ -58,19 +59,10 @@ $images = generateImageLink($item['Voorwerpnummer'], false);
                             <div class="carousel-inner">
                                 <!-- Afbeeldingen -->
                                 <?php
-                                for($i=0; $i<count($images); $i++): ?>
-                                    <div class="carousel-item <?php if($i==0) echo' active';?>">
-
-                                        <img class="itemImage" id="image-<?=$i?>" src="<?=$images[$i];?>" alt="Productfoto">
-
-                                    </div>
-                                <?php endfor; ?>
-
-                                <!-- Vergroot de afbeeldingen -->
-                                <?php for($i=0; $i<count($images); $i++): ?>
-                                    <div class="lightbox-target" id="image<?php echo $i ?>">
-                                        <img src="<?=$images[$i];?>">
-                                        <a class="lightbox-close" href="#"></a>
+                                for ($i = 0; $i < count($images); $i++): ?>
+                                    <div class="carousel-item <?php if ($i == 0) echo ' active'; ?>">
+                                        <img class="itemImage" id="image-<?= $i ?>" src="<?= $images[$i]; ?>"
+                                             alt="Productfoto">
                                     </div>
                                 <?php endfor; ?>
                             </div>

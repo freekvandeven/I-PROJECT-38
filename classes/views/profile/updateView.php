@@ -22,19 +22,20 @@ $showButton = false;
                 <?php } ?>
                 <div class="container">
                     <h5>Persoonsgegevens</h5>
+                    <p class="verplichtmessage">* = verplicht</p>
                     <div class="form-row">
                         <!-- EMAILADRES -->
                         <div class="form-group col-md-4">
-                            <label for="email">Emailadres</label>
+                            <label for="email">Emailadres *</label>
                             <input type="email" class="form-control" name="email" id="email"
-                                   placeholder="Uw nieuwe emailadres" value="<?= $profile_data['Mailbox'] ?>">
+                                   placeholder="Uw nieuwe emailadres" value="<?= $profile_data['Mailbox'] ?>" required>
                         </div>
                         <!-- TELEFOONNUMMER 1 -->
                         <?php $profile_phone_nr = User::getPhoneNumber($_SESSION['name']); ?>
                         <div class="form-group col-md-4">
-                            <label for="telnr1">Telefoonnummer</label>
+                            <label for="telnr1">Telefoonnummer *</label>
                             <input type="tel" class="form-control" name="phone-number" id="telnr1"
-                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr?>">
+                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr?>" required>
                         </div>
                         <!-- TELEFOONNUMMER 2 -->
                         <div class="form-group col-md-4">
@@ -48,9 +49,9 @@ $showButton = false;
                     <div class="form-row">
                         <!-- ADRES 1 -->
                         <div class="form-group col-md-6">
-                            <label for="adres1">Adres</label>
+                            <label for="adres1">Adres *</label>
                             <input type="text" class="form-control" name="adress" id="adres1"
-                                   value="<?=$profile_data['Adresregel_1']?>" placeholder="Uw adres">
+                                   value="<?=$profile_data['Adresregel_1']?>" placeholder="Uw adres" required>
                         </div>
                         <!-- ADRES 2 -->
                         <div class="form-group col-md-6">
@@ -60,21 +61,21 @@ $showButton = false;
                         </div>
                         <!-- LAND -->
                         <div class="form-group col-md-5">
-                            <label for="land">Land</label>
+                            <label for="land">Land *</label>
                             <input type="text" class="form-control" name="country" id="land"
-                                   placeholder="Land" value="<?=$profile_data['Land']?>">
+                                   placeholder="Land" value="<?=$profile_data['Land']?>" required>
                         </div>
                         <!-- PLAATS -->
                         <div class="form-group col-md-5">
-                            <label for="plaats">Plaats</label>
+                            <label for="plaats">Plaats *</label>
                             <input type="text" class="form-control" name="place" id="plaats"
-                                   placeholder="Woonplaats" value="<?=$profile_data['Plaatsnaam']?>">
+                                   placeholder="Woonplaats" value="<?=$profile_data['Plaatsnaam']?>" required>
                         </div>
                         <!-- POSTCODE -->
                         <div class="form-group col-md-2">
-                            <label for="postcode">Postcode</label>
+                            <label for="postcode">Postcode *</label>
                             <input type="text" class="form-control" name="postcode" id="postcode"
-                                   placeholder="Postcode" value="<?=$profile_data['Postcode']?>">
+                                   placeholder="Postcode" value="<?=$profile_data['Postcode']?>" required>
                         </div>
                     </div>
                 </div>
@@ -92,6 +93,7 @@ $showButton = false;
                 <?php } ?>
                 <div class="container">
                     <h5>Inloggegevens</h5>
+                    <p class="verplichtmessage">* = verplicht</p>
                     <div class="form-row">
                         <!-- GEBRUIKERSNAAM -->
                         <div class="form-group col-md-4">
@@ -104,15 +106,15 @@ $showButton = false;
                     <div class="form-row">
                         <!-- WACHTWOORD 1 -->
                         <div class="form-group col-md-4">
-                            <label for="password1">Nieuw Wachtwoord</label>
+                            <label for="password1">Nieuw Wachtwoord *</label>
                             <input type="password" class="form-control" name="password" id="password1"
-                                   placeholder="Uw nieuwe wachtwoord">
+                                   placeholder="Uw nieuwe wachtwoord" required>
                         </div>
                         <!-- WACHTWOORD 2 -->
                         <div class="form-group col-md-4">
-                            <label for="password2">Herhaal wachtwoord</label>
+                            <label for="password2">Herhaal wachtwoord *</label>
                             <input type="password" class="form-control" name="confirmation" id="password2"
-                                   placeholder="Herhaal wachtwoord">
+                                   placeholder="Herhaal wachtwoord" required>
                         </div>
                     </div>
                 </div>
@@ -129,12 +131,13 @@ $showButton = false;
                     </div>
                 <?php } ?>
                 <div class="container">
-                    <h5>Inloggegevens</h5>
+                    <h5>Beveiligingsgegevens</h5>
+                    <p class="verplichtmessage">* = verplicht</p>
                     <div class="form-row">
                         <!-- GEHEIME VRAAG -->
                         <div class="form-group col-md-6">
-                            <label for="geheimeVraag">Geheime vraag</label>
-                            <select class="custom-select" name="question" id="geheimeVraag">
+                            <label for="geheimeVraag">Geheime vraag *</label>
+                            <select class="custom-select" name="question" id="geheimeVraag" required>
                                 <?php
                                 $selected = User::getUser($_SESSION['name'])['Vraag'];
                                 foreach (User::getQuestions() as $question) {
@@ -149,9 +152,9 @@ $showButton = false;
                         </div>
                         <!-- ANTWOORD GEHEIME VRAAG -->
                         <div class="form-group col-md-6">
-                            <label for="antwGeheimeVraag">Antwoord</label>
+                            <label for="antwGeheimeVraag">Antwoord *</label>
                             <input type="text" class="form-control" name="answer" id="antwGeheimeVraag"
-                                   placeholder="Antwoord" value="<?= $profile_data['Antwoordtekst'] ?>">
+                                   placeholder="Antwoord" value="<?= $profile_data['Antwoordtekst'] ?>" required>
                         </div>
                     </div>
                 </div>
@@ -169,12 +172,13 @@ $showButton = false;
                 <?php } ?>
                 <div class="container">
                     <h5>Profielfoto</h5>
+                    <p class="verplichtmessage">* = verplicht</p>
                     <div class="form-row">
                         <!-- PROFIELFOTO UPLOADEN -->
                         <div class="form-group col-md-6">
-                            <label for="img">Profielfoto</label>
+                            <label for="img">Profielfoto *</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
+                                <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" required>
                                 <label class="custom-file-label" for="img" data-browse="Bestand kiezen">Pas uw profielfoto aan</label>
                             </div>
                         </div>
@@ -196,26 +200,27 @@ $showButton = false;
                         <?php } ?>
                         <div class="container">
                             <h5>Verkopersgegevens</h5>
+                            <p class="verplichtmessage">* = verplicht</p>
                             <div class="form-row">
                                 <!-- BANK -->
                                 <div class="form-group col-md-6">
-                                    <label for="bank">Bank</label>
-                                    <input type="text" class="form-control" name="bank" id="bank" placeholder="Uw bank" value="<?=$userSellerInformation['Bank']?>">
+                                    <label for="bank">Bank *</label>
+                                    <input type="text" class="form-control" name="bank" id="bank" placeholder="Uw bank" value="<?=$userSellerInformation['Bank']?>" required>
                                 </div>
                                 <!-- BANKREKENING -->
                                 <div class="form-group col-md-6">
-                                    <label for="bankrekening">Bankrekening</label>
-                                    <input type="text" class="form-control" name="bankrekening" id="bankrekening" placeholder="Uw bankrekening" value="<?=$userSellerInformation['Bankrekening']?>">
+                                    <label for="bankrekening">Bankrekening *</label>
+                                    <input type="text" class="form-control" name="bankrekening" id="bankrekening" placeholder="Uw bankrekening" value="<?=$userSellerInformation['Bankrekening']?>" required>
                                 </div>
                                 <!-- CONTROLEOPTIE -->
                                 <div class="form-group col-md-6">
-                                    <label for="controlenummer">ControleOptie</label>
-                                    <input type="text" class="form-control" name="controlenummer" id="controlenummer" placeholder="Uw controlenummer" value="<?=$userSellerInformation['ControleOptie']?>v">
+                                    <label for="controlenummer">Controlenummer *</label>
+                                    <input type="text" class="form-control" name="controlenummer" id="controlenummer" placeholder="Uw controlenummer" value="<?=$userSellerInformation['ControleOptie']?>v" required>
                                 </div>
                                 <!-- CREDITCARD -->
                                 <div class="form-group col-md-6">
-                                    <label for="creditcard">Creditcard</label>
-                                    <input type="text" class="form-control" name="creditcard" id="creditcard" placeholder="Uw creditcard" value="<?=$userSellerInformation['Creditcard']?>">
+                                    <label for="creditcard">Creditcard *</label>
+                                    <input type="text" class="form-control" name="creditcard" id="creditcard" placeholder="Uw creditcard" value="<?=$userSellerInformation['Creditcard']?>" required>
                                 </div>
                             </div>
                         </div>
@@ -238,6 +243,7 @@ $showButton = false;
                 <!-- ACCOUNTGEGEVENS-->
                 <div class="container">
                     <h5>Accountgegevens en beveiliging</h5>
+                    <p class="verplichtmessage">* = verplicht</p>
                     <div class="form-row">
                         <!-- GEBRUIKERSNAAM -->
                         <div class="form-group col-md-4">
@@ -257,8 +263,8 @@ $showButton = false;
                         </div>
                         <!-- GEHEIME VRAAG -->
                         <div class="form-group col-md-4">
-                            <label for="geheimeVraag">Geheime vraag</label>
-                            <select class="custom-select" name="question" id="geheimeVraag">
+                            <label for="geheimeVraag">Geheime vraag *</label>
+                            <select class="custom-select" name="question" id="geheimeVraag" required>
                                 <?php
                                 $selected = User::getUser($_SESSION['name'])['Vraag'];
                                 foreach(User::getQuestions() as $question){
@@ -273,9 +279,9 @@ $showButton = false;
                         </div>
                         <!-- ANTWOORD GEHEIME VRAAG -->
                         <div class="form-group col-md-4">
-                            <label for="antwGeheimeVraag">Antwoord</label>
+                            <label for="antwGeheimeVraag">Antwoord *</label>
                             <input type="text" class="form-control" name="answer" id="antwGeheimeVraag"
-                                   placeholder="Antwoord" value="<?=$profile_data['Antwoordtekst']?>">
+                                   placeholder="Antwoord" value="<?=$profile_data['Antwoordtekst']?>" required>
                         </div>
 
                         <!-- PROFIELFOTO UPLOADEN -->
@@ -295,15 +301,16 @@ $showButton = false;
                     <div class="form-row">
                         <!-- EMAILADRES -->
                         <div class="form-group col-md-4">
-                            <label for="email">Emailadres</label>
+                            <label for="email">Emailadres *</label>
                             <input type="email" class="form-control" name="email" id="email"
-                                   placeholder="Uw nieuwe emailadres" value="<?=$profile_data['Mailbox']?>">
+                                   placeholder="Uw nieuwe emailadres" value="<?=$profile_data['Mailbox']?>" required>
                         </div>
                         <!-- TELEFOONNUMMER 1 -->
                         <div class="form-group col-md-4">
-                            <label for="telnr1">Telefoonnummer</label>
+                            <?php $profile_phone_nr = User::getPhoneNumber($_SESSION['name']); ?>
+                            <label for="telnr1">Telefoonnummer *</label>
                             <input type="tel" class="form-control" name="phone-number" id="telnr1"
-                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr?>">
+                                   placeholder="Uw telefoonnummer" value="<?=$profile_phone_nr?>" required>
                         </div>
                         <!-- TELEFOONNUMMER 2 -->
                         <div class="form-group col-md-4">
@@ -313,8 +320,8 @@ $showButton = false;
                         </div>
                         <!-- ADRES 1 -->
                         <div class="form-group col-md-6">
-                            <label for="adres1">Adres</label>
-                            <input type="text" class="form-control" name="adress" id="adres1" value="<?=$profile_data['Adresregel_1']?>" placeholder="Uw adres">
+                            <label for="adres1">Adres *</label>
+                            <input type="text" class="form-control" name="adress" id="adres1" value="<?=$profile_data['Adresregel_1']?>" placeholder="Uw adres" required>
                         </div>
                         <!-- ADRES 2 -->
                         <div class="form-group col-md-6">
@@ -323,21 +330,21 @@ $showButton = false;
                         </div>
                         <!-- LAND -->
                         <div class="form-group col-md-5">
-                            <label for="land">Land</label>
+                            <label for="land">Land *</label>
                             <input type="text" class="form-control" name="country" id="land"
-                                   placeholder="Land" value="<?=$profile_data['Land']?>">
+                                   placeholder="Land" value="<?=$profile_data['Land']?>" required>
                         </div>
                         <!-- PLAATS -->
                         <div class="form-group col-md-5">
-                            <label for="plaats">Plaats</label>
+                            <label for="plaats">Plaats *</label>
                             <input type="text" class="form-control" name="place" id="plaats"
-                                   placeholder="Plaats" value="<?=$profile_data['Plaatsnaam']?>">
+                                   placeholder="Plaats" value="<?=$profile_data['Plaatsnaam']?>" required>
                         </div>
                         <!-- POSTCODE -->
                         <div class="form-group col-md-2">
-                            <label for="postcode">Postcode</label>
+                            <label for="postcode">Postcode *</label>
                             <input type="text" class="form-control" name="postcode" id="postcode"
-                                   placeholder="Postcode" value="<?=$profile_data['Postcode']?>">
+                                   placeholder="Postcode" value="<?=$profile_data['Postcode']?>" required>
                         </div>
                     </div>
                 </div> <?php }
