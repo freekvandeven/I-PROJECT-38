@@ -942,6 +942,11 @@ body{
     text-decoration: underline;
 }
 
+.loginPagina .succesMessage{
+    margin-top: 75px;
+    margin-bottom: -50px;
+}
+
 /* Als de gebruiker eroverheen hovert met zijn muis: */
 .loginForm a:hover{
     padding-left: 10px;

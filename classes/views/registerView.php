@@ -2,7 +2,11 @@
     <div class="container">
         <form class="registerForm" action="" method="post">
             <h2 class="text-center">Maak een account aan.</h2>
-            <?php if(isset($err))echo $err;?>
+            <?php if (isset($err)) { ?>
+                <div class="errorMessage">
+                    <span><?=$err?></span>
+                </div>
+            <?php } ?>
             <input type="hidden" name="token" value="<?=$token?>">
             <!-- ACCOUNTGEGEVENS-->
             <div class="subcontainer">
