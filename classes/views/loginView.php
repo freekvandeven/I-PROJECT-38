@@ -6,13 +6,17 @@
                     <span><?=$_GET['succes']?></span>
                 </div>
             <?php } ?>
+            <?php if (isset($err)) { ?>
+                <div class="errorMessage">
+                    <span><?=$err?></span>
+                </div>
+            <?php } ?>
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="loginForm" action="" method="post">
                             <!-- Titel -->
                             <h2 class="text-center">Inloggen</h2>
-                            <?php if(isset($err))echo $err;?>
                             <input type="hidden" name="token" value="<?=$token?>">
                             <!-- Gebruikersnaam -->
                             <div class="form-group" style="margin-top: 25px;">

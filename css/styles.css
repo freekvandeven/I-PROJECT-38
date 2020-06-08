@@ -942,7 +942,8 @@ body{
     text-decoration: underline;
 }
 
-.loginPagina .succesMessage{
+.loginPagina .succesMessage,
+.loginPagina .errorMessage{
     margin-top: 75px;
     margin-bottom: -50px;
 }
