@@ -60,7 +60,7 @@ function getRubriek()
 
         <div class="row">
             <div class="col">
-                <ul class="categorieenLijst">
+                <ul class="categorieenLijst <?php if(!isset($_GET['mainRubriek'])) echo 'col-lg-3 col-8';?>">
                     <form method="get" action="">
                         <input type="hidden" name="category" value="addRubriek">
                         <li class="titel">Categorieën</li>
@@ -106,7 +106,7 @@ function getRubriek()
                     </div>
                     <?php if (isset($_GET['subsubRubriek'])): ?>
                         <div class='col'>
-                            <ul class="categorieenLijst"l>
+                            <ul class="categorieenLijst">
                                 <form method="get" action="">
                                     <input type='hidden' name='category' value='addRubriek'>
                                     <input type='hidden' name='mainRubriek' value='<?= $_GET['mainRubriek'] ?>'>
