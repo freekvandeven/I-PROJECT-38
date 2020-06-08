@@ -2059,6 +2059,7 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     margin-top: 5px;
     outline: none;
     transition: color 300ms, border-color 400ms;
+    text-align: left;
 }
 
 .rubriekenBoomPagina .categorieenLijst form li button:hover{
