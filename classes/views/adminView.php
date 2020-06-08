@@ -7,7 +7,7 @@ $titles = ['Website', 'Database'];
 $websiteCategoriesAmount = 9;
 $databaseCategoriesAmount = 3;
 $cardTitles = ['Bekijk alle veilingen', 'Bekijk alle gebruikers', 'Bekijk alle verkopers', 'Bekijk website statistieken', 'Bekijk gebruikers statistieken',
-    'Voeg een rubriek toe', "Bekijk alle feedback", "Footer pagina's", "Wereldkaart", 'Reset uw database', 'Vul uw database', 'MS SQL Server Query Editor'];
+    'Rubriekenboom', "Bekijk alle feedback", "Footer pagina's", "Wereldkaart", 'Reset uw database', 'Vul uw database', 'MS SQL Server Query Editor'];
 $cardText = ['Hier is een overzicht te vinden van alle veilingen die ooit hebben bestaan.',
             'Hier is een overzicht te vinden van alle gebruikers.',
             'Hier is een overzicht te vinden van alle verkopers.',
