@@ -32,7 +32,7 @@ if (checkPost()) {
             $toast = $err;
         }
     } else {
-        $err = "Vul alstublieft alle gegevens in";
+        $err = "Vul alstublieft alle verplichte velden in";
         $toast = $err;
     }
 }

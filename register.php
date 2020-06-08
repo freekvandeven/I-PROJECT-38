@@ -17,8 +17,8 @@ if(checkPost()) {
         $err = checkInformation();
         $toast = $err;
     } else {
-        $toast = "Vul alstublieft alle gegevens in";
-        $err = "Vul alstublieft alle gegevens in";
+        $toast = "Vul alstublieft alle verplichte velden in";
+        $err = $toast;
     }
 }
 
