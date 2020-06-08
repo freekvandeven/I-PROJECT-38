@@ -14,7 +14,7 @@ function getRubriek()
 
 ?>
 
-<main class="adminPaginaSub">
+<main class="adminPaginaSub rubriekenBoomPagina">
     <div class="jumbotron">
         <h2 class="display-5">Welkom op de rubriekenpagina</h2>
         <p>Op deze pagina kunt u rubrieken toevoegen.</p>
@@ -26,43 +26,44 @@ function getRubriek()
         if (is_null($selected)):
             ?>
             <h2 class="text-center">Selecteer een rubriek</h2>
-            <form method="post" action="">
+            <form method="post" action="" class="bewerkMenu">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <input type="hidden" name="category" value="addRubriek">
                 <input type="hidden" name="rubriek" value="-1">
-                <input type="text" name="rubriekNieuw" value="" placeholder="hoofdrubriek">
-                <button type="submit" name="action" value="add">
-                    Voeg een hoofd rubriek toe
-                </button>
+                <div class="row">
+                    <input type="text" name="rubriekNieuw" value="" placeholder="Hoofdrubriek" class="col-sm-2 col-3">
+                    <button type="submit" name="action" value="add">Voeg een hoofdrubriek toe</button>
+                </div>
             </form>
         <?php else: ?>
             <h2 class="text-center">Pas de geselecteerde rubriek aan</h2>
-            <p><?= $mapping[$selected[0]] ?>: <?=Category::getCategoryUsage($selected[0])?> veilingen</p>
-            <form method="post" action="">
+            <p class="amount"><?= $mapping[$selected[0]] ?>: <?=Category::getCategoryUsage($selected[0])?> veilingen</p>
+            <form method="post" action="" class="bewerkMenu">
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <input type="hidden" name="category" value="addRubriek">
                 <input type="hidden" name="rubriek" value="<?= $selected[0] ?>">
-                <button type="submit" name="action" value="delete">
-                    Verwijder Rubriek
-                </button>
-                <input type="text" name="rubriekNaam" value="<?= $mapping[$selected[0]] ?>">
-                <button type="submit" name="action" value="change">
-                    Verander de naam
-                </button>
+                <div class="row">
+                    <input type="text" name="rubriekNaam" value="<?= $mapping[$selected[0]] ?>" class="col-sm-2 col-3">
+                    <button type="submit" name="action" value="change">Verander de naam</button>
+                </div>
                 <?php if ($selected[1] != 'subsubsubrubriek'): ?>
-                    <input type="text" name="rubriekNieuw" value="">
-                    <button type="submit" name="action" value="add">
-                        Voeg een rubriek toe
-                    </button>
+                    <div class="row">
+                        <input type="text" name="rubriekNieuw" value="" class="col-sm-2 col-3">
+                        <button type="submit" name="action" value="add">Voeg een rubriek toe</button>
+                    </div>
                 <?php endif; ?>
+                <div class="row">
+                    <button type="submit" name="action" value="delete" class="deleteButton">Verwijder Rubriek</button>
+                </div>
             </form>
         <?php endif; ?>
 
         <div class="row">
             <div class="col">
-                <ul>
+                <ul class="categorieenLijst">
                     <form method="get" action="">
                         <input type="hidden" name="category" value="addRubriek">
+                        <li class="titel">Categorieën</li>
                         <?php
                         foreach ($filtered as $key => $value) {
                             echo "<li><button type='submit' name='mainRubriek' value='$key'>$mapping[$key]</button></li>";
@@ -72,10 +73,11 @@ function getRubriek()
             </div>
             <?php if (isset($_GET['mainRubriek'])): ?>
                 <div class='col'>
-                    <ul>
-                        <form method="get" action="">
+                    <ul class="categorieenLijst">
+                        <form method="get" action="" class="">
                             <input type="hidden" name="category" value="addRubriek">
                             <input type='hidden' name='mainRubriek' value='<?= $_GET['mainRubriek'] ?>'>
+                            <li class="titel"><?=$mapping[$_GET['mainRubriek']]?></li>
                             <?php
                             if (!empty(array_key_first($filtered[$_GET['mainRubriek']]))) {
                                 foreach ($filtered[$_GET['mainRubriek']] as $key => $value) {
@@ -87,11 +89,12 @@ function getRubriek()
                 </div>
                 <?php if (isset($_GET['subRubriek'])): ?>
                     <div class='col'>
-                        <ul>
+                        <ul class="categorieenLijst">
                             <form method="get" action="">
                                 <input type='hidden' name="category" value="addRubriek">
                                 <input type='hidden' name='mainRubriek' value='<?= $_GET['mainRubriek'] ?>'>
                                 <input type='hidden' name='subRubriek' value='<?= $_GET['subRubriek'] ?>'>
+                                <li class="titel"><?=$mapping[$_GET['subRubriek']]?></li>
                                 <?php
                                 if (!empty(array_key_first($filtered[$_GET['mainRubriek']][$_GET['subRubriek']]))) { // improve this check
                                     foreach ($filtered[$_GET['mainRubriek']][$_GET['subRubriek']] as $key => $value) {
@@ -103,12 +106,13 @@ function getRubriek()
                     </div>
                     <?php if (isset($_GET['subsubRubriek'])): ?>
                         <div class='col'>
-                            <ul>
+                            <ul class="categorieenLijst"l>
                                 <form method="get" action="">
                                     <input type='hidden' name='category' value='addRubriek'>
                                     <input type='hidden' name='mainRubriek' value='<?= $_GET['mainRubriek'] ?>'>
                                     <input type='hidden' name='subRubriek' value='<?= $_GET['subRubriek'] ?>'>
                                     <input type='hidden' name='subsubRubriek' value='<?= $_GET['subsubRubriek'] ?>'>
+                                    <li class="titel"><?=$mapping[$_GET['subsubRubriek']]?></li>
                                     <?php
                                     if (!empty(array_key_first($filtered[$_GET['mainRubriek']][$_GET['subRubriek']][$_GET['subsubRubriek']]))) { //improve this check
                                         foreach ($filtered[$_GET['mainRubriek']][$_GET['subRubriek']][$_GET['subsubRubriek']] as $subsubsubrubriek) {

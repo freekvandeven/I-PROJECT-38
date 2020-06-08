@@ -1986,6 +1986,91 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     user-select: none;
 }
 
+.rubriekenBoomPagina .amount{
+    font-size: 18px;
+    margin-top: 75px;
+    margin-bottom: -20px;
+}
+
+.rubriekenBoomPagina .bewerkMenu .row{
+    margin-bottom: 10px;
+}
+
+.rubriekenBoomPagina .bewerkMenu button{
+    background: none;
+    border: 2px solid rgb(165, 105, 189);
+    border-radius: 6px;
+    margin-left: 10px;
+    outline: none;
+    transition: background 200ms, border-color 200ms, color 200ms;
+}
+
+.rubriekenBoomPagina .bewerkMenu button:hover{
+    background: rgb(165, 105, 189);
+    border-color: rgb(165, 105, 189);
+    color: #fff;
+}
+
+.rubriekenBoomPagina .bewerkMenu button:focus{
+    background: rgb(220, 220, 220);
+    border-color: rgb(150, 150, 150);
+}
+
+.rubriekenBoomPagina .bewerkMenu input{
+    background: none;
+    border: 2px solid rgb(150, 150, 150);
+    padding: 3px 10px;
+    outline: none;
+    transition: padding-left 200ms;
+}
+
+.rubriekenBoomPagina .bewerkMenu input:focus{
+    padding-left: 5px;
+    box-shadow: 0 0 5px rgb(165, 105, 189);
+}
+
+.rubriekenBoomPagina .bewerkMenu .deleteButton{
+    margin-left: 0;
+    border: none;
+    color: red;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    transition: text-decoration-color 400ms;
+}
+
+.rubriekenBoomPagina .bewerkMenu .deleteButton:hover{
+    text-decoration-color: red;
+    background: none;
+    color: red;
+}
+
+.rubriekenBoomPagina .bewerkMenu .deleteButton:focus{
+    text-decoration-color: rgb(130, 130,130);
+}
+
+.rubriekenBoomPagina .categorieenLijst{
+    list-style-type: none;
+}
+
+.rubriekenBoomPagina .categorieenLijst form li button{
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    margin-top: 5px;
+    outline: none;
+    transition: color 300ms, border-color 400ms;
+}
+
+.rubriekenBoomPagina .categorieenLijst form li button:hover{
+    color: rgb(165, 105, 189);
+    border-color: rgb(165, 105, 189);
+}
+
+.rubriekenBoomPagina .categorieenLijst form .titel{
+    font-size: 20px;
+    border-bottom: 1px solid rgb(165, 105, 189);
+}
+
 @media (max-width: 1200px) {
     .adminPagina .container .row div a .card .card-body img{
         width: 50%;
@@ -3630,6 +3715,51 @@ footer{
 
 .darkmode--activated .adminPaginaSub .verwijderButton button{
     background: rgb(55, 55, 55);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu input{
+    background: rgb(100, 100, 100);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu input:focus{
+    border-width: 2px;
+    padding-left: 5px;
+    background: rgb(80, 80, 80);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu button{
+    background: rgb(100, 100, 100);
+    color: rgb(2330, 230, 230);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu button:hover{
+    background: rgb(165, 105, 189);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu button:focus{
+    background: rgb(80, 80, 80);
+    border-color: rgb(100, 100, 100);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu .deleteButton{
+    background: none;
+    color: red;
+    text-decoration-color: rgb(55, 55, 55);
+}
+
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu .deleteButton:hover,
+.darkmode--activated .rubriekenBoomPagina .bewerkMenu .deleteButton:focus{
+    background: none;
+    text-decoration-color: red;
+}
+
+.darkmode--activated .rubriekenBoomPagina .categorieenLijst form li button,
+.darkmode--activated .rubriekenBoomPagina .categorieenLijst form .titel{
+    color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .rubriekenBoomPagina .categorieenLijst form li button:hover{
+    color: rgb(165, 105, 189);
 }
 
 /********* NOTIFICATIONSVIEW.PHP *********/
