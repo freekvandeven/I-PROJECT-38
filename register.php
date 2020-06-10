@@ -14,19 +14,24 @@ if(checkPost()) {
         $isValid &= (isset($_POST[$parameter]) && !empty($_POST[$parameter]));
     }
     if ($isValid) { # user filled in everything
-        $toast = checkInformation();
+        $err = checkInformation();
+        $toast = $err;
     } else {
-        $toast = "please fill in all data";
+        $toast = "Vul alstublieft alle verplichte velden in";
+        $err = $toast;
     }
 }
 
 function checkInformation(){
-    if ($_POST["password"] != $_POST["confirmation"]) # check if passwords match
-        return "passwords did not match";
-    if (checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX') && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) # check if domain has a mailserver running
-        return "email is invalid";
-    if(User::getUser($_POST["username"])) #check if user already exists
-        return "user already exists";
+    if ($_POST["password"] != $_POST["confirmation"]) { # check if passwords match
+        return "Wachtwoorden kwamen niet overeen";
+    }
+    if (checkdnsrr(explode('@', $_POST["email"])[1], $record = 'MX') && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) { # check if domain has a mailserver running
+        return "Emailadres bestaat niet";
+    }
+    if(User::getUser($_POST["username"])) {#check if user already exists
+        return "Gebruikersnaam bestaat al";
+    }
 
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $user = array(":Gebruikersnaam" => $_POST["username"], ":Voornaam" => $_POST["first-name"], ":Achternaam" => $_POST["surname"], ":Adresregel_1" => $_POST["adress"], ":Adresregel_2" => $_POST["adress2"],
@@ -40,7 +45,7 @@ function checkInformation(){
 
 
     if(sendConfirmationEmail($_POST['email'], $_POST['username'], hash("md5",$password))){
-        header("Location: login.php?toast=Bevestig je email"); # wait until user confirms email
+        header("Location: login.php?toast=Bevestig je email&succes=Bevestig je email"); # wait until user confirms email
     } else { #mail was not succesful
         User::makeUser($_POST['username']);
         createSession(User::getUser($_POST['username']));

@@ -23,9 +23,18 @@ if (checkPost()) {
             if ($user['Bevestiging']) {
                 createSession($user);
                 header("Location: profile.php?toast=ingelogd");
-            } else $err = "please confirm your email";
-        } else $err = "Incorrect password";
-    } else $err = "please fill in all the data!";
+            } else {
+                $err = "U moet eerst uw account activeren";
+                $toast= $err;
+            }
+        } else {
+            $err = "Wachtwoord komt niet overeen met gebruikersnaam";
+            $toast = $err;
+        }
+    } else {
+        $err = "Vul alstublieft alle verplichte velden in";
+        $toast = $err;
+    }
 }
 
 $title = "Login pagina";
