@@ -36,8 +36,6 @@ function calculateCurrency($amount, $currency)
 
 
 
-
-
 //echo calculateDistance(calculateLocation('6671GK'),calculateLocation('6525EC'));
 //echo generateCategoryDropdown();
 require_once('includes/footer.php');
