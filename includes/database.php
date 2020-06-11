@@ -121,6 +121,7 @@ function selectFromCatalogsMSSQL($orders)
             }
         }
     }
+
     $data = $dbh->prepare($sql);
     $data->execute($execute);
     $result = $data->fetchAll(PDO::FETCH_ASSOC);
