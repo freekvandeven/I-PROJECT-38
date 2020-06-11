@@ -132,37 +132,6 @@
                             </option>
                         </select>
                     </div>
-
-                    <div class="form-group col-lg-2 col-md-3 col-3 displayOnPhone">
-                        <label for="minimum">Prijs</label>
-                        <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
-                            <span>
-                                <div class="row">
-                                    <div><label for="minimum">Van &euro;</label><input type="number" value="1" min="1" max="100000000" name="minimum" id="minimum" class="filter"></div>
-                                    <div><label for="maximum">tot &euro;</label><input type="number" value="100000000" min="1" max="100000000" name="maximum" id="maximum" class="filter"></div>
-                                </div>
-                            </span>
-                        </form>
-                    </div>
-
-                    <div class="form-group col-lg-2 col-md-3 col-3 displayOnPhone">
-                        <label for="postalCode2">Zoek op afstand</label>
-                        <form class="catalogusForm" action="" method="post" onkeyup="regenerateCatalog()">
-                            <input class="form-control" id="postalCode2" name="postalCode" type="text"
-                                   placeholder="Postcode">
-                        </form>
-                    </div>
-
-                    <div class="form-group col-lg-2 col-md-2 col-3 displayOnPhone">
-                        <div class="distance-slider">
-                            <form class="catalogusForm" method="post" onchange="regenerateCatalog()">
-                                <span>Van
-                                    <input type="number" value="0" min="0" max="800" name="minimumDistance" class="filter"> km <br>tot
-                                    <input type="number" value="800" min="0" max="800" name="maximumDistance" class="filter"> km
-                                </span>
-                            </form>
-                        </div>
-                    </div>
                 </div> <!-- einde row -->
             </form>
 

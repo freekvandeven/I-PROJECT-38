@@ -153,7 +153,7 @@ $maxAmountOptionalPhotos = 5;
                         <div class="input-group-prepend">
                             <span class="input-group-text">€</span>
                         </div>
-                        <input type="number" class="form-control input2" id="Verzendkosten" name="Verzendkosten"
+                        <input type="number" class="form-control" id="Verzendkosten" name="Verzendkosten"
                                min="0" max="9999999999999" step="any" placeholder="Verzendkosten"
                                required <?php echo isset($_POST['Verzendkosten']) ? htmlspecialchars($_POST['Verzendkosten'], ENT_QUOTES) : ''; ?>>
                     </div>
