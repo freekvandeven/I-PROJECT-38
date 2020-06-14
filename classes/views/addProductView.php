@@ -31,7 +31,7 @@ $maxAmountOptionalPhotos = 5;
 
                         <!-- RUBRIEK -->
                         <div class="form-group col-md-12">
-                            <label for="Rubriek">Rubriek</label>
+                            <label for="Rubriek">Rubriek *</label>
                             <input class="form-control" type="hidden" id="categoryFilter" name="Rubriek" value="">
                             <p id="categoryFilterName"></p>
                             <input class="form-control" id="zoekcategory" type="text" placeholder="Zoek op categorieën"
@@ -68,7 +68,7 @@ $maxAmountOptionalPhotos = 5;
 
                         <!-- LOOPTIJD -->
                         <div class="form-group col-md-6">
-                            <label for="Looptijd">Looptijd: </label>
+                            <label for="Looptijd">Looptijd *</label>
                             <div class="input-group">
                                 <select class="form-control" name="Looptijd" id="Looptijd">
                                     required <?php echo isset($_POST['Looptijd']) ? htmlspecialchars($_POST['Looptijd'], ENT_QUOTES) : ''; ?>
@@ -100,7 +100,7 @@ $maxAmountOptionalPhotos = 5;
                         </div>
                         <!-- FOTO UPLOADEN -->
                         <div class="form-group col-md-12">
-                            <label for="img">Veiling foto's (min. 1)</label>
+                            <label for="img">Veiling foto's (min. 1) *</label>
                             <div class="custom-file">
                                 <input type="file" class="multipleImages custom-file-input" id="img" name="img[]"
                                        accept="image/*" required

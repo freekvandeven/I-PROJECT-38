@@ -1123,6 +1123,35 @@ body{
     padding-left: 5px;
 }
 
+.addProductPagina #searchResult{
+    list-style-type: none;
+    display: inline-block;
+}
+
+.addProductPagina #searchResult li{
+    margin-left: -20px;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: color 250ms;
+}
+
+.addProductPagina #categoryFilterName{
+    margin-left: 10px;
+    transition: color 250ms;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.addProductPagina #categoryFilterName:hover{
+    color: red;
+}
+
+.addProductPagina #searchResult li:hover,
+.addProductPagina #searchResult li:active,
+.addProductPagina #searchResult li:focus{
+    color: rgb(165, 105, 189);
+}
+
 .upgradePagina .container h2{
     margin-top: 75px;
 }
@@ -1904,14 +1933,14 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
 }
 
 /*************** FOTO'S / IMAGES CSS *************/
-.itemImage, .itemImageProfilePage{
+.itemImage, .itemImageProfilePage, .itemImageCatalogusPage{
     display: block;
-    height: 350px;
+    height: 300px;
     overflow: hidden;
     margin-bottom: 20px;
 }
 
-.itemImage img, .itemImageProfilePage img{
+.itemImage img, .itemImageProfilePage img, .itemImageCatalogusPage img{
     margin: 0 auto;
     width: 100%;
     height: auto;
@@ -3013,15 +3042,28 @@ footer{
 }
 
 .darkmode--activated .addProductButton{
-    background: rgb(200, 200, 200);
-    color: rgb(110, 110, 110);
-    border-color: rgb(110, 110, 110);
-    box-shadow: 0 0 20px rgb(110, 110, 110);
+    background: rgb(40, 40, 40);
+    color: rgb(165, 105, 189);
+    border-color: rgb(165, 105, 189);
+    box-shadow: 0 0 20px rgb(165, 105, 189);
 }
 
 .darkmode--activated .addProductButton:hover{
-    box-shadow: 0 0 20px rgb(165, 105, 189);
+    box-shadow: 0 0 20px rgb(40, 40, 40);
+    color: rgb(40, 40, 40);
+}
+
+.darkmode--activated .addProductPagina #searchResult li,
+.darkmode--activated .addProductPagina #categoryFilterName{
     color: rgb(230, 230, 230);
+}
+
+.darkmode--activated .addProductPagina #searchResult li:hover{
+    color: rgb(165, 105, 189);
+}
+
+.darkmode--activated .addProductPagina #categoryFilterName:hover{
+    color: red;
 }
 
 /********* CATALOGUSVIEW.PHP *********/
