@@ -218,8 +218,12 @@ function generateCatalog($items, $counter = 0, $new = false)
                     </a>
                 </div>
                 <div class='card-body'>
-                    <h5 class='card-title'><?= $card['Titel'] ?></h5>
-                    <p class='card-text'><?php if (strlen($card['Beschrijving']) < 200) $card['Beschrijving'] ?></p>
+                    <h5 class='card-title'><?php
+                            $i =23;
+                            while(mb_strwidth ($card['Titel'], "UTF-8")>21){
+                                $card['Titel']=rtrim(substr($card['Titel'],0,$i))."...";
+                            $i--;}
+                            echo $card['Titel']; ?></h5>
                     <p class="card-text"> &euro; <?= number_format($card['prijs'], 2, ',', '.') ?></p>
                     <a href='item.php?id=<?= $card['Voorwerpnummer'] ?>' class='card-link'>Meer informatie</a>
                 </div>
