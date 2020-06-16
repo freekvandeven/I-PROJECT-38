@@ -20,16 +20,18 @@ class Items
     static function addKeyWords($title, $description = null)
     {
         $keywords = explode(" ", strtolower($title));
-        if($description!= null)
-        $keywords = array_merge(explode(" ", strtolower($description)), $keywords);
+        if ($description != null)
+            $keywords = array_merge(explode(" ", strtolower($description)), $keywords);
         global $dbh;
         $keywordInsert = $dbh->prepare("exec KeyWordInsert ?");
         $keywordInsert->bindParam(1, $keyword);
         foreach ($keywords as $keyword) {
-                $keyword = preg_replace('/\PL/u', '', $keyword);
-                $keyword = strtolower($keyword);
-            if(strlen($keyword)>2) {
-                $keywordInsert->execute();
+            $keyword = preg_replace('/\PL/u', '', $keyword);
+            $keyword = strtolower($keyword);
+            if (strlen($keyword) > 2) {
+                if (empty(Items::getKeyWordId($keyword))) {
+                    $keywordInsert->execute();
+                }
                 Items::addKeyWordLink(Items::getKeyWordId($keyword)['KeyWordNummer'], Items::get_ItemId());
             }
         }
@@ -159,10 +161,11 @@ class Items
         return $result[0];
     }
 
-    static function userHasBid($item, $user){
+    static function userHasBid($item, $user)
+    {
         global $dbh;
         $data = $dbh->prepare('SELECT Voorwerp FROM Bod WHERE Voorwerp = :voorwerpID AND Gebruiker = :user');
-        $data->execute([":voorwerpID" => $item,":user"=>$user]);
+        $data->execute([":voorwerpID" => $item, ":user" => $user]);
         $result = $data->fetch(PDO::FETCH_COLUMN);
         return $result;
     }

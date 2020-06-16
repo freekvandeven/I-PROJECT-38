@@ -1937,7 +1937,6 @@ main .container .wachtwoordVergetenForm .centerForm div .wachtwoordVergetenButto
     display: block;
     height: 300px;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 .itemImage img, .itemImageProfilePage img, .itemImageCatalogusPage img{
